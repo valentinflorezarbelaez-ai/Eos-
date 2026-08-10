@@ -1,0 +1,19 @@
+{
+  "name": "eos-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Engineering Operating System — Autonomous, reproducible, and auditable engineering workspace.",
+  "type": "module",
+  "scripts": {
+    "verify": "node scripts/verify-eos.js",
+    "audit:evidence": "node scripts/verify-eos.js --strict"
+  },
+  "keywords": [
+    "eos",
+    "engineering-operating-system",
+    "autonomous-agent",
+    "sdd"
+  ],
+  "author": "EOS Autonomous Engineering System",
+  "license": "UNLICENSED"
+}
