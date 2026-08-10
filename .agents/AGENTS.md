@@ -27,6 +27,17 @@ No agent may state `DONE`, `PASS`, `VERIFIED`, `SECURE`, `OPTIMIZED`, or `PRODUC
 - **System & Technical Artifacts**: Written in standard professional English (code, comments, documentation, ADRs, commit messages, specs).
 - **User Interface & Persona Communication**: Respects user language and interaction context.
 
+### 5. Mandatory External Write Barrier & Autonomous Scope Limits
+- **EOS Development Mode**: During Control Plane self-development or framework audits, writing to external target project directories (e.g., `C:\Users\valen\Documents\Fundacion`) is strictly **FORBIDDEN**.
+- **External Write Preconditions**: Writing to an external project repository requires verified evidence of:
+  1. `REGISTERED` status in `docs/projects/registry.json`.
+  2. `INTAKE_COMPLETE` status in `docs/intake/`.
+  3. `SPECIFICATION_APPROVED` status in `docs/specs/`.
+  4. `AUDIT_COMPLETE` status in `docs/audits/`.
+  5. `OWNER_APPROVAL` recorded in decision records.
+  6. `IMPLEMENTATION_AUTHORIZED` status (`LEVEL 2` or higher) in `IMPLEMENTATION_AUTHORIZATION.md`.
+- **Autonomy Boundaries**: `AUTONOMOUS` operational mode grants authority within authorized Control Plane scope. Autonomy does NOT permit modifying external code without an explicit `IMPLEMENTATION_AUTHORIZED` record or an approved `EXTERNAL_PROJECT_WRITE_EXCEPTION`.
+
 ## EOS 21-Step Engineering Pipeline
 
 ```text
@@ -35,3 +46,4 @@ ARCHITECTURE → DESIGN → IMPLEMENTATION → TESTING → SECURITY → QUALITY 
 ACCESSIBILITY → PERFORMANCE → SEO → BROWSER QA → EVIDENCE → DOCUMENTATION → 
 DEPLOYMENT → POST-DEPLOYMENT VERIFICATION → LEARNING → CONTINUOUS IMPROVEMENT
 ```
+

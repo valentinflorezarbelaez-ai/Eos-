@@ -50,6 +50,7 @@ const REQUIRED_PATHS = [
   'docs/evidence/EVD-0005.json',
   'docs/evidence/EVD-0006.json',
   'docs/evidence/EVD-0007.json',
+  'docs/evidence/EVD-0008.json',
   'docs/specs/TEMPLATE.md',
   'docs/projects/REGISTRY_MODEL.md',
   'docs/projects/TEMPLATE.json',
@@ -69,7 +70,8 @@ const REQUIRED_PATHS = [
   'docs/audits/EOS_PHASE_6_TECHNICAL_AUDIT.md',
   'docs/audits/EOS_PHASE_7_REMEDIATION.md',
   'docs/audits/EOS_PHASE_8_RELEASE_READINESS.md',
-  'docs/audits/EOS_PHASE_9_STAGING_PREVIEW.md'
+  'docs/audits/EOS_PHASE_9_STAGING_PREVIEW.md',
+  'docs/audits/EOS_CURRENT_STATE_AUDIT.md'
 ];
 
 const REQUIRED_EVIDENCE_STATUSES = [
@@ -103,9 +105,20 @@ function verifyWorkspace() {
     }
   }
 
-  // 2. Strict Mode Content & Consistency Audits
+  // 2. External Target Workspace Write Barrier Check
+  const externalFundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
+  if (fs.existsSync(externalFundacionPath)) {
+    const contents = fs.readdirSync(externalFundacionPath);
+    if (contents.length === 0) {
+      report.checks.push({ path: 'ExternalTarget:Fundacion', status: 'VERIFIED', type: 'external-isolation-empty' });
+    } else {
+      report.failures.push({ path: 'ExternalTarget:Fundacion', message: `External target contains ${contents.length} unapproved items during EOS Development Mode`, type: 'external-isolation-empty' });
+    }
+  }
+
+  // 3. Strict Mode Content & Consistency Audits
   if (isStrict) {
-    // 2a. JSON Integrity Check
+    // 3a. JSON Integrity Check
     const jsonFiles = [
       'package.json',
       'docs/evidence/schema.json',
@@ -116,6 +129,7 @@ function verifyWorkspace() {
       'docs/evidence/EVD-0005.json',
       'docs/evidence/EVD-0006.json',
       'docs/evidence/EVD-0007.json',
+      'docs/evidence/EVD-0008.json',
       'docs/projects/TEMPLATE.json',
       'docs/projects/schema.json',
       'docs/projects/registry.json',
@@ -140,7 +154,7 @@ function verifyWorkspace() {
       }
     }
 
-    // 2b. Taxonomy Consistency Check
+    // 3b. Taxonomy Consistency Check
     const constitutionPath = path.join(rootDir, 'docs/core/CONSTITUTION.md');
     const agentsPath = path.join(rootDir, '.agents/AGENTS.md');
 
@@ -158,7 +172,7 @@ function verifyWorkspace() {
       }
     }
 
-    // 2c. Skill Frontmatter Validation
+    // 3c. Skill Frontmatter Validation
     const skillsDir = path.join(rootDir, '.agents/skills');
     if (fs.existsSync(skillsDir)) {
       const skills = fs.readdirSync(skillsDir);

@@ -4,39 +4,39 @@
   "name": "Fundación",
   "description": "Non-profit institutional web application for Fundación.",
   "path": "C:\\Users\\valen\\Documents\\Fundacion",
-  "repository": "git",
+  "repository": "local",
   "branch": "main",
   "project_type": "WEBSITE",
-  "lifecycle_status": "IMPLEMENTATION",
-  "technical_status": "PARTIALLY VERIFIED",
+  "lifecycle_status": "INTAKE",
+  "technical_status": "NOT VERIFIED",
   "business_status": "DISCOVERY",
-  "stack": ["HTML5", "CSS3", "JavaScript", "Vite"],
+  "stack": ["HTML5", "CSS3", "JavaScript"],
   "documentation": [
     "docs/projects/registrations/fundacion.json",
-    "docs/projects/registrations/fundacion/DECISION_RECORD.md",
-    "docs/projects/registrations/fundacion/IMPLEMENTATION_AUTHORIZATION.md",
+    "docs/intake/fundacion/PROJECT_CONTEXT.md",
+    "docs/intake/fundacion/UNKNOWN_AND_GAPS.md",
     "docs/specs/fundacion/SPEC-0001-fundacion-core.md"
   ],
   "constraints": [
-    "Controlled Implementation Authorized (Level 2)",
-    "Must comply with WCAG AA accessibility standards",
-    "Must preserve client visual identity when provided"
+    "External Project Write Barrier Active",
+    "Implementation forbidden until explicit Product Owner authorization",
+    "Must comply with WCAG AA accessibility standards when authorized"
   ],
   "risks": [
-    "Target directory C:\\Users\\valen\\Documents\\Fundacion raw client assets pending delivery (GAP-001)",
+    "Premature implementation reverted to empty target folder",
+    "Raw client assets pending delivery (GAP-001)",
     "Uncertain legal and contact details (GAP-002)"
   ],
   "assumptions": [
-    "Project will be a modern responsive web application",
-    "Client will require donation/contact integration"
+    "Project will be a modern responsive web application once authorized"
   ],
   "owner": "Fundación Leadership / EOS Control Plane",
   "intake_status": "COMPLETE",
   "specification_status": "APPROVED",
-  "implementation_status": "IN_PROGRESS",
+  "implementation_status": "NOT_STARTED",
   "validation_status": "NOT_STARTED",
   "release_status": "NOT_STARTED",
   "autonomy_level": "SUPERVISED",
   "created_at": "2026-08-10T22:32:00Z",
-  "updated_at": "2026-08-10T22:43:00Z"
+  "updated_at": "2026-08-10T23:33:00Z"
 }

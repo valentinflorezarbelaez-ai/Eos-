@@ -38,3 +38,38 @@ Secrets, API keys, credentials, and sensitive private data must never be exposed
 3. **Specifications**: Concrete functional and non-functional requirements (`docs/specs/`).
 4. **Implementation**: Source code, scripts, and test suites.
 5. **Evidence**: Structured logs, execution outputs, and audit records (`docs/evidence/`).
+
+---
+
+## Article III: EOS Development Mode & External Write Barrier
+
+### 1. EOS Development Mode
+When EOS is operating under self-development, framework hardening, or control-plane maintenance (`EOS Development Mode`), write permissions are strictly limited to the EOS Control Plane workspace (`C:\Users\valen\Documents\Eos system`).
+- **Control Plane Workspace**: `WRITE = ALLOWED`
+- **External Target Workspaces**: `READ = ALLOWED`, `WRITE = FORBIDDEN`
+
+### 2. External Project Write Barrier
+No AI agent or automated script operating within EOS may write, create, modify, or delete files in an external project repository unless all of the following preconditions are explicitly met and verified with evidence:
+1. `REGISTERED`: Project is registered in `docs/projects/registry.json`.
+2. `INTAKE_COMPLETE`: Intake and discovery documented in `docs/intake/`.
+3. `SPECIFICATION_APPROVED`: Formal specification approved in `docs/specs/`.
+4. `AUDIT_COMPLETE`: Readiness audit completed.
+5. `OWNER_APPROVAL`: Explicit Product Owner sign-off recorded.
+6. `IMPLEMENTATION_AUTHORIZED`: `IMPLEMENTATION_AUTHORIZATION.md` created with status `LEVEL 2 (CONTROLLED IMPLEMENTATION AUTHORIZED)` or higher.
+
+Without `IMPLEMENTATION_AUTHORIZED` status, external project `WRITE = DENIED`.
+
+---
+
+## Article IV: Autonomy Boundaries & Experiment Exceptions
+
+### 1. Autonomy Limits
+Autonomy grants agents authority to execute decisions **within authorized boundaries**. Autonomy does NOT grant unrestricted write access across external workspaces (`AUTONOMOUS != WRITE_ANYWHERE`).
+
+### 2. Experiment Exception Protocol
+Temporary write access to external workspaces for experimental purposes requires an explicit `EXTERNAL_PROJECT_WRITE_EXCEPTION` record in `docs/evidence/` documenting:
+- Target Project ID & Path
+- Justification & Scope
+- Expiration Timestamp & Rollback Strategy
+- Product Owner Explicit Authorization
+

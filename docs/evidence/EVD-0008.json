@@ -1,0 +1,38 @@
+{
+  "$schema": "./schema.json",
+  "id": "EVD-0008",
+  "claim": "Premature implementation of PRJ-FUNDACION was safely reverted to an empty state, and EOS Control Plane External Write Barrier was hardened.",
+  "status": "VERIFIED",
+  "scope": "EOS Control Plane & External Project Isolation",
+  "source": "EOS Self-Development Audit & Reversion Execution",
+  "timestamp": "2026-08-10T23:33:00Z",
+  "actor": "EOS System Architect",
+  "action": "Audited Fundacion folder, confirmed 100% of files were EOS-generated, safely removed all files, verified 0 items remaining, and updated governance write barrier policies.",
+  "command": "(Get-ChildItem -Path C:\\Users\\valen\\Documents\\Fundacion -Force).Count",
+  "expected": "Fundacion target directory returns 0 items. EOS Constitution, Governance, AGENTS.md, and skills prohibit external write without IMPLEMENTATION_AUTHORIZED status.",
+  "actual": "Fundacion target directory count is 0. External Write Barrier active in Constitution Article III, AGENTS.md Section 5, and Governance Model.",
+  "result": "PASS",
+  "artifacts": [
+    "C:\\Users\\valen\\Documents\\Fundacion",
+    "docs\\core\\CONSTITUTION.md",
+    "docs\\core\\GOVERNANCE.md",
+    ".agents\\AGENTS.md",
+    "docs\\projects\\registrations\\fundacion.json",
+    "docs\\projects\\registry.json"
+  ],
+  "logs": [
+    "Fundacion item count: 0 (reverted to empty initial state)",
+    "EOS Development Mode policy enforced: External WRITE = FORBIDDEN without explicit Product Owner IMPLEMENTATION_AUTHORIZED record",
+    "Fundacion lifecycle_status reset to INTAKE and implementation_status reset to NOT_STARTED"
+  ],
+  "environment": {
+    "os": "Windows 11",
+    "node": "v24.16.0"
+  },
+  "confidence": "HIGH",
+  "risks": ["Accidental future external write attempt (Mitigated by External Write Barrier checks in verify-eos.js)"],
+  "limitations": ["External project implementation remains forbidden until explicit Product Owner sign-off on 4 business GAPs"],
+  "related_spec": "docs/specs/fundacion/SPEC-0001-fundacion-core.md",
+  "related_project": "PRJ-FUNDACION",
+  "related_change": "3bbe9e8"
+}

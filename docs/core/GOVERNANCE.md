@@ -37,3 +37,21 @@ The human Product Owner retains exclusive authority over:
 - Production releases & public deployments.
 - Irreversible infrastructure actions & data destruction.
 - Credential & secret rotation.
+
+---
+
+## External Project Lifecycle & Write Authorization Matrix
+
+| Lifecycle Status | Prerequisites Required | External Project Write Permitted? | Required Authorization Artifact |
+|---|---|---|---|
+| `DISCOVERED` | Initial folder detection | `FORBIDDEN` | None |
+| `REGISTERED` | Schema entry in `registry.json` | `FORBIDDEN` | `docs/projects/registrations/*.json` |
+| `INTAKE` | Discovery documentation | `FORBIDDEN` | `docs/intake/*/PROJECT_CONTEXT.md` |
+| `SPECIFICATION` | Spec draft created | `FORBIDDEN` | `docs/specs/*/SPEC-0001-*.md` |
+| `AUDIT` | Technical audit report | `FORBIDDEN` | `docs/audits/EOS_PHASE_*_AUDIT.md` |
+| `AWAITING_APPROVAL` | Gaps & decisions analyzed | `FORBIDDEN` | `DECISION_RECORD.md` |
+| `IMPLEMENTATION_AUTHORIZED` | Formal Product Owner sign-off | `ALLOWED` (Scaffold / Controlled) | `IMPLEMENTATION_AUTHORIZATION.md` |
+| `IMPLEMENTATION` | Authorized scope | `ALLOWED` (Controlled Scope Only) | Active `IMPLEMENTATION_AUTHORIZATION.md` |
+| `STAGING` | Release Candidate ready | `FORBIDDEN` (Freeze) | `EOS_PHASE_9_STAGING_PREVIEW.md` |
+| `PRODUCTION_AUTHORIZED` | Level 4 Release Sign-off | `ALLOWED` (Production Pipeline) | Product Owner Written Authorization |
+

@@ -19,9 +19,12 @@ Enforces specification-first engineering for non-trivial features, refactoring, 
    - Document any architectural decisions in `docs/architecture/adrs/`.
 
 3. **Implementation Phase**:
-   - Write clean, type-safe, minimal code fulfilling the spec.
+   - Verify `IMPLEMENTATION_AUTHORIZED` status in `docs/projects/registrations/*.json` before creating or editing files in any target external project.
+   - If target project is in `EOS Development Mode` or `INTAKE`/`SPECIFICATION` lifecycle status without explicit Product Owner sign-off, external `WRITE` operations are strictly **FORBIDDEN**.
+   - Write clean, type-safe, minimal code fulfilling the spec once authorized.
    - Implement incremental tests parallel to implementation.
 
 4. **Validation Phase**:
    - Execute test suite and automated checks.
    - Record verification status in `docs/evidence/`.
+
