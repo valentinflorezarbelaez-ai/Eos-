@@ -43,6 +43,10 @@ const REQUIRED_PATHS = [
   'docs/architecture/adrs/ADR-0001-eos-workspace-initialization.md',
   'docs/evidence/schema.json',
   'docs/evidence/TEMPLATE.md',
+  'docs/evidence/EVD-0001.json',
+  'docs/evidence/EVD-0002.json',
+  'docs/evidence/EVD-0003.json',
+  'docs/evidence/EVD-0004.json',
   'docs/specs/TEMPLATE.md',
   'docs/projects/REGISTRY_MODEL.md',
   'docs/projects/TEMPLATE.json',
@@ -58,7 +62,8 @@ const REQUIRED_PATHS = [
   'docs/intake/fundacion/UNKNOWN_AND_GAPS.md',
   'docs/intake/fundacion/REQUIREMENTS_DISCOVERY.md',
   'docs/intake/fundacion/inventory.json',
-  'docs/specs/fundacion/SPEC-0001-fundacion-core.md'
+  'docs/specs/fundacion/SPEC-0001-fundacion-core.md',
+  'docs/audits/EOS_PHASE_6_TECHNICAL_AUDIT.md'
 ];
 
 const REQUIRED_EVIDENCE_STATUSES = [
@@ -98,6 +103,10 @@ function verifyWorkspace() {
     const jsonFiles = [
       'package.json',
       'docs/evidence/schema.json',
+      'docs/evidence/EVD-0001.json',
+      'docs/evidence/EVD-0002.json',
+      'docs/evidence/EVD-0003.json',
+      'docs/evidence/EVD-0004.json',
       'docs/projects/TEMPLATE.json',
       'docs/projects/schema.json',
       'docs/projects/registry.json',

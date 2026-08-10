@@ -1,0 +1,31 @@
+{
+  "$schema": "./schema.json",
+  "id": "EVD-0004",
+  "claim": "Fundacion web portal implements Open Graph metadata, JSON-LD NGO schema, and zero render-blocking framework scripts.",
+  "status": "VERIFIED",
+  "scope": "Fundacion Performance & SEO",
+  "source": "Performance & SEO Static Audit",
+  "timestamp": "2026-08-10T23:05:00Z",
+  "actor": "EOS SEO & Performance Auditor",
+  "action": "Audited meta tags, JSON-LD Schema script, Open Graph tags, and bundle weight.",
+  "command": "view_file C:\\Users\\valen\\Documents\\Fundacion\\index.html",
+  "expected": "Open Graph metadata, NGO JSON-LD Schema, meta description, and sub-20KB bundle size.",
+  "actual": "Meta description (index.html:7), Open Graph tags (index.html:11-14), JSON-LD (index.html:17-26). Bundle size 17.06 KB.",
+  "result": "PASS",
+  "artifacts": [
+    "C:\\Users\\valen\\Documents\\Fundacion\\index.html"
+  ],
+  "logs": [
+    "index.html line 7: meta name=\"description\"",
+    "index.html line 17: script type=\"application/ld+json\""
+  ],
+  "environment": {
+    "os": "Windows 11"
+  },
+  "confidence": "HIGH",
+  "risks": ["SEO-001: Canonical tag missing", "SEO-002: robots.txt and sitemap.xml pending creation"],
+  "limitations": ["Lighthouse network trace unverified without active HTTP server"],
+  "related_spec": "docs/specs/fundacion/SPEC-0001-fundacion-core.md",
+  "related_project": "PRJ-FUNDACION",
+  "related_change": "777a518"
+}

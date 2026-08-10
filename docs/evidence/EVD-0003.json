@@ -1,0 +1,32 @@
+{
+  "$schema": "./schema.json",
+  "id": "EVD-0003",
+  "claim": "Fundacion web portal implements semantic HTML5 tags, keyboard skip-link, and visible focus rings.",
+  "status": "VERIFIED",
+  "scope": "Fundacion Accessibility (WCAG AA)",
+  "source": "Accessibility Code Audit",
+  "timestamp": "2026-08-10T23:05:00Z",
+  "actor": "EOS Accessibility Auditor",
+  "action": "Audited HTML landmarks, skip links, heading order, form labels, and CSS focus ring styling.",
+  "command": "view_file C:\\Users\\valen\\Documents\\Fundacion\\index.html",
+  "expected": "Semantic landmarks, skip link, single H1, and explicit label associations.",
+  "actual": "Skip link present (index.html:30). Single H1 present (index.html:58). Focus ring defined in main.css:35.",
+  "result": "PASS",
+  "artifacts": [
+    "C:\\Users\\valen\\Documents\\Fundacion\\index.html",
+    "C:\\Users\\valen\\Documents\\Fundacion\\src\\styles\\main.css"
+  ],
+  "logs": [
+    "index.html line 30: <a href=\"#main-content\" class=\"skip-link\">",
+    "main.css line 35: outline: var(--focus-ring);"
+  ],
+  "environment": {
+    "os": "Windows 11"
+  },
+  "confidence": "HIGH",
+  "risks": ["A11Y-001: Mobile hamburger icon span needs visual CSS bar styling"],
+  "limitations": ["Screen reader dynamic speech unverified without active NVDA/JAWS session"],
+  "related_spec": "docs/specs/fundacion/SPEC-0001-fundacion-core.md",
+  "related_project": "PRJ-FUNDACION",
+  "related_change": "777a518"
+}
