@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSAdoptionDecisionSchema",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "capability_id",
+    "title",
+    "decision",
+    "reasoning",
+    "evidence",
+    "risk",
+    "authority",
+    "status"
+  ],
+  "properties": {
+    "decision_id": { "type": "string" },
+    "capability_id": { "type": "string" },
+    "title": { "type": "string" },
+    "decision": { "type": "string", "enum": ["ADOPT", "PILOT", "OBSERVE", "REJECT", "DEFER"] },
+    "reasoning": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "risk": { "type": "string" },
+    "authority": { "type": "string" },
+    "status": { "type": "string", "enum": ["APPROVED", "PENDING", "REJECTED"] }
+  }
+}

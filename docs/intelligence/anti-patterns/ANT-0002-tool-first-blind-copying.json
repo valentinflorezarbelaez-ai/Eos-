@@ -1,0 +1,22 @@
+{
+  "$schema": "./schema.json",
+  "antipattern_id": "ANT-0002",
+  "name": "Tool-First Blind Copying",
+  "problem": "Adopting popular external tools or framework brands without analyzing their underlying mechanisms, trade-offs, or applicability to EOS.",
+  "symptoms": [
+    "Adding npm packages simply because an external repository uses them",
+    "Creating complex microservices for single-machine local workflows",
+    "Claiming compliance based on tool name rather than empirical evidence"
+  ],
+  "consequences": [
+    "Ornamental architectural bloat",
+    "Dependency fatigue and maintenance overhead",
+    "Loss of local-first control plane simplicity"
+  ],
+  "root_cause": "Selecting tools by popularity rather than mechanism fit under current governance constraints.",
+  "mitigation": "Enforce Section 4 Mechanism Analysis: Evaluate Problem, Why, Responsibility, Inputs, Outputs, Invariants, Failure Modes, Evidence, and Test Strategy before adoption.",
+  "evidence": [
+    "RSC-0001: Epistemological analysis of Engram memory mechanisms prior to policy adoption"
+  ],
+  "status": "MITIGATED"
+}

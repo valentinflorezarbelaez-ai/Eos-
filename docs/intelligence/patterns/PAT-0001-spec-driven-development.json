@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "pattern_id": "PAT-0001",
+  "name": "Spec-Driven Development (SDD)",
+  "problem": "Unclear requirements lead to premature coding, scope creep, and architectural drift.",
+  "context": "Autonomous engineering agents operating on non-trivial web applications",
+  "forces": ["Speed vs Safety", "Autonomy vs Control", "Code Generation vs Architecture Integrity"],
+  "mechanism": "Enforce formal SPEC-0001 documents with Given-When-Then acceptance criteria before any code writing is authorized.",
+  "implementation_shape": "docs/specs/<project>/SPEC-0001-*.md + IMPLEMENTATION_AUTHORIZATION.md gate",
+  "benefits": [
+    "Zero unapproved code written",
+    "Clear acceptance criteria for automated QA",
+    "Reproducible requirements traceability"
+  ],
+  "tradeoffs": [
+    "Requires initial upfront specification investment prior to coding"
+  ],
+  "risks": [
+    "Over-specifying trivial single-line fixes"
+  ],
+  "anti_patterns": [
+    "ANT-0001: Premature External Implementation"
+  ],
+  "adoption_conditions": [
+    "Project must be registered in registry.json with approved INTAKE"
+  ],
+  "evidence": [
+    "EVD-0001 through EVD-0009 demonstrate zero spec ambiguity during remediation phase"
+  ],
+  "organizations_using_it": ["Google", "Microsoft", "Amazon", "Stripe", "EOS"],
+  "maturity": "MATURE",
+  "confidence": "HIGH",
+  "eos_relevance": "CRITICAL",
+  "status": "VALIDATED"
+}

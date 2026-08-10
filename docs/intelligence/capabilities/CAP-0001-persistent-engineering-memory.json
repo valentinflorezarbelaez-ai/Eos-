@@ -1,0 +1,10 @@
+{
+  "$schema": "./schema.json",
+  "capability_id": "CAP-0001",
+  "name": "Persistent Engineering Memory",
+  "description": "Structured local observation logging and session summary protocols preventing agent context loss across session resets.",
+  "source_pattern": "PAT-0001 / Engram Protocol",
+  "forces": ["Context Window Limits", "Session Continuity", "Evidence Preservation"],
+  "status": "ADOPTED",
+  "adoption_level": "ADOPT"
+}

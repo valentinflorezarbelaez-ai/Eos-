@@ -1,0 +1,33 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0002",
+  "question": "How do hyperscale AI engineering teams (OpenAI, Anthropic, Google) structure multi-agent delegation without polluting context windows?",
+  "scope": "Subagent isolation, specialized capability matching, structured handoff schemas, and context window partitioning",
+  "sources": ["SRC-0002", "SRC-0003", "SRC-0001"],
+  "claims": [
+    "Isolated subagents with dedicated system prompts reduce context window clutter and increase task success rate.",
+    "Structured JSON handoffs prevent loose text ambiguity between specialized roles."
+  ],
+  "evidence": [
+    "OpenAI Swarm benchmarks demonstrate higher execution accuracy when agents hand off explicit JSON payloads.",
+    "Anthropic Claude Code subagent isolation prevents main chat thread context degradation."
+  ],
+  "observations": [
+    "Orchestrator threads should remain thin, delegating heavy file reads and writes to specialized dynamic workers.",
+    "Delegation depth must be bounded (max 10 levels deep) to prevent infinite subagent recursion."
+  ],
+  "patterns": [
+    "PAT-0004: Thin Orchestrator & Bounded Subagent Delegation"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Subagent spawning incurs token overhead for system prompt loading."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "HIGH",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Incorporate thin orchestrator delegation and structured JSON handoffs into EOS Agent Selection Engine.",
+  "verification_status": "VERIFIED"
+}

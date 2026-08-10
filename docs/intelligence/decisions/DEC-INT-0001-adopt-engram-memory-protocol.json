@@ -1,0 +1,12 @@
+{
+  "$schema": "./schema.json",
+  "decision_id": "DEC-INT-0001",
+  "capability_id": "CAP-0001",
+  "title": "Adoption of Engram Persistent Memory & Session Summary Protocols",
+  "decision": "ADOPT",
+  "reasoning": "RSC-0001 epistemological study demonstrated high efficacy in preserving session continuity, recording architecture decisions, and preventing context window loss without breaking local isolation boundaries.",
+  "evidence": ["EVD-0001 through EVD-0009", "RSC-0001"],
+  "risk": "Requires explicit evidence checks to prevent unverified claims from polluting memory logs.",
+  "authority": "EOS Governance Board & Product Owner",
+  "status": "APPROVED"
+}

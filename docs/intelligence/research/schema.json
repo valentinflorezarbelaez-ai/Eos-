@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSResearchRecordSchema",
+  "type": "object",
+  "required": [
+    "research_id",
+    "question",
+    "scope",
+    "sources",
+    "claims",
+    "evidence",
+    "observations",
+    "patterns",
+    "contradictions",
+    "limitations",
+    "confidence",
+    "maturity",
+    "adoption_level",
+    "strategic_value",
+    "eos_relevance",
+    "recommendation",
+    "verification_status"
+  ],
+  "properties": {
+    "research_id": { "type": "string" },
+    "question": { "type": "string" },
+    "scope": { "type": "string" },
+    "sources": { "type": "array", "items": { "type": "string" } },
+    "claims": { "type": "array", "items": { "type": "string" } },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "observations": { "type": "array", "items": { "type": "string" } },
+    "patterns": { "type": "array", "items": { "type": "string" } },
+    "contradictions": { "type": "array", "items": { "type": "string" } },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+    "maturity": { "type": "string", "enum": ["MATURE", "EMERGING", "EXPERIMENTAL"] },
+    "adoption_level": { "type": "string", "enum": ["ADOPT", "PILOT", "OBSERVE", "REJECT", "DEFER"] },
+    "strategic_value": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+    "eos_relevance": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+    "recommendation": { "type": "string" },
+    "verification_status": { "type": "string", "enum": ["VERIFIED", "NOT VERIFIED", "PARTIALLY VERIFIED", "BLOCKED"] }
+  }
+}

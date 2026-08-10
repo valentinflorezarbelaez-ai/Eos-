@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSCapabilitySchema",
+  "type": "object",
+  "required": [
+    "capability_id",
+    "name",
+    "description",
+    "source_pattern",
+    "forces",
+    "status",
+    "adoption_level"
+  ],
+  "properties": {
+    "capability_id": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "source_pattern": { "type": "string" },
+    "forces": { "type": "array", "items": { "type": "string" } },
+    "status": { "type": "string", "enum": ["CANDIDATE", "PILOT", "ADOPTED", "REJECTED"] },
+    "adoption_level": { "type": "string", "enum": ["ADOPT", "PILOT", "OBSERVE", "REJECT", "DEFER"] }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSAntiPatternSchema",
+  "type": "object",
+  "required": [
+    "antipattern_id",
+    "name",
+    "problem",
+    "symptoms",
+    "consequences",
+    "root_cause",
+    "mitigation",
+    "evidence",
+    "status"
+  ],
+  "properties": {
+    "antipattern_id": { "type": "string" },
+    "name": { "type": "string" },
+    "problem": { "type": "string" },
+    "symptoms": { "type": "array", "items": { "type": "string" } },
+    "consequences": { "type": "array", "items": { "type": "string" } },
+    "root_cause": { "type": "string" },
+    "mitigation": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "status": { "type": "string", "enum": ["ACTIVE_RISK", "MITIGATED", "DEPRECATED"] }
+  }
+}

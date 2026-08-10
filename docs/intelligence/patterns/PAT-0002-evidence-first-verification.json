@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "pattern_id": "PAT-0002",
+  "name": "Evidence-First Verification",
+  "problem": "AI agents frequently state 'DONE' or 'VERIFIED' without running actual tests or builds.",
+  "context": "Automated quality assurance and release readiness audits",
+  "forces": ["Speed vs Evidence Integrity", "LLM Claims vs Verifiable Truth"],
+  "mechanism": "Enforce a 6-tier evidence taxonomy requiring executable command outputs before declaring any status claim.",
+  "implementation_shape": "docs/evidence/EVD-*.json + scripts/verify-eos.js strict runner",
+  "benefits": [
+    "100% verifiable status claims",
+    "Zero unbacked assertions",
+    "Deterministic audit trail"
+  ],
+  "tradeoffs": [
+    "Requires active command execution for every claim"
+  ],
+  "risks": [
+    "Flaky test output falsely blocking promotion"
+  ],
+  "anti_patterns": [
+    "ANT-0003: Claim-Without-Evidence"
+  ],
+  "adoption_conditions": [
+    "All status claims must reference an EVD-*.json artifact"
+  ],
+  "evidence": [
+    "77+ strict checks passed in verify-eos.js"
+  ],
+  "organizations_using_it": ["Google SRE", "NASA", "EOS"],
+  "maturity": "MATURE",
+  "confidence": "HIGH",
+  "eos_relevance": "CRITICAL",
+  "status": "VALIDATED"
+}

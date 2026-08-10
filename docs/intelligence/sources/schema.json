@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSIntelligenceSourceSchema",
+  "type": "object",
+  "required": [
+    "source_id",
+    "name",
+    "organization",
+    "category",
+    "domain",
+    "source_type",
+    "authority",
+    "evidence_type",
+    "recency",
+    "maturity",
+    "independence",
+    "known_bias",
+    "relevance_to_eos",
+    "verification_status",
+    "url_or_reference"
+  ],
+  "properties": {
+    "source_id": { "type": "string" },
+    "name": { "type": "string" },
+    "organization": { "type": "string" },
+    "category": { "type": "string", "enum": ["AI_AGENT_ENGINEERING", "ENGINEERING_ORGANIZATION", "ENGINEERING_METHODOLOGY", "KNOWLEDGE_AI_ENGINEERING", "STANDARDS_BODY", "ACADEMIC_RESEARCH"] },
+    "domain": { "type": "string" },
+    "source_type": { "type": "string", "enum": ["PRIMARY_DOCS", "ENGINEERING_BLOG", "SPECIFICATION", "OPEN_SOURCE_REPO", "ACADEMIC_PAPER", "COMMUNITY_PATTERN"] },
+    "authority": { "type": "string", "enum": ["AUTHORITATIVE", "HIGH", "MEDIUM", "EXPERIMENTAL", "INFORMAL"] },
+    "evidence_type": { "type": "string", "enum": ["EMPIRICAL_PRODUCTION", "BENCHMARK", "CASE_STUDY", "DOCUMENTATION", "SPECULATION"] },
+    "recency": { "type": "string" },
+    "maturity": { "type": "string", "enum": ["MATURE", "EMERGING", "EXPERIMENTAL", "DEPRECATED"] },
+    "independence": { "type": "string", "enum": ["INDEPENDENT", "DERIVED", "VENDOR_PROPRIETARY"] },
+    "known_bias": { "type": "string" },
+    "relevance_to_eos": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+    "verification_status": { "type": "string", "enum": ["VERIFIED", "NOT VERIFIED", "PARTIALLY VERIFIED", "BLOCKED"] },
+    "url_or_reference": { "type": "string" }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "./schema.json",
+  "antipattern_id": "ANT-0001",
+  "name": "Premature External Implementation",
+  "problem": "AI agents begin writing code in external target repositories before the Control Plane itself is fully hardened or authorized.",
+  "symptoms": [
+    "Target directory modified during intake/discovery phase",
+    "Unapproved HTML/CSS scaffolding generated",
+    "Package dependencies installed without explicit owner sign-off"
+  ],
+  "consequences": [
+    "Violates Product Owner decision control",
+    "Creates unverified target code debt",
+    "Mixes framework self-development with external client code"
+  ],
+  "root_cause": "Ambiguous autonomy boundaries allowing write actions everywhere in AUTONOMOUS mode.",
+  "mitigation": "Enforce Constitution Article III External Write Barrier and verify-eos.js empty folder check.",
+  "evidence": [
+    "EVD-0008: Premature implementation of Fundacion reverted to empty state"
+  ],
+  "status": "MITIGATED"
+}
