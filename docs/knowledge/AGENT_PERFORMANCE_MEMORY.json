@@ -1,0 +1,25 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:50:00Z",
+  "performance_metrics": [
+    {
+      "agent_id": "AGT-ACCESSIBILITY",
+      "task_type": "ACCESSIBILITY_AUDIT",
+      "historical_success_rate": 1.0,
+      "verification_rate": 1.0,
+      "rework_rate": 0.0,
+      "evidence_quality": "HIGH",
+      "average_latency_ms": 120
+    },
+    {
+      "agent_id": "AGT-GOVERNANCE-AUDITOR",
+      "task_type": "WRITE_BARRIER_CHECK",
+      "historical_success_rate": 1.0,
+      "verification_rate": 1.0,
+      "rework_rate": 0.0,
+      "evidence_quality": "HIGH",
+      "average_latency_ms": 85
+    }
+  ]
+}

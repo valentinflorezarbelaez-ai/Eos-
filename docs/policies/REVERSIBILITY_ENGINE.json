@@ -1,0 +1,42 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:50:00Z",
+  "reversibility_tiers": [
+    {
+      "tier": "FULLY_REVERSIBLE",
+      "example": "Editing local uncommitted code or creating local documentation",
+      "rollback_mechanism": "git checkout HEAD -- <file> / Remove-Item",
+      "autonomy_allowed": "AUTONOMOUS",
+      "max_autonomy_level": "L5_EXECUTE_AUTONOMOUS"
+    },
+    {
+      "tier": "REVERSIBLE",
+      "example": "Git local commit or local package installation",
+      "rollback_mechanism": "git reset HEAD~1 / npm uninstall <pkg>",
+      "autonomy_allowed": "AUTONOMOUS",
+      "max_autonomy_level": "L5_EXECUTE_AUTONOMOUS"
+    },
+    {
+      "tier": "PARTIALLY_REVERSIBLE",
+      "example": "Staging server build deployment or local preview server launch",
+      "rollback_mechanism": "Kill server process / Re-run staging build",
+      "autonomy_allowed": "CONTROLLED",
+      "max_autonomy_level": "L4_EXECUTE_CONTROLLED"
+    },
+    {
+      "tier": "DIFFICULT_TO_REVERSE",
+      "example": "Public git push to main branch or public package publishing",
+      "rollback_mechanism": "Git revert commit / npm deprecate",
+      "autonomy_allowed": "HUMAN_APPROVAL_REQUIRED",
+      "max_autonomy_level": "L3_SIMULATE"
+    },
+    {
+      "tier": "IRREVERSIBLE",
+      "example": "Permanent database drop, domain DNS update, cloud infra deletion",
+      "rollback_mechanism": "None / Manual backup restoration",
+      "autonomy_allowed": "FORBIDDEN",
+      "max_autonomy_level": "L2_PROPOSE"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:50:00Z",
+  "autonomy_levels": [
+    { "level": "L0_OBSERVE", "name": "Observe Only", "authority": "Autonomous", "description": "Read-only inspection and monitoring without side effects." },
+    { "level": "L1_ANALYZE", "name": "Analyze & Classify", "authority": "Autonomous", "description": "Read-only intake discovery, gap detection, and evidence auditing." },
+    { "level": "L2_PROPOSE", "name": "Propose & Specify", "authority": "Autonomous", "description": "Draft specifications, ADRs, task graphs, and execution plans." },
+    { "level": "L3_SIMULATE", "name": "Simulate (Dry Run)", "authority": "Autonomous", "description": "Evaluate policy engine rules and simulate execution plans without physical side effects." },
+    { "level": "L4_EXECUTE_CONTROLLED", "name": "Execute Controlled", "authority": "Level 2 Approval Required", "description": "Write code within authorized target paths under active IMPLEMENTATION_AUTHORIZED record." },
+    { "level": "L5_EXECUTE_AUTONOMOUS", "name": "Execute Autonomous", "authority": "Full Pre-Authorized Scope", "description": "Self-directed execution within pre-cleared Control Plane boundaries." },
+    { "level": "L6_SELF_OPTIMIZE", "name": "Self-Optimize", "authority": "Autonomous (EOS Internal)", "description": "Evolve internal policies, skills, and blueprints based on empirical evidence." }
+  ],
+  "action_risk_taxonomy": [
+    { "action_type": "READ", "risk_level": "LOW", "execution_mode": "AUTONOMOUS", "human_approval_required": false },
+    { "action_type": "ANALYZE", "risk_level": "LOW", "execution_mode": "AUTONOMOUS", "human_approval_required": false },
+    { "action_type": "GENERATE", "risk_level": "LOW", "execution_mode": "AUTONOMOUS", "human_approval_required": false },
+    { "action_type": "MODIFY_EOS", "risk_level": "MEDIUM", "execution_mode": "AUTONOMOUS", "human_approval_required": false },
+    { "action_type": "MODIFY_EXTERNAL", "risk_level": "HIGH", "execution_mode": "CONTROLLED", "human_approval_required": true },
+    { "action_type": "DELETE", "risk_level": "HIGH", "execution_mode": "CONTROLLED", "human_approval_required": true },
+    { "action_type": "EXECUTE_SHELL", "risk_level": "MEDIUM", "execution_mode": "AUTONOMOUS", "human_approval_required": false },
+    { "action_type": "INSTALL_PACKAGE", "risk_level": "MEDIUM", "execution_mode": "AUTONOMOUS", "human_approval_required": false },
+    { "action_type": "NETWORK_DEPLOY", "risk_level": "HIGH", "execution_mode": "HUMAN_APPROVAL_REQUIRED", "human_approval_required": true },
+    { "action_type": "FINANCIAL", "risk_level": "CRITICAL", "execution_mode": "FORBIDDEN", "human_approval_required": true },
+    { "action_type": "SECURITY_SENSITIVE", "risk_level": "CRITICAL", "execution_mode": "HUMAN_APPROVAL_REQUIRED", "human_approval_required": true },
+    { "action_type": "IRREVERSIBLE", "risk_level": "CRITICAL", "execution_mode": "HUMAN_APPROVAL_REQUIRED", "human_approval_required": true }
+  ]
+}

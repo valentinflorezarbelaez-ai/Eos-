@@ -1,0 +1,35 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:50:00Z",
+  "rules": [
+    {
+      "task_type": "TRIVIAL_SINGLE_FILE",
+      "max_agents": 1,
+      "coordination_penalty": "HIGH",
+      "team_structure": ["AGT-IMPLEMENTATION"],
+      "justification": "Single-file edits do not warrant multi-agent coordination overhead."
+    },
+    {
+      "task_type": "ACCESSIBILITY_REMEDIATION",
+      "max_agents": 2,
+      "coordination_penalty": "LOW",
+      "team_structure": ["AGT-ACCESSIBILITY", "AGT-IMPLEMENTATION"],
+      "justification": "Requires specialist WCAG auditor paired with clean code writer."
+    },
+    {
+      "task_type": "FULL_RELEASE_AUDIT",
+      "max_agents": 6,
+      "coordination_penalty": "NONE",
+      "team_structure": [
+        "AGT-QUALITY",
+        "AGT-SECURITY",
+        "AGT-ACCESSIBILITY",
+        "AGT-PERFORMANCE",
+        "AGT-SEO",
+        "AGT-BROWSER-QA"
+      ],
+      "justification": "Comprehensive Release Candidate validation across all 6 technical quality dimensions."
+    }
+  ]
+}

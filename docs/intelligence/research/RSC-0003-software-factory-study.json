@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0003",
+  "question": "How do advanced software engineering organizations (Google, Microsoft, AWS, Netflix, OpenAI, Anthropic) structure automated software factory governance and agentic execution pipelines?",
+  "scope": "Software factory mechanisms, CI/CD gates, policy enforcement, reversibility tiers, human-in-the-loop escalation",
+  "sources": ["SRC-0001", "SRC-0002", "SRC-0003", "SRC-0005", "SRC-0006", "SRC-0010"],
+  "claims": [
+    "High-performing software factories decouple plan simulation (dry-run) from physical production execution.",
+    "Policy-governed execution reduces human error while preserving safety on high-risk irreversible operations."
+  ],
+  "evidence": [
+    "Google SRE release gates prevent unverified code from reaching production.",
+    "AWS IAM least-privilege boundary policies prevent unauthorized resource mutation."
+  ],
+  "observations": [
+    "Reversibility must inversely govern agent autonomy level: highly reversible actions allow high autonomy, while irreversible actions require explicit human sign-off.",
+    "Single-file edits should not trigger heavy multi-agent team composition penalties."
+  ],
+  "patterns": [
+    "PAT-0001: Spec-Driven Development",
+    "PAT-0002: Evidence-First Verification",
+    "PAT-0003: Local-First Control Plane"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Hyperscale CI/CD pipelines require adaptation for lightweight local-first execution."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "CRITICAL",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Adopt policy-governed execution, reversibility tiers, and task graph governance in EOS Autonomous Engineering Factory.",
+  "verification_status": "VERIFIED"
+}

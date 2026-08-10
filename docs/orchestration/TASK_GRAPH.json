@@ -1,0 +1,35 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:50:00Z",
+  "hierarchy_levels": [
+    "MISSION",
+    "EPIC",
+    "OBJECTIVE",
+    "TASK",
+    "SUBTASK",
+    "ATOMIC_ACTION"
+  ],
+  "graph_structure": {
+    "task_id": "TSK-0001",
+    "parent_task": "EPIC-0001",
+    "level": "TASK",
+    "objective": "Implement WCAG AA compliant navigation bar for Fundacion portal",
+    "inputs": ["docs/specs/fundacion/SPEC-0001-fundacion-core.md"],
+    "constraints": ["External Write Barrier Active", "No hardcoded hex colors"],
+    "dependencies": ["TSK-0000-intake-complete"],
+    "required_capabilities": ["semantic_html_audit", "keyboard_nav"],
+    "preferred_agents": ["AGT-ACCESSIBILITY", "AGT-IMPLEMENTATION"],
+    "risk": "MEDIUM",
+    "authorization_level": "LEVEL_2_CONTROLLED_IMPLEMENTATION",
+    "expected_outputs": ["src/styles/main.css", "src/js/main.js"],
+    "acceptance_criteria": [
+      "AC-001: Focus ring visible on all interactive elements",
+      "AC-002: Contrast ratio >= 4.5:1 for normal text"
+    ],
+    "verification_requirements": ["npm run verify:strict", "EVD-0003.json"],
+    "rollback_requirements": ["git checkout HEAD -- src/styles/main.css"],
+    "evidence_requirements": ["EVD-*.json matching schema.json"],
+    "status": "AWAITING_AUTHORIZATION"
+  }
+}
