@@ -36,12 +36,19 @@ const REQUIRED_PATHS = [
   'docs/core/GOVERNANCE.md',
   'docs/workflows/EOS_CYCLE.md',
   'docs/workflows/TRACEABILITY.md',
+  'docs/workflows/INTAKE_PIPELINE.md',
+  'docs/workflows/SPECIFICATION_PIPELINE.md',
+  'docs/workflows/MULTI_AGENT_HANDOFF.md',
+  'docs/workflows/WEBSITE_QUALITY_MODEL.md',
   'docs/architecture/adrs/ADR-0001-eos-workspace-initialization.md',
   'docs/evidence/schema.json',
   'docs/evidence/TEMPLATE.md',
   'docs/specs/TEMPLATE.md',
   'docs/projects/REGISTRY_MODEL.md',
-  'docs/projects/TEMPLATE.json'
+  'docs/projects/TEMPLATE.json',
+  'docs/projects/schema.json',
+  'docs/projects/registry.json',
+  'docs/intake/TEMPLATE.md'
 ];
 
 const REQUIRED_EVIDENCE_STATUSES = [
@@ -78,13 +85,25 @@ function verifyWorkspace() {
   // 2. Strict Mode Content & Consistency Audits
   if (isStrict) {
     // 2a. JSON Integrity Check
-    const jsonFiles = ['package.json', 'docs/evidence/schema.json', 'docs/projects/TEMPLATE.json'];
+    const jsonFiles = [
+      'package.json',
+      'docs/evidence/schema.json',
+      'docs/projects/TEMPLATE.json',
+      'docs/projects/schema.json',
+      'docs/projects/registry.json'
+    ];
     for (const jsonRel of jsonFiles) {
       const jsonPath = path.join(rootDir, jsonRel);
       if (fs.existsSync(jsonPath)) {
         try {
-          JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+          const content = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
           report.checks.push({ path: jsonRel, status: 'VERIFIED', type: 'json-validity' });
+          
+          if (jsonRel === 'docs/projects/registry.json') {
+            if (!Array.isArray(content.projects) || content.projects.length === 0) {
+              report.failures.push({ path: jsonRel, message: 'Registry must contain a non-empty projects array', type: 'schema-validation' });
+            }
+          }
         } catch (err) {
           report.failures.push({ path: jsonRel, message: `Invalid JSON: ${err.message}`, type: 'json-validity' });
         }

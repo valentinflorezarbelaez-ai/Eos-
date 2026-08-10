@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSProjectRegistration",
+  "type": "object",
+  "required": [
+    "project_id",
+    "name",
+    "description",
+    "path",
+    "repository",
+    "branch",
+    "project_type",
+    "lifecycle_status",
+    "technical_status",
+    "business_status",
+    "stack",
+    "constraints",
+    "risks",
+    "assumptions",
+    "owner",
+    "intake_status",
+    "specification_status",
+    "implementation_status",
+    "validation_status",
+    "release_status",
+    "autonomy_level",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "pattern": "^PRJ-[A-Z0-9_-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "project_type": {
+      "type": "string",
+      "enum": ["WEBSITE", "WEB_APP", "CLI", "LIBRARY", "CONTROL_PLANE", "UNKNOWN"]
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "DISCOVERY",
+        "INTAKE",
+        "ANALYSIS",
+        "SPECIFICATION",
+        "IMPLEMENTATION",
+        "VALIDATION",
+        "BLOCKED",
+        "RELEASE_READY",
+        "RELEASED",
+        "MAINTENANCE",
+        "ARCHIVED"
+      ]
+    },
+    "technical_status": {
+      "type": "string",
+      "enum": ["VERIFIED", "NOT VERIFIED", "PARTIALLY VERIFIED", "BLOCKED", "ASSUMPTION", "RISK"]
+    },
+    "business_status": {
+      "type": "string"
+    },
+    "stack": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "documentation": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "owner": {
+      "type": "string"
+    },
+    "intake_status": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "IN_PROGRESS", "COMPLETE", "BLOCKED"]
+    },
+    "specification_status": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "DRAFT", "APPROVED", "IN_REVISION"]
+    },
+    "implementation_status": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "IN_PROGRESS", "COMPLETE", "BLOCKED"]
+    },
+    "validation_status": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "IN_PROGRESS", "PASSED", "FAILED", "BLOCKED"]
+    },
+    "release_status": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "STAGING", "PRODUCTION", "BLOCKED"]
+    },
+    "autonomy_level": {
+      "type": "string",
+      "enum": ["AUTONOMOUS", "SUPERVISED", "APPROVAL_REQUIRED", "PROHIBITED"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

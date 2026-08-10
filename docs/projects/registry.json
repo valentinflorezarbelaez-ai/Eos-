@@ -1,0 +1,40 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T22:28:00Z",
+  "projects": [
+    {
+      "project_id": "PRJ-EOS-CONTROL-PLANE",
+      "name": "EOS System Control Plane",
+      "description": "Engineering Operating System — Central Governance, Multi-Project Orchestrator, and Evidence Control Plane.",
+      "path": "C:\\Users\\valen\\Documents\\Eos system",
+      "repository": "local",
+      "branch": "main",
+      "project_type": "CONTROL_PLANE",
+      "lifecycle_status": "VALIDATION",
+      "technical_status": "VERIFIED",
+      "business_status": "ACTIVE_INFRASTRUCTURE",
+      "stack": ["Node.js", "JavaScript", "Markdown", "Git"],
+      "documentation": [
+        "docs/core/CONSTITUTION.md",
+        "docs/core/GOVERNANCE.md",
+        "docs/workflows/EOS_CYCLE.md"
+      ],
+      "constraints": [
+        "Zero destructive operations on external repositories",
+        "Evidence over claims strict enforcement"
+      ],
+      "risks": [],
+      "assumptions": [],
+      "owner": "EOS Autonomous System",
+      "intake_status": "COMPLETE",
+      "specification_status": "APPROVED",
+      "implementation_status": "COMPLETE",
+      "validation_status": "PASSED",
+      "release_status": "STAGING",
+      "autonomy_level": "AUTONOMOUS",
+      "created_at": "2026-08-10T22:10:00Z",
+      "updated_at": "2026-08-10T22:28:00Z"
+    }
+  ]
+}
