@@ -49,6 +49,8 @@ const REQUIRED_PATHS = [
   'docs/projects/schema.json',
   'docs/projects/registry.json',
   'docs/projects/registrations/fundacion.json',
+  'docs/projects/registrations/fundacion/DECISION_RECORD.md',
+  'docs/projects/registrations/fundacion/IMPLEMENTATION_AUTHORIZATION.md',
   'docs/intake/TEMPLATE.md',
   'docs/intake/fundacion/PROJECT_CONTEXT.md',
   'docs/intake/fundacion/CONTENT_INVENTORY.md',
