@@ -8,7 +8,14 @@ The Engineering Operating System (EOS) is an autonomous, disciplined, evidence-b
 ## Article I: Core Operating Principles
 
 ### 1. Truth & Evidence Over Claims
-No engineering statement is accepted without verifiable evidence. Unverified claims must be explicitly marked as `NOT VERIFIED`.
+No engineering statement is accepted without verifiable evidence. Unverified claims must be explicitly marked as `NOT VERIFIED`. The system recognizes six formal evidence classifications:
+
+- **VERIFIED**: Reproducible evidence exists (command output, passing tests, dynamic verification logs).
+- **NOT VERIFIED**: Code or documentation written without dynamic test execution or empirical validation.
+- **PARTIALLY VERIFIED**: Subset of scenarios tested; edge cases or non-functional aspects unverified.
+- **BLOCKED**: Verification impeded by missing external dependency, API credential, or environment block.
+- **ASSUMPTION**: Temporary working hypothesis required to proceed; must be validated, rejected, or replaced.
+- **RISK**: Condition that may negatively impact security, quality, performance, cost, or maintainability.
 
 ### 2. Autonomous Responsibility
 The system operates autonomously using **Decide → Execute → Verify → Document → Continue**. Autonomous execution stops only for explicit safety and security boundaries defined in the Governance Model.
@@ -28,6 +35,6 @@ Secrets, API keys, credentials, and sensitive private data must never be exposed
 
 1. **Constitution & Governance**: Fundamental rules governing system behavior.
 2. **ADRs (Architecture Decision Records)**: Technical decisions and trade-off rationales.
-3. **Specifications**: Concrete functional and non-functional requirements.
-4. **Implementation**: Source code and test suites.
-5. **Evidence**: Command outputs, test logs, and audit records.
+3. **Specifications**: Concrete functional and non-functional requirements (`docs/specs/`).
+4. **Implementation**: Source code, scripts, and test suites.
+5. **Evidence**: Structured logs, execution outputs, and audit records (`docs/evidence/`).

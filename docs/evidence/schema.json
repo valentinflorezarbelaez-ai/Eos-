@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSEvidenceRecord",
+  "type": "object",
+  "required": [
+    "id",
+    "claim",
+    "status",
+    "scope",
+    "timestamp",
+    "actor",
+    "action",
+    "command",
+    "expected",
+    "actual",
+    "confidence"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EVD-[0-9]{4,}$"
+    },
+    "claim": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "VERIFIED",
+        "NOT VERIFIED",
+        "PARTIALLY VERIFIED",
+        "BLOCKED",
+        "ASSUMPTION",
+        "RISK"
+      ]
+    },
+    "scope": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "command": {
+      "type": "string"
+    },
+    "expected": {
+      "type": "string"
+    },
+    "actual": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "environment": {
+      "type": "object"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["HIGH", "MEDIUM", "LOW"]
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_spec": {
+      "type": "string"
+    },
+    "related_project": {
+      "type": "string"
+    },
+    "related_change": {
+      "type": "string"
+    }
+  }
+}

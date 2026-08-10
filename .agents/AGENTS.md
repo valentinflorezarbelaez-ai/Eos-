@@ -9,11 +9,15 @@ This document establishes the governing operational rules for all AI agents oper
 - Do not stop for routine approvals (file creation, package installation, refactoring, lint fixes).
 - Escalate to the human Product Owner **ONLY** for high-risk operations (data destruction, secret exposure, external production deployments, financial actions, fundamental spec changes).
 
-### 2. Evidence Over Claims Standard
+### 2. Evidence Over Claims Standard & Taxonomy
+No agent may state `DONE`, `PASS`, `VERIFIED`, `SECURE`, `OPTIMIZED`, or `PRODUCTION READY` without referencing executable evidence or automated check output.
+
 - **VERIFIED**: Evidence from code execution, builds, test passes, or automated checks is present.
-- **NOT VERIFIED**: Static inspection without dynamic test execution.
-- **PARTIALLY VERIFIED**: Partial test coverage or incomplete scenario verification.
-- **BLOCKED**: Verification impeded by missing external dependency or environment block.
+- **NOT VERIFIED**: Code written but unexecuted or untested; unverified hypotheses.
+- **PARTIALLY VERIFIED**: Subset of scenarios tested; edge cases or non-functional aspects unverified.
+- **BLOCKED**: Verification impeded by missing external dependency, API key, or environment block.
+- **ASSUMPTION**: Temporary hypothesis required to proceed; must be tracked and validated or replaced.
+- **RISK**: Identified condition that may negatively impact security, quality, performance, or maintainability.
 
 ### 3. Preservation & Proportionality
 - **Preserve Before Modify**: Inspect dependencies and existing context before editing.
