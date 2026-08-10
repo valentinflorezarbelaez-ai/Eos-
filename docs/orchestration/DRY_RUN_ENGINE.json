@@ -1,0 +1,14 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "simulation_rules": [
+    {
+      "mode": "DRY_RUN",
+      "target_action": "CREATE_FILE",
+      "policy_check": "POL-001",
+      "execution_behavior": "EVALUATE_POLICY_ONLY",
+      "physical_write": false,
+      "log_output": "DRY RUN: Action EVALUATED under policy engine. Zero physical files written."
+    }
+  ]
+}

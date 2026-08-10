@@ -1,10 +1,11 @@
 {
   "name": "eos-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Engineering Operating System — Autonomous, reproducible, and auditable engineering control plane.",
   "type": "module",
   "scripts": {
+    "test": "node --test",
     "verify": "node scripts/verify-eos.js",
     "verify:strict": "node scripts/verify-eos.js --strict",
     "verify:json": "node scripts/verify-eos.js --strict --json",

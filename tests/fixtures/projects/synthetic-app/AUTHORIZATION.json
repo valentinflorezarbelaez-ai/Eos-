@@ -1,0 +1,8 @@
+{
+  "authorization_id": "AUTH-SYNTHETIC-001",
+  "project_id": "PRJ-SYNTHETIC",
+  "status": "IMPLEMENTATION_AUTHORIZED",
+  "level": "LEVEL 2",
+  "allowed_paths": ["tests/fixtures/projects/synthetic-app/src"],
+  "expiration": "2026-12-31T23:59:59Z"
+}

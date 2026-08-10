@@ -1,0 +1,167 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:38:00Z",
+  "agents": [
+    {
+      "agent_id": "AGT-PRODUCT",
+      "name": "Product Agent",
+      "role": "Product Scope & Business Goal Owner",
+      "capabilities": ["vision", "roadmap", "business_goals", "feature_prioritization"],
+      "allowed_actions": ["ANALYZE", "CLASSIFY", "SPECIFY", "PLAN"],
+      "forbidden_actions": ["WRITE_EXTERNAL_CODE", "DEPLOY_PRODUCTION"],
+      "required_skills": ["sdd"],
+      "quality_gates": ["Specification Approval", "Owner Goal Alignment"]
+    },
+    {
+      "agent_id": "AGT-RESEARCH",
+      "name": "Research Agent",
+      "role": "Domain, Competitor & Technical Standards Researcher",
+      "capabilities": ["domain_research", "competitor_analysis", "standards_lookup"],
+      "allowed_actions": ["READ", "ANALYZE", "RESEARCH"],
+      "forbidden_actions": ["WRITE_EXTERNAL_CODE"],
+      "required_skills": ["sdd", "seo-auditor"],
+      "quality_gates": ["Source Traceability", "Evidence References"]
+    },
+    {
+      "agent_id": "AGT-REQUIREMENTS",
+      "name": "Requirements Agent",
+      "role": "Functional & Non-Functional Requirements Discovery",
+      "capabilities": ["requirements_extraction", "gap_detection", "acceptance_criteria"],
+      "allowed_actions": ["READ", "ANALYZE", "SPECIFY"],
+      "forbidden_actions": ["WRITE_EXTERNAL_CODE"],
+      "required_skills": ["sdd"],
+      "quality_gates": ["Given-When-Then Criteria", "Gap Classification"]
+    },
+    {
+      "agent_id": "AGT-SPECIFICATION",
+      "name": "Specification Agent",
+      "role": "Formal SPEC Document Author",
+      "capabilities": ["specification_writing", "interface_definition", "traceability_mapping"],
+      "allowed_actions": ["SPECIFY", "PLAN"],
+      "forbidden_actions": ["WRITE_EXTERNAL_CODE"],
+      "required_skills": ["sdd"],
+      "quality_gates": ["SPEC Schema Validity", "Traceability Chain"]
+    },
+    {
+      "agent_id": "AGT-ARCHITECTURE",
+      "name": "Architecture Agent",
+      "role": "System Architecture & ADR Author",
+      "capabilities": ["system_design", "adr_creation", "boundary_definition", "stack_selection"],
+      "allowed_actions": ["ANALYZE", "SPECIFY", "PLAN"],
+      "forbidden_actions": ["WRITE_EXTERNAL_CODE"],
+      "required_skills": ["sdd"],
+      "quality_gates": ["ADR Approval", "Non-Bloat Principle"]
+    },
+    {
+      "agent_id": "AGT-IMPLEMENTATION",
+      "name": "Implementation Agent",
+      "role": "Clean Code & Component Implementation Engineer",
+      "capabilities": ["code_writing", "refactoring", "unit_testing", "component_scaffolding"],
+      "allowed_actions": ["WRITE_AUTHORIZED_CODE", "TEST"],
+      "forbidden_actions": ["WRITE_UNAUTHORIZED_EXTERNAL", "DEPLOY_PRODUCTION"],
+      "required_skills": ["sdd", "quality-auditor"],
+      "quality_gates": ["Clean Build", "100% SPEC Fulfillment"]
+    },
+    {
+      "agent_id": "AGT-TESTING",
+      "name": "Testing Agent",
+      "role": "Test Automation & Test Runner Specialist",
+      "capabilities": ["unit_testing", "integration_testing", "test_fixtures", "negative_testing"],
+      "allowed_actions": ["EXECUTE_TESTS", "RECORD_EVIDENCE"],
+      "forbidden_actions": ["WRITE_PRODUCTION_CODE"],
+      "required_skills": ["quality-auditor", "evidence-auditor"],
+      "quality_gates": ["Test Suite Pass Rate 100%"]
+    },
+    {
+      "agent_id": "AGT-SECURITY",
+      "name": "Security Agent",
+      "role": "OWASP Top 10, Secrets & Injection Risk Auditor",
+      "capabilities": ["secret_scanning", "xss_audit", "csp_validation", "dependency_audit"],
+      "allowed_actions": ["AUDIT_SECURITY", "RECORD_EVIDENCE"],
+      "forbidden_actions": ["EXPOSE_SECRETS", "DISABLE_SECURITY"],
+      "required_skills": ["security-auditor"],
+      "quality_gates": ["Zero Hardcoded Secrets", "Sanitization Verification"]
+    },
+    {
+      "agent_id": "AGT-ACCESSIBILITY",
+      "name": "Accessibility Agent",
+      "role": "WCAG AA Compliance Auditor",
+      "capabilities": ["semantic_html_audit", "contrast_check", "keyboard_nav", "screen_reader_audit"],
+      "allowed_actions": ["AUDIT_ACCESSIBILITY", "RECORD_EVIDENCE"],
+      "forbidden_actions": ["OVERRIDE_FOCUS_RINGS"],
+      "required_skills": ["accessibility-auditor"],
+      "quality_gates": ["WCAG AA Compliance 100%"]
+    },
+    {
+      "agent_id": "AGT-PERFORMANCE",
+      "name": "Performance Agent",
+      "role": "Core Web Vitals & Bundle Weight Auditor",
+      "capabilities": ["bundle_analysis", "lcp_cls_inp_measurement", "asset_optimization"],
+      "allowed_actions": ["AUDIT_PERFORMANCE", "RECORD_EVIDENCE"],
+      "forbidden_actions": ["INVENT_METRICS"],
+      "required_skills": ["performance-auditor"],
+      "quality_gates": ["Bundle Size < 20KB", "LCP < 2.5s"]
+    },
+    {
+      "agent_id": "AGT-SEO",
+      "name": "SEO Agent",
+      "role": "Structured Data, Meta Tags & Crawlability Auditor",
+      "capabilities": ["meta_tag_audit", "json_ld_schema", "open_graph", "sitemap_audit"],
+      "allowed_actions": ["AUDIT_SEO", "RECORD_EVIDENCE"],
+      "forbidden_actions": ["INVENT_METADATA"],
+      "required_skills": ["seo-auditor"],
+      "quality_gates": ["Canonical Link Active", "Valid NGO Schema"]
+    },
+    {
+      "agent_id": "AGT-BROWSER-QA",
+      "name": "Browser QA Agent",
+      "role": "Cross-Browser & Responsive E2E Flow Auditor",
+      "capabilities": ["viewport_testing", "e2e_flow_validation", "console_error_audit"],
+      "allowed_actions": ["RUN_BROWSER_QA", "RECORD_EVIDENCE"],
+      "forbidden_actions": ["IGNORE_CONSOLE_ERRORS"],
+      "required_skills": ["browser-qa"],
+      "quality_gates": ["Zero Runtime Console Errors"]
+    },
+    {
+      "agent_id": "AGT-DEVOPS",
+      "name": "DevOps Agent",
+      "role": "Build Systems, Preview Servers & Isolation Engineer",
+      "capabilities": ["vite_config", "preview_server", "local_isolation", "build_optimization"],
+      "allowed_actions": ["CONFIGURE_BUILD", "RUN_PREVIEW"],
+      "forbidden_actions": ["MODIFY_PRODUCTION_DNS"],
+      "required_skills": ["quality-auditor"],
+      "quality_gates": ["Clean Reproducible Build"]
+    },
+    {
+      "agent_id": "AGT-RELEASE",
+      "name": "Release Agent",
+      "role": "Release Candidate Packaging & Gate Auditor",
+      "capabilities": ["rc_packaging", "gate_validation", "release_manifest"],
+      "allowed_actions": ["PACKAGE_RELEASE", "AUDIT_GATES"],
+      "forbidden_actions": ["BYPASS_PRODUCT_OWNER"],
+      "required_skills": ["evidence-auditor"],
+      "quality_gates": ["Release Candidate Certified"]
+    },
+    {
+      "agent_id": "AGT-EVIDENCE-AUDITOR",
+      "name": "Evidence Auditor Agent",
+      "role": "Evidence Verification & Taxonomy Classifier",
+      "capabilities": ["taxonomy_classification", "evidence_audit", "schema_validation"],
+      "allowed_actions": ["AUDIT_EVIDENCE", "VALIDATE_CLAIMS"],
+      "forbidden_actions": ["ACCEPT_UNVERIFIED_CLAIMS"],
+      "required_skills": ["evidence-auditor"],
+      "quality_gates": ["6-Tier Taxonomy Strictly Applied"]
+    },
+    {
+      "agent_id": "AGT-GOVERNANCE-AUDITOR",
+      "name": "Governance Auditor Agent",
+      "role": "Policy Engine & Write Barrier Guard",
+      "capabilities": ["policy_enforcement", "write_barrier_check", "isolation_audit"],
+      "allowed_actions": ["ENFORCE_POLICY", "AUDIT_ISOLATION"],
+      "forbidden_actions": ["GRANT_UNAUTHORIZED_WRITE"],
+      "required_skills": ["evidence-auditor"],
+      "quality_gates": ["Zero External Write Violations"]
+    }
+  ]
+}

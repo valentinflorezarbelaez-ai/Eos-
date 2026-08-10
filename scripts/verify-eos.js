@@ -41,6 +41,20 @@ const REQUIRED_PATHS = [
   'docs/workflows/MULTI_AGENT_HANDOFF.md',
   'docs/workflows/WEBSITE_QUALITY_MODEL.md',
   'docs/architecture/adrs/ADR-0001-eos-workspace-initialization.md',
+  'docs/architecture/adrs/ADR-0002-autonomous-control-plane-architecture.md',
+  'docs/agents/REGISTRY.json',
+  'docs/agents/SELECTION_ENGINE.json',
+  'docs/orchestration/TASK_DECOMPOSITION.json',
+  'docs/policies/POLICY_ENGINE.json',
+  'docs/projects/STATE_MACHINE.json',
+  'docs/orchestration/DRY_RUN_ENGINE.json',
+  'docs/architecture/ROLLBACK_STRATEGY.md',
+  'docs/knowledge/CONTINUOUS_LEARNING_LOOP.md',
+  'docs/knowledge/RESEARCH_ENGINE.md',
+  'tests/fixtures/projects/synthetic-app/package.json',
+  'tests/fixtures/projects/synthetic-app/SPEC.json',
+  'tests/fixtures/projects/synthetic-app/AUTHORIZATION.json',
+  'tests/control-plane-hardening.test.js',
   'docs/evidence/schema.json',
   'docs/evidence/TEMPLATE.md',
   'docs/evidence/EVD-0001.json',
@@ -51,6 +65,7 @@ const REQUIRED_PATHS = [
   'docs/evidence/EVD-0006.json',
   'docs/evidence/EVD-0007.json',
   'docs/evidence/EVD-0008.json',
+  'docs/evidence/EVD-0009.json',
   'docs/specs/TEMPLATE.md',
   'docs/projects/REGISTRY_MODEL.md',
   'docs/projects/TEMPLATE.json',
@@ -71,7 +86,8 @@ const REQUIRED_PATHS = [
   'docs/audits/EOS_PHASE_7_REMEDIATION.md',
   'docs/audits/EOS_PHASE_8_RELEASE_READINESS.md',
   'docs/audits/EOS_PHASE_9_STAGING_PREVIEW.md',
-  'docs/audits/EOS_CURRENT_STATE_AUDIT.md'
+  'docs/audits/EOS_CURRENT_STATE_AUDIT.md',
+  'docs/audits/EOS_PHASE_10_CONTROL_PLANE_HARDENING.md'
 ];
 
 const REQUIRED_EVIDENCE_STATUSES = [
@@ -121,6 +137,15 @@ function verifyWorkspace() {
     // 3a. JSON Integrity Check
     const jsonFiles = [
       'package.json',
+      'docs/agents/REGISTRY.json',
+      'docs/agents/SELECTION_ENGINE.json',
+      'docs/orchestration/TASK_DECOMPOSITION.json',
+      'docs/policies/POLICY_ENGINE.json',
+      'docs/projects/STATE_MACHINE.json',
+      'docs/orchestration/DRY_RUN_ENGINE.json',
+      'tests/fixtures/projects/synthetic-app/package.json',
+      'tests/fixtures/projects/synthetic-app/SPEC.json',
+      'tests/fixtures/projects/synthetic-app/AUTHORIZATION.json',
       'docs/evidence/schema.json',
       'docs/evidence/EVD-0001.json',
       'docs/evidence/EVD-0002.json',
@@ -130,6 +155,7 @@ function verifyWorkspace() {
       'docs/evidence/EVD-0006.json',
       'docs/evidence/EVD-0007.json',
       'docs/evidence/EVD-0008.json',
+      'docs/evidence/EVD-0009.json',
       'docs/projects/TEMPLATE.json',
       'docs/projects/schema.json',
       'docs/projects/registry.json',

@@ -1,0 +1,22 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "pipeline_hierarchy": [
+    "PRODUCT_OBJECTIVE",
+    "REQUIREMENT",
+    "SPECIFICATION",
+    "TASK",
+    "AGENT_ASSIGNMENT",
+    "EXECUTION",
+    "EVIDENCE_RECORD"
+  ],
+  "example_flow": {
+    "product_objective": "Build Accessible Institutional Web Portal",
+    "requirement": "REQ-A11Y-001: Keyboard navigation and screen reader compatibility",
+    "specification": "SPEC-0001: AC-002 Semantic HTML & Focus Rings",
+    "task": "TSK-001: Implement 3-bar hamburger icon and prefers-reduced-motion CSS query",
+    "agent_assignment": "AGT-ACCESSIBILITY",
+    "execution_command": "view_file src/styles/main.css",
+    "evidence_record": "EVD-0003.json"
+  }
+}

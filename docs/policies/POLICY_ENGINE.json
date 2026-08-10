@@ -1,0 +1,53 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:38:00Z",
+  "policies": [
+    {
+      "policy_id": "POL-001",
+      "name": "EOS Development Mode External Write Barrier",
+      "description": "During EOS Control Plane self-development, writing to external target projects is forbidden.",
+      "conditions": {
+        "current_mode": "EOS_DEVELOPMENT_MODE",
+        "target_path_outside": "C:\\Users\\valen\\Documents\\Eos system",
+        "requested_action": "WRITE"
+      },
+      "result": "DENY",
+      "reason": "External write attempt detected during EOS Development Mode."
+    },
+    {
+      "policy_id": "POL-002",
+      "name": "Implementation Authorization Check",
+      "description": "External writes require a verified IMPLEMENTATION_AUTHORIZED status.",
+      "conditions": {
+        "lifecycle_status_not": "IMPLEMENTATION_AUTHORIZED",
+        "requested_action": "WRITE_EXTERNAL_CODE"
+      },
+      "result": "DENY",
+      "reason": "Target project lacks explicit Product Owner Implementation Authorization."
+    },
+    {
+      "policy_id": "POL-003",
+      "name": "Production Release Gate",
+      "description": "Production release requires explicit Level 4 Product Owner Sign-off.",
+      "conditions": {
+        "requested_action": "DEPLOY_PRODUCTION",
+        "product_owner_signoff": "PENDING"
+      },
+      "result": "ESCALATE",
+      "reason": "Production release requires human Product Owner sign-off."
+    },
+    {
+      "policy_id": "POL-004",
+      "name": "Authorized Scope Write",
+      "description": "Writing within authorized paths under an active IMPLEMENTATION_AUTHORIZED record.",
+      "conditions": {
+        "current_mode": "PROJECT_EXECUTION_MODE",
+        "implementation_status": "IN_PROGRESS",
+        "target_path_in_scope": true
+      },
+      "result": "ALLOW",
+      "reason": "Action is within explicitly authorized implementation scope."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "spec_id": "SPEC-SYNTHETIC-001",
+  "project_id": "PRJ-SYNTHETIC",
+  "title": "Synthetic Fixture Specification",
+  "status": "APPROVED",
+  "criteria": [
+    { "id": "AC-01", "given": "Synthetic test environment", "when": "Policy engine executes", "then": "Return ALLOW or DENY deterministically" }
+  ]
+}

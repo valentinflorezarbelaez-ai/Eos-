@@ -1,0 +1,31 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:38:00Z",
+  "rules": [
+    {
+      "task_type": "ACCESSIBILITY_AUDIT",
+      "required_capabilities": ["semantic_html_audit", "contrast_check", "keyboard_nav"],
+      "selected_agent": "AGT-ACCESSIBILITY",
+      "selection_criterion": "Best Capability Fit for WCAG AA Audit"
+    },
+    {
+      "task_type": "SECURITY_AUDIT",
+      "required_capabilities": ["secret_scanning", "xss_audit", "csp_validation"],
+      "selected_agent": "AGT-SECURITY",
+      "selection_criterion": "Best Capability Fit for OWASP & Secret Audit"
+    },
+    {
+      "task_type": "CODE_IMPLEMENTATION",
+      "required_capabilities": ["code_writing", "refactoring", "unit_testing"],
+      "selected_agent": "AGT-IMPLEMENTATION",
+      "selection_criterion": "Requires Verified IMPLEMENTATION_AUTHORIZED Record Before Activation"
+    },
+    {
+      "task_type": "WRITE_BARRIER_CHECK",
+      "required_capabilities": ["policy_enforcement", "write_barrier_check", "isolation_audit"],
+      "selected_agent": "AGT-GOVERNANCE-AUDITOR",
+      "selection_criterion": "Exclusive Authority for External Target Isolation Audits"
+    }
+  ]
+}

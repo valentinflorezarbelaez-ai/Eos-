@@ -1,0 +1,49 @@
+{
+  "$schema": "../evidence/schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:38:00Z",
+  "states": [
+    "DISCOVERED",
+    "REGISTERED",
+    "INTAKE",
+    "RESEARCH",
+    "REQUIREMENTS",
+    "SPECIFICATION",
+    "ARCHITECTURE",
+    "PLANNING",
+    "AWAITING_APPROVAL",
+    "IMPLEMENTATION_AUTHORIZED",
+    "IMPLEMENTATION",
+    "TESTING",
+    "AUDITING",
+    "RELEASE_CANDIDATE",
+    "STAGING",
+    "PRODUCTION_AUTHORIZED",
+    "DEPLOYED",
+    "RELEASED",
+    "ARCHIVED"
+  ],
+  "transitions": [
+    { "from": "DISCOVERED", "to": "REGISTERED", "required_authority": "EOS System", "required_artifact": "registrations/*.json" },
+    { "from": "REGISTERED", "to": "INTAKE", "required_authority": "EOS System", "required_artifact": "docs/intake/*/PROJECT_CONTEXT.md" },
+    { "from": "INTAKE", "to": "RESEARCH", "required_authority": "Research Agent", "required_artifact": "docs/intake/*/REQUIREMENTS_DISCOVERY.md" },
+    { "from": "RESEARCH", "to": "REQUIREMENTS", "required_authority": "Requirements Agent", "required_artifact": "docs/intake/*/REQUIREMENTS_DISCOVERY.md" },
+    { "from": "REQUIREMENTS", "to": "SPECIFICATION", "required_authority": "Specification Agent", "required_artifact": "docs/specs/*/SPEC-0001-*.md" },
+    { "from": "SPECIFICATION", "to": "ARCHITECTURE", "required_authority": "Architecture Agent", "required_artifact": "docs/architecture/adrs/*.md" },
+    { "from": "ARCHITECTURE", "to": "PLANNING", "required_authority": "Product Agent", "required_artifact": "DECISION_RECORD.md" },
+    { "from": "PLANNING", "to": "AWAITING_APPROVAL", "required_authority": "Product Agent", "required_artifact": "DECISION_RECORD.md" },
+    { "from": "AWAITING_APPROVAL", "to": "IMPLEMENTATION_AUTHORIZED", "required_authority": "Product Owner", "required_artifact": "IMPLEMENTATION_AUTHORIZATION.md" },
+    { "from": "IMPLEMENTATION_AUTHORIZED", "to": "IMPLEMENTATION", "required_authority": "Implementation Agent", "required_artifact": "Source Code & Unit Tests" },
+    { "from": "IMPLEMENTATION", "to": "TESTING", "required_authority": "Testing Agent", "required_artifact": "Test Execution Logs" },
+    { "from": "TESTING", "to": "AUDITING", "required_authority": "Technical Audit Team", "required_artifact": "EOS_PHASE_6_TECHNICAL_AUDIT.md" },
+    { "from": "AUDITING", "to": "RELEASE_CANDIDATE", "required_authority": "Release Agent", "required_artifact": "EOS_PHASE_8_RELEASE_READINESS.md" },
+    { "from": "RELEASE_CANDIDATE", "to": "STAGING", "required_authority": "DevOps Agent", "required_artifact": "EOS_PHASE_9_STAGING_PREVIEW.md" },
+    { "from": "STAGING", "to": "PRODUCTION_AUTHORIZED", "required_authority": "Product Owner", "required_artifact": "Owner Sign-off Record" },
+    { "from": "PRODUCTION_AUTHORIZED", "to": "DEPLOYED", "required_authority": "Release Agent", "required_artifact": "Production Smoke Test Evidence" }
+  ],
+  "prohibited_transitions": [
+    { "from": "REGISTERED", "to": "IMPLEMENTATION", "reason": "Cannot skip Intake, Specification, Audit, and Owner Approval" },
+    { "from": "SPECIFICATION", "to": "IMPLEMENTATION", "reason": "Cannot skip Architecture, Planning, and Owner Authorization" },
+    { "from": "STAGING", "to": "DEPLOYED", "reason": "Cannot deploy to production without explicit Product Owner Sign-off" }
+  ]
+}
