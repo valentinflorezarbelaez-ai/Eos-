@@ -47,6 +47,7 @@ const REQUIRED_PATHS = [
   'docs/evidence/EVD-0002.json',
   'docs/evidence/EVD-0003.json',
   'docs/evidence/EVD-0004.json',
+  'docs/evidence/EVD-0005.json',
   'docs/specs/TEMPLATE.md',
   'docs/projects/REGISTRY_MODEL.md',
   'docs/projects/TEMPLATE.json',
@@ -63,7 +64,8 @@ const REQUIRED_PATHS = [
   'docs/intake/fundacion/REQUIREMENTS_DISCOVERY.md',
   'docs/intake/fundacion/inventory.json',
   'docs/specs/fundacion/SPEC-0001-fundacion-core.md',
-  'docs/audits/EOS_PHASE_6_TECHNICAL_AUDIT.md'
+  'docs/audits/EOS_PHASE_6_TECHNICAL_AUDIT.md',
+  'docs/audits/EOS_PHASE_7_REMEDIATION.md'
 ];
 
 const REQUIRED_EVIDENCE_STATUSES = [
@@ -107,6 +109,7 @@ function verifyWorkspace() {
       'docs/evidence/EVD-0002.json',
       'docs/evidence/EVD-0003.json',
       'docs/evidence/EVD-0004.json',
+      'docs/evidence/EVD-0005.json',
       'docs/projects/TEMPLATE.json',
       'docs/projects/schema.json',
       'docs/projects/registry.json',
