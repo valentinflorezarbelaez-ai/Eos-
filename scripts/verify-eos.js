@@ -48,7 +48,15 @@ const REQUIRED_PATHS = [
   'docs/projects/TEMPLATE.json',
   'docs/projects/schema.json',
   'docs/projects/registry.json',
-  'docs/intake/TEMPLATE.md'
+  'docs/projects/registrations/fundacion.json',
+  'docs/intake/TEMPLATE.md',
+  'docs/intake/fundacion/PROJECT_CONTEXT.md',
+  'docs/intake/fundacion/CONTENT_INVENTORY.md',
+  'docs/intake/fundacion/OBSERVATIONS.md',
+  'docs/intake/fundacion/UNKNOWN_AND_GAPS.md',
+  'docs/intake/fundacion/REQUIREMENTS_DISCOVERY.md',
+  'docs/intake/fundacion/inventory.json',
+  'docs/specs/fundacion/SPEC-0001-fundacion-core.md'
 ];
 
 const REQUIRED_EVIDENCE_STATUSES = [
@@ -90,7 +98,9 @@ function verifyWorkspace() {
       'docs/evidence/schema.json',
       'docs/projects/TEMPLATE.json',
       'docs/projects/schema.json',
-      'docs/projects/registry.json'
+      'docs/projects/registry.json',
+      'docs/projects/registrations/fundacion.json',
+      'docs/intake/fundacion/inventory.json'
     ];
     for (const jsonRel of jsonFiles) {
       const jsonPath = path.join(rootDir, jsonRel);
