@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatProposalSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "missionId": "EXP-029-001",
+  "strategyProposal": {
+    "title": "Astro-Native Zero-JS Luxury Landing Page",
+    "framework": "Astro 7.2.0 (SSG Static Site Generation)",
+    "styling": "Vanilla CSS Design Tokens + Modern CSS Grid/Flexbox",
+    "typography": "Outfit & Inter via Google Fonts",
+    "colorPalette": {
+      "primary": "hsl(145, 30%, 20%) — Deep Andean Pine",
+      "secondary": "hsl(35, 45%, 90%) — Warm Terracotta / Linen",
+      "accent": "hsl(38, 70%, 55%) — Muted Gold Accent",
+      "background": "hsl(150, 15%, 96%) — Crisp Mist Background"
+    },
+    "tradeoffs": [
+      {
+        "decision": "Use Astro SSG without React/Vue client hydration",
+        "benefit": "Zero bundle size, instant LCP load speed under 0.8s, 100 Performance Score",
+        "tradeoff": "Dynamic date picker handled via native HTML5 date input rather than heavy JS UI library"
+      }
+    ],
+    "status": "PROPOSED_AWAITING_HUMAN_APPROVAL"
+  }
+}

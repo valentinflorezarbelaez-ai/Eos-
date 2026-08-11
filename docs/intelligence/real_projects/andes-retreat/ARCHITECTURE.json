@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatArchitectureSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "architectureId": "ARCH-ANDES-0001",
+  "directoryStructure": {
+    "src/layouts/Layout.astro": "Root HTML layout wrapper",
+    "src/components/Header.astro": "Sticky navigation bar",
+    "src/components/Footer.astro": "Legal, contact, and social links footer",
+    "src/components/Hero.astro": "Hero section banner",
+    "src/components/Amenities.astro": "Amenities grid component",
+    "src/components/BookingForm.astro": "Direct reservation inquiry component",
+    "src/pages/index.astro": "Landing page entrypoint composing components",
+    "src/styles/global.css": "Design tokens, CSS resets, responsive media queries"
+  },
+  "dataFlow": "Static component props -> Astro SSG compiler -> Pure static HTML/CSS build"
+}

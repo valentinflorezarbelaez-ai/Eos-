@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatDesignSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "designSystem": {
+    "theme": "Eco-Luxury Mountain Sanctuary",
+    "breakpoints": {
+      "mobile": "320px - 767px",
+      "tablet": "768px - 1023px",
+      "desktop": "1024px+"
+    },
+    "typography": {
+      "headings": "Outfit, sans-serif",
+      "body": "Inter, sans-serif"
+    },
+    "effects": "Glassmorphism navigation bar (backdrop-filter: blur(10px)), smooth hover elevation, subtle micro-interactions"
+  }
+}

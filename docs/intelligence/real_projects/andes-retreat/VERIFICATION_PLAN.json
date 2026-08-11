@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatVerificationPlanSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "verificationPlan": {
+    "buildVerification": "astro build (must complete with 0 errors)",
+    "browserQa": "Headless browser / visual verification of hero, amenities grid, reservation form, and responsive mobile layout",
+    "accessibilityAudit": "WCAG AA compliance audit (contrast, aria-labels, semantic HTML5 landmarks)",
+    "seoAudit": "Open Graph tags, meta description, page title, canonical links",
+    "performanceAudit": "Lightweight bundle size, LCP < 1.0s, CLS < 0.1",
+    "independentVerification": "Independent Verification Harness non-circular corroboration"
+  }
+}

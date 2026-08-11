@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatTaskDagSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "tasks": [
+    { "id": "TASK-001", "name": "Create global CSS design tokens and font imports", "dependencies": [], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-002", "name": "Implement root Layout.astro with SEO metadata", "dependencies": ["TASK-001"], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-003", "name": "Build Header.astro sticky glassmorphism navigation", "dependencies": ["TASK-002"], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-004", "name": "Build Hero.astro banner and main CTA", "dependencies": ["TASK-002"], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-005", "name": "Build Amenities.astro grid component", "dependencies": ["TASK-002"], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-006", "name": "Build BookingForm.astro inquiry component", "dependencies": ["TASK-002"], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-007", "name": "Assemble index.astro landing page", "dependencies": ["TASK-003", "TASK-004", "TASK-005", "TASK-006"], "status": "PENDING_APPROVAL" },
+    { "id": "TASK-008", "name": "Execute Astro build, lint, and accessibility checks", "dependencies": ["TASK-007"], "status": "PENDING_APPROVAL" }
+  ]
+}

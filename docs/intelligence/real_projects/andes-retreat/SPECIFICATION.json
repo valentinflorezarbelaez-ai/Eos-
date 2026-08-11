@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatSpecificationSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "specId": "SPEC-ANDES-0001",
+  "title": "Astro Luxury Landing Page Specification",
+  "components": [
+    { "name": "Layout.astro", "type": "Layout", "responsibility": "HTML head, meta tags, font imports, global CSS variables, header, footer" },
+    { "name": "Hero.astro", "type": "Section", "responsibility": "Visual background banner, headline, subheadline, booking trigger" },
+    { "name": "ValueProps.astro", "type": "Section", "responsibility": "Three core value pillars: Nature, Luxury, Serenity" },
+    { "name": "Amenities.astro", "type": "Section", "responsibility": "Grid of 6 key amenities with SVGs and descriptive copy" },
+    { "name": "Experience.astro", "type": "Section", "responsibility": "High-resolution photo gallery & guest retreat experience storytelling" },
+    { "name": "Location.astro", "type": "Section", "responsibility": "Travel route guidance, coordinates, and local attractions" },
+    { "name": "BookingForm.astro", "type": "Section", "responsibility": "Form inputs for Check-in, Check-out, Guests, and direct WhatsApp CTA" }
+  ],
+  "accessibilityCompliance": "WCAG AA (contrast ratio >= 4.5:1, aria-labels, semantic landmarks)",
+  "seoCompliance": "Title, Meta Description, Open Graph tags, Twitter Card tags, canonical URL, sitemap ready"
+}

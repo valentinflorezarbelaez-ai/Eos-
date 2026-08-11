@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AndesRetreatRequirementsSchema",
+  "version": "1.0.0",
+  "projectId": "andes-retreat",
+  "missionId": "EXP-029-001",
+  "title": "Andes Retreat — Luxury Mountain Escape Landing Page",
+  "requirements": [
+    {
+      "id": "REQ-ANDES-01",
+      "category": "Hero Section",
+      "description": "High-impact visual headline, tagline, and primary reservation CTA button promoting luxury mountain retreat in Antioquia.",
+      "priority": "MUST_HAVE"
+    },
+    {
+      "id": "REQ-ANDES-02",
+      "category": "Value Proposition & Experience",
+      "description": "Exclusive cabin stay, eco-luxury amenities, mountain views, and personalized hospitality overview.",
+      "priority": "MUST_HAVE"
+    },
+    {
+      "id": "REQ-ANDES-03",
+      "category": "Amenities Grid",
+      "description": "Semantic grid displaying private Jacuzzi, fireplace, gourmet breakfast, high-speed Starlink Wi-Fi, and guided trails.",
+      "priority": "MUST_HAVE"
+    },
+    {
+      "id": "REQ-ANDES-04",
+      "category": "Location & Travel",
+      "description": "Transportation details from Medellín/Jardín with interactive map placeholder and travel guidance.",
+      "priority": "SHOULD_HAVE"
+    },
+    {
+      "id": "REQ-ANDES-05",
+      "category": "Reservation CTA & Inquiry Modal/Form",
+      "description": "Direct WhatsApp / Email booking inquiry CTA with date selector and guest capacity form.",
+      "priority": "MUST_HAVE"
+    },
+    {
+      "id": "REQ-ANDES-06",
+      "category": "Technical Architecture",
+      "description": "Built natively with Astro 7.2.0 components, zero client JS overhead, semantic HTML5, responsive CSS, WCAG AA accessibility, and meta SEO.",
+      "priority": "MUST_HAVE"
+    }
+  ]
+}
