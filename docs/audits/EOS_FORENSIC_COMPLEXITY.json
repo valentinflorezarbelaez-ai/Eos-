@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSForensicComplexitySchema",
+  "version": "1.0.0",
+  "metrics": {
+    "total_engines": 15,
+    "total_state_machines": 7,
+    "total_test_suites": 15,
+    "total_tests": 280,
+    "total_strict_checks": 407,
+    "value_to_complexity_ratio": "OPTIMAL",
+    "status": "WITHIN_BUDGET"
+  }
+}

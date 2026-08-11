@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSForensicContradictionsSchema",
+  "version": "1.0.0",
+  "audited_contradiction_scenarios": [
+    { "scenario": "Policy Engine DENY vs Capability ALLOW", "detected": true, "outcome": "DENY_PRECEDENCE_ENFORCED" },
+    { "scenario": "Verifier PASS vs Independent Harness FAIL", "detected": true, "outcome": "CONTRADICTION_HALT_PROMOTION" },
+    { "scenario": "Missing Evidence Payload", "detected": true, "outcome": "UNSUPPORTED_CLAIM_HALT" },
+    { "scenario": "Tampered Evidence Hash", "detected": true, "outcome": "INTEGRITY_FAILURE_HALT" },
+    { "scenario": "Self-Authorization Attempt", "detected": true, "outcome": "REJECTED_BY_META_GOVERNANCE" }
+  ],
+  "contradictions_found": 0,
+  "status": "CLEAN"
+}

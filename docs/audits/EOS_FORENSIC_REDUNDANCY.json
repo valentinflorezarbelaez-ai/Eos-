@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSForensicRedundancySchema",
+  "version": "1.0.0",
+  "redundancy_evaluation": [
+    { "component": "strategy-engine.js vs strategy-selection-engine.js", "type": "INTENTIONAL", "reason": "Separation of candidate generation vs 18-dimensional decision optimization scoring" },
+    { "component": "release-decision-engine.js vs production-readiness-review.js", "type": "INTENTIONAL", "reason": "Separation of gate evaluation vs independent readiness review" },
+    { "component": "system-wide-integrity-audit.js vs independent-verification-harness.js", "type": "INTENTIONAL", "reason": "Separation of internal systemic audit vs independent non-circular falsification harness" }
+  ],
+  "unnecessary_duplication_found": false
+}

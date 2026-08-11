@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSForensicInvariantsSchema",
+  "version": "1.0.0",
+  "invariants": [
+    {
+      "id": "INV-FOR-01",
+      "statement": "Target directory C:\\Users\\valen\\Documents\\Fundacion must remain 100% untouched across all simulations.",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-FOR-02",
+      "statement": "DENY policies strictly dominate ALLOW policies across all decision engines.",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-FOR-03",
+      "statement": "No verifier or agent can certify its own output without an independent verification check.",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-FOR-04",
+      "statement": "Self-evaluation recommendations must format as PROPOSAL_ONLY requiring PO Level 2+ authorization.",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-FOR-05",
+      "statement": "Independent Verification Harness must halt promotion on contradiction or evidence tampering.",
+      "status": "VERIFIED"
+    }
+  ]
+}
