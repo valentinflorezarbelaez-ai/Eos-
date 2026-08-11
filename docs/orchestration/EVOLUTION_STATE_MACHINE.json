@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSEvolutionStateMachineSchema",
+  "version": "1.0.0",
+  "states": [
+    "DETECTED",
+    "ASSESSED",
+    "RESEARCH_REQUIRED",
+    "RESEARCHED",
+    "STRATEGY_GENERATED",
+    "SIMULATED",
+    "COMPARED",
+    "PROPOSED",
+    "META_VERIFICATION_PENDING",
+    "META_VERIFIED",
+    "AUTHORIZATION_PENDING",
+    "AUTHORIZED",
+    "IMPLEMENTING",
+    "VERIFICATION_PENDING",
+    "VERIFIED",
+    "REJECTED",
+    "BLOCKED",
+    "ROLLED_BACK",
+    "ABORTED"
+  ],
+  "allowed_transitions": [
+    { "from": "DETECTED", "to": "ASSESSED" },
+    { "from": "ASSESSED", "to": "RESEARCH_REQUIRED" },
+    { "from": "RESEARCH_REQUIRED", "to": "RESEARCHED" },
+    { "from": "RESEARCHED", "to": "STRATEGY_GENERATED" },
+    { "from": "STRATEGY_GENERATED", "to": "SIMULATED" },
+    { "from": "SIMULATED", "to": "COMPARED" },
+    { "from": "COMPARED", "to": "PROPOSED" },
+    { "from": "PROPOSED", "to": "META_VERIFICATION_PENDING" },
+    { "from": "META_VERIFICATION_PENDING", "to": "META_VERIFIED" },
+    { "from": "META_VERIFIED", "to": "AUTHORIZATION_PENDING" },
+    { "from": "AUTHORIZATION_PENDING", "to": "AUTHORIZED" },
+    { "from": "AUTHORIZED", "to": "IMPLEMENTING" },
+    { "from": "IMPLEMENTING", "to": "VERIFICATION_PENDING" },
+    { "from": "VERIFICATION_PENDING", "to": "VERIFIED" }
+  ]
+}

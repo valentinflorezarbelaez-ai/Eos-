@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSEvolutionProposalSchema",
+  "type": "object",
+  "required": [
+    "proposalId",
+    "gapId",
+    "problem",
+    "evidence",
+    "impact",
+    "candidateCapability",
+    "strategies",
+    "recommendedStrategy",
+    "confidence",
+    "currentStatus",
+    "physicalExecution",
+    "authorization"
+  ],
+  "properties": {
+    "proposalId": { "type": "string" },
+    "gapId": { "type": "string" },
+    "problem": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "impact": { "type": "string" },
+    "candidateCapability": { "type": "string" },
+    "strategies": { "type": "array", "items": { "type": "string" } },
+    "recommendedStrategy": { "type": "string" },
+    "confidence": { "type": "number" },
+    "currentStatus": { "type": "string" },
+    "physicalExecution": { "type": "string" },
+    "authorization": { "type": "string" }
+  }
+}

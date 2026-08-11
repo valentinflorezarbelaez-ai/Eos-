@@ -1,0 +1,20 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "proposals": [
+    {
+      "proposalId": "EVOLUTION-001",
+      "gapId": "GAP-PROVIDER-TELEMETRY-01",
+      "problem": "Dynamic provider reliability remains synthetically modeled",
+      "evidence": ["EVD-0016.json", "EVD-0017.json"],
+      "impact": "MEDIUM",
+      "candidateCapability": "CAP-PROVIDER-PERFORMANCE-TELEMETRY",
+      "strategies": ["STRATEGY-A", "STRATEGY-B", "STRATEGY-C"],
+      "recommendedStrategy": "STRATEGY-B",
+      "confidence": 0.95,
+      "currentStatus": "PROPOSAL_ONLY",
+      "physicalExecution": "FORBIDDEN",
+      "authorization": "REQUIRED"
+    }
+  ]
+}
