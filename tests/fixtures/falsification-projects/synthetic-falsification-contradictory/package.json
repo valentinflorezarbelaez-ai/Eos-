@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-falsification-contradictory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic fixture for contradictory claim falsification testing",
+  "type": "module"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSClaimValidationModelSchema",
+  "version": "1.0.0",
+  "claim_types": [
+    "STRUCTURAL",
+    "BEHAVIORAL",
+    "GOVERNANCE",
+    "SECURITY",
+    "PERFORMANCE",
+    "ECONOMIC",
+    "RELIABILITY",
+    "RESILIENCE",
+    "AUTONOMY",
+    "RELEASE",
+    "EMPIRICAL"
+  ],
+  "required_claim_fields": [
+    "claimId",
+    "description",
+    "claimType",
+    "source",
+    "evidence",
+    "verificationMethod",
+    "independenceLevel",
+    "falsificationMethod",
+    "status",
+    "confidence",
+    "timestamp"
+  ]
+}

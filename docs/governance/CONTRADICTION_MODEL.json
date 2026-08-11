@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSContradictionModelSchema",
+  "version": "1.0.0",
+  "contradiction_cases": [
+    { "case": "A", "eos_signal": "PASS", "verifier_signal": "PASS", "outcome": "CORROBORATED" },
+    { "case": "B", "eos_signal": "PASS", "verifier_signal": "FAIL", "outcome": "CONTRADICTION" },
+    { "case": "C", "eos_signal": "BLOCK", "verifier_signal": "PASS", "outcome": "FALSE_REJECTION_CANDIDATE" },
+    { "case": "D", "eos_signal": "PASS", "verifier_signal": "MISSING_EVIDENCE", "outcome": "UNSUPPORTED_CLAIM" },
+    { "case": "E", "eos_signal": "PASS", "verifier_signal": "TAMPERED_EVIDENCE", "outcome": "INTEGRITY_FAILURE" }
+  ],
+  "handling_rules": [
+    "Do NOT rewrite evidence upon contradiction.",
+    "Do NOT mutate governance upon contradiction.",
+    "Halt promotion immediately upon CONTRADICTION or INTEGRITY_FAILURE."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSEvidenceIndependenceModelSchema",
+  "version": "1.0.0",
+  "independence_levels": [
+    { "level": "I0", "name": "SELF GENERATED", "description": "Originates solely from evaluated component" },
+    { "level": "I1", "name": "INTERNAL CROSS-CHECK", "description": "Second check sharing internal infrastructure" },
+    { "level": "I2", "name": "INDEPENDENT LOCAL CORROBORATION", "description": "Independent local evaluator (filesystem, Git, process)" },
+    { "level": "I3", "name": "EXTERNAL SYSTEM CORROBORATION", "description": "Corroborated by system external to EOS (external CI/cloud)" },
+    { "level": "I4", "name": "EMPIRICAL REAL-WORLD VALIDATION", "description": "Validated against real-world execution and observed telemetry" }
+  ]
+}

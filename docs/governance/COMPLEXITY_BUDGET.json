@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSComplexityBudgetSchema",
+  "version": "1.0.0",
+  "budgets": {
+    "max_engines": 15,
+    "max_state_machines": 10,
+    "max_schemas": 35,
+    "max_governance_layers": 10
+  },
+  "current_usage": {
+    "engines": 13,
+    "state_machines": 7,
+    "schemas": 33,
+    "governance_layers": 7
+  },
+  "optimization_target": "VALUE / COMPLEXITY",
+  "status": "WITHIN_BUDGET"
+}

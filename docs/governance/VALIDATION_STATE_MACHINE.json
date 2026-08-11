@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSValidationStateMachineSchema",
+  "version": "1.0.0",
+  "states": [
+    "UNTESTED",
+    "STRUCTURALLY_VERIFIED",
+    "BEHAVIORALLY_VERIFIED",
+    "INDEPENDENTLY_CORROBORATED",
+    "EMPIRICALLY_VALIDATED",
+    "CONTRADICTORY",
+    "UNSUPPORTED",
+    "DEGRADED",
+    "BLOCKED",
+    "FALSIFIED"
+  ],
+  "allowed_transitions": [
+    { "from": "UNTESTED", "to": "STRUCTURALLY_VERIFIED" },
+    { "from": "STRUCTURALLY_VERIFIED", "to": "BEHAVIORALLY_VERIFIED" },
+    { "from": "BEHAVIORALLY_VERIFIED", "to": "INDEPENDENTLY_CORROBORATED" },
+    { "from": "INDEPENDENTLY_CORROBORATED", "to": "EMPIRICALLY_VALIDATED" }
+  ]
+}

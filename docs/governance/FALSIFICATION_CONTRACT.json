@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSFalsificationContractSchema",
+  "version": "1.0.0",
+  "type": "object",
+  "required": [
+    "contractId",
+    "hypothesis",
+    "expectedResult",
+    "failureSignal",
+    "contradictionSignal",
+    "falsificationMethod",
+    "rollbackMethod",
+    "evidenceRequirement"
+  ],
+  "properties": {
+    "contractId": { "type": "string" },
+    "hypothesis": { "type": "string" },
+    "expectedResult": { "type": "string" },
+    "failureSignal": { "type": "string" },
+    "contradictionSignal": { "type": "string" },
+    "falsificationMethod": { "type": "string" },
+    "rollbackMethod": { "type": "string" },
+    "evidenceRequirement": { "type": "string" }
+  }
+}
