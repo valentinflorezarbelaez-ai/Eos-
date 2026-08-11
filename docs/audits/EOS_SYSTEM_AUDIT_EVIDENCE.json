@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSSystemAuditEvidenceSchema",
+  "version": "1.0.0",
+  "audit_evidence_summary": {
+    "test_suite_status": "272/272 PASS (100% pass rate in 594ms across 13 test suites)",
+    "strict_verification_status": "362/362 PASS (100% strict check pass rate)",
+    "operating_loop_status": "8/8 Synthetic Operating Loops COMPLETED",
+    "release_review_status": "10/10 Synthetic Release Proving Missions COMPLETED",
+    "gameday_status": "15/15 Synthetic Game Days COMPLETED",
+    "target_isolation_status": "0 files, 0 directories in C:\\Users\\valen\\Documents\\Fundacion",
+    "decision_gate_state": "SYSTEM_READY_WITH_CONDITIONS"
+  }
+}

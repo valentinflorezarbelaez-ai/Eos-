@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSSystemStateMachineAuditSchema",
+  "version": "1.0.0",
+  "audited_state_machines": [
+    { "name": "Execution State Machine", "total_states": 16, "status": "ALIGNED", "file": "docs/orchestration/EXECUTION_STATE_MACHINE.json" },
+    { "name": "Mission State Machine", "total_states": 12, "status": "ALIGNED", "file": "docs/missions/schema.json" },
+    { "name": "Evolution State Machine", "total_states": 14, "status": "ALIGNED", "file": "docs/orchestration/EVOLUTION_STATE_MACHINE.json" },
+    { "name": "Operating Loop State Machine", "total_states": 27, "status": "ALIGNED", "file": "docs/orchestration/OPERATING_LOOP_STATE_MACHINE.json" },
+    { "name": "Release Gate State Machine", "total_states": 21, "status": "ALIGNED", "file": "docs/orchestration/RELEASE_GATE_STATE_MACHINE.json" },
+    { "name": "Game Day State Machine", "total_states": 17, "status": "ALIGNED", "file": "docs/orchestration/GAME_DAY_STATE_MACHINE.json" }
+  ],
+  "cross_state_compatibility": "VERIFIED"
+}

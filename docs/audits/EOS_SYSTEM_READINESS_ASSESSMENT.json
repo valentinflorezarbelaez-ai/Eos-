@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSSystemReadinessAssessmentSchema",
+  "version": "1.0.0",
+  "overall_readiness_state": "SYSTEM_READY_WITH_CONDITIONS",
+  "conditions": [
+    "Live commercial LLM API credentials must be configured and tested prior to live external project execution.",
+    "Real production telemetry must be recorded to replace ASSUMPTION weights in tool and strategy scoring matrices.",
+    "Product Owner Level 2+ implementation authorization must be explicitly granted before writing to PRJ-FUNDACION."
+  ],
+  "maturity_assessment": {
+    "architectural_maturity": "HIGH",
+    "governance_maturity": "HIGH",
+    "synthetic_proving_maturity": "HIGH",
+    "adversarial_proving_maturity": "HIGH_SYNTHETIC",
+    "empirical_production_maturity": "NOT_YET_ESTABLISHED"
+  }
+}

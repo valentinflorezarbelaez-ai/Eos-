@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSSystemInvariantsSchema",
+  "version": "1.0.0",
+  "invariants": [
+    {
+      "id": "INV-01",
+      "name": "External Write Isolation",
+      "statement": "Writing to PRJ-FUNDACION (C:\\Users\\valen\\Documents\\Fundacion) is strictly FORBIDDEN during EOS Development Mode.",
+      "enforced_by": "Policy Engine & External Write Barrier",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-02",
+      "name": "Deny Precedence",
+      "statement": "DENY policies strictly dominate over ALLOW policies across all decision engines.",
+      "enforced_by": "Policy Engine",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-03",
+      "name": "Verifier Independence",
+      "statement": "An executing agent cannot certify its own output without an independent verification check.",
+      "enforced_by": "Meta-Governance Engine",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-04",
+      "name": "Proposal-Only Self-Evolution",
+      "statement": "Self-evaluation and evolution engines format recommendations as PROPOSAL_ONLY; automatic Constitution mutation is impossible.",
+      "enforced_by": "Governance Gate & Level 2+ Authorization Model",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-05",
+      "name": "Evidence-First Release Sign-off",
+      "statement": "No release candidate can transition to APPROVED_FOR_RELEASE without backing EVD-*.json evidence payloads.",
+      "enforced_by": "Release Decision Engine & 13 Release Verification Gates",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "INV-06",
+      "name": "Blast Radius Containment",
+      "statement": "Adversarial experiments operate strictly in levels B0 to B3; levels B4 to B7 require explicit Product Owner sign-off.",
+      "enforced_by": "Adversarial Laboratory Engine",
+      "status": "VERIFIED"
+    }
+  ]
+}

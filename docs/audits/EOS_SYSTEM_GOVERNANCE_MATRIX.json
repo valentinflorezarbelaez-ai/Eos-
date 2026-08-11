@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSSystemGovernanceMatrixSchema",
+  "version": "1.0.0",
+  "governance_layers": [
+    { "layer": "Constitution & Rules", "authority": "Product Owner", "scope": "Universal", "mutability": "L2_AUTHORIZATION_ONLY" },
+    { "layer": "Policy Engine", "authority": "POL-001 to POL-004", "scope": "Control Plane & Projects", "mutability": "FROZEN" },
+    { "layer": "Autonomy & Reversibility Model", "authority": "Level 0 to Level 4", "scope": "Execution Actions", "mutability": "POLICY_BOUND" },
+    { "layer": "Capability Intelligence", "authority": "24 Capability Contracts", "scope": "Tool & Adapter Selection", "mutability": "REGISTRY_BOUND" },
+    { "layer": "Release Governance", "authority": "13 Verification Gates", "scope": "Release Candidates", "mutability": "EVIDENCE_BOUND" },
+    { "layer": "Meta-Governance", "authority": "Independent Verifier Check", "scope": "Audit & Self-Certification", "mutability": "IMMUTABLE" }
+  ]
+}
