@@ -5,7 +5,7 @@
   "level": "EMPIRICAL_VALIDATION_LEVEL_1_READ_ONLY",
   "writeBarrierStatus": "INVIOLATE_DENY_ENFORCED",
   "state": {
-    "timestamp": "2026-08-11T04:41:57.511Z",
+    "timestamp": "2026-08-11T04:53:53.054Z",
     "projectId": "andes-retreat",
     "mode": "EMPIRICAL_LEVEL_1_READ_ONLY",
     "targetPath": "C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat",
@@ -20,7 +20,7 @@
       },
       {
         "key": "ITEM_COUNT",
-        "value": 13
+        "value": 15
       },
       {
         "key": "HAS_GIT",
@@ -57,7 +57,7 @@
       },
       {
         "key": "FILE_TREE_COUNT",
-        "value": 17
+        "value": 26
       }
     ],
     "inferences": [
@@ -153,12 +153,54 @@
       },
       {
         "type": "directory",
+        "path": "src\\components"
+      },
+      {
+        "type": "file",
+        "path": "src\\components\\Amenities.astro",
+        "size": 3278
+      },
+      {
+        "type": "file",
+        "path": "src\\components\\BookingForm.astro",
+        "size": 3477
+      },
+      {
+        "type": "file",
+        "path": "src\\components\\Header.astro",
+        "size": 1814
+      },
+      {
+        "type": "file",
+        "path": "src\\components\\Hero.astro",
+        "size": 2583
+      },
+      {
+        "type": "directory",
+        "path": "src\\layouts"
+      },
+      {
+        "type": "file",
+        "path": "src\\layouts\\Layout.astro",
+        "size": 1469
+      },
+      {
+        "type": "directory",
         "path": "src\\pages"
       },
       {
         "type": "file",
         "path": "src\\pages\\index.astro",
-        "size": 351
+        "size": 5192
+      },
+      {
+        "type": "directory",
+        "path": "src\\styles"
+      },
+      {
+        "type": "file",
+        "path": "src\\styles\\global.css",
+        "size": 3639
       },
       {
         "type": "file",
@@ -208,15 +250,15 @@
   "auditTrail": [
     {
       "step": "READ_ONLY_ACCESS_ASSERTED",
-      "timestamp": "2026-08-11T04:41:57.513Z"
+      "timestamp": "2026-08-11T04:53:53.055Z"
     },
     {
       "step": "REPOSITORY_OBSERVED",
-      "timestamp": "2026-08-11T04:41:57.513Z"
+      "timestamp": "2026-08-11T04:53:53.055Z"
     },
     {
       "step": "STATE_CLASSIFIED",
-      "timestamp": "2026-08-11T04:41:57.513Z"
+      "timestamp": "2026-08-11T04:53:53.055Z"
     }
   ],
   "decisionState": "PASS_WITH_CONDITIONS"
