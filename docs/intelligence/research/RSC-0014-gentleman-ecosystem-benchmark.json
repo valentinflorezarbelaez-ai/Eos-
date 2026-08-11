@@ -1,0 +1,65 @@
+{
+  "$schema": "./schema.json",
+  "id": "RSC-0014",
+  "title": "Gentleman-Programming External Engineering Ecosystem Benchmark",
+  "version": "1.0.0",
+  "timestamp": "2026-08-11T04:42:00Z",
+  "author": "EOS Engineering Intelligence Researcher & Architectural Auditor",
+  "objective": "Evaluate external Gentleman-Programming ecosystem components (Engram, Gentle-AI, SDD, Gentleman-Skills, Context7, GGA) to establish an empirical ADOPT / ADAPT / REJECT matrix for EOS integration without compromising EOS Control Plane governance or zero-write safety barriers.",
+  "evaluations": [
+    {
+      "component": "Engram Persistent Memory",
+      "repository": "Gentleman-Programming/engram",
+      "function": "Persistent local-first agent memory via SQLite + FTS5 MCP server",
+      "decision": "ADOPT",
+      "rationale": "Engram provides persistent memory across sessions and compactions without inflating parent context. Bound via Engram Protocol rules.",
+      "eosIntegration": "Active via Engram MCP tools (mem_save, mem_search, mem_context, mem_session_summary)"
+    },
+    {
+      "component": "Gentle-AI Agent Ecosystem",
+      "repository": "Gentleman-Programming/gentle-ai",
+      "function": "Agent configurator, context delegation boundaries, prompt envelope discipline",
+      "decision": "ADAPT",
+      "rationale": "Gentle-AI context delegation rules (bounded subagents for 4+ files read) complement EOS 16-state execution runtime and policy engine.",
+      "eosIntegration": "Delegation thresholds integrated into EOS Agent Council and Policy Engine"
+    },
+    {
+      "component": "SDD 9-Step Lifecycle",
+      "repository": "Gentleman-Programming/gentle-ai (sdd-*)",
+      "function": "Spec-Driven Development lifecycle (explore, propose, spec, design, tasks, apply, verify, archive)",
+      "decision": "ADAPT",
+      "rationale": "EOS already implements 16-state execution runtime and 18-dimensional strategy selection. SDD lifecycle steps map 1:1 to EOS execution phases.",
+      "eosIntegration": "EOS Engineering Lifecycle maps SDD phases to EOS decision records and evidence bounds"
+    },
+    {
+      "component": "Gentleman-Skills Registry",
+      "repository": "Gentleman-Programming/gentleman-skills",
+      "function": "Domain-specialized skills (TypeScript, Astro, React, Tailwind, Zod, Playwright)",
+      "decision": "ADOPT",
+      "rationale": "Skills provide operational domain expertise without introducing executable runtime bloat or circular verification risks.",
+      "eosIntegration": "Loaded into EOS .agents/skills/ directory as declarative markdown instruction sets"
+    },
+    {
+      "component": "Context7 Live Documentation",
+      "repository": "Gentleman-Programming/context7",
+      "function": "Live framework and library documentation retrieval to eliminate API obsolescence",
+      "decision": "ADAPT",
+      "rationale": "Live documentation retrieval prevents stale LLM assumptions. Integrated as read-only research adapter.",
+      "eosIntegration": "Bound via mock-research-adapter and read_url_content tools under Level 1 READ_ONLY mode"
+    },
+    {
+      "component": "GGA (Gentleman Guardian Angel)",
+      "repository": "Gentleman-Programming/gga",
+      "function": "External AI code review using multi-provider models",
+      "decision": "ADAPT",
+      "rationale": "External code review provides independent cross-model corroboration without circular self-certification.",
+      "eosIntegration": "Positioned as Level 2 independent reviewer in EOS Independent Verification Harness"
+    }
+  ],
+  "matrixSummary": {
+    "adoptCount": 2,
+    "adaptCount": 4,
+    "rejectCount": 0,
+    "conclusion": "External ecosystem components significantly complement EOS control plane governance when bound strictly to Level 1 READ_ONLY and independent non-circular verification rules."
+  }
+}
