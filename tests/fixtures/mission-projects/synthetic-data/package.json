@@ -1,0 +1,6 @@
+{
+  "name": "synthetic-data",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic Data Fixture for EOS Mission Engine Testing"
+}

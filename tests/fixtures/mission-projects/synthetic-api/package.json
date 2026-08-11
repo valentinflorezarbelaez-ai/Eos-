@@ -1,0 +1,6 @@
+{
+  "name": "synthetic-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic API Fixture for EOS Mission Engine Testing"
+}

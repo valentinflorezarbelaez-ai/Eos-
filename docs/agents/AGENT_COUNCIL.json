@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSAgentCouncilSchema",
+  "version": "1.0.0",
+  "roles": [
+    { "role": "Product", "agentId": "AGT-PRODUCT-OWNER", "capabilities": ["CAP-REQ-EXTRACTION"] },
+    { "role": "Research", "agentId": "AGT-RESEARCH", "capabilities": ["CAP-RESEARCH", "CAP-WEB-RESEARCH"] },
+    { "role": "Requirements", "agentId": "AGT-REQUIREMENTS", "capabilities": ["CAP-DOC-ANALYSIS"] },
+    { "role": "Specification", "agentId": "AGT-SPECIFICATION", "capabilities": ["CAP-SPEC-GEN"] },
+    { "role": "Architecture", "agentId": "AGT-ARCHITECTURE", "capabilities": ["CAP-ARCH-ANALYSIS"] },
+    { "role": "Implementation", "agentId": "AGT-IMPLEMENTATION", "capabilities": ["CAP-CODE-GEN", "CAP-CODE-EDIT"] },
+    { "role": "Security", "agentId": "AGT-SECURITY", "capabilities": ["CAP-SEC-ANALYSIS"] },
+    { "role": "Quality", "agentId": "AGT-QUALITY", "capabilities": ["CAP-CODE-REVIEW"] },
+    { "role": "Accessibility", "agentId": "AGT-ACCESSIBILITY", "capabilities": ["CAP-A11Y-ANALYSIS"] },
+    { "role": "Performance", "agentId": "AGT-PERFORMANCE", "capabilities": ["CAP-PERF-ANALYSIS"] },
+    { "role": "SEO", "agentId": "AGT-SEO", "capabilities": ["CAP-SEO-ANALYSIS"] },
+    { "role": "Browser QA", "agentId": "AGT-BROWSER-QA", "capabilities": ["CAP-BROWSER-QA", "CAP-BROWSER-VALID"] },
+    { "role": "Testing", "agentId": "AGT-TESTING", "capabilities": ["CAP-TEST-EXECUTION"] },
+    { "role": "Evidence", "agentId": "AGT-EVIDENCE", "capabilities": ["CAP-EVD-COLLECTION"] },
+    { "role": "Audit", "agentId": "AGT-GOVERNANCE-AUDITOR", "capabilities": ["CAP-AUDIT"] },
+    { "role": "Release", "agentId": "AGT-RELEASE-AUDITOR", "capabilities": ["CAP-DEPLOYMENT"] }
+  ]
+}
