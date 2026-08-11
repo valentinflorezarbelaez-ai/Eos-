@@ -1,0 +1,64 @@
+{
+  "$schema": "./schema.json",
+  "id": "RSC-0015",
+  "title": "Agentic Engineering Ecosystem Gap Analysis & EOS Memory Contract",
+  "version": "1.0.0",
+  "timestamp": "2026-08-11T04:45:00Z",
+  "author": "EOS Lead Systems Architect & AI Engineering Researcher",
+  "objective": "Conduct gap analysis between Gentle-AI/Engram/SDD ecosystem capabilities vs EOS Control Plane, define the EOS Memory Contract, and map SDD 9 phases to EOS 16-state execution runtime for Andes-Retreat real project missions.",
+  "memoryContract": {
+    "types": [
+      "OBSERVATION",
+      "DECISION",
+      "DISCOVERY",
+      "CONSTRAINT",
+      "ERROR",
+      "FIX",
+      "ARCHITECTURE_DECISION",
+      "USER_PREFERENCE",
+      "PROJECT_FACT",
+      "LESSON",
+      "VERIFICATION_RESULT",
+      "OPEN_QUESTION"
+    ],
+    "schema": {
+      "requiredFields": ["id", "project", "type", "content", "source", "timestamp", "confidence", "evidence", "status"],
+      "optionalFields": ["supersedes", "related"]
+    },
+    "epistemicSeparation": "MEMORY (declarative knowledge) vs EVIDENCE (executable log/hash) vs VERIFICATION (independent check result)."
+  },
+  "sddToEosLifecycleMapping": [
+    { "sddPhase": "sdd-init", "eosState": "S1_INITIATED", "action": "Discover project stack and test capabilities" },
+    { "sddPhase": "sdd-explore", "eosState": "S2_REQUIREMENTS_PARSED", "action": "Analyze filesystem, dependencies, and code boundaries" },
+    { "sddPhase": "sdd-propose", "eosState": "S3_SPECIFICATION_GENERATED", "action": "Formulate strategy proposals with tradeoffs" },
+    { "sddPhase": "sdd-spec", "eosState": "S4_ARCHITECTURE_VALIDATED", "action": "Produce formal OpenSpec/Markdown specification" },
+    { "sddPhase": "sdd-design", "eosState": "S5_EXECUTION_PLAN_DECOMPOSED", "action": "Decompose into architectural and component designs" },
+    { "sddPhase": "sdd-tasks", "eosState": "S6_ACTION_DAG_COMPOSED", "action": "Compose atomic, ordered task execution DAG" },
+    { "sddPhase": "sdd-apply", "eosState": "S8_ACTION_EXECUTED", "action": "Execute authorized code modifications under Level 3+ sandbox" },
+    { "sddPhase": "sdd-verify", "eosState": "S9_VERIFICATION_EVALUATED", "action": "Run unit, integration, and independent harness verification" },
+    { "sddPhase": "sdd-archive", "eosState": "S16_COMMITTED_OR_ROLLED_BACK", "action": "Record evidence, update Engram memory, archive session" }
+  ],
+  "gapAnalysis": [
+    {
+      "capability": "Persistent Cross-Session Memory",
+      "gentleSource": "Engram (SQLite+FTS5 MCP)",
+      "eosCurrent": "Session-bounded JSON memory (EVD-*, AGENT_PERFORMANCE_MEMORY.json)",
+      "status": "GAP_IDENTIFIED",
+      "recommendation": "Integrate Engram MCP protocol for cross-session memory while maintaining EVD-* executable log requirement."
+    },
+    {
+      "capability": "Context Delegation Rules",
+      "gentleSource": "Gentle-AI subagent rules (4+ file read threshold)",
+      "eosCurrent": "Agent Council 12-role deliberation",
+      "status": "PARTIAL_MATCH",
+      "recommendation": "Adopt Gentle-AI file-threshold delegation boundaries into Policy Engine."
+    },
+    {
+      "capability": "Live Documentation Retrieval",
+      "gentleSource": "Context7 integration",
+      "eosCurrent": "Mock research adapter (RSC-0001 to RSC-0014)",
+      "status": "GAP_IDENTIFIED",
+      "recommendation": "Bind read_url_content tool to live documentation APIs for up-to-date Astro/TypeScript specs."
+    }
+  ]
+}
