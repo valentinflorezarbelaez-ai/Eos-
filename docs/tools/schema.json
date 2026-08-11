@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSToolSchema",
+  "type": "object",
+  "required": [
+    "tool_id",
+    "name",
+    "provider_id",
+    "capabilities_supported",
+    "interface_type",
+    "risk_level",
+    "evidence_support"
+  ],
+  "properties": {
+    "tool_id": { "type": "string" },
+    "name": { "type": "string" },
+    "provider_id": { "type": "string" },
+    "capabilities_supported": { "type": "array", "items": { "type": "string" } },
+    "interface_type": { "type": "string", "enum": ["SYNTHETIC_MOCK", "CLI", "API", "SDK", "MCP"] },
+    "risk_level": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+    "evidence_support": { "type": "boolean" }
+  }
+}

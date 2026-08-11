@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSProviderSchema",
+  "type": "object",
+  "required": [
+    "provider_id",
+    "name",
+    "organization",
+    "trust_level"
+  ],
+  "properties": {
+    "provider_id": { "type": "string" },
+    "name": { "type": "string" },
+    "organization": { "type": "string" },
+    "trust_level": { "type": "string", "enum": ["LOCAL_SYSTEM", "TRUSTED_VENDOR", "EXPERIMENTAL"] }
+  }
+}

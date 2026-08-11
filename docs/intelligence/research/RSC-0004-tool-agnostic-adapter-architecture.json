@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0004",
+  "question": "How can EOS decouple engineering intent and capability requirements from specific AI tool implementations (Claude Code, Codex, Gemini, Cursor) using Hexagonal Ports & Adapters architecture?",
+  "scope": "Tool-agnostic adapter patterns, Ports & Adapters architecture, capability routing, permission scoping, and synthetic mock tool validation",
+  "sources": ["SRC-0001", "SRC-0002", "SRC-0003", "SRC-0005", "SRC-0009"],
+  "claims": [
+    "Decoupling capability ports from vendor tool adapters prevents vendor lock-in and allows seamless tool substitution.",
+    "Capabilities should express intent and security boundaries, while adapters translate intent into vendor-specific tool calls."
+  ],
+  "evidence": [
+    "Anthropic Model Context Protocol (MCP) demonstrates standard JSON-RPC schema translation across diverse tool providers.",
+    "Hexagonal Architecture (Ports & Adapters) in enterprise software isolates domain logic from infrastructure dependencies."
+  ],
+  "observations": [
+    "Tool adapters must produce structured exit statuses, duration metrics, and verifiable EVD-*.json evidence payloads.",
+    "Fallback routing must never override security boundaries or external write barriers."
+  ],
+  "patterns": [
+    "PAT-0001: Spec-Driven Development",
+    "PAT-0002: Evidence-First Verification",
+    "PAT-0003: Local-First Control Plane"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Adapters add an extra translation layer, requiring strict schema validation to avoid serialization latency."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "CRITICAL",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Adopt Hexagonal Ports & Adapters architecture for EOS Capability and Tool Registry.",
+  "verification_status": "VERIFIED"
+}

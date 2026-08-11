@@ -1,0 +1,74 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11T00:00:00Z",
+  "tools": [
+    {
+      "tool_id": "TOL-MOCK-CODE",
+      "name": "Synthetic Mock Code Tool",
+      "provider_id": "PRV-EOS-LOCAL",
+      "capabilities_supported": [
+        "CAP-CODE-GEN",
+        "CAP-CODE-EDIT",
+        "CAP-CODE-REVIEW",
+        "CAP-FILE-TRANSFORM",
+        "CAP-GIT-OPERATION",
+        "CAP-DEPLOYMENT",
+        "CAP-DOCUMENTATION",
+        "CAP-SPEC-GEN",
+        "CAP-DB-OPERATION"
+      ],
+      "interface_type": "SYNTHETIC_MOCK",
+      "risk_level": "LOW",
+      "evidence_support": true
+    },
+    {
+      "tool_id": "TOL-MOCK-RESEARCH",
+      "name": "Synthetic Mock Research Tool",
+      "provider_id": "PRV-EOS-LOCAL",
+      "capabilities_supported": [
+        "CAP-RESEARCH",
+        "CAP-WEB-RESEARCH",
+        "CAP-DOC-ANALYSIS",
+        "CAP-SEC-ANALYSIS",
+        "CAP-SEO-ANALYSIS",
+        "CAP-IMG-ANALYSIS",
+        "CAP-VID-ANALYSIS",
+        "CAP-ARCH-ANALYSIS",
+        "CAP-REQ-EXTRACTION"
+      ],
+      "interface_type": "SYNTHETIC_MOCK",
+      "risk_level": "LOW",
+      "evidence_support": true
+    },
+    {
+      "tool_id": "TOL-MOCK-TEST",
+      "name": "Synthetic Mock Test Tool",
+      "provider_id": "PRV-EOS-LOCAL",
+      "capabilities_supported": [
+        "CAP-TESTING",
+        "CAP-TEST-EXECUTION",
+        "CAP-PERF-ANALYSIS",
+        "CAP-EVD-COLLECTION",
+        "CAP-AUDIT"
+      ],
+      "interface_type": "SYNTHETIC_MOCK",
+      "risk_level": "LOW",
+      "evidence_support": true
+    },
+    {
+      "tool_id": "TOL-MOCK-BROWSER",
+      "name": "Synthetic Mock Browser QA Tool",
+      "provider_id": "PRV-EOS-LOCAL",
+      "capabilities_supported": [
+        "CAP-BROWSER-QA",
+        "CAP-BROWSER-AUTO",
+        "CAP-BROWSER-VALID",
+        "CAP-A11Y-ANALYSIS"
+      ],
+      "interface_type": "SYNTHETIC_MOCK",
+      "risk_level": "LOW",
+      "evidence_support": true
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSExecutionPlannerSchema",
+  "type": "object",
+  "required": [
+    "planner_version",
+    "required_plan_fields",
+    "dry_run_supported"
+  ],
+  "properties": {
+    "planner_version": { "type": "string" },
+    "required_plan_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "dry_run_supported": { "type": "boolean" }
+  }
+}

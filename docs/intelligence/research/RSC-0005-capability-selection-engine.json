@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0005",
+  "question": "How do hyperscale engineering systems and agent frameworks (Google, Microsoft, AWS, OpenAI, Anthropic, Netflix, Meta, Palantir) implement capability-driven tool selection, dynamic tool scoring, policy gating, and safe fallback routing?",
+  "scope": "Capability intelligence engines, multi-dimensional scoring matrices, policy evaluation integration, least-privilege provider isolation, and evidence-first execution planning",
+  "sources": ["SRC-0001", "SRC-0002", "SRC-0003", "SRC-0005", "SRC-0006", "SRC-0009", "SRC-0010"],
+  "claims": [
+    "Capability-driven tool selection decouples abstract task intent from vendor implementations, enabling dynamic scoring based on reliability, cost, latency, and security bounds.",
+    "Policy-governed execution planning prevents fallback routes from violating write barriers, authorization scopes, or evidence requirements."
+  ],
+  "evidence": [
+    "AWS IAM Policy Engine & Service Control Policies enforce non-bypassable least-privilege boundaries.",
+    "Anthropic MCP and OpenAI Tool Choice API demonstrate capability-to-tool signature matching across heterogeneous agent topologies."
+  ],
+  "observations": [
+    "Tool scoring must evaluate 12 explicit dimensions: Capability Fit, Compatibility, Reliability, Latency, Cost, Security, Evidence Quality, Reversibility, Availability, Historical Performance, Provider Trust, Permission Fit.",
+    "Fallback engines must deterministically evaluate alternative tools without bypassing authorization or security boundaries."
+  ],
+  "patterns": [
+    "PAT-0001: Spec-Driven Development",
+    "PAT-0002: Evidence-First Verification",
+    "PAT-0003: Local-First Control Plane"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Initial scoring weights must be marked ASSUMPTION until empirical production telemetry accumulates."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "CRITICAL",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Implement Capability Intelligence Engine with 24 formal capability contracts, 12-dimensional tool scoring, policy evaluation gating, and deterministic fallback routing in EOS Control Plane.",
+  "verification_status": "VERIFIED"
+}

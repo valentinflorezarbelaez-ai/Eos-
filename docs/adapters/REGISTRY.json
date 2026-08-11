@@ -1,0 +1,37 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11T00:00:00Z",
+  "adapters": [
+    { "adapter_id": "ADP-MOCK-CODE", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-CODE-GEN", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-CODE-EDIT", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-CODE-EDIT", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-CODE-REV", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-CODE-REVIEW", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-FILE-TRN", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-FILE-TRANSFORM", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-GIT", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-GIT-OPERATION", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-DEPLOY", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-DEPLOYMENT", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-DOC", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-DOCUMENTATION", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-SPEC-GEN", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-SPEC-GEN", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-DB", "tool_id": "TOL-MOCK-CODE", "capability_id": "CAP-DB-OPERATION", "module_path": "scripts/adapters/mock-code-adapter.js", "status": "ACTIVE" },
+
+    { "adapter_id": "ADP-MOCK-RESEARCH", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-RESEARCH", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-WEB-RES", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-WEB-RESEARCH", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-DOC-ANA", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-DOC-ANALYSIS", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-SEC-ANA", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-SEC-ANALYSIS", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-SEO-ANA", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-SEO-ANALYSIS", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-IMG-ANA", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-IMG-ANALYSIS", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-VID-ANA", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-VID-ANALYSIS", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-ARC-ANA", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-ARCH-ANALYSIS", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-REQ-EXT", "tool_id": "TOL-MOCK-RESEARCH", "capability_id": "CAP-REQ-EXTRACTION", "module_path": "scripts/adapters/mock-research-adapter.js", "status": "ACTIVE" },
+
+    { "adapter_id": "ADP-MOCK-TEST", "tool_id": "TOL-MOCK-TEST", "capability_id": "CAP-TESTING", "module_path": "scripts/adapters/mock-test-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-TST-EXE", "tool_id": "TOL-MOCK-TEST", "capability_id": "CAP-TEST-EXECUTION", "module_path": "scripts/adapters/mock-test-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-PRF-ANA", "tool_id": "TOL-MOCK-TEST", "capability_id": "CAP-PERF-ANALYSIS", "module_path": "scripts/adapters/mock-test-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-EVD-COL", "tool_id": "TOL-MOCK-TEST", "capability_id": "CAP-EVD-COLLECTION", "module_path": "scripts/adapters/mock-test-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-AUDIT", "tool_id": "TOL-MOCK-TEST", "capability_id": "CAP-AUDIT", "module_path": "scripts/adapters/mock-test-adapter.js", "status": "ACTIVE" },
+
+    { "adapter_id": "ADP-MOCK-BROWSER", "tool_id": "TOL-MOCK-BROWSER", "capability_id": "CAP-BROWSER-QA", "module_path": "scripts/adapters/mock-browser-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-BRW-AUT", "tool_id": "TOL-MOCK-BROWSER", "capability_id": "CAP-BROWSER-AUTO", "module_path": "scripts/adapters/mock-browser-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-BRW-VAL", "tool_id": "TOL-MOCK-BROWSER", "capability_id": "CAP-BROWSER-VALID", "module_path": "scripts/adapters/mock-browser-adapter.js", "status": "ACTIVE" },
+    { "adapter_id": "ADP-MOCK-A11-ANA", "tool_id": "TOL-MOCK-BROWSER", "capability_id": "CAP-A11Y-ANALYSIS", "module_path": "scripts/adapters/mock-browser-adapter.js", "status": "ACTIVE" }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-10T23:59:00Z",
+  "providers": [
+    {
+      "provider_id": "PRV-EOS-LOCAL",
+      "name": "EOS Local Control Plane",
+      "organization": "EOS Autonomous Engineering System",
+      "trust_level": "LOCAL_SYSTEM"
+    },
+    {
+      "provider_id": "PRV-ANTHROPIC",
+      "name": "Anthropic Claude AI Systems",
+      "organization": "Anthropic",
+      "trust_level": "TRUSTED_VENDOR"
+    },
+    {
+      "provider_id": "PRV-OPENAI",
+      "name": "OpenAI Swarm & Codex Systems",
+      "organization": "OpenAI",
+      "trust_level": "TRUSTED_VENDOR"
+    },
+    {
+      "provider_id": "PRV-GOOGLE",
+      "name": "Google Gemini & DeepMind Systems",
+      "organization": "Google DeepMind",
+      "trust_level": "TRUSTED_VENDOR"
+    }
+  ]
+}

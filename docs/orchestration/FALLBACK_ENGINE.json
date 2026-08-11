@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSFallbackEngineSchema",
+  "type": "object",
+  "required": [
+    "version",
+    "fallback_rules",
+    "security_invariants"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "fallback_rules": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "security_invariants": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

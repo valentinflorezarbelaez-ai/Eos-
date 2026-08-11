@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSProviderSelectionPolicy",
+  "type": "object",
+  "required": [
+    "policy_name",
+    "trust_thresholds",
+    "provider_rules"
+  ],
+  "properties": {
+    "policy_name": { "type": "string" },
+    "trust_thresholds": {
+      "type": "object",
+      "properties": {
+        "LOCAL_SYSTEM": { "type": "string" },
+        "TRUSTED_VENDOR": { "type": "string" },
+        "EXPERIMENTAL": { "type": "string" }
+      }
+    },
+    "provider_rules": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
