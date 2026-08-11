@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSStrategySelectionPolicySchema",
+  "version": "1.0.0",
+  "weights_status": "ASSUMPTION",
+  "scoring_matrix_18d": {
+    "correctness": 0.10,
+    "quality": 0.08,
+    "safety": 0.10,
+    "evidence_strength": 0.08,
+    "reliability": 0.08,
+    "reversibility": 0.06,
+    "maintainability": 0.05,
+    "security": 0.08,
+    "performance": 0.05,
+    "cost": 0.04,
+    "latency": 0.04,
+    "complexity": 0.04,
+    "tool_reliability": 0.04,
+    "agent_suitability": 0.04,
+    "provider_trust": 0.04,
+    "failure_probability": 0.04,
+    "recovery_cost": 0.03,
+    "confidence": 0.03
+  }
+}

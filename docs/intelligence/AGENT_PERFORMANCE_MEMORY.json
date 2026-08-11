@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSAgentPerformanceMemorySchema",
+  "version": "1.0.0",
+  "data_status": "SYNTHETIC",
+  "agents": [
+    {
+      "agentId": "AGT-IMPLEMENTATION",
+      "capability": "CAP-CODE-GEN",
+      "success_rate": 0.98,
+      "verification_rate": 1.00,
+      "failure_rate": 0.02,
+      "retry_rate": 0.01,
+      "average_duration_ms": 120,
+      "evidence_quality": "HIGH",
+      "rollback_frequency": 0.00,
+      "confidence": 0.95
+    },
+    {
+      "agentId": "AGT-RESEARCH",
+      "capability": "CAP-RESEARCH",
+      "success_rate": 0.99,
+      "verification_rate": 1.00,
+      "failure_rate": 0.01,
+      "retry_rate": 0.00,
+      "average_duration_ms": 80,
+      "evidence_quality": "HIGH",
+      "rollback_frequency": 0.00,
+      "confidence": 0.98
+    }
+  ]
+}

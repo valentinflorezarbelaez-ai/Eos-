@@ -1,0 +1,6 @@
+{
+  "name": "synthetic-security-remediation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic Security Remediation Fixture for EOS Strategy Engine Testing"
+}

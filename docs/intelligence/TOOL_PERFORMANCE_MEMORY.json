@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSToolPerformanceMemorySchema",
+  "version": "1.0.0",
+  "data_status": "SYNTHETIC",
+  "tools": [
+    {
+      "toolId": "TOL-MOCK-CODE",
+      "adapterId": "ADP-MOCK-CODE",
+      "capability": "CAP-CODE-GEN",
+      "reliability": 0.99,
+      "error_rate": 0.01,
+      "average_duration_ms": 45,
+      "evidence_quality": "HIGH",
+      "confidence": 0.97
+    },
+    {
+      "toolId": "TOL-MOCK-TEST",
+      "adapterId": "ADP-MOCK-TEST",
+      "capability": "CAP-TEST-EXECUTION",
+      "reliability": 1.00,
+      "error_rate": 0.00,
+      "average_duration_ms": 30,
+      "evidence_quality": "HIGH",
+      "confidence": 0.99
+    }
+  ]
+}

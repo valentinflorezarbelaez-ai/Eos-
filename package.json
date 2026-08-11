@@ -9,6 +9,7 @@
     "verify": "node scripts/verify-eos.js",
     "verify:strict": "node scripts/verify-eos.js --strict",
     "verify:json": "node scripts/verify-eos.js --strict --json",
+    "simulate:strategies": "node scripts/engine/simulate-strategies.js",
     "audit:evidence": "node scripts/verify-eos.js --strict"
   },
   "keywords": [

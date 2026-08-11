@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSStrategyEngineSchema",
+  "version": "1.0.0",
+  "required": [
+    "engine_version",
+    "generation_modes",
+    "max_candidates_per_mission",
+    "evaluation_dimensions"
+  ],
+  "properties": {
+    "engine_version": { "type": "string" },
+    "generation_modes": { "type": "array", "items": { "type": "string" } },
+    "max_candidates_per_mission": { "type": "integer" },
+    "evaluation_dimensions": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0008",
+  "question": "How do advanced software engineering organizations (Google SRE, AWS, Microsoft, OpenAI, Anthropic MCP, Netflix, Palantir Foundry) implement multi-strategy deliberation, 18-dimensional decision scoring, decision transparency, engineering economics, and performance memory tracking without vendor lock-in?",
+  "scope": "Multi-candidate strategy generation, decision optimization across 18 dimensions, decision transparency logging (WHY_SELECTED vs WHY_REJECTED), provider-neutral engineering economics, and synthetic agent/tool performance memory",
+  "sources": ["SRC-0001", "SRC-0002", "SRC-0003", "SRC-0005", "SRC-0006", "SRC-0009", "SRC-0010"],
+  "claims": [
+    "Evaluating multiple candidate strategies before execution prevents local optima traps and enforces evidence-backed decision quality.",
+    "Decision transparency requires explicitly auditing why a winning strategy was selected AND why non-winning candidates were rejected."
+  ],
+  "evidence": [
+    "AWS Step Functions and Netflix Conductor evaluate parallel workflow paths before selecting optimal execution routes.",
+    "Palantir Foundry tracks asset line-of-sight metrics to balance analytical execution cost against data accuracy."
+  ],
+  "observations": [
+    "Initial scoring weights for multi-dimensional evaluation must be explicitly flagged as ASSUMPTION until empirical telemetry is collected.",
+    "Synthetic performance tracking for tools and agents must remain strictly distinguished from production empirical metrics."
+  ],
+  "patterns": [
+    "PAT-0001: Spec-Driven Development",
+    "PAT-0002: Evidence-First Verification",
+    "PAT-0003: Local-First Control Plane"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Strategy simulation operates via synthetic mock models prior to live production API integration."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "CRITICAL",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Implement Engineering Factory Strategy Engine, 18-dimensional Strategy Selection Engine, Decision Transparency Logging, Engineering Economics Model, and Performance Memory Registries in EOS Control Plane.",
+  "verification_status": "VERIFIED"
+}

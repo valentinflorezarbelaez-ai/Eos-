@@ -1,0 +1,6 @@
+{
+  "name": "synthetic-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic Mobile App Fixture for EOS Strategy Engine Testing"
+}

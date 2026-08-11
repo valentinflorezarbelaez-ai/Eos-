@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSStrategyDecisionRecordSchema",
+  "type": "object",
+  "required": [
+    "decisionId",
+    "missionId",
+    "candidateStrategies",
+    "selectedStrategy",
+    "scoring",
+    "rejectedStrategies",
+    "rationale",
+    "evidence",
+    "assumptions",
+    "risks",
+    "confidence",
+    "verifier",
+    "timestamp"
+  ],
+  "properties": {
+    "decisionId": { "type": "string" },
+    "missionId": { "type": "string" },
+    "candidateStrategies": { "type": "array", "items": { "type": "string" } },
+    "selectedStrategy": { "type": "string" },
+    "scoring": { "type": "object" },
+    "rejectedStrategies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["strategyId", "reasons"],
+        "properties": {
+          "strategyId": { "type": "string" },
+          "reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "rationale": { "type": "array", "items": { "type": "string" } },
+    "evidence": { "type": "object" },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number" },
+    "verifier": { "type": "string" },
+    "timestamp": { "type": "string" }
+  }
+}

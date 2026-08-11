@@ -1,0 +1,6 @@
+{
+  "name": "synthetic-ai-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic AI Agent Fixture for EOS Strategy Engine Testing"
+}
