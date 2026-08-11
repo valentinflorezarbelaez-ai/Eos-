@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSBlastRadiusModelSchema",
+  "version": "1.0.0",
+  "levels": [
+    { "level": "B0", "name": "No mutation", "allowed": true },
+    { "level": "B1", "name": "Isolated memory", "allowed": true },
+    { "level": "B2", "name": "Synthetic fixture", "allowed": true },
+    { "level": "B3", "name": "Synthetic project", "allowed": true },
+    { "level": "B4", "name": "Controlled sandbox", "allowed": false },
+    { "level": "B5", "name": "Staging", "allowed": false },
+    { "level": "B6", "name": "Production-like", "allowed": false },
+    { "level": "B7", "name": "Production", "allowed": false }
+  ],
+  "invariants": [
+    "Levels B4 through B7 are strictly forbidden without Product Owner Level 2+ written sign-off.",
+    "Target directory C:\\Users\\valen\\Documents\\Fundacion must remain 100% untouched across all levels."
+  ]
+}

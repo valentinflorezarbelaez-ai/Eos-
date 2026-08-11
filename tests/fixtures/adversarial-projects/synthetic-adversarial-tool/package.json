@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-adversarial-tool",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic fixture for adversarial tool failure testing",
+  "type": "module"
+}

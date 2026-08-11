@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-adversarial-governance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic fixture for adversarial governance bypass testing",
+  "type": "module"
+}

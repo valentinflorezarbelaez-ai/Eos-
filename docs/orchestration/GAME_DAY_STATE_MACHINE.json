@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSGameDayStateMachineSchema",
+  "version": "1.0.0",
+  "states": [
+    "DEFINE_MISSION",
+    "DEFINE_STEADY_STATE",
+    "DEFINE_HYPOTHESIS",
+    "DEFINE_INVARIANTS",
+    "SELECT_SCENARIO",
+    "ESTABLISH_BLAST_RADIUS",
+    "INJECT_FAILURE",
+    "OBSERVE_SYSTEM",
+    "MEASURE_DETECTION",
+    "MEASURE_CONTAINMENT",
+    "MEASURE_RECOVERY",
+    "VERIFY_RECOVERY",
+    "VERIFY_EVIDENCE",
+    "VERIFY_GOVERNANCE",
+    "ATTEMPT_REPRODUCTION",
+    "RECORD_LEARNING",
+    "GENERATE_PROPOSAL"
+  ],
+  "allowed_transitions": [
+    { "from": "DEFINE_MISSION", "to": "DEFINE_STEADY_STATE" },
+    { "from": "DEFINE_STEADY_STATE", "to": "DEFINE_HYPOTHESIS" },
+    { "from": "DEFINE_HYPOTHESIS", "to": "DEFINE_INVARIANTS" },
+    { "from": "DEFINE_INVARIANTS", "to": "SELECT_SCENARIO" },
+    { "from": "SELECT_SCENARIO", "to": "ESTABLISH_BLAST_RADIUS" },
+    { "from": "ESTABLISH_BLAST_RADIUS", "to": "INJECT_FAILURE" },
+    { "from": "INJECT_FAILURE", "to": "OBSERVE_SYSTEM" },
+    { "from": "OBSERVE_SYSTEM", "to": "MEASURE_DETECTION" },
+    { "from": "MEASURE_DETECTION", "to": "MEASURE_CONTAINMENT" },
+    { "from": "MEASURE_CONTAINMENT", "to": "MEASURE_RECOVERY" },
+    { "from": "MEASURE_RECOVERY", "to": "VERIFY_RECOVERY" },
+    { "from": "VERIFY_RECOVERY", "to": "VERIFY_EVIDENCE" },
+    { "from": "VERIFY_EVIDENCE", "to": "VERIFY_GOVERNANCE" },
+    { "from": "VERIFY_GOVERNANCE", "to": "ATTEMPT_REPRODUCTION" },
+    { "from": "ATTEMPT_REPRODUCTION", "to": "RECORD_LEARNING" },
+    { "from": "RECORD_LEARNING", "to": "GENERATE_PROPOSAL" }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0013",
+  "question": "How do hyperscale software engineering and SRE organizations (Google SRE, Google DeepMind, AWS Chaos, Netflix Chaos Monkey, Meta, Palantir, OWASP, CNCF, SEI CMU, Gentleman/Engram) design adversarial engineering laboratories, hypothesis-driven chaos experimentation, steady-state baselines, blast radius control, and anti-self-deception protocols?",
+  "scope": "Autonomous adversarial testing, failure injection taxonomy, 5-stage resilience model (Detect, Contain, Recover, Verify, Learn), 17-step Game Day state machine, blast radius limits (B0-B3), anti-self-deception validation, and proposal-only evolution",
+  "sources": ["SRC-0001", "SRC-0002", "SRC-0003", "SRC-0005", "SRC-0006", "SRC-0009", "SRC-0010"],
+  "claims": [
+    "EOS must treat the possibility of being wrong as a normal engineering condition.",
+    "Critical claims must be refutable via independent verification, rollback, and adversarial experimentation.",
+    "Chaos experiments must be hypothesis-driven with strict blast radius controls."
+  ],
+  "evidence": [
+    "Netflix Chaos Automation Platform (ChAP) and AWS Resilience Hub enforce strict blast radius boundaries and steady-state invariant monitoring before injecting failure.",
+    "Google SRE DiRT (Disaster Recovery Testing) requires independent verifiers to confirm recovery without self-certification."
+  ],
+  "observations": [
+    "Adversarial experiments must never mutate governance or release authority automatically; all learnings produce PROPOSAL_ONLY evolution candidates.",
+    "System resilience requires measuring Detection, Containment, Recovery, Verification, and Learning."
+  ],
+  "patterns": [
+    "PAT-0001: Spec-Driven Development",
+    "PAT-0002: Evidence-First Verification",
+    "PAT-0003: Local-First Control Plane",
+    "PAT-0004: Hypothesis-Driven Chaos Experimentation"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Adversarial laboratory operates locally in synthetic mode prior to live commercial infrastructure integration."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "CRITICAL",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Implement Adversarial Laboratory Engine, Adversarial Truth Principle, Attack Taxonomy, Blast Radius Model, Resilience Model, Game Day State Machine, Synthetic Adversarial Fixtures, and EVD-0021 in EOS Control Plane.",
+  "verification_status": "VERIFIED"
+}

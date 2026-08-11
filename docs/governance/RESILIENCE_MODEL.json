@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSResilienceModelSchema",
+  "version": "1.0.0",
+  "capabilities": [
+    "DETECT",
+    "CONTAIN",
+    "RECOVER",
+    "VERIFY",
+    "LEARN"
+  ],
+  "scoring_dimensions": [
+    "Detection",
+    "Containment",
+    "Diagnosis",
+    "Recovery",
+    "Rollback",
+    "Verification",
+    "Evidence Quality",
+    "Evidence Independence",
+    "Reproducibility",
+    "Governance Integrity",
+    "Scope Integrity",
+    "Learning Quality"
+  ]
+}

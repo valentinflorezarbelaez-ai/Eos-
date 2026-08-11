@@ -14,6 +14,7 @@
     "evaluate:self": "node scripts/engine/autonomous-self-evolution-engine.js --eval",
     "run:loop": "node scripts/engine/autonomous-engineering-operating-loop.js --run-loop",
     "evaluate:release": "node scripts/engine/production-readiness-review.js --eval-release",
+    "gameday:run": "node scripts/engine/adversarial-laboratory-engine.js --run-gameday",
     "audit:evidence": "node scripts/verify-eos.js --strict"
   },
   "keywords": [

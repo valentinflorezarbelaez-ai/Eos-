@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSAdversarialAttackTaxonomySchema",
+  "version": "1.0.0",
+  "targets": [
+    "Tool",
+    "Adapter",
+    "Provider",
+    "Agent",
+    "Capability",
+    "Strategy",
+    "Mission",
+    "Plan",
+    "Execution",
+    "Evidence",
+    "Verifier",
+    "Memory",
+    "Governance",
+    "Authorization",
+    "Release",
+    "Recovery"
+  ],
+  "objectives": [
+    "Availability degradation",
+    "Integrity violation",
+    "Confidentiality violation",
+    "Authorization bypass",
+    "Evidence corruption",
+    "False success",
+    "False verification",
+    "Decision manipulation",
+    "Provider favoritism",
+    "Capability mismatch",
+    "Scope escalation",
+    "Governance bypass",
+    "Self-certification",
+    "Recovery failure",
+    "Rollback failure"
+  ],
+  "capabilities": [
+    "No access",
+    "Read-only",
+    "Registered tool",
+    "Registered agent",
+    "Registered provider",
+    "Mission-level access",
+    "Execution-level access",
+    "Governance-level simulation",
+    "Full synthetic adversarial control"
+  ],
+  "knowledge_levels": [
+    "Black-box",
+    "Gray-box",
+    "White-box"
+  ]
+}
