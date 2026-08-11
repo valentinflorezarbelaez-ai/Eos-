@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-production-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic production API fixture for Phase 21 release governance proving",
+  "type": "module"
+}

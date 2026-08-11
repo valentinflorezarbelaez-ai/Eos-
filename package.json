@@ -13,6 +13,7 @@
     "prove:factory": "node scripts/engine/autonomous-engineering-factory.js --prove-all",
     "evaluate:self": "node scripts/engine/autonomous-self-evolution-engine.js --eval",
     "run:loop": "node scripts/engine/autonomous-engineering-operating-loop.js --run-loop",
+    "evaluate:release": "node scripts/engine/production-readiness-review.js --eval-release",
     "audit:evidence": "node scripts/verify-eos.js --strict"
   },
   "keywords": [

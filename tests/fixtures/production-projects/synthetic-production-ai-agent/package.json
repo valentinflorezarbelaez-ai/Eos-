@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-production-ai-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic production AI agent fixture for Phase 21 release governance proving",
+  "type": "module"
+}

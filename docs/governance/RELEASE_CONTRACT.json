@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSReleaseContractSchema",
+  "type": "object",
+  "required": [
+    "releaseId",
+    "missionId",
+    "projectId",
+    "candidateVersion",
+    "requirements",
+    "successCriteria",
+    "readinessCriteria",
+    "evidenceRequirements",
+    "riskProfile",
+    "rollbackStrategy",
+    "authorization",
+    "releaseDecision"
+  ],
+  "properties": {
+    "releaseId": { "type": "string" },
+    "missionId": { "type": "string" },
+    "projectId": { "type": "string" },
+    "candidateVersion": { "type": "string" },
+    "requirements": { "type": "array", "items": { "type": "string" } },
+    "successCriteria": { "type": "array", "items": { "type": "string" } },
+    "readinessCriteria": { "type": "array", "items": { "type": "string" } },
+    "evidenceRequirements": { "type": "array", "items": { "type": "string" } },
+    "riskProfile": { "type": "string" },
+    "rollbackStrategy": { "type": "string" },
+    "authorization": { "type": "string" },
+    "releaseDecision": { "type": "string" }
+  }
+}

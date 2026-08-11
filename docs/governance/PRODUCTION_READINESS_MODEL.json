@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSProductionReadinessModelSchema",
+  "version": "1.0.0",
+  "states": [
+    "NOT_READY",
+    "PARTIALLY_READY",
+    "READY_FOR_STAGING",
+    "READY_FOR_RELEASE_REVIEW",
+    "APPROVED_FOR_RELEASE",
+    "BLOCKED",
+    "REJECTED",
+    "REMEDIATION_REQUIRED",
+    "ROLLBACK_REQUIRED",
+    "ROLLED_BACK"
+  ],
+  "invariants": [
+    "No component may produce APPROVED_FOR_RELEASE without backing EVD-*.json evidence payloads.",
+    "Unproven releases default strictly to BLOCKED or NOT_READY."
+  ]
+}

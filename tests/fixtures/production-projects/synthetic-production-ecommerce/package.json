@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-production-ecommerce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic production e-commerce fixture for Phase 21 release governance proving",
+  "type": "module"
+}
