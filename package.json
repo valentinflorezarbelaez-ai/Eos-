@@ -12,6 +12,7 @@
     "simulate:strategies": "node scripts/engine/simulate-strategies.js",
     "prove:factory": "node scripts/engine/autonomous-engineering-factory.js --prove-all",
     "evaluate:self": "node scripts/engine/autonomous-self-evolution-engine.js --eval",
+    "run:loop": "node scripts/engine/autonomous-engineering-operating-loop.js --run-loop",
     "audit:evidence": "node scripts/verify-eos.js --strict"
   },
   "keywords": [
