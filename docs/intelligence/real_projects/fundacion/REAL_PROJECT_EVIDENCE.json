@@ -1,0 +1,8 @@
+[
+  {
+    "claim": "Fundacion path contains 0 items",
+    "source": "fs.readdirSync",
+    "independenceLevel": "I2_LOCAL_CORROBORATION",
+    "status": "VERIFIED"
+  }
+]
