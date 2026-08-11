@@ -1,0 +1,35 @@
+{
+  "$schema": "./schema.json",
+  "research_id": "RSC-0006",
+  "question": "How do advanced software engineering platforms (Google SRE, Microsoft Azure Orchestration, AWS Step Functions, Netflix Conductor, Palantir Foundry) implement deterministic execution runtimes, versioned replanning, dependency graphs, state machines, and safe rollback mechanisms for autonomous multi-agent pipelines?",
+  "scope": "Control Plane vs Execution Plane separation, 16-state action transition rules, dependency resolution, versioned replan governance, and evidence-backed execution history",
+  "sources": ["SRC-0001", "SRC-0002", "SRC-0003", "SRC-0005", "SRC-0006", "SRC-0009", "SRC-0010"],
+  "claims": [
+    "Separating the Control Plane (planning, governance, policy) from the Execution Plane (adapters, actions) ensures policy rules cannot be bypassed during tool execution.",
+    "A deterministic 16-state action machine with versioned replanning (e.g. PLAN-001 -> PLAN-001-R1) enables transparent failure recovery without mutating historical execution logs."
+  ],
+  "evidence": [
+    "AWS Step Functions and Netflix Conductor enforce explicit DAG state machine transitions with mandatory failure catch/retry steps.",
+    "Google Borg/Kubernetes reconciliation loops decouple execution intent from physical state convergence."
+  ],
+  "observations": [
+    "Action execution must evaluate prerequisite task completion; dependent tasks must block if a prerequisite fails or is unverified.",
+    "Replanning must issue versioned plan revisions (PLAN-001-R1) while preserving original policy, authorization, and audit logs."
+  ],
+  "patterns": [
+    "PAT-0001: Spec-Driven Development",
+    "PAT-0002: Evidence-First Verification",
+    "PAT-0003: Local-First Control Plane"
+  ],
+  "contradictions": [],
+  "limitations": [
+    "Simulated execution runtimes require strict state cleanup to prevent memory growth during long-running multi-action graphs."
+  ],
+  "confidence": "HIGH",
+  "maturity": "MATURE",
+  "adoption_level": "ADOPT",
+  "strategic_value": "CRITICAL",
+  "eos_relevance": "CRITICAL",
+  "recommendation": "Implement Autonomous Execution Runtime with 16-state action machine, dependency graph resolution, versioned replanning engine, and deterministic synthetic adapter execution in EOS Control Plane.",
+  "verification_status": "VERIFIED"
+}

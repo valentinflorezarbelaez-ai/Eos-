@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSExecutionStateMachineSchema",
+  "version": "1.0.0",
+  "states": [
+    "PLANNED",
+    "VALIDATING",
+    "AUTHORIZED",
+    "READY",
+    "RUNNING",
+    "SUCCEEDED",
+    "FAILED",
+    "RETRYING",
+    "BLOCKED",
+    "REPLANNING",
+    "VERIFICATION_PENDING",
+    "VERIFIED",
+    "PARTIALLY_VERIFIED",
+    "ROLLBACK_PENDING",
+    "ROLLED_BACK",
+    "ABORTED"
+  ],
+  "transitions": [
+    { "from": "PLANNED", "to": "VALIDATING", "condition": "INITIATED" },
+    { "from": "VALIDATING", "to": "AUTHORIZED", "condition": "POLICY_ALLOW" },
+    { "from": "AUTHORIZED", "to": "READY", "condition": "DEPENDENCIES_VERIFIED" },
+    { "from": "READY", "to": "RUNNING", "condition": "DISPATCHED" },
+    { "from": "RUNNING", "to": "SUCCEEDED", "condition": "ADAPTER_EXIT_0" },
+    { "from": "SUCCEEDED", "to": "VERIFICATION_PENDING", "condition": "TESTS_RUNNING" },
+    { "from": "VERIFICATION_PENDING", "to": "VERIFIED", "condition": "EVIDENCE_ATTACHED" }
+  ]
+}

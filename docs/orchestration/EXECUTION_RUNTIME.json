@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSExecutionRuntimeConfigSchema",
+  "type": "object",
+  "required": [
+    "runtime_version",
+    "supported_modes",
+    "max_retries",
+    "dependency_resolution_strategy",
+    "isolation_enforced"
+  ],
+  "properties": {
+    "runtime_version": { "type": "string" },
+    "supported_modes": { "type": "array", "items": { "type": "string" } },
+    "max_retries": { "type": "integer" },
+    "dependency_resolution_strategy": { "type": "string" },
+    "isolation_enforced": { "type": "boolean" }
+  }
+}

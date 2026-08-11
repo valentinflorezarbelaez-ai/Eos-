@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EOSReplanEngineSchema",
+  "type": "object",
+  "required": [
+    "version",
+    "versioning_format",
+    "replan_reasons",
+    "max_replan_depth"
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "versioning_format": { "type": "string" },
+    "replan_reasons": { "type": "array", "items": { "type": "string" } },
+    "max_replan_depth": { "type": "integer" }
+  }
+}
