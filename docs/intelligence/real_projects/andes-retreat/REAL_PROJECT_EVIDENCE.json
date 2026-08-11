@@ -1,0 +1,8 @@
+[
+  {
+    "claim": "andes-retreat path observed safely via fs.readdirSync",
+    "source": "fs.readdirSync",
+    "independenceLevel": "I2_LOCAL_CORROBORATION",
+    "status": "VERIFIED"
+  }
+]

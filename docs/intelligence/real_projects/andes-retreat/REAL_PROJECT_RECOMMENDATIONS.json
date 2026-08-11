@@ -1,0 +1,6 @@
+[
+  {
+    "type": "PROPOSAL_ONLY",
+    "recommendation": "Maintain READ_ONLY isolation until PO Level 2+ written sign-off is recorded."
+  }
+]

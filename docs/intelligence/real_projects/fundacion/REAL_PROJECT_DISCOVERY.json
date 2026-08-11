@@ -4,7 +4,7 @@
   "level": "EMPIRICAL_VALIDATION_LEVEL_1_READ_ONLY",
   "writeBarrierStatus": "INVIOLATE_DENY_ENFORCED",
   "state": {
-    "timestamp": "2026-08-11T04:09:20.635Z",
+    "timestamp": "2026-08-11T04:26:50.150Z",
     "mode": "EMPIRICAL_LEVEL_1_READ_ONLY",
     "targetPath": "C:\\Users\\valen\\Documents\\Fundacion",
     "observedFacts": [
@@ -88,15 +88,15 @@
   "auditTrail": [
     {
       "step": "READ_ONLY_ACCESS_ASSERTED",
-      "timestamp": "2026-08-11T04:09:20.636Z"
+      "timestamp": "2026-08-11T04:26:50.151Z"
     },
     {
       "step": "REPOSITORY_OBSERVED",
-      "timestamp": "2026-08-11T04:09:20.636Z"
+      "timestamp": "2026-08-11T04:26:50.151Z"
     },
     {
       "step": "STATE_CLASSIFIED",
-      "timestamp": "2026-08-11T04:09:20.636Z"
+      "timestamp": "2026-08-11T04:26:50.151Z"
     }
   ],
   "decisionState": "PASS_WITH_CONDITIONS"

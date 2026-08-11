@@ -1,0 +1,223 @@
+{
+  "experimentId": "EXP-026-001",
+  "projectId": "andes-retreat",
+  "name": "Real Project Discovery & Understanding",
+  "level": "EMPIRICAL_VALIDATION_LEVEL_1_READ_ONLY",
+  "writeBarrierStatus": "INVIOLATE_DENY_ENFORCED",
+  "state": {
+    "timestamp": "2026-08-11T04:36:42.404Z",
+    "projectId": "andes-retreat",
+    "mode": "EMPIRICAL_LEVEL_1_READ_ONLY",
+    "targetPath": "C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat",
+    "observedFacts": [
+      {
+        "key": "DIRECTORY_EXISTENCE",
+        "value": true
+      },
+      {
+        "key": "TARGET_PATH",
+        "value": "C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat"
+      },
+      {
+        "key": "ITEM_COUNT",
+        "value": 13
+      },
+      {
+        "key": "HAS_GIT",
+        "value": true
+      },
+      {
+        "key": "HAS_PACKAGE_JSON",
+        "value": true
+      },
+      {
+        "key": "PACKAGE_NAME",
+        "value": "andes-retreat"
+      },
+      {
+        "key": "DEPENDENCIES",
+        "value": [
+          "astro"
+        ]
+      },
+      {
+        "key": "SCRIPTS",
+        "value": [
+          "dev",
+          "build",
+          "preview",
+          "astro"
+        ]
+      }
+    ],
+    "derivedFacts": [
+      {
+        "key": "IS_EMPTY_TARGET",
+        "value": false
+      },
+      {
+        "key": "FILE_TREE_COUNT",
+        "value": 17
+      }
+    ],
+    "inferences": [
+      {
+        "statement": "Project appears to be a populated JavaScript/TypeScript project using Astro Framework.",
+        "classification": "DERIVED_ANALYSIS",
+        "confidence": 0.95
+      }
+    ],
+    "hypotheses": [
+      {
+        "statement": "IF Product Owner authorizes Level 2+ implementation, THEN EOS can execute authorized strategies on andes-retreat.",
+        "status": "PENDING_AUTHORIZATION"
+      }
+    ],
+    "unknowns": [
+      {
+        "key": "LIVE_COMMERCIAL_API_KEYS",
+        "status": "UNCONFIGURED"
+      },
+      {
+        "key": "PRODUCTION_DEPLOYMENT_TELEMETRY",
+        "status": "UNOBSERVED"
+      }
+    ],
+    "sourceTree": [
+      {
+        "type": "file",
+        "path": ".gitignore",
+        "size": 264
+      },
+      {
+        "type": "directory",
+        "path": ".vscode"
+      },
+      {
+        "type": "file",
+        "path": ".vscode\\extensions.json",
+        "size": 87
+      },
+      {
+        "type": "file",
+        "path": ".vscode\\launch.json",
+        "size": 207
+      },
+      {
+        "type": "file",
+        "path": "AGENTS.md",
+        "size": 874
+      },
+      {
+        "type": "file",
+        "path": "astro.config.mjs",
+        "size": 122
+      },
+      {
+        "type": "file",
+        "path": "CLAUDE.md",
+        "size": 874
+      },
+      {
+        "type": "file",
+        "path": "package-lock.json",
+        "size": 146778
+      },
+      {
+        "type": "file",
+        "path": "package.json",
+        "size": 287
+      },
+      {
+        "type": "directory",
+        "path": "public"
+      },
+      {
+        "type": "file",
+        "path": "public\\favicon.ico",
+        "size": 655
+      },
+      {
+        "type": "file",
+        "path": "public\\favicon.svg",
+        "size": 749
+      },
+      {
+        "type": "file",
+        "path": "README.md",
+        "size": 1604
+      },
+      {
+        "type": "directory",
+        "path": "src"
+      },
+      {
+        "type": "directory",
+        "path": "src\\pages"
+      },
+      {
+        "type": "file",
+        "path": "src\\pages\\index.astro",
+        "size": 351
+      },
+      {
+        "type": "file",
+        "path": "tsconfig.json",
+        "size": 109
+      }
+    ]
+  },
+  "architectureAssessment": {
+    "pattern": "POPULATED_REAL_PROJECT",
+    "complianceStatus": "AWAITING_PO_LEVEL2_SIGN_OFF"
+  },
+  "riskAssessment": {
+    "risks": [
+      {
+        "risk": "Premature write attempt without PO Level 2+ authorization",
+        "severity": "HIGH",
+        "mitigation": "Policy Engine DENY write barrier active"
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "claim": "andes-retreat path observed safely via fs.readdirSync",
+      "source": "fs.readdirSync",
+      "independenceLevel": "I2_LOCAL_CORROBORATION",
+      "status": "VERIFIED"
+    }
+  ],
+  "uncertainties": [
+    {
+      "key": "LIVE_COMMERCIAL_API_KEYS",
+      "status": "UNCONFIGURED"
+    },
+    {
+      "key": "PRODUCTION_DEPLOYMENT_TELEMETRY",
+      "status": "UNOBSERVED"
+    }
+  ],
+  "contradictions": [],
+  "recommendations": [
+    {
+      "type": "PROPOSAL_ONLY",
+      "recommendation": "Maintain READ_ONLY isolation until PO Level 2+ written sign-off is recorded."
+    }
+  ],
+  "auditTrail": [
+    {
+      "step": "READ_ONLY_ACCESS_ASSERTED",
+      "timestamp": "2026-08-11T04:36:42.405Z"
+    },
+    {
+      "step": "REPOSITORY_OBSERVED",
+      "timestamp": "2026-08-11T04:36:42.405Z"
+    },
+    {
+      "step": "STATE_CLASSIFIED",
+      "timestamp": "2026-08-11T04:36:42.405Z"
+    }
+  ],
+  "decisionState": "PASS_WITH_CONDITIONS"
+}

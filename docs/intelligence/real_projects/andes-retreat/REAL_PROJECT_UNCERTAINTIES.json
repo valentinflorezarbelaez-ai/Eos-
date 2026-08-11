@@ -1,0 +1,10 @@
+[
+  {
+    "key": "LIVE_COMMERCIAL_API_KEYS",
+    "status": "UNCONFIGURED"
+  },
+  {
+    "key": "PRODUCTION_DEPLOYMENT_TELEMETRY",
+    "status": "UNOBSERVED"
+  }
+]

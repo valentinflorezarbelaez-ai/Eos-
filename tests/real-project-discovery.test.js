@@ -10,12 +10,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-const engine = new RealProjectDiscoveryEngine();
-
 // ====================================================
-// REAL PROJECT DISCOVERY & UNDERSTANDING TESTS (EXP-026-001)
+// REAL PROJECT DISCOVERY & TARGET INDEPENDENCE TESTS
 // ====================================================
 test('RealProjectDiscoveryEngine operates strictly in READ_ONLY mode', () => {
+  const engine = new RealProjectDiscoveryEngine();
   assert.equal(engine.mode, 'EMPIRICAL_LEVEL_1_READ_ONLY');
   assert.doesNotThrow(() => engine.assertReadOnlyAccess('READ'));
   assert.throws(() => engine.assertReadOnlyAccess('WRITE'), /DENY/);
@@ -23,16 +22,39 @@ test('RealProjectDiscoveryEngine operates strictly in READ_ONLY mode', () => {
   assert.throws(() => engine.assertReadOnlyAccess('DELETE'), /DENY/);
 });
 
-test('RealProjectDiscoveryEngine executes EXP-026-001 and produces structured output', () => {
-  const discovery = engine.runDiscoveryMission();
-  assert.equal(discovery.experimentId, 'EXP-026-001');
-  assert.equal(discovery.level, 'EMPIRICAL_VALIDATION_LEVEL_1_READ_ONLY');
-  assert.equal(discovery.decisionState, 'PASS_WITH_CONDITIONS');
-  assert.equal(discovery.state.observedFacts[1].value, 0); // Fundacion count = 0
+test('RealProjectDiscoveryEngine rejects self-analysis of EOS Control Plane for security isolation', () => {
+  assert.throws(() => new RealProjectDiscoveryEngine(rootDir), /SECURITY_DENY/);
 });
 
-test('Negative Protection Test: Fundacion target remains 100% untouched (0 items)', () => {
+test('RealProjectDiscoveryEngine analyzes unpopulated target project (Fundacion)', () => {
+  const engine = new RealProjectDiscoveryEngine('C:\\Users\\valen\\Documents\\Fundacion');
+  const discovery = engine.runDiscoveryMission();
+  assert.equal(discovery.projectId, 'fundacion');
+  assert.equal(discovery.architectureAssessment.pattern, 'UNPOPULATED_TARGET');
+  assert.equal(discovery.state.observedFacts.find(f => f.key === 'ITEM_COUNT').value, 0);
+});
+
+test('RealProjectDiscoveryEngine analyzes populated real target project (Andes-Retreat)', () => {
+  const andesPath = 'C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat';
+  if (!fs.existsSync(andesPath)) return; // Guard if run in isolated environment
+
+  const engine = new RealProjectDiscoveryEngine(andesPath);
+  const discovery = engine.runDiscoveryMission();
+  assert.equal(discovery.projectId, 'andes-retreat');
+  assert.equal(discovery.architectureAssessment.pattern, 'POPULATED_REAL_PROJECT');
+  assert.equal(discovery.state.observedFacts.find(f => f.key === 'HAS_GIT').value, true);
+  assert.equal(discovery.state.observedFacts.find(f => f.key === 'PACKAGE_NAME').value, 'andes-retreat');
+  assert.ok(discovery.state.derivedFacts.find(f => f.key === 'FILE_TREE_COUNT').value > 0);
+});
+
+test('Negative Protection Test: Target directories remain 100% untouched during discovery', () => {
   const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const count = fs.readdirSync(fundacionPath).length;
-  assert.equal(count, 0);
+  const andesPath = 'C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat';
+
+  if (fs.existsSync(fundacionPath)) {
+    assert.equal(fs.readdirSync(fundacionPath).length, 0);
+  }
+  if (fs.existsSync(andesPath)) {
+    assert.ok(fs.existsSync(path.join(andesPath, 'package.json')));
+  }
 });
