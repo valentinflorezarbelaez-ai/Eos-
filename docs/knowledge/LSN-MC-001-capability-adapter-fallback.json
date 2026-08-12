@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema.json",
+  "id": "LSN-MC-001",
+  "title": "Subordinated Capability Adapter Fallback Protocol for Heterogeneous Providers",
+  "type": "PATTERN",
+  "domain": "CAPABILITY_PLANE",
+  "source_project": "PRJ-MULTIMODAL-CREATIVE",
+  "created_at": "2026-08-11T23:33:00Z",
+  "summary": "Decoupling capability dispatcher from specific providers allows seamless automated fallback to secondary adapters when primary providers experience timeouts, rate limits, or 5xx errors.",
+  "evidence_refs": ["EVD-MC-0001"],
+  "reversability_conditions": [
+    "Secondary fallback providers must satisfy identical CapabilityContract input/output schemas"
+  ],
+  "epistemic_state": "CONFIRMED_IN_SCOPE"
+}

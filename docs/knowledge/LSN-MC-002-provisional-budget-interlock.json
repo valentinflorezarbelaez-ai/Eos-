@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema.json",
+  "id": "LSN-MC-002",
+  "title": "Provisional Budget Interlock & Cost Overrun Governance Gate",
+  "type": "PATTERN",
+  "domain": "GOVERNANCE",
+  "source_project": "PRJ-MULTIMODAL-CREATIVE",
+  "created_at": "2026-08-11T23:33:00Z",
+  "summary": "Pre-dispatch cost estimation checks against provisional budget caps enforce HTTP 402 REQUIRE_HUMAN_APPROVAL interlocks before triggering external paid API dispatches.",
+  "evidence_refs": ["EVD-MC-0001"],
+  "reversability_conditions": [
+    "PO secret token override bypasses provisional budget caps for authorized high-cost missions"
+  ],
+  "epistemic_state": "CONFIRMED_IN_SCOPE"
+}
