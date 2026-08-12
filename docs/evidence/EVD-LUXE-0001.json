@@ -2,11 +2,21 @@
   "$schema": "./schema.json",
   "evidence_id": "EVD-LUXE-0001",
   "project_id": "PRJ-LUXE-REGISTRY",
-  "timestamp": "2026-08-11T22:50:00Z",
+  "timestamp": "2026-08-11T23:10:00Z",
   "claims_tested": [
     {
       "claim_id": "CLM-LUXE-01",
       "statement": "Luxe Registry enforces multi-tenant tenant_id query scoping and atomic item reservation without double booking",
+      "classification": "HYPOTHESIS"
+    },
+    {
+      "claim_id": "CLM-LUXE-02",
+      "statement": "Luxe Registry input sanitization blocks malicious XSS payloads and logs security events",
+      "classification": "HYPOTHESIS"
+    },
+    {
+      "claim_id": "CLM-LUXE-03",
+      "statement": "Luxe Registry latency distribution executes under p95 < 100ms threshold",
       "classification": "HYPOTHESIS"
     }
   ],
@@ -16,6 +26,18 @@
       "claim_id": "CLM-LUXE-01",
       "expected_metric": "PASS",
       "falsification_condition": "Cross-tenant data leakage or double-booking under 5 concurrent requests"
+    },
+    {
+      "prediction_id": "PRD-LUXE-02",
+      "claim_id": "CLM-LUXE-02",
+      "expected_metric": "PASS",
+      "falsification_condition": "XSS script payload accepted or unhandled SecurityValidationException"
+    },
+    {
+      "prediction_id": "PRD-LUXE-03",
+      "claim_id": "CLM-LUXE-03",
+      "expected_metric": "PASS",
+      "falsification_condition": "p95 latency > 100ms"
     }
   ],
   "observations": [
@@ -23,7 +45,7 @@
       "observation_id": "OBS-LUXE-01",
       "test_id": "LuxeRegistry: Tenant Isolation Guard Rejects Cross-Tenant Access",
       "exit_code": 0,
-      "raw_stdout": "PASS",
+      "raw_stdout": "PASS (HTTP 403 TENANT_ISOLATION_VIOLATION)",
       "observation_integrity": "VERIFIED"
     },
     {
@@ -31,6 +53,20 @@
       "test_id": "LuxeRegistry: Atomic Reservation Prevents Double Booking Under Concurrency",
       "exit_code": 0,
       "raw_stdout": "PASS (1 Success, 4 Conflicts)",
+      "observation_integrity": "VERIFIED"
+    },
+    {
+      "observation_id": "OBS-LUXE-03",
+      "test_id": "LuxeRegistry: Security Input Sanitization Rejects Malicious XSS Payload",
+      "exit_code": 0,
+      "raw_stdout": "PASS (HTTP 400 SECURITY_VALIDATION_ERROR)",
+      "observation_integrity": "VERIFIED"
+    },
+    {
+      "observation_id": "OBS-LUXE-04",
+      "test_id": "LuxeRegistry: Performance Telemetry Interceptor & Distribution Sampling",
+      "exit_code": 0,
+      "raw_stdout": "PASS (Mean: 0.18ms, p95: 0.38ms)",
       "observation_integrity": "VERIFIED"
     }
   ],
