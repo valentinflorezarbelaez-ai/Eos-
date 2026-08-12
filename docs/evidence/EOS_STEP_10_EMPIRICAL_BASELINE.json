@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
   "version": "1.0.0",
-  "timestamp": "2026-08-12T04:10:28.559Z",
+  "timestamp": "2026-08-12T04:30:53.676Z",
   "report_title": "EOS Core Step 10 Empirical Baseline & Observability Audit Report",
   "environment": {
     "node_version": "v24.16.0",
@@ -21,166 +21,166 @@
     "knowledge_plane": {
       "metric_id": "PERF-KP-LOAD",
       "scope": "KnowledgePlaneEngine.loadAllAssets",
-      "timestamp": "2026-08-12T04:10:28.508Z",
+      "timestamp": "2026-08-12T04:30:53.631Z",
       "durations_ms": [
-        5.3528,
-        0.955,
-        0.7386,
-        2.9958,
-        1.1867
+        2.1682,
+        3.6178,
+        1.0076,
+        0.8158,
+        0.6687
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.7386,
-        "max": 5.3528,
-        "mean_mu": 2.2458,
-        "median_p50": 1.1867,
-        "p90": 5.3528,
-        "p95": 5.3528,
-        "p99": 5.3528,
-        "variance_sigma_sq": 3.0551,
-        "std_dev_sigma": 1.7479
+        "min": 0.6687,
+        "max": 3.6178,
+        "mean_mu": 1.6556,
+        "median_p50": 1.0076,
+        "p90": 3.6178,
+        "p95": 3.6178,
+        "p99": 3.6178,
+        "variance_sigma_sq": 1.2424,
+        "std_dev_sigma": 1.1146
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 5.3528,
-          "rss_delta_bytes": 618496,
-          "heap_delta_bytes": -300312
+          "duration_ms": 2.1682,
+          "rss_delta_bytes": 12288,
+          "heap_delta_bytes": 87968
         },
         {
           "iteration": 2,
-          "duration_ms": 0.955,
-          "rss_delta_bytes": 4096,
-          "heap_delta_bytes": 50384
+          "duration_ms": 3.6178,
+          "rss_delta_bytes": 524288,
+          "heap_delta_bytes": -327192
         },
         {
           "iteration": 3,
-          "duration_ms": 0.7386,
-          "rss_delta_bytes": 0,
-          "heap_delta_bytes": 55352
+          "duration_ms": 1.0076,
+          "rss_delta_bytes": 16384,
+          "heap_delta_bytes": 658016
         },
         {
           "iteration": 4,
-          "duration_ms": 2.9958,
+          "duration_ms": 0.8158,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 41640
+          "heap_delta_bytes": 47368
         },
         {
           "iteration": 5,
-          "duration_ms": 1.1867,
+          "duration_ms": 0.6687,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 36680
+          "heap_delta_bytes": 43432
         }
       ]
     },
     "evidence_engine": {
       "metric_id": "PERF-EE-LOAD",
       "scope": "EvidenceEngine.loadAllEvidenceFiles",
-      "timestamp": "2026-08-12T04:10:28.546Z",
+      "timestamp": "2026-08-12T04:30:53.666Z",
       "durations_ms": [
-        14.9578,
-        5.9991,
-        4.8188,
-        5.6122,
-        6.259
+        8.5691,
+        4.8342,
+        5.0781,
+        5.3954,
+        9.8522
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 4.8188,
-        "max": 14.9578,
-        "mean_mu": 7.5294,
-        "median_p50": 5.9991,
-        "p90": 14.9578,
-        "p95": 14.9578,
-        "p99": 14.9578,
-        "variance_sigma_sq": 14.032,
-        "std_dev_sigma": 3.7459
+        "min": 4.8342,
+        "max": 9.8522,
+        "mean_mu": 6.7458,
+        "median_p50": 5.3954,
+        "p90": 9.8522,
+        "p95": 9.8522,
+        "p99": 9.8522,
+        "variance_sigma_sq": 4.2466,
+        "std_dev_sigma": 2.0607
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 14.9578,
-          "rss_delta_bytes": 20480,
-          "heap_delta_bytes": 490192
+          "duration_ms": 8.5691,
+          "rss_delta_bytes": -8192,
+          "heap_delta_bytes": 488656
         },
         {
           "iteration": 2,
-          "duration_ms": 5.9991,
-          "rss_delta_bytes": 196608,
-          "heap_delta_bytes": 401248
+          "duration_ms": 4.8342,
+          "rss_delta_bytes": 192512,
+          "heap_delta_bytes": 404792
         },
         {
           "iteration": 3,
-          "duration_ms": 4.8188,
-          "rss_delta_bytes": 356352,
-          "heap_delta_bytes": 402120
+          "duration_ms": 5.0781,
+          "rss_delta_bytes": 376832,
+          "heap_delta_bytes": 401192
         },
         {
           "iteration": 4,
-          "duration_ms": 5.6122,
-          "rss_delta_bytes": 815104,
-          "heap_delta_bytes": 408296
+          "duration_ms": 5.3954,
+          "rss_delta_bytes": 851968,
+          "heap_delta_bytes": 410872
         },
         {
           "iteration": 5,
-          "duration_ms": 6.259,
-          "rss_delta_bytes": 69632,
-          "heap_delta_bytes": -1405328
+          "duration_ms": 9.8522,
+          "rss_delta_bytes": -73728,
+          "heap_delta_bytes": -1471776
         }
       ]
     },
     "governance_engine": {
       "metric_id": "PERF-GOV-EVAL",
       "scope": "GovernanceEngine.evaluateRequest",
-      "timestamp": "2026-08-12T04:10:28.547Z",
+      "timestamp": "2026-08-12T04:30:53.667Z",
       "durations_ms": [
-        0.279,
-        0.0203,
-        0.016,
-        0.0146,
-        0.0146
+        0.4054,
+        0.0222,
+        0.0202,
+        0.0165,
+        0.0154
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.0146,
-        "max": 0.279,
-        "mean_mu": 0.0689,
-        "median_p50": 0.016,
-        "p90": 0.279,
-        "p95": 0.279,
-        "p99": 0.279,
-        "variance_sigma_sq": 0.011,
-        "std_dev_sigma": 0.1051
+        "min": 0.0154,
+        "max": 0.4054,
+        "mean_mu": 0.0959,
+        "median_p50": 0.0202,
+        "p90": 0.4054,
+        "p95": 0.4054,
+        "p99": 0.4054,
+        "variance_sigma_sq": 0.0239,
+        "std_dev_sigma": 0.1547
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 0.279,
-          "rss_delta_bytes": 4096,
+          "duration_ms": 0.4054,
+          "rss_delta_bytes": 0,
           "heap_delta_bytes": 9576
         },
         {
           "iteration": 2,
-          "duration_ms": 0.0203,
+          "duration_ms": 0.0222,
+          "rss_delta_bytes": 0,
+          "heap_delta_bytes": 2600
+        },
+        {
+          "iteration": 3,
+          "duration_ms": 0.0202,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 2696
         },
         {
-          "iteration": 3,
-          "duration_ms": 0.016,
-          "rss_delta_bytes": 0,
-          "heap_delta_bytes": 2632
-        },
-        {
           "iteration": 4,
-          "duration_ms": 0.0146,
+          "duration_ms": 0.0165,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 2632
         },
         {
           "iteration": 5,
-          "duration_ms": 0.0146,
+          "duration_ms": 0.0154,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 2632
         }
@@ -189,110 +189,110 @@
     "adr_engine": {
       "metric_id": "PERF-ADR-PARSE-RENDER",
       "scope": "ADREngine.parseAndRender",
-      "timestamp": "2026-08-12T04:10:28.548Z",
+      "timestamp": "2026-08-12T04:30:53.668Z",
       "durations_ms": [
-        0.5935,
-        0.056,
-        0.0714,
-        0.1542,
-        0.0484
+        0.9704,
+        0.0705,
+        0.077,
+        0.0785,
+        0.0504
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.0484,
-        "max": 0.5935,
-        "mean_mu": 0.1847,
-        "median_p50": 0.0714,
-        "p90": 0.5935,
-        "p95": 0.5935,
-        "p99": 0.5935,
-        "variance_sigma_sq": 0.0432,
-        "std_dev_sigma": 0.2079
+        "min": 0.0504,
+        "max": 0.9704,
+        "mean_mu": 0.2494,
+        "median_p50": 0.077,
+        "p90": 0.9704,
+        "p95": 0.9704,
+        "p99": 0.9704,
+        "variance_sigma_sq": 0.1301,
+        "std_dev_sigma": 0.3607
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 0.5935,
-          "rss_delta_bytes": 4096,
+          "duration_ms": 0.9704,
+          "rss_delta_bytes": 69632,
           "heap_delta_bytes": 26056
         },
         {
           "iteration": 2,
-          "duration_ms": 0.056,
+          "duration_ms": 0.0705,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 6440
         },
         {
           "iteration": 3,
-          "duration_ms": 0.0714,
+          "duration_ms": 0.077,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 7520
         },
         {
           "iteration": 4,
-          "duration_ms": 0.1542,
+          "duration_ms": 0.0785,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 561480
+          "heap_delta_bytes": 10176
         },
         {
           "iteration": 5,
-          "duration_ms": 0.0484,
-          "rss_delta_bytes": 0,
-          "heap_delta_bytes": 7512
+          "duration_ms": 0.0504,
+          "rss_delta_bytes": 8192,
+          "heap_delta_bytes": 677360
         }
       ]
     },
     "synthesis_engine": {
       "metric_id": "PERF-SYNTHESIS-EVAL",
       "scope": "SynthesisEngine.synthesizeCandidate",
-      "timestamp": "2026-08-12T04:10:28.549Z",
+      "timestamp": "2026-08-12T04:30:53.669Z",
       "durations_ms": [
-        0.2894,
-        0.0282,
-        0.0247,
-        0.0275,
-        0.0328
+        0.2995,
+        0.0341,
+        0.0245,
+        0.0225,
+        0.0314
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.0247,
-        "max": 0.2894,
-        "mean_mu": 0.0805,
-        "median_p50": 0.0282,
-        "p90": 0.2894,
-        "p95": 0.2894,
-        "p99": 0.2894,
-        "variance_sigma_sq": 0.0109,
-        "std_dev_sigma": 0.1045
+        "min": 0.0225,
+        "max": 0.2995,
+        "mean_mu": 0.0824,
+        "median_p50": 0.0314,
+        "p90": 0.2995,
+        "p95": 0.2995,
+        "p99": 0.2995,
+        "variance_sigma_sq": 0.0118,
+        "std_dev_sigma": 0.1086
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 0.2894,
-          "rss_delta_bytes": 8192,
-          "heap_delta_bytes": 12096
+          "duration_ms": 0.2995,
+          "rss_delta_bytes": 0,
+          "heap_delta_bytes": 12232
         },
         {
           "iteration": 2,
-          "duration_ms": 0.0282,
+          "duration_ms": 0.0341,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 3312
+          "heap_delta_bytes": 3344
         },
         {
           "iteration": 3,
-          "duration_ms": 0.0247,
+          "duration_ms": 0.0245,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 3312
         },
         {
           "iteration": 4,
-          "duration_ms": 0.0275,
+          "duration_ms": 0.0225,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 3344
+          "heap_delta_bytes": 3312
         },
         {
           "iteration": 5,
-          "duration_ms": 0.0328,
+          "duration_ms": 0.0314,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 11176
         }
@@ -301,54 +301,54 @@
     "dual_validation": {
       "metric_id": "PERF-DUAL-VAL",
       "scope": "DualValidationEngine.executeDualValidation",
-      "timestamp": "2026-08-12T04:10:28.549Z",
+      "timestamp": "2026-08-12T04:30:53.669Z",
       "durations_ms": [
-        0.3535,
-        0.0396,
-        0.0319,
-        0.0272,
-        0.0529
+        0.3312,
+        0.0342,
+        0.0282,
+        0.0273,
+        0.0479
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.0272,
-        "max": 0.3535,
-        "mean_mu": 0.101,
-        "median_p50": 0.0396,
-        "p90": 0.3535,
-        "p95": 0.3535,
-        "p99": 0.3535,
-        "variance_sigma_sq": 0.016,
-        "std_dev_sigma": 0.1265
+        "min": 0.0273,
+        "max": 0.3312,
+        "mean_mu": 0.0938,
+        "median_p50": 0.0342,
+        "p90": 0.3312,
+        "p95": 0.3312,
+        "p99": 0.3312,
+        "variance_sigma_sq": 0.0141,
+        "std_dev_sigma": 0.1189
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 0.3535,
-          "rss_delta_bytes": 65536,
+          "duration_ms": 0.3312,
+          "rss_delta_bytes": 4096,
           "heap_delta_bytes": 14632
         },
         {
           "iteration": 2,
-          "duration_ms": 0.0396,
+          "duration_ms": 0.0342,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 3344
         },
         {
           "iteration": 3,
-          "duration_ms": 0.0319,
+          "duration_ms": 0.0282,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 3344
         },
         {
           "iteration": 4,
-          "duration_ms": 0.0272,
+          "duration_ms": 0.0273,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 3344
+          "heap_delta_bytes": 3360
         },
         {
           "iteration": 5,
-          "duration_ms": 0.0529,
+          "duration_ms": 0.0479,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 3904
         }
@@ -357,54 +357,54 @@
     "orchestrator": {
       "metric_id": "PERF-ORCHESTRATOR-DAG",
       "scope": "ExecutionOrchestrator.generateExecutionPlanDAG",
-      "timestamp": "2026-08-12T04:10:28.550Z",
+      "timestamp": "2026-08-12T04:30:53.670Z",
       "durations_ms": [
-        0.6886,
-        0.0678,
-        0.0894,
-        0.0568,
-        0.0716
+        0.5137,
+        0.0594,
+        0.0852,
+        0.0536,
+        0.0713
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.0568,
-        "max": 0.6886,
-        "mean_mu": 0.1948,
-        "median_p50": 0.0716,
-        "p90": 0.6886,
-        "p95": 0.6886,
-        "p99": 0.6886,
-        "variance_sigma_sq": 0.0611,
-        "std_dev_sigma": 0.2471
+        "min": 0.0536,
+        "max": 0.5137,
+        "mean_mu": 0.1566,
+        "median_p50": 0.0713,
+        "p90": 0.5137,
+        "p95": 0.5137,
+        "p99": 0.5137,
+        "variance_sigma_sq": 0.032,
+        "std_dev_sigma": 0.1789
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 0.6886,
-          "rss_delta_bytes": 4096,
+          "duration_ms": 0.5137,
+          "rss_delta_bytes": 0,
           "heap_delta_bytes": 24560
         },
         {
           "iteration": 2,
-          "duration_ms": 0.0678,
+          "duration_ms": 0.0594,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 12280
         },
         {
           "iteration": 3,
-          "duration_ms": 0.0894,
+          "duration_ms": 0.0852,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 14296
         },
         {
           "iteration": 4,
-          "duration_ms": 0.0568,
+          "duration_ms": 0.0536,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 20872
         },
         {
           "iteration": 5,
-          "duration_ms": 0.0716,
+          "duration_ms": 0.0713,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 13728
         }
@@ -413,54 +413,54 @@
     "constitution_engine": {
       "metric_id": "PERF-CONSTITUTION-EVAL",
       "scope": "ConstitutionEngine.evaluatePolicies",
-      "timestamp": "2026-08-12T04:10:28.552Z",
+      "timestamp": "2026-08-12T04:30:53.672Z",
       "durations_ms": [
-        0.533,
-        0.0416,
-        0.0321,
-        0.0269,
-        0.0266
+        0.5068,
+        0.0363,
+        0.0275,
+        0.0238,
+        0.0227
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.0266,
-        "max": 0.533,
-        "mean_mu": 0.132,
-        "median_p50": 0.0321,
-        "p90": 0.533,
-        "p95": 0.533,
-        "p99": 0.533,
-        "variance_sigma_sq": 0.0402,
-        "std_dev_sigma": 0.2006
+        "min": 0.0227,
+        "max": 0.5068,
+        "mean_mu": 0.1234,
+        "median_p50": 0.0275,
+        "p90": 0.5068,
+        "p95": 0.5068,
+        "p99": 0.5068,
+        "variance_sigma_sq": 0.0368,
+        "std_dev_sigma": 0.1917
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 0.533,
-          "rss_delta_bytes": 4096,
+          "duration_ms": 0.5068,
+          "rss_delta_bytes": 0,
           "heap_delta_bytes": 15760
         },
         {
           "iteration": 2,
-          "duration_ms": 0.0416,
+          "duration_ms": 0.0363,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 4128
+          "heap_delta_bytes": 4096
         },
         {
           "iteration": 3,
-          "duration_ms": 0.0321,
+          "duration_ms": 0.0275,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 4096
         },
         {
           "iteration": 4,
-          "duration_ms": 0.0269,
+          "duration_ms": 0.0238,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 4096
         },
         {
           "iteration": 5,
-          "duration_ms": 0.0266,
+          "duration_ms": 0.0227,
           "rss_delta_bytes": 0,
           "heap_delta_bytes": 4096
         }
@@ -469,56 +469,56 @@
     "full_pipeline_e2e": {
       "metric_id": "PERF-FULL-PIPELINE-E2E",
       "scope": "Integration.FullPipeline1to8",
-      "timestamp": "2026-08-12T04:10:28.558Z",
+      "timestamp": "2026-08-12T04:30:53.676Z",
       "durations_ms": [
-        1.1497,
-        1.6917,
-        0.9853,
-        1.1557,
-        1.2752
+        1.0987,
+        0.8262,
+        0.8728,
+        0.8169,
+        0.8553
       ],
       "distribution": {
         "sample_size_n": 5,
-        "min": 0.9853,
-        "max": 1.6917,
-        "mean_mu": 1.2515,
-        "median_p50": 1.1557,
-        "p90": 1.6917,
-        "p95": 1.6917,
-        "p99": 1.6917,
-        "variance_sigma_sq": 0.0569,
-        "std_dev_sigma": 0.2386
+        "min": 0.8169,
+        "max": 1.0987,
+        "mean_mu": 0.894,
+        "median_p50": 0.8553,
+        "p90": 1.0987,
+        "p95": 1.0987,
+        "p99": 1.0987,
+        "variance_sigma_sq": 0.0109,
+        "std_dev_sigma": 0.1043
       },
       "resource_samples": [
         {
           "iteration": 1,
-          "duration_ms": 1.1497,
+          "duration_ms": 1.0987,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 45680
+          "heap_delta_bytes": 52432
         },
         {
           "iteration": 2,
-          "duration_ms": 1.6917,
+          "duration_ms": 0.8262,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": 42296
+          "heap_delta_bytes": 48952
         },
         {
           "iteration": 3,
-          "duration_ms": 0.9853,
+          "duration_ms": 0.8728,
           "rss_delta_bytes": 0,
-          "heap_delta_bytes": -391368
+          "heap_delta_bytes": -280184
         },
         {
           "iteration": 4,
-          "duration_ms": 1.1557,
-          "rss_delta_bytes": 4096,
-          "heap_delta_bytes": 524336
+          "duration_ms": 0.8169,
+          "rss_delta_bytes": 0,
+          "heap_delta_bytes": 50152
         },
         {
           "iteration": 5,
-          "duration_ms": 1.2752,
-          "rss_delta_bytes": 0,
-          "heap_delta_bytes": 41536
+          "duration_ms": 0.8553,
+          "rss_delta_bytes": 8192,
+          "heap_delta_bytes": 48256
         }
       ]
     }
@@ -555,7 +555,7 @@
     }
   },
   "audit_metadata": {
-    "created_at": "2026-08-12T04:10:28.559Z",
+    "created_at": "2026-08-12T04:30:53.677Z",
     "author": "EOS Empirical Baseline Engine",
     "schema_version": "1.0.0"
   }
