@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema.json",
+  "id": "LSN-LUXE-001",
+  "title": "Single-Node Atomic Set Lock Pattern for Concurrency Race Condition Defense",
+  "type": "PATTERN",
+  "domain": "SOFTWARE_ENGINEERING",
+  "source_project": "PRJ-LUXE-REGISTRY",
+  "created_at": "2026-08-11T23:16:00Z",
+  "summary": "Synchronous Set lock checks combined with try/finally release in Node.js event loops guarantee single-winner atomicity for concurrent HTTP requests without external distributed locking infrastructure.",
+  "evidence_refs": ["EVD-LUXE-0001"],
+  "reversability_conditions": [
+    "Multi-node horizontally scaled deployments require distributed lock managers"
+  ],
+  "epistemic_state": "CONFIRMED_IN_SCOPE"
+}
