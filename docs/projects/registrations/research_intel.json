@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema.json",
+  "project_id": "PRJ-RESEARCH-INTEL",
+  "name": "Research & Intelligence Engine",
+  "description": "Open-world research, deep multi-source synthesis, contradiction resolution, and evidence-backed claim verification system (Phase II Project #3).",
+  "path": "C:\\Users\\valen\\Documents\\Research-Intelligence-Engine",
+  "repository": "local",
+  "branch": "main",
+  "project_type": "INTELLIGENCE_ENGINE",
+  "lifecycle_status": "INTAKE",
+  "technical_status": "UNVERIFIED",
+  "business_status": "DISCOVERY",
+  "stack": ["Pending Level 2 Research Capability Selection"],
+  "documentation": [
+    "docs/projects/registrations/research_intel.json",
+    "docs/intake/research_intel/PROJECT_INTAKE.md"
+  ],
+  "constraints": [
+    "External Project Write Barrier Active",
+    "LEVEL_1_READ_ONLY discovery phase active",
+    "Zero web page == truth assumption (SOURCE -> CLAIM -> EVIDENCE pipeline required)",
+    "Strict prompt injection interception on retrieved web content"
+  ],
+  "risks": [
+    "RSK-RI-01: Prompt injection attacks embedded in retrieved web pages",
+    "RSK-RI-02: Citation laundering and false consensus across secondary sources",
+    "RSK-RI-03: Temporal drift of stale claims in dynamic domains"
+  ],
+  "assumptions": [
+    "Web search and retrieval capabilities provide raw document payloads with source metadata"
+  ],
+  "owner": "Intelligence Systems Leadership / EOS Control Plane",
+  "intake_status": "INTAKE_OPEN",
+  "specification_status": "PENDING_LEVEL_1_DISCOVERY",
+  "implementation_status": "NOT_STARTED",
+  "validation_status": "NOT_STARTED",
+  "release_status": "NOT_STARTED",
+  "autonomy_level": "SUPERVISED",
+  "created_at": "2026-08-11T23:35:00Z",
+  "updated_at": "2026-08-11T23:35:00Z"
+}
