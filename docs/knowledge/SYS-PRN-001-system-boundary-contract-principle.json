@@ -1,0 +1,13 @@
+{
+  "id": "SYS-PRN-001",
+  "category": "EOS_ENGINEERING_PRINCIPLE",
+  "topic": "System Boundary Contract & Optimistic Locking Principle",
+  "trigger": "EXP-036-001 (FlowDesk Evolution of LSN-002)",
+  "principle": "Every critical system boundary (Ingestion, API, UI, Persistence) must have an explicit, validated contract and observable failure behavior.",
+  "invariants": [
+    "Ingestion Boundary: Inbound payloads must be strictly schema-validated (e.g. Zod) prior to domain ingestion, returning structured 400 Bad Request on failure.",
+    "Concurrency Boundary: Stateful updates must enforce optimistic concurrency checks (e.g., updated_at timestamp validation), atomically rolling back and mapping stale updates to 409 Conflict.",
+    "Transactional Audit Trail: Domain state mutations and audit logs must belong to the exact same database transaction."
+  ],
+  "evolution": "Derived from LSN-002 (WhatsApp CTA Integrity) in Andes/Sonrisa, evolved into a cross-domain B2B SaaS system principle in FlowDesk."
+}

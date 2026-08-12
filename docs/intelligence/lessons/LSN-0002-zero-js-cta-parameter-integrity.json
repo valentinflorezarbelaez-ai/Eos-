@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ZeroJsCTAParameterIntegrityPatternSchema",
+  "version": "1.0.0",
+  "lessonId": "LSN-0002",
+  "title": "Zero-JS WhatsApp CTA Parameter Integrity Pattern",
+  "source": "EXP-029-001 (Andes Retreat Phase 32 Form Interaction Audit)",
+  "observation": "Static HTML forms with action pointing to external messaging endpoints (e.g. WhatsApp wa.me) require pre-filled URI query parameters or explicit client JS encoding to avoid submitting empty destination strings.",
+  "rootCause": "Unbound static form action attribute lacking URI query string defaults.",
+  "reusableRule": "When building Zero-JS messaging form CTAs, pre-encode default contextual query strings (e.g. ?text=Hola%2C%20quisiera%20consultar...) to preserve 0 JS client runtime while guaranteeing messaging transmission integrity.",
+  "appliesTo": ["Zero-JS Web Applications", "Static HTML Form Integrations"],
+  "verificationCriterion": "Inspecting form action attribute confirming non-empty pre-filled URI parameters."
+}

@@ -1,0 +1,13 @@
+{
+  "evidence_id": "EVD-0038-FAIL-TEST",
+  "experiment_id": "EXP-038-001",
+  "timestamp": "2026-08-11T19:15:32.973Z",
+  "pre_modification_baseline": "git-tag-eos-pre-modify-038",
+  "target_component": ".gemini/self-hosting-workspace/verify-eos.js",
+  "combinatorial_scenario": "S4",
+  "product_validation": "FAIL",
+  "knowledge_validation": "FAIL",
+  "raw_stdout": "",
+  "raw_stderr": "Falsification Trigger Activated!\n",
+  "integrity_hash": "0c88e0fab0ceb03b53ca0faa51624bdcf2615dacf99fa64e46a0172d02bbc853"
+}

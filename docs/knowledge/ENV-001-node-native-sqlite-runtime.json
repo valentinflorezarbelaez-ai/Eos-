@@ -1,0 +1,24 @@
+{
+  "id": "ENV-001",
+  "category": "ENVIRONMENT_DISCOVERY",
+  "topic": "Node.js Native SQLite Runtime Engine (DatabaseSync)",
+  "trigger": "EXP-036-001 (FlowDesk Implementation)",
+  "discovery": "Node.js v24+ provides a built-in native SQLite engine (`node:sqlite` / `DatabaseSync`) that eliminates the need for external native C++ add-ons (such as node-gyp / python compile steps for better-sqlite3).",
+  "environment": {
+    "node_version": "v24.16.0",
+    "module": "node:sqlite",
+    "class": "DatabaseSync",
+    "native_build_dependencies": 0
+  },
+  "advantages": [
+    "Zero native C++ addon compilation step required during `npm install`.",
+    "Eliminates build environment failures caused by missing Python or MSVC toolchains.",
+    "Native V8/Node integration providing synchronous in-process binding.",
+    "Full support for WAL journal mode, transactions, prepared statements, and `:memory:` databases."
+  ],
+  "limitations_and_reversal": [
+    "Requires Node.js v22.5.0+ / v24+ runtime environment.",
+    "Synchronous blocking API (`DatabaseSync`); heavy long-running queries must be delegated to worker threads to prevent event loop blocking.",
+    "Reversal Condition: If scaling requires non-blocking asynchronous streaming DB drivers or multi-node distributed SQL, standard asynchronous drivers (PostgreSQL / Turso) must replace `node:sqlite`."
+  ]
+}

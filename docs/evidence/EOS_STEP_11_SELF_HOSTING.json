@@ -1,0 +1,25 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "timestamp": "2026-08-11T22:30:00Z",
+  "audit_name": "EOS Core Step 11 Self-Hosting Operating Loop Audit Report",
+  "target": "EOS Core (.gemini/self-hosting-workspace/)",
+  "system_totals": {
+    "total_system_tests": 81,
+    "passed_system_tests": 81,
+    "transient_failures_observed": 0,
+    "flaky_tests_count": 0
+  },
+  "self_hosting_verifications": {
+    "canonical_states_count": 19,
+    "authority_expansion_blocked": true,
+    "test_integrity_tampering_blocked": true,
+    "recursion_depth_interlock_enforced": true,
+    "pass_path_execution_verified": true,
+    "fail_path_oob_evidence_persisted_before_rollback": true,
+    "worktree_reset_verified_clean": true,
+    "knowledge_asset_refutation_recorded": true
+  },
+  "evidence_refs": ["EVD-PASS-SIM-PASS-01", "EVD-OOB-FAIL-SIM-FAIL-01"],
+  "epistemic_verdict": "MAXIMUM_OPERATIONAL_MATURITY_WITHIN_TESTED_SCOPE"
+}

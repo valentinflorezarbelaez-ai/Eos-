@@ -12,7 +12,17 @@ This document establishes the governing operational rules for all AI agents oper
 ### 2. Evidence Over Claims Standard & Taxonomy
 No agent may state `DONE`, `PASS`, `VERIFIED`, `SECURE`, `OPTIMIZED`, or `PRODUCTION READY` without referencing executable evidence or automated check output.
 
-- **VERIFIED**: Evidence from code execution, builds, test passes, or automated checks is present.
+**Epistemic Validation States (MANDATORY)**:
+- `AUDIT_EXECUTED`: Tests/checks have run; raw results gathered.
+- `FINDINGS_IDENTIFIED`: Bugs or regressions have been documented from the audit.
+- `REMEDIATION_REQUIRED`: A plan to fix findings is needed.
+- `REMEDIATION_IN_PROGRESS`: Fixes are currently being developed/applied.
+- `REVALIDATION_REQUIRED`: Fixes applied, awaiting regression tests.
+- `VERIFIED`: Evidence from code execution, builds, test passes, or automated checks confirms fixes worked.
+- `PRODUCTION_READY_WITHIN_TESTED_SCOPE`: Zero open findings strictly within executed scenarios and recorded evidence.
+- `PRODUCTION_READY`: Zero open findings across all required production quality dimensions.
+
+**Evidence Confidence Levels**:
 - **NOT VERIFIED**: Code written but unexecuted or untested; unverified hypotheses.
 - **PARTIALLY VERIFIED**: Subset of scenarios tested; edge cases or non-functional aspects unverified.
 - **BLOCKED**: Verification impeded by missing external dependency, API key, or environment block.

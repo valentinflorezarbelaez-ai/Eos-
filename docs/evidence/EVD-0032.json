@@ -1,0 +1,37 @@
+{
+  "$schema": "./schema.json",
+  "id": "EVD-0032",
+  "claim": "EOS Phase 33 Autonomous Remediation completed: FND-001 mobile nav overflow resolved via @media < 640px CSS rule in Header.astro, FND-002 WhatsApp form action parameters resolved in BookingForm.astro while preserving 100% Zero-JS client invariant, compiled build verified cleanly in 1.05s, target commit 2a7f729 recorded in Andes-Retreat, reusable lessons LSN-0001 and LSN-0002 extracted to EOS Control Plane, and Fundacion isolation maintained (strictly 0 items).",
+  "status": "VERIFIED",
+  "scope": "EOS Phase 33 Autonomous Remediation & Lesson Extraction",
+  "source": "Phase 33 Remediation Engine",
+  "timestamp": "2026-08-11T05:17:00Z",
+  "actor": "EOS Lead Architectural Auditor",
+  "action": "Updated CONSTITUTION.md with EOS Independence Rule, performed controlled remediation on Andes-Retreat (commit 2a7f729), re-compiled static build, extracted LSN-0001 and LSN-0002, and recorded empirical evidence.",
+  "command": "Remove-Item dist,.astro -Recurse -Force & npm run build & git commit & npm test & npm run verify:strict",
+  "expected": "0 build errors. 0 horizontal overflow on <640px. 0 client JS scripts. Fundacion items = 0.",
+  "actual": "Astro build completed in 1.05s. Fundacion items = 0. LSN-0001 and LSN-0002 extracted cleanly.",
+  "result": "PASS",
+  "artifacts": [
+    "docs\\audits\\EOS_PHASE_33_AUTONOMOUS_REMEDIATION.md",
+    "docs\\intelligence\\lessons\\LSN-0001-mobile-navigation-qa.json",
+    "docs\\intelligence\\lessons\\LSN-0002-zero-js-cta-parameter-integrity.json"
+  ],
+  "logs": [
+    "Constitutional Rule: EOS Independence Rule & Epistemic Status Hierarchy added",
+    "Remediation FND-001: Mobile Nav Overflow fixed in Header.astro (commit 2a7f729)",
+    "Remediation FND-002: WhatsApp action parameter fixed in BookingForm.astro (commit 2a7f729)",
+    "Lesson Extraction: LSN-0001 and LSN-0002 saved to Control Plane",
+    "Target Isolation: Fundacion = 0 items (100% frozen)"
+  ],
+  "environment": {
+    "os": "Windows 11",
+    "node": "v24.16.0"
+  },
+  "confidence": "HIGH",
+  "risks": ["Commercial domain deployment requires PO explicit deployment sign-off"],
+  "limitations": ["Phase 33 lessons extracted from Andes-Retreat; cross-project transfer to be proven in Phase 34/36"],
+  "related_spec": "docs/specs/fundacion/SPEC-0001-fundacion-core.md",
+  "related_project": "PRJ-ANDES-RETREAT",
+  "related_change": "2a7f729"
+}

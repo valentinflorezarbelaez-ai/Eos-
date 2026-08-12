@@ -1,0 +1,60 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "timestamp": "2026-08-11T21:35:00Z",
+  "audit_name": "EOS Core Step 9 Negative Security Suite & Adversarial Resilience Audit",
+  "target": "EOS Core (.gemini/self-hosting-workspace/)",
+  "metrics": {
+    "attacks_executed": 16,
+    "attacks_blocked": 16,
+    "attacks_detected": 16,
+    "critical_findings": 0,
+    "high_findings": 2,
+    "remediated_findings": 2,
+    "residual_risks_count": 0,
+    "total_system_tests": 71,
+    "passed_system_tests": 71
+  },
+  "findings": [
+    {
+      "finding_id": "SEC-FIND-01",
+      "category": "SYNTHESIS_EPISTEMIC_GUARD",
+      "severity": "HIGH",
+      "title": "SynthesisEngine lacked explicit direct epistemic state mutation guard method",
+      "attack_path": "Caller attempting to invoke direct epistemic state assignment on SynthesisEngine without going through EvidenceEngine",
+      "impact": "Potential privilege escalation where SynthesisEngine could bypass EvidenceEngine state assignment",
+      "fix": "Implemented assignEpistemicStateDirectly guard method throwing AUTHORITY_VIOLATION",
+      "retest_status": "VERIFIED_PASS",
+      "evidence_ref": "EVD-0036"
+    },
+    {
+      "finding_id": "SEC-FIND-02",
+      "category": "ORCHESTRATOR_PATH_ISOLATION",
+      "severity": "HIGH",
+      "title": "ExecutionOrchestrator target path boundary permitted escaping workspace into arbitrary drive locations",
+      "attack_path": "ExecutionTask specifying C:\\Ext or C:\\Windows\\System32 as target workspace path",
+      "impact": "Potential workspace escape into system directories during task execution",
+      "fix": "Hardened ingestTask to strictly reject targets escaping user's Documents workspace or targeting EOS Core root",
+      "retest_status": "VERIFIED_PASS",
+      "evidence_ref": "EVD-0036"
+    }
+  ],
+  "remediations": [
+    {
+      "remediation_id": "REM-01",
+      "target_module": "src/core/synthesisEngine.js",
+      "description": "Added assignEpistemicStateDirectly guard method preventing direct epistemic promotion",
+      "retest_result": "PASS"
+    },
+    {
+      "remediation_id": "REM-02",
+      "target_module": "src/core/executionOrchestrator.js",
+      "description": "Hardened path normalization and workspace boundary checks in ingestTask",
+      "retest_result": "PASS"
+    }
+  ],
+  "regressions": 0,
+  "evidence_refs": ["EVD-0036"],
+  "residual_risks": [],
+  "unresolved_unknowns": []
+}

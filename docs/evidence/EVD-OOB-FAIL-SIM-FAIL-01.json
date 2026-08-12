@@ -1,0 +1,28 @@
+{
+  "evidence_id": "EVD-OOB-FAIL-SIM-FAIL-01",
+  "project_id": "SIM-FAIL-01",
+  "outcome": "FAIL",
+  "dual_validation_scenario": "S4",
+  "raw_stderr": "SYNTAX_ERROR & INVARIANT_VIOLATION",
+  "claims_tested": [
+    {
+      "claim_id": "CLM-FAIL-01",
+      "statement": "Intentionally defective synthesis logic test",
+      "classification": "HYPOTHESIS"
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": "PRD-01",
+      "expected_metric": "PASS"
+    }
+  ],
+  "observations": [
+    {
+      "observation_id": "OBS-FAIL-01",
+      "exit_code": 1,
+      "raw_stdout": "FAIL",
+      "observation_integrity": "VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "evidence_id": "EVD-0038-PASS-TEST",
+  "experiment_id": "EXP-038-001",
+  "timestamp": "2026-08-11T19:15:33.044Z",
+  "pre_modification_baseline": "git-tag-eos-pre-modify-038",
+  "target_component": ".gemini/self-hosting-workspace/verify-eos.js",
+  "combinatorial_scenario": "S1",
+  "product_validation": "PASS",
+  "knowledge_validation": "PASS",
+  "raw_stdout": "HEALTH_CHECK_PASS\nVERSION_1_1_ENHANCED\n",
+  "raw_stderr": "",
+  "integrity_hash": "42e1a3b3fbe7748ee849c789bd3719c13a251d279847fda0ae44f749229eddad"
+}

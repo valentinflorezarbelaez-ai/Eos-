@@ -1,0 +1,22 @@
+{
+  "id": "LSN-001",
+  "category": "UX_UI_QUALITY",
+  "topic": "Mobile Navigation Viewport Overflow",
+  "trigger": "FND-001 (Andes-Retreat)",
+  "lesson": "Responsive navigation must be validated at mobile viewport widths (< 640px) to prevent horizontal scrolling or overlapping flex items.",
+  "reusable_pattern": {
+    "name": "Mobile Navigation QA Pattern",
+    "applies_to": [
+      "Landing pages",
+      "Marketing sites",
+      "Content sites"
+    ],
+    "validation_criteria": [
+      "Browser viewport < 640px",
+      "Keyboard navigation",
+      "Overflow detection",
+      "CTA accessibility"
+    ],
+    "resolution": "Use `@media (max-width: 640px)` to hide non-essential secondary links, collapse into a hamburger menu, or wrap elements. Ensure the primary CTA remains visible and accessible without horizontal overflow."
+  }
+}

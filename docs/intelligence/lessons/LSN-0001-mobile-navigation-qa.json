@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MobileNavigationQAPatternSchema",
+  "version": "1.0.0",
+  "lessonId": "LSN-0001",
+  "title": "Mobile Navigation Viewport Overflow Pattern",
+  "source": "EXP-029-001 (Andes Retreat Phase 32 Browser QA)",
+  "observation": "Horizontal flex navigation headers containing >3 links overflow and clip out-of-bounds on viewports < 640px wide unless explicitly collapsed or hidden via media query breakpoints.",
+  "rootCause": "Applying desktop inline flex layout to header navigation without media query breakpoint for small viewports.",
+  "reusableRule": "Headers on marketing/landing pages MUST apply @media (max-width: 640px) to hide secondary links or collapse into a mobile drawer while keeping primary CTA visible.",
+  "appliesTo": ["Landing Pages", "Marketing Sites", "Astro SSG Web Apps"],
+  "verificationCriterion": "Browser viewport inspection at 320px, 375px, and 640px showing zero horizontal scrollbar."
+}

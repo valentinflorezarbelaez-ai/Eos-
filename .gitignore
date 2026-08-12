@@ -41,3 +41,12 @@ build/
 out/
 .next/
 .nuxt/
+
+# Agent State & Workspace Artifacts
+.gemini/
+evidence-buffer/
+coverage/
+logs/
+*.log
+tmp/
+temp/

@@ -1,0 +1,21 @@
+{
+  "id": "LSN-002",
+  "category": "DATA_INTEGRITY",
+  "topic": "External CTA Data Integrity",
+  "trigger": "FND-002 (Andes-Retreat)",
+  "lesson": "A static HTML form cannot dynamically transfer user-selected booking values to an external WhatsApp URL without an appropriate mechanism. It breaks UX by losing data.",
+  "reusable_pattern": {
+    "name": "External CTA Data Integrity Pattern",
+    "applies_to": [
+      "Booking forms",
+      "Lead generation forms",
+      "WhatsApp/External deep-linking CTAs"
+    ],
+    "validation_criteria": [
+      "Input data integrity",
+      "Generated destination URL correctness",
+      "Transmitted data validation"
+    ],
+    "resolution": "Trade-off the Zero-JS invariant for a minimal, dependency-free Vanilla JS script that intercepts the form submission, reads inputs, encodes them into the external URL, and redirects. This preserves high-quality UX."
+  }
+}
