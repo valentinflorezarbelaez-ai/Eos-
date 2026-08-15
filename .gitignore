@@ -53,3 +53,4 @@ temp/
 
 # Ephemeral Runtime State
 docs/sessions/checkpoints/
+docs/evolution/evolution_KAIZEN-*.json
