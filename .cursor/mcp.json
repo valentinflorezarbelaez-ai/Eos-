@@ -1,0 +1,58 @@
+{
+  "mcpServers": {
+    "engram": {
+      "command": "node",
+      "args": ["scripts/engine/engram-mcp-bridge.js"],
+      "description": "Persistent memory and causal learning graph across sessions and context compactions."
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"],
+      "description": "Automated end-to-end browser QA, DOM inspection, visual regressions, and accessibility audits."
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/mcp-server"],
+      "description": "Deep AST codebase indexing, semantic symbol search, and architectural dependency mapping."
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@figma/mcp-server"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "${FIGMA_ACCESS_TOKEN}"
+      },
+      "description": "Design system tokens extraction, component inspect, and pixel-perfect design-to-code alignment."
+    },
+    "jira": {
+      "command": "npx",
+      "args": ["-y", "@atlassian/jira-mcp-server"],
+      "env": {
+        "JIRA_HOST": "${JIRA_HOST}",
+        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
+      },
+      "description": "Enterprise issue tracking, sprint tasks synchronization, and acceptance criteria linking."
+    },
+    "trello": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-trello"],
+      "env": {
+        "TRELLO_API_KEY": "${TRELLO_API_KEY}",
+        "TRELLO_TOKEN": "${TRELLO_TOKEN}"
+      },
+      "description": "Kanban board task management, card movements, and workflow stage tracking."
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"
+      },
+      "description": "Operational notifications, deployment broadcasts, incident escalation, and human-in-the-loop alerts."
+    },
+    "stitch": {
+      "command": "npx",
+      "args": ["-y", "@stitch/mcp-data-server"],
+      "description": "Data schema stitching, multi-source API integration, and contract synthesis."
+    }
+  }
+}
