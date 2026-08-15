@@ -1,0 +1,10 @@
+{
+  "name": "canary-alpha",
+  "version": "0.1.0",
+  "private": true,
+  "description": "EOS Canary Alpha Project — Operational Validation Sandbox",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

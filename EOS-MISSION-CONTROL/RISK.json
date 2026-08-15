@@ -1,0 +1,11 @@
+{
+  "active_risk_tier": "LEVEL_2_SUPERVISED_AUTONOMY",
+  "write_barrier_enforced": true,
+  "default_deny_active": true,
+  "monitored_paths": [
+    { "path": "EOS-Lab/Canary-Alpha/**", "policy": "WRITE_ALLOWED_CANARY_TDD" },
+    { "path": "docs/**", "policy": "WRITE_ALLOWED_GOVERNANCE" },
+    { "path": "C:\\Users\\valen\\Documents\\Fundacion/**", "policy": "STRICT_HARD_WRITE_BLOCK" },
+    { "path": "scripts/engine/core/**", "policy": "FROZEN_CORE_KERNEL" }
+  ]
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canary Alpha — Operational Pilot Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <h1>EOS Canary Alpha</h1>
+      <span class="badge" aria-label="Environment: Canary Restricted">CANARY RESTRICTED</span>
+    </div>
+    <nav aria-label="Main Navigation">
+      <button type="button" id="btn-open-diagnostic" class="btn btn-secondary" aria-haspopup="dialog">Report Diagnostic Issue</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <section class="welcome-card" aria-labelledby="section-heading">
+      <h2 id="section-heading">Operational Verification Sandbox</h2>
+      <p>This workspace operates under <code>CANARY_RESTRICTED_SCOPE</code>. Actions are observed by the independent telemetry sink.</p>
+    </section>
+  </main>
+
+  <div id="diagnostic-mount-point"></div>
+
+  <script type="module">
+    import { DiagnosticReporter } from './components/DiagnosticReporter.js';
+    const reporter = new DiagnosticReporter();
+    const mount = document.getElementById('diagnostic-mount-point');
+    const trigger = document.getElementById('btn-open-diagnostic');
+
+    trigger.addEventListener('click', () => {
+      mount.innerHTML = reporter.renderTemplate({
+        title: 'Report Canary Alpha Issue',
+        submitLabel: 'Send Diagnostic Report'
+      });
+      const modal = document.getElementById('diagnostic-modal');
+      const closeBtn = modal.querySelector('.canary-close-btn');
+      const cancelBtn = modal.querySelector('.canary-btn-cancel');
+      
+      const closeModal = () => { mount.innerHTML = ''; trigger.focus(); };
+      closeBtn.addEventListener('click', closeModal);
+      cancelBtn.addEventListener('click', closeModal);
+    });
+  </script>
+</body>
+</html>

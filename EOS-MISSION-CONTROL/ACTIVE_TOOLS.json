@@ -1,0 +1,103 @@
+{
+  "governed_tools": [
+    {
+      "name": "view_file",
+      "category": "READ",
+      "status": "APPROVED",
+      "risk": "LOW"
+    },
+    {
+      "name": "list_dir",
+      "category": "READ",
+      "status": "APPROVED",
+      "risk": "LOW"
+    },
+    {
+      "name": "grep_search",
+      "category": "READ",
+      "status": "APPROVED",
+      "risk": "LOW"
+    },
+    {
+      "name": "search_web",
+      "category": "READ",
+      "status": "APPROVED",
+      "risk": "LOW"
+    },
+    {
+      "name": "write_to_file",
+      "category": "WRITE",
+      "status": "GOVERNED_CANARY_ONLY",
+      "risk": "MEDIUM"
+    },
+    {
+      "name": "replace_file_content",
+      "category": "WRITE",
+      "status": "GOVERNED_CANARY_ONLY",
+      "risk": "MEDIUM"
+    },
+    {
+      "name": "run_command",
+      "category": "EXECUTE",
+      "status": "GOVERNED_SANDBOX",
+      "risk": "MEDIUM"
+    }
+  ],
+  "governed_mcps": [
+    {
+      "name": "Engram",
+      "status": "CONNECTED",
+      "purpose": "PERSISTENT_MEMORY",
+      "risk": "LOW"
+    },
+    {
+      "name": "Playwright",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Automated end-to-end browser QA, DOM inspection, visual regressions, and accessibility audits.",
+      "risk": "LOW",
+      "command": "npx -y @executeautomation/playwright-mcp-server"
+    },
+    {
+      "name": "Context7",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Deep AST codebase indexing, semantic symbol search, and architectural dependency mapping.",
+      "risk": "LOW",
+      "command": "npx -y @context7/mcp-server"
+    },
+    {
+      "name": "Trello",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Kanban board task management, card movements, and workflow stage tracking.",
+      "risk": "LOW",
+      "command": "npx -y @modelcontextprotocol/server-trello"
+    },
+    {
+      "name": "Slack",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Operational notifications, deployment broadcasts, incident escalation, and human-in-the-loop alerts.",
+      "risk": "MEDIUM",
+      "command": "npx -y @modelcontextprotocol/server-slack"
+    },
+    {
+      "name": "Jira",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Enterprise issue tracking, sprint tasks synchronization, and acceptance criteria linking.",
+      "risk": "MEDIUM",
+      "command": "npx -y @atlassian/jira-mcp-server"
+    },
+    {
+      "name": "Figma",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Design system tokens extraction, component inspect, and pixel-perfect design-to-code alignment.",
+      "risk": "LOW",
+      "command": "npx -y @figma/mcp-server"
+    },
+    {
+      "name": "Stitch",
+      "status": "CONNECTED_AND_GOVERNED",
+      "purpose": "Data schema stitching, multi-source API integration, and contract synthesis.",
+      "risk": "LOW",
+      "command": "npx -y @stitch/mcp-data-server"
+    }
+  ]
+}

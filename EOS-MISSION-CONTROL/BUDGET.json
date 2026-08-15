@@ -1,0 +1,14 @@
+{
+  "currency": "USD",
+  "limits": {
+    "max_cost_usd_per_mission": 1.00,
+    "max_tokens_per_mission": 100000,
+    "max_execution_time_ms": 120000
+  },
+  "current_usage": {
+    "tokens_consumed": 45200,
+    "cost_accrued_usd": 0.32,
+    "execution_time_ms": 32100
+  },
+  "budget_status": "WITHIN_BUDGET_NORMAL"
+}

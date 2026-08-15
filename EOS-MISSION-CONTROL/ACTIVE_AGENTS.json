@@ -1,0 +1,47 @@
+{
+  "hierarchy": "ANTI_MAJORITY_EVIDENCE_FIRST",
+  "active_agents": [
+    {
+      "agent_id": "AGT-EXECUTIVE",
+      "role": "EOS_EXECUTIVE",
+      "status": "IDLE",
+      "authority": "DECISION_AND_ROUTING"
+    },
+    {
+      "agent_id": "AGT-RESEARCHER",
+      "role": "RESEARCHER",
+      "status": "STANDBY",
+      "authority": "READ_ONLY_DISCOVERY"
+    },
+    {
+      "agent_id": "AGT-ARCHITECT",
+      "role": "ARCHITECT",
+      "status": "STANDBY",
+      "authority": "SPEC_AND_DAG_DESIGN"
+    },
+    {
+      "agent_id": "AGT-IMPLEMENTER",
+      "role": "IMPLEMENTER",
+      "status": "STANDBY",
+      "authority": "CANARY_TDD_WRITE"
+    },
+    {
+      "agent_id": "AGT-TESTER",
+      "role": "TESTER",
+      "status": "STANDBY",
+      "authority": "TEST_EXECUTION"
+    },
+    {
+      "agent_id": "AGT-AUDITOR",
+      "role": "AUDITOR",
+      "status": "STANDBY",
+      "authority": "FORENSIC_INDEPENDENT_AUDIT"
+    },
+    {
+      "agent_id": "AGT-REDTEAM",
+      "role": "REDTEAM",
+      "status": "STANDBY",
+      "authority": "ADVERSARIAL_ATTACK_PROBING"
+    }
+  ]
+}

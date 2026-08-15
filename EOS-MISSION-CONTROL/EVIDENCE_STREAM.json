@@ -1,0 +1,9 @@
+{
+  "stream_version": "1.0.0",
+  "recent_evidence": [
+    { "phase": "PHASE_M", "verdict": "CROSS_PROJECT_TRANSFER_VERIFIED", "evidence": "docs/evidence/EVD-PHASE-M-CROSS-PROJECT.json" },
+    { "phase": "PHASE_N", "verdict": "LONGITUDINAL_RELIABILITY_VERIFIED", "evidence": "docs/evidence/EVD-PHASE-N-LONGITUDINAL-CHAOS.json" },
+    { "phase": "PHASE_P", "verdict": "MASTER_AUDIT_SUPPORTED_WITH_LIMITATIONS", "evidence": "docs/evidence/EVD-PHASE-P-MASTER-AUDIT.json" },
+    { "phase": "PHASE_Q", "verdict": "AUTONOMY_GRADUATION_LEVEL_2_CONFIRMED", "evidence": "docs/evidence/EVD-PHASE-Q-AUTONOMY-GRADUATION.json" }
+  ]
+}

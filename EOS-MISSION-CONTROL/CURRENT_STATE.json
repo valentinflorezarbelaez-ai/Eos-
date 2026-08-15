@@ -1,0 +1,14 @@
+{
+  "system_status": "ONLINE",
+  "operational_level": "LEVEL_2_SUPERVISED_AUTONOMY",
+  "command_interface": "CURSOR_AGENT_WORKSPACE",
+  "core_kernel": "FROZEN",
+  "target_fundacion": "FROZEN (Delta = 0)",
+  "gap_002": "UNKNOWN",
+  "gate_13": "CANARY_RESTRICTED",
+  "general_production": "CLOSED",
+  "test_health": "597 / 597 PASS",
+  "strict_checks": "471 / 471 PASS",
+  "last_telemetry_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "updated_at": "2026-08-14T23:23:00-05:00"
+}

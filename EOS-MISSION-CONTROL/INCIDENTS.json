@@ -1,0 +1,7 @@
+{
+  "open_incidents_count": 0,
+  "incidents": [],
+  "incident_history": [
+    { "incident_id": "INC-CHAOS-001", "type": "SIMULATED_CHAOS_RECOVERED", "resolved_in_ms": 24.9, "status": "CLOSED" }
+  ]
+}

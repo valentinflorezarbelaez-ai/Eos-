@@ -1,0 +1,301 @@
+/* =========================================================================
+   CANARY-REAL-001: Alexander Rodríguez Remodelaciones Design System
+   Standard: Vanilla CSS, WCAG 2.1 AA Compliant, High Performance, Mobile-First
+   ========================================================================= */
+
+:root {
+  --color-bg-main: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-bg-input: #334155;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-accent-amber: #f59e0b;
+  --color-accent-amber-hover: #d97706;
+  --color-accent-emerald: #10b981;
+  --color-accent-blue: #38bdf8;
+  --color-border: #475569;
+  --color-error: #ef4444;
+
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --transition-fast: 0.2s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  line-height: 1.6;
+  padding: 0 1rem 3rem 1rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* =========================================================================
+   1. HERO CONVERSION HEADER
+   ========================================================================= */
+.hero-section {
+  text-align: center;
+  padding: 3rem 1rem 2rem 1rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--color-accent-blue);
+  border: 1px solid var(--color-accent-blue);
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.hero-trust-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--color-accent-emerald);
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.hero-cta-wrapper {
+  margin-top: 1.5rem;
+}
+
+.btn-primary-cta {
+  display: inline-block;
+  background-color: var(--color-accent-amber);
+  color: #0f172a;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+}
+
+.btn-primary-cta:hover,
+.btn-primary-cta:focus-visible {
+  background-color: var(--color-accent-amber-hover);
+  transform: translateY(-2px);
+  outline: 3px solid var(--color-accent-blue);
+}
+
+/* =========================================================================
+   2. 3-STEP QUALIFICATION ENGINE & COTIZADOR
+   ========================================================================= */
+.cotizador-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.step-indicator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-border);
+  z-index: 1;
+}
+
+.step-badge {
+  position: relative;
+  z-index: 2;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid var(--color-border);
+}
+
+.step-badge.active {
+  background-color: var(--color-accent-amber);
+  color: #0f172a;
+  border-color: var(--color-accent-amber);
+}
+
+.step-badge.completed {
+  background-color: var(--color-accent-emerald);
+  color: #0f172a;
+  border-color: var(--color-accent-emerald);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.radio-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.radio-card {
+  background-color: var(--color-bg-input);
+  border: 2px solid transparent;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-card:hover,
+.radio-card:focus-within {
+  border-color: var(--color-accent-amber);
+}
+
+.radio-card input[type="radio"] {
+  margin-bottom: 0.5rem;
+}
+
+.input-text, select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+
+.input-text:focus, select:focus {
+  outline: 2px solid var(--color-accent-amber);
+}
+
+/* =========================================================================
+   3. LIVE ARIA FEEDBACK & ESTIMATE PANEL
+   ========================================================================= */
+.live-feedback-panel {
+  background-color: rgba(56, 189, 248, 0.1);
+  border-left: 4px solid var(--color-accent-blue);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.estimate-range-badge {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-accent-amber);
+  margin: 0.5rem 0;
+}
+
+.disclaimer-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* =========================================================================
+   4. TRUST PROOF SECTION
+   ========================================================================= */
+.trust-proof-section {
+  margin-top: 3rem;
+}
+
+.trust-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.trust-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.trust-icon {
+  font-size: 1.5rem;
+}
+
+.trust-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* =========================================================================
+   5. FOOTER
+   ========================================================================= */
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}

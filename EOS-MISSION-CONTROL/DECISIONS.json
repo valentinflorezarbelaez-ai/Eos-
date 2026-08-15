@@ -1,0 +1,19 @@
+{
+  "decisions_ledger_version": "1.0.0",
+  "recent_decisions": [
+    {
+      "decision_id": "DEC-CANARY-REAL-001-BUILD",
+      "topic": "CANARY-REAL-001 Discovery Gate: BUILD vs NO_BUILD",
+      "outcome": "BUILD_JUSTIFIED",
+      "decided_by": "EOS_EXECUTIVE_DISCOVERY_AUDIT",
+      "timestamp": "2026-08-14T23:50:00-05:00"
+    },
+    {
+      "decision_id": "DEC-GRADUATION-001",
+      "topic": "Sovereign Autonomy Graduation Level",
+      "outcome": "LEVEL_2_SUPERVISED_AUTONOMY (CANARY_RESTRICTED)",
+      "decided_by": "EOS_SOVEREIGN_GOVERNANCE_COUNCIL",
+      "timestamp": "2026-08-14T23:23:00-05:00"
+    }
+  ]
+}

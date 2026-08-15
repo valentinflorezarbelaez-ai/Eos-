@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Remodelaciones de alto valor en Rionegro, Llanogrande y Oriente Antioqueño. Cotizador interactivo en 3 pasos con presupuesto cerrado por contrato.">
+  <title>Alexander Rodríguez Remodelaciones | Rionegro y Oriente Antioqueño</title>
+  <link rel="stylesheet" href="styles/remodelaciones.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 1. HERO CONVERSION HEADER -->
+    <header class="hero-section" role="banner">
+      <div class="hero-badge">📍 Cobertura Exclusiva: Rionegro y Oriente Antioqueño</div>
+      <h1 class="hero-title">Alexander Rodríguez Remodelaciones</h1>
+      <p class="hero-tagline">Especialistas en remodelación de casas en parcelaciones, apartamentos y adecuaciones comerciales.</p>
+      <div class="hero-trust-bullets">
+        <span>✓ Presupuesto Cerrado por Contrato</span>
+        <span>✓ Cronograma Garantizado</span>
+        <span>✓ Acabados de Primera Calidad</span>
+      </div>
+      <div class="hero-cta-wrapper">
+        <a href="#cotizador" class="btn-primary-cta" id="hero-cta-btn">
+          Calcular Cotización en 3 Pasos ➔
+        </a>
+      </div>
+    </header>
+
+    <!-- 2. INTERACTIVE 3-STEP QUALIFICATION ENGINE -->
+    <main id="cotizador" class="cotizador-card" role="main" aria-labelledby="form-heading">
+      <h2 id="form-heading" class="section-title">Precalificador y Cotizador Rápido</h2>
+      
+      <nav aria-label="Progreso de Cotización" class="step-indicator">
+        <div class="step-badge active" id="badge-step-1" aria-current="step">1</div>
+        <div class="step-badge" id="badge-step-2">2</div>
+        <div class="step-badge" id="badge-step-3">3</div>
+      </nav>
+
+      <form id="qualification-form" novalidate>
+        <!-- PASO 1: TIPO DE PROYECTO -->
+        <div id="step-1-container" class="step-content">
+          <fieldset class="form-group">
+            <legend>Paso 1: ¿Qué tipo de inmueble deseas remodelar?</legend>
+            <div class="radio-cards-grid">
+              <label class="radio-card">
+                <input type="radio" name="projectType" value="CASA_PARCELACION" required>
+                <strong>Casa en Parcelación</strong>
+                <small>Llanogrande, San Antonio, etc.</small>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="projectType" value="APARTAMENTO">
+                <strong>Apartamento</strong>
+                <small>Unidad cerrada o residencial</small>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="projectType" value="OFICINA_COMERCIAL">
+                <strong>Oficina o Local</strong>
+                <small>Adecuación comercial</small>
+              </label>
+            </div>
+          </fieldset>
+          <button type="button" id="btn-next-1" class="btn-primary-cta" style="width:100%;">Continuar al Paso 2 ➔</button>
+        </div>
+
+        <!-- PASO 2: ALCANCE Y METRAJE -->
+        <div id="step-2-container" class="step-content" style="display:none;">
+          <fieldset class="form-group">
+            <legend>Paso 2: ¿Cuál es el alcance de la remodelación?</legend>
+            <div class="radio-cards-grid">
+              <label class="radio-card">
+                <input type="radio" name="scope" value="REMODELACION_INTEGRAL">
+                <strong>Remodelación Integral</strong>
+                <small>Espacio completo y acabados</small>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="scope" value="COCINA_BANOS">
+                <strong>Cocina y Baños</strong>
+                <small>Modernización de zonas húmedas</small>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="scope" value="OBRA_GRIS_BLANCA">
+                <strong>Obra Gris a Blanca</strong>
+                <small>Pisos, estuco, pintura e iluminación</small>
+              </label>
+            </div>
+          </fieldset>
+          <div style="display:flex; gap:1rem;">
+            <button type="button" id="btn-back-2" class="btn-primary-cta" style="background:#475569; width:40%;">← Volver</button>
+            <button type="button" id="btn-next-2" class="btn-primary-cta" style="width:60%;">Continuar al Paso 3 ➔</button>
+          </div>
+        </div>
+
+        <!-- PASO 3: UBICACIÓN Y CONTACTO -->
+        <div id="step-3-container" class="step-content" style="display:none;">
+          <div class="form-group">
+            <label for="location-select">Ubicación en Oriente Antioqueño:</label>
+            <select id="location-select" name="location" required>
+              <option value="">Selecciona tu municipio / sector...</option>
+              <option value="RIONEGRO_LLANOGRANDE">Rionegro (Llanogrande)</option>
+              <option value="RIONEGRO_SAN_ANTONIO">Rionegro (San Antonio de Pereira)</option>
+              <option value="RIONEGRO_CENTRO">Rionegro (Sector Centro / Urbano)</option>
+              <option value="LA_CEJA">La Ceja</option>
+              <option value="EL_CARMEN_DE_VIBORAL">El Carmen de Viboral</option>
+              <option value="MARINILLA">Marinilla</option>
+              <option value="OTRA_ZONA">Otra zona (Medellín / Fuera de Oriente)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="client-name">Tu Nombre Completo:</label>
+            <input type="text" id="client-name" name="clientName" class="input-text" placeholder="Ej: Carlos Montoya" required>
+          </div>
+
+          <div class="form-group">
+            <label for="client-phone">Teléfono / WhatsApp de Contacto:</label>
+            <input type="tel" id="client-phone" name="phone" class="input-text" placeholder="Ej: 3001234567" required>
+          </div>
+
+          <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+            <button type="button" id="btn-back-3" class="btn-primary-cta" style="background:#475569; width:40%;">← Volver</button>
+            <button type="submit" id="btn-submit" class="btn-primary-cta" style="background:var(--color-accent-emerald); width:60%;">
+              📱 Enviar por WhatsApp ➔
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- LIVE ARIA FEEDBACK & ESTIMATE PREVIEW -->
+      <div id="live-feedback" class="live-feedback-panel" role="region" aria-live="polite">
+        <strong>Estado de la solicitud:</strong>
+        <p id="feedback-text">Selecciona el tipo de inmueble para comenzar.</p>
+        <div id="estimate-display" style="display:none;">
+          <div class="estimate-range-badge" id="estimate-range-text"></div>
+          <p class="disclaimer-text">
+            * Esta es una estimación orientativa sujeta a verificación técnica en sitio. no constituye cotización final contractual ni promesa vinculante de precio.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- 3. TRUST PROOF SECTION WITH EVIDENCE GATE -->
+    <section class="trust-proof-section" aria-labelledby="trust-heading">
+      <h2 id="trust-heading" class="section-title">¿Por Qué Remodelar con Alexander Rodríguez?</h2>
+      <ul class="trust-grid">
+        <li class="trust-card">
+          <span class="trust-icon" aria-hidden="true">📍</span>
+          <span class="trust-text">Atención presencial en Rionegro, Llanogrande y Oriente Antioqueño</span>
+        </li>
+        <li class="trust-card">
+          <span class="trust-icon" aria-hidden="true">📜</span>
+          <span class="trust-text">Presupuesto cerrado por contrato sin sobrecostos sorpresa</span>
+        </li>
+        <li class="trust-card">
+          <span class="trust-icon" aria-hidden="true">📐</span>
+          <span class="trust-text">Visita técnica de diagnóstico para metraje y acabados</span>
+        </li>
+        <li class="trust-card">
+          <span class="trust-icon" aria-hidden="true">🤝</span>
+          <span class="trust-text">Trato directo con el especialista responsable de la obra</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 4. FOOTER -->
+    <footer role="contentinfo">
+      <p>© 2026 Alexander Rodríguez Remodelaciones — Rionegro, Antioquia.</p>
+      <p style="margin-top:0.25rem;">Garantía de cumplimiento y calidad técnica local.</p>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { StepQualificationEngine } from './components/StepQualificationForm.js';
+    import { WhatsAppPayloadDispatcher } from './components/WhatsAppPayloadDispatcher.js';
+    import { LiveQuoteCalculator } from './components/LiveQuoteCalculator.js';
+
+    const engine = new StepQualificationEngine();
+    const dispatcher = new WhatsAppPayloadDispatcher({ businessPhone: '573001234567' });
+    const calculator = new LiveQuoteCalculator();
+
+    const form = document.getElementById('qualification-form');
+    const step1 = document.getElementById('step-1-container');
+    const step2 = document.getElementById('step-2-container');
+    const step3 = document.getElementById('step-3-container');
+    const badge1 = document.getElementById('badge-step-1');
+    const badge2 = document.getElementById('badge-step-2');
+    const badge3 = document.getElementById('badge-step-3');
+    const feedbackText = document.getElementById('feedback-text');
+    const estimateDisplay = document.getElementById('estimate-display');
+    const estimateRangeText = document.getElementById('estimate-range-text');
+
+    // Navigation
+    document.getElementById('btn-next-1').addEventListener('click', () => {
+      const type = form.elements['projectType'].value;
+      if (!type) {
+        feedbackText.textContent = 'Por favor selecciona el tipo de inmueble.';
+        return;
+      }
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+      badge1.classList.remove('active');
+      badge1.classList.add('completed');
+      badge2.classList.add('active');
+      feedbackText.textContent = 'Paso 2: Selecciona el alcance de la obra.';
+    });
+
+    document.getElementById('btn-back-2').addEventListener('click', () => {
+      step2.style.display = 'none';
+      step1.style.display = 'block';
+      badge2.classList.remove('active');
+      badge1.classList.remove('completed');
+      badge1.classList.add('active');
+    });
+
+    document.getElementById('btn-next-2').addEventListener('click', () => {
+      const scope = form.elements['scope'].value;
+      if (!scope) {
+        feedbackText.textContent = 'Por favor selecciona el alcance de la obra.';
+        return;
+      }
+      step2.style.display = 'none';
+      step3.style.display = 'block';
+      badge2.classList.remove('active');
+      badge2.classList.add('completed');
+      badge3.classList.add('active');
+
+      const type = form.elements['projectType'].value;
+      const estimate = calculator.calculateEstimate({ projectType: type, scope });
+      if (estimate.status === 'ESTIMATE_CALCULATED') {
+        estimateDisplay.style.display = 'block';
+        estimateRangeText.textContent = `Rango Orientativo Estimado: ${estimate.formattedRangeText}`;
+      }
+      feedbackText.textContent = 'Paso 3: Ingresa tu ubicación y datos de contacto.';
+    });
+
+    document.getElementById('btn-back-3').addEventListener('click', () => {
+      step3.style.display = 'none';
+      step2.style.display = 'block';
+      badge3.classList.remove('active');
+      badge2.classList.remove('completed');
+      badge2.classList.add('active');
+    });
+
+    // Form Submission -> WhatsApp Dispatch
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const rawData = {
+        projectType: form.elements['projectType'].value,
+        scope: form.elements['scope'].value,
+        location: form.elements['location'].value,
+        clientName: form.elements['clientName'].value,
+        phone: form.elements['phone'].value
+      };
+
+      const result = engine.evaluateQualification(rawData);
+      feedbackText.textContent = result.ariaAnnouncement;
+
+      if (result.isQualified) {
+        const leadPayload = {
+          projectType: rawData.projectType === 'CASA_PARCELACION' ? 'Casa en Parcelación' : rawData.projectType,
+          scope: rawData.scope === 'REMODELACION_INTEGRAL' ? 'Remodelación Integral' : rawData.scope,
+          location: rawData.location,
+          budgetRange: estimateRangeText.textContent || 'A convenir',
+          clientName: result.sanitizedData.clientName,
+          phone: result.sanitizedData.phone
+        };
+
+        const cta = dispatcher.generateWhatsAppLink(leadPayload);
+        window.open(cta.url, '_blank');
+      }
+    });
+  </script>
+</body>
+</html>

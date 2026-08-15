@@ -1,0 +1,10 @@
+{
+  "mission_id": "CANARY-REAL-001",
+  "project_id": "PRJ-CANARY-REAL-001",
+  "command_center": "CURSOR_MISSION_CONTROL",
+  "title": "CANARY-REAL-001: High-Conversion Accessible Landing Page for Real Client",
+  "status": "COMPLETED_AND_AUDITED",
+  "current_stage": "READY_FOR_USER_TELEMETRY",
+  "active_branch": "cursor/canary-real-001",
+  "started_at": "2026-08-14T23:49:00-05:00"
+}
