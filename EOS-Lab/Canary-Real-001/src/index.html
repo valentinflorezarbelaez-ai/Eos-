@@ -172,10 +172,15 @@
     import { StepQualificationEngine } from './components/StepQualificationForm.js';
     import { WhatsAppPayloadDispatcher } from './components/WhatsAppPayloadDispatcher.js';
     import { LiveQuoteCalculator } from './components/LiveQuoteCalculator.js';
+    import { TelemetryEngine } from './components/TelemetryEngine.js';
 
     const engine = new StepQualificationEngine();
     const dispatcher = new WhatsAppPayloadDispatcher({ businessPhone: '573001234567' });
     const calculator = new LiveQuoteCalculator();
+    const telemetry = new TelemetryEngine();
+
+    // 1. Telemetry: Page View
+    telemetry.recordPageView();
 
     const form = document.getElementById('qualification-form');
     const step1 = document.getElementById('step-1-container');
@@ -195,6 +200,9 @@
         feedbackText.textContent = 'Por favor selecciona el tipo de inmueble.';
         return;
       }
+      telemetry.recordQualificationStarted(type);
+      telemetry.recordStepCompleted(1, { projectType: type });
+
       step1.style.display = 'none';
       step2.style.display = 'block';
       badge1.classList.remove('active');
@@ -204,6 +212,7 @@
     });
 
     document.getElementById('btn-back-2').addEventListener('click', () => {
+      telemetry.recordStepAbandoned(2, 'USER_NAVIGATED_BACK_TO_STEP_1');
       step2.style.display = 'none';
       step1.style.display = 'block';
       badge2.classList.remove('active');
@@ -217,22 +226,28 @@
         feedbackText.textContent = 'Por favor selecciona el alcance de la obra.';
         return;
       }
+      const type = form.elements['projectType'].value;
+      const estimate = calculator.calculateEstimate({ projectType: type, scope });
+
+      telemetry.recordStepCompleted(2, { scope });
+      if (estimate.status === 'ESTIMATE_CALCULATED') {
+        estimateDisplay.style.display = 'block';
+        estimateRangeText.textContent = `Rango Orientativo Estimado: ${estimate.formattedRangeText}`;
+        telemetry.recordEstimateViewed(type, scope, estimate.formattedRangeText);
+        telemetry.recordEstimateDisclaimerViewed();
+      }
+
       step2.style.display = 'none';
       step3.style.display = 'block';
       badge2.classList.remove('active');
       badge2.classList.add('completed');
       badge3.classList.add('active');
 
-      const type = form.elements['projectType'].value;
-      const estimate = calculator.calculateEstimate({ projectType: type, scope });
-      if (estimate.status === 'ESTIMATE_CALCULATED') {
-        estimateDisplay.style.display = 'block';
-        estimateRangeText.textContent = `Rango Orientativo Estimado: ${estimate.formattedRangeText}`;
-      }
       feedbackText.textContent = 'Paso 3: Ingresa tu ubicación y datos de contacto.';
     });
 
     document.getElementById('btn-back-3').addEventListener('click', () => {
+      telemetry.recordStepAbandoned(3, 'USER_NAVIGATED_BACK_TO_STEP_2');
       step3.style.display = 'none';
       step2.style.display = 'block';
       badge3.classList.remove('active');
@@ -254,7 +269,20 @@
       const result = engine.evaluateQualification(rawData);
       feedbackText.textContent = result.ariaAnnouncement;
 
+      if (!result.isQualified && result.coverageStatus === 'OUT_OF_COVERAGE') {
+        telemetry.recordOutOfCoverage(rawData.location);
+      }
+
       if (result.isQualified) {
+        telemetry.recordStepCompleted(3, { location: rawData.location });
+        telemetry.recordQualifiedLeadCreated({
+          projectType: rawData.projectType,
+          scope: rawData.scope,
+          location: rawData.location,
+          clientName: result.sanitizedData.clientName,
+          phone: result.sanitizedData.phone
+        });
+
         const leadPayload = {
           projectType: rawData.projectType === 'CASA_PARCELACION' ? 'Casa en Parcelación' : rawData.projectType,
           scope: rawData.scope === 'REMODELACION_INTEGRAL' ? 'Remodelación Integral' : rawData.scope,
@@ -263,6 +291,15 @@
           clientName: result.sanitizedData.clientName,
           phone: result.sanitizedData.phone
         };
+
+        telemetry.recordWhatsAppCtaClicked({
+          projectType: leadPayload.projectType,
+          scope: leadPayload.scope,
+          location: leadPayload.location,
+          budgetRange: leadPayload.budgetRange,
+          clientName: result.sanitizedData.clientName,
+          phone: result.sanitizedData.phone
+        });
 
         const cta = dispatcher.generateWhatsAppLink(leadPayload);
         window.open(cta.url, '_blank');
