@@ -1,0 +1,55 @@
+{
+  "mission_id": "CANARY-F001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-F001-001",
+      "name": "Research & Ecosystem Benchmark (BKM vs Third-Party CSV Parsers)",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-F001-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-F001-002",
+      "name": "Negative Transfer & Contextual Guard Boundary Modeling (NEG-TRANS-001)",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-F001-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-F001-003",
+      "name": "TDD Suite Construction (tests/csv-tabular-data-uploader.test.js)",
+      "stage": "TDD_TEST_AUTHORING",
+      "dependencies": ["TSK-F001-001", "TSK-F001-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-F001-004",
+      "name": "Implement CsvTabularDataUploader Component",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-F001-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-F001-005",
+      "name": "Execute Predictive Transfer Harness & Empirical Cohort Trials (N=30)",
+      "stage": "VERIFICATION_AND_PREDICTION_CALIBRATION",
+      "dependencies": ["TSK-F001-004"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-F001-006",
+      "name": "Compute Prediction Calibration, Learning Gain (LPG), and Audit Report",
+      "stage": "AUDIT_AND_KNOWLEDGE_UPDATE",
+      "dependencies": ["TSK-F001-005"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

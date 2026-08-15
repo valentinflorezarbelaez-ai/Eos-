@@ -1,0 +1,33 @@
+{
+  "mission_id": "CANARY-L001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Phase L: Adaptive Strategy Execution & Blind Generalization Battery",
+  "type": "BLIND_STRATEGY_GENERALIZATION_AND_REGRET_EVALUATION",
+  "evaluated_policy": "COMPOSITION_POLICY_GRAPH",
+  "unseen_cohort": "COHORT-CANARY-G7 (N=60 independent automated & human trials across 6 out-of-sample domains)",
+  "goal": "Blindly evaluate EOS strategy selection policy across unseen, out-of-sample domain partitions, measure Policy Regret vs Oracle, verify risk-sensitive lexicographic gates, and test abstention precision without gold answer leakage.",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 65000,
+    "timeBudgetMs": 50000,
+    "costBudgetUsd": 0.50,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_L001/**",
+      "docs/audits/PHASE_L_*.md",
+      "docs/evidence/EVD-PHASE-L-*.json",
+      "docs/governance/BLIND_GENERALIZATION_REGISTER.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "mission_id": "CANARY-N001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-N001-001",
+      "name": "Pre-Registration & Chaos Matrix Freezing",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": null,
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-N001-002",
+      "name": "Build Longitudinal Chaos & Resilience Engine",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-N001-001"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-N001-003",
+      "name": "Execute 12-Session Longitudinal Sequence (N-W01 to N-W12)",
+      "stage": "VERIFICATION_AND_EXPERIMENTATION",
+      "dependencies": ["TSK-N001-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-N001-004",
+      "name": "Execute Multi-Stage Cascading Chain Chaos (Tool -> Replan -> Fail -> Recover)",
+      "stage": "VERIFICATION_AND_EXPERIMENTATION",
+      "dependencies": ["TSK-N001-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-N001-005",
+      "name": "Independent Review & Chaos/Drift/Recovery Ledgers Recording",
+      "stage": "INDEPENDENT_REVIEW_AND_KNOWLEDGE_PORTFOLIO",
+      "dependencies": ["TSK-N001-004"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

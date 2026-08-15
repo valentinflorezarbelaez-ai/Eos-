@@ -1,0 +1,23 @@
+{
+  "matrix_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:11:00-05:00",
+  "failure_families": [
+    { "id": "F-01-TOOL-TIMEOUT", "family": "TOOL", "event": "Tool execution timeout exceeded (>10s)", "expected_action": "CONTAIN_AND_FALLBACK" },
+    { "id": "F-02-TOOL-DISAPPEAR", "family": "TOOL", "event": "Tool binary/script unavailable (ENOENT)", "expected_action": "REPLAN_WITH_DISCOVERY" },
+    { "id": "F-03-MCP-SCHEMA-BREAK", "family": "MCP", "event": "Breaking change in MCP argument schema", "expected_action": "ADAPT_SCHEMA_OR_DOWNGRADE" },
+    { "id": "F-04-MCP-CAPABILITY-REMOVED", "family": "MCP", "event": "MCP capability explicitly revoked/removed", "expected_action": "REPLAN_WITHOUT_CAPABILITY" },
+    { "id": "F-05-MODEL-DEGRADATION", "family": "MODEL", "event": "Provider latency surge / token rate limit", "expected_action": "RETRY_WITH_EXPONENTIAL_BACKOFF" },
+    { "id": "F-06-MODEL-MALFORMED-OUTPUT", "family": "MODEL", "event": "JSON syntax corruption in planner response", "expected_action": "JSON_REPAIR_OR_ABORT" },
+    { "id": "F-07-NETWORK-LATENCY", "family": "NETWORK", "event": "Simulated 500ms network latency spike", "expected_action": "DEBOUNCE_AND_ASYNC_QUEUE" },
+    { "id": "F-08-NETWORK-INTERMITTENT-LOSS", "family": "NETWORK", "event": "Intermittent socket drops (50% drop rate)", "expected_action": "OFFLINE_LOCAL_FIRST_SINK" },
+    { "id": "F-09-BUDGET-TOKEN-EXHAUSTION", "family": "BUDGET", "event": "Session token threshold exceeded", "expected_action": "HARD_STOP_PRESERVE_EVIDENCE" },
+    { "id": "F-10-BUDGET-COST-EXHAUSTION", "family": "BUDGET", "event": "Mission cost cap exceeded ($0.50)", "expected_action": "HARD_STOP_PRESERVE_EVIDENCE" },
+    { "id": "F-11-RUNTIME-CRASH", "family": "RUNTIME", "event": "Uncaught worker process exception", "expected_action": "SANDBOX_ISOLATION_AND_ROLLBACK" },
+    { "id": "F-12-DATA-MALFORMED-PAYLOAD", "family": "DATA", "event": "Corrupted non-JSON stream input", "expected_action": "INPUT_BOUNDARY_REJECTION" },
+    { "id": "F-13-MEMORY-STALE-BKM", "family": "MEMORY", "event": "BKM validation TTL expired (>90 days)", "expected_action": "TRIGGER_REVALIDATION_REQUIRED" },
+    { "id": "F-14-MEMORY-CONTRADICTORY-EVIDENCE", "family": "MEMORY", "event": "Conflicting observation injected into graph", "expected_action": "FLAG_CONTRADICTION_AND_RESEARCH" },
+    { "id": "F-15-POLICY-PERMISSION-REVOKED", "family": "POLICY", "event": "PO revokes execution grant mid-flight", "expected_action": "FREEZE_SNAPSHOT_AND_HALT" },
+    { "id": "F-16-SECURITY-MALICIOUS-TOOL-OUTPUT", "family": "SECURITY", "event": "Discovered tool returns malicious shell payload", "expected_action": "HARD_BLOCK_WRITE_BARRIER" },
+    { "id": "F-17-CASCADE-CHAIN", "family": "CASCADE", "event": "Tool Failure -> Replan -> Secondary Failure -> Hard Stop -> Recovery", "expected_action": "MULTI_STAGE_CASCADE_DETERMINISTIC_RECOVERY" }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "model_version": "1.0.0",
+  "governance_classification": "KNOWLEDGE_LIFECYCLE_POLICY",
+  "lifecycle_states": [
+    "CANDIDATE_OBSERVATION",
+    "REPLICATING (1/3, 2/3)",
+    "RESTRICTED_BKM",
+    "CONTEXTUAL_PORTFOLIO_BKM",
+    "REVALIDATION_REQUIRED",
+    "DEPRECATED_OR_SUPERSEDED",
+    "REFUTED"
+  ],
+  "drift_and_expiration_rules": {
+    "default_ttl_days": 90,
+    "max_allowed_rejections": 5,
+    "revalidation_triggers": [
+      "EXPIRATION_TTL_EXCEEDED (Time since last validation > 90 days)",
+      "TOOL_DRIFT_DETECTED (Underlying tool, runtime, or browser standard shifted)",
+      "REJECTION_THRESHOLD_EXCEEDED (More than 5 negative transfer or failure reports)",
+      "SECURITY_VULNERABILITY_DISCLOSED (New attack vector bypasses existing sanitization)",
+      "PERFORMANCE_REGRESSION (Measured latency/memory degrades > 25% over baseline)"
+    ]
+  },
+  "governance_invariants": {
+    "core_kernel_protection": "BKMs reside exclusively in Contextual Knowledge Portfolio; Core Control Plane remains FROZEN.",
+    "custody_protection": "PRJ-FUNDACION physical write barrier remains STRICTLY FROZEN (Delta = 0)."
+  }
+}

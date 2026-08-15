@@ -1,0 +1,37 @@
+{
+  "matrix_version": "1.0.0",
+  "updated_at": "2026-08-14T22:48:00-05:00",
+  "evaluated_knowledge_units": [
+    {
+      "id": "BKM-CANARY-001",
+      "type": "RESTRICTED_BKM",
+      "title": "Deterministic Edge-Level Input Sanitization"
+    },
+    {
+      "id": "OBS-CANARY-002",
+      "type": "CANDIDATE_BKM_FOR_COMPOSITION",
+      "title": "Real-Time Accessible Live Region & Dynamic Cognitive Feedback"
+    },
+    {
+      "id": "NEG-BKM-001",
+      "type": "NEGATIVE_BKM",
+      "title": "DOM Edge Regex Sanitization on Streaming Binary Protocols"
+    }
+  ],
+  "compatibility_pairs": [
+    {
+      "pair": ["BKM-CANARY-001", "OBS-CANARY-002"],
+      "relationship": "COMPATIBLE",
+      "interaction_mode": "AMPLIFIES",
+      "policy": "AUTHORIZED_FOR_SHADOW_COMPOSITION",
+      "justification": "Edge sanitization masks confidential data while dynamic accessible live regions reduce operator hesitation. The two operate on complementary layers of the input lifecycle without data schema collisions."
+    },
+    {
+      "pair": ["BKM-CANARY-001", "NEG-BKM-001"],
+      "relationship": "CONFLICTING",
+      "interaction_mode": "DEGRADES_AND_CRASHES",
+      "policy": "DO_NOT_COMPOSE",
+      "justification": "NEG-BKM-001 prohibits DOM regex parsing on streaming binary protocols. Combining these causes 400% latency bloat and thread starvation."
+    }
+  ]
+}

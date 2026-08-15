@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../docs/intelligence/user/schema.json",
+  "project_id": "PRJ-FUNDACION",
+  "gap_id": "GAP-002",
+  "artifact_type": "OFFICIAL_INSTITUTIONAL_DATA_INTAKE",
+  "status": "PENDING_PO_VALIDATION",
+  "updated_at": "2026-08-14T21:22:00Z",
+  "governance_rule": "UNKNOWN remains UNKNOWN until official source and PO validation are recorded with verified provenance",
+  "source": {
+    "type": "PENDING_OFFICIAL_SUBMISSION",
+    "reference": "Awaiting official institutional documentation from Product Owner",
+    "validated_by": null,
+    "validated_at": null,
+    "provenance_hash": null
+  },
+  "fields": {
+    "legal_name": "UNKNOWN",
+    "nit": "UNKNOWN",
+    "legal_entity_status": "UNKNOWN",
+    "address": "UNKNOWN",
+    "email": "UNKNOWN",
+    "phone": "UNKNOWN",
+    "bank_name": "UNKNOWN",
+    "account_type": "UNKNOWN",
+    "account_number": "UNKNOWN",
+    "data_treatment_policy_url": "UNKNOWN"
+  },
+  "validation_trail": []
+}

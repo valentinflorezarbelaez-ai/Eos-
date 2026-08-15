@@ -1,0 +1,54 @@
+{
+  "graph_version": "1.0.0",
+  "updated_at": "2026-08-14T23:02:00-05:00",
+  "policy_nodes": [
+    {
+      "node_id": "BKM-CANARY-001",
+      "knowledge_type": "ATOMIC_BKM",
+      "title": "Deterministic Edge-Level Input Sanitization",
+      "edges": [
+        { "type": "COMPATIBLE_WITH", "target": "OBS-CANARY-002" },
+        { "type": "ORDER_DEPENDENT", "target": "OBS-CANARY-002", "preferred_order": "A_THEN_B", "prohibited_order": "B_THEN_A" },
+        { "type": "DO_NOT_COMBINE_WITH", "target": "NEG-BKM-001" },
+        { "type": "VALIDATED_BY", "targets": ["CANARY-M001", "CANARY-M002", "CANARY-M003", "CANARY-F001", "CANARY-I001", "CANARY-J001"] }
+      ]
+    },
+    {
+      "node_id": "OBS-CANARY-002",
+      "knowledge_type": "CANDIDATE_BKM",
+      "title": "Real-Time Accessible Live Region & Dynamic Guidance",
+      "edges": [
+        { "type": "COMPATIBLE_WITH", "target": "BKM-CANARY-001" },
+        { "type": "ORDER_DEPENDENT", "target": "BKM-CANARY-001", "preferred_order": "B_AFTER_A" }
+      ]
+    },
+    {
+      "node_id": "NEG-BKM-001",
+      "knowledge_type": "NEGATIVE_BKM",
+      "title": "DOM Edge Regex Sanitization on Streaming Binary Protocols",
+      "edges": [
+        { "type": "CONFLICTS_WITH", "targets": ["BKM-CANARY-001", "BKM-COMPOSITION-CANARY-001"] },
+        { "type": "EMITS_POLICY", "policy": "DO_NOT_COMPOSE" }
+      ]
+    },
+    {
+      "node_id": "BKM-COMPOSITION-CANARY-001",
+      "knowledge_type": "COMPOSITE_VALIDATED_BKM",
+      "title": "Composite Edge Sanitization with Accessible Live Guidance",
+      "order": "A_FIRST_THEN_B",
+      "edges": [
+        { "type": "DERIVED_FROM", "targets": ["BKM-CANARY-001", "OBS-CANARY-002"] },
+        { "type": "VALIDATED_BY", "targets": ["CANARY-I001", "CANARY-J001"] }
+      ]
+    }
+  ],
+  "decision_taxonomy": [
+    "A_ONLY",
+    "B_ONLY",
+    "A_THEN_B",
+    "B_THEN_A (Prohibited / Degrades)",
+    "COMPOSE_WITH_CONSTRAINTS",
+    "DO_NOT_COMPOSE",
+    "RESEARCH_FIRST"
+  ]
+}

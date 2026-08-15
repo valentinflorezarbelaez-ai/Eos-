@@ -1,0 +1,61 @@
+{
+  "mission_id": "CANARY-M001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Accessible Resilient In-App Diagnostic & Feedback Reporter",
+  "user": "Canary Alpha Pilot Operators & End Users",
+  "goal": "Provide an accessible, client-side sanitized diagnostic feedback collector that captures reproducible system telemetry during errors without exposing credentials or requiring manual stack trace debugging.",
+  "jtbd": "When an error or UX friction occurs in the Canary web app, users need a 1-click accessible diagnostic reporting mechanism that automatically bundles environment context safely, so engineers can reproduce issues immediately without back-and-forth friction.",
+  "baseline": {
+    "task_completion_rate": 0.58,
+    "time_on_task_seconds": 142.0,
+    "friction_score_1_to_10": 7.4,
+    "user_trust_score_1_to_10": 5.2,
+    "error_rate": 0.42,
+    "support_escalation_rate": 0.85
+  },
+  "success_metrics": {
+    "task_completion_rate_target": 0.90,
+    "time_on_task_target_seconds": 45.0,
+    "friction_score_target_max": 2.5,
+    "user_trust_score_target_min": 8.5,
+    "a11y_wcag_compliance": "WCAG_2.1_AA_100_PCT",
+    "security_sanitization": "ZERO_PLAINTEXT_SECRETS",
+    "bundle_size_kb_max": 25.0
+  },
+  "failure_metrics": {
+    "unhandled_exceptions_max": 0,
+    "secret_leakage_max": 0,
+    "a11y_violations_max": 0,
+    "rollback_latency_ms_max": 50
+  },
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 40000,
+    "timeBudgetMs": 25000,
+    "costBudgetUsd": 0.25,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_M001/**",
+      "docs/specs/canary/**",
+      "docs/audits/CANARY_MISSION_001_REPORT.md",
+      "docs/evidence/EVD-CANARY-M001-EVIDENCE.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  },
+  "rollback_plan": {
+    "type": "GIT_BRANCH_AND_DIR_SNAPSHOT",
+    "pre_execution_snapshot_captured": true,
+    "reversal_trigger": "AUTOMATED_ON_TEST_OR_AUDIT_FAILURE",
+    "verification_post_rollback": "PRE_MUTATION_EQUIVALENCE"
+  }
+}

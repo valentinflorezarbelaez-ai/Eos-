@@ -1,0 +1,41 @@
+{
+  "mission_id": "CANARY-M003",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Replication #3: Deeply Nested Configuration & Raw Data Payload Importer",
+  "type": "REPLICATION_EXPERIMENT_AND_TRIANGULATION",
+  "replicated_candidate_bkm": "OBS-CANARY-001",
+  "user_cohort": "COHORT-CANARY-C3 (N=25 independent operators, zero overlap with A1 or B2)",
+  "goal": "Test whether deterministic, edge-level input sanitization and friction reduction generalize to complex, deeply nested JSON/raw data payload imports with high input variability and non-standard encodings, or whether deep nesting and obfuscation represent a boundary condition that falsifies the BKM.",
+  "jtbd": "When an operator imports an external configuration or batch payload into Canary Alpha, they need an accessible client-side validator and sanitization importer that parses, formats, and safely neutralizes hidden secrets, tokens, and malicious payloads at arbitrary nesting depths, so configurations can be safely applied without freezing the browser or leaking private keys.",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 50000,
+    "timeBudgetMs": 35000,
+    "costBudgetUsd": 0.35,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_M003/**",
+      "docs/specs/canary/SPEC-0003-*.md",
+      "docs/audits/CANARY_M003_*.md",
+      "docs/evidence/EVD-CANARY-M003-*.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  },
+  "falsification_conditions": [
+    "Security regression (any unmasked Base64-encoded token, nested JWT, API key, or credential leaks into imported config payload)",
+    "Denial of service / crash on circular references or deep nesting (> 10 levels)",
+    "Significant performance bloat (> 35 KB total footprint or > 15ms parse/sanitize latency)",
+    "Severe UX breakdown (task completion drops below 85.0% or time-on-task > 60s)",
+    "Adversarial novel attack vector bypasses sanitization (Base64 injection, prototype getter manipulation, null-byte delimiter)"
+  ]
+}

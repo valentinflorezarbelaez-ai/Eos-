@@ -1,6 +1,6 @@
 [
   {
-    "claim": "Fundacion path contains 0 items",
+    "claim": "fundacion path observed safely via fs.readdirSync",
     "source": "fs.readdirSync",
     "independenceLevel": "I2_LOCAL_CORROBORATION",
     "status": "VERIFIED"

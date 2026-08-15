@@ -1,0 +1,60 @@
+{
+  "mission_id": "CANARY-M003",
+  "ranking_date": "2026-08-14T22:37:00-05:00",
+  "dimensions": [
+    "capability_fit",
+    "correctness",
+    "security",
+    "reliability",
+    "performance",
+    "latency",
+    "cost",
+    "maintainability",
+    "evidence_quality",
+    "ecosystem_health",
+    "reversibility",
+    "user_value"
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "name": "Vanilla_Recursive_WeakSet_Sanitizer",
+      "scores": {
+        "capability_fit": 0.99,
+        "correctness": 0.99,
+        "security": 1.00,
+        "reliability": 0.99,
+        "performance": 1.00,
+        "latency": 0.99,
+        "cost": 1.00,
+        "maintainability": 0.96,
+        "evidence_quality": 0.99,
+        "ecosystem_health": 1.00,
+        "reversibility": 1.00,
+        "user_value": 0.97
+      },
+      "composite_score": 0.990,
+      "verdict": "SELECTED"
+    },
+    {
+      "rank": 2,
+      "name": "Bundled_Third_Party_AST_Parser",
+      "scores": {
+        "capability_fit": 0.65,
+        "correctness": 0.75,
+        "security": 0.60,
+        "reliability": 0.80,
+        "performance": 0.45,
+        "latency": 0.50,
+        "cost": 0.40,
+        "maintainability": 0.65,
+        "evidence_quality": 0.70,
+        "ecosystem_health": 0.80,
+        "reversibility": 0.50,
+        "user_value": 0.65
+      },
+      "composite_score": 0.621,
+      "verdict": "REJECTED_BUNDLE_BLOAT_AND_MEMORY_OVERHEAD"
+    }
+  ]
+}

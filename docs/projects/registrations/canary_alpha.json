@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema.json",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "name": "EOS Canary Alpha Project",
+  "description": "Authorized isolated production-like operational sandbox for PRR-001 / AG-001 graduated canary verification.",
+  "path": "C:\\Users\\valen\\Documents\\Eos system\\EOS-Lab\\Canary-Alpha",
+  "repository": "local",
+  "branch": "main",
+  "project_type": "WEB_APP",
+  "lifecycle_status": "VALIDATION",
+  "technical_status": "VERIFIED",
+  "business_status": "CANARY_RESTRICTED_SCOPE_AUTHORIZED",
+  "stack": ["Node.js", "JavaScript", "HTML5", "REST API"],
+  "documentation": [
+    "docs/projects/registrations/canary_alpha.json",
+    "docs/governance/EOS_MASTER_COMPLETION_PROGRAM.md",
+    "docs/audits/EOS_AUTONOMY_GRADUATION_AUDIT.md"
+  ],
+  "constraints": [
+    "Strict Canary-Scope Isolation",
+    "Emergency Kill-Switch Latency < 50ms Active",
+    "Zero Target Mutations to PRJ-FUNDACION (Δ=0)",
+    "Token / Cost / Time / Retry / Agent Budgets Enforced"
+  ],
+  "risks": [
+    "Tool drift under continuous multi-step operation",
+    "Cost overrun on unbounded replanning loops"
+  ],
+  "assumptions": [
+    "Canary missions operate strictly within authorized PRJ-CANARY-ALPHA boundaries"
+  ],
+  "owner": "EOS Product Engineering Autonomy / Product Owner",
+  "intake_status": "COMPLETE",
+  "specification_status": "APPROVED",
+  "implementation_status": "IN_PROGRESS",
+  "validation_status": "IN_PROGRESS",
+  "release_status": "STAGING",
+  "autonomy_level": "AUTONOMOUS",
+  "created_at": "2026-08-14T21:58:00Z",
+  "updated_at": "2026-08-14T21:58:00Z"
+}

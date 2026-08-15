@@ -1,37 +1,63 @@
 # IMPLEMENTATION AUTHORIZATION RECORD — FUNDACIÓN (PRJ-FUNDACION)
 
 * **Project ID:** `PRJ-FUNDACION`
-* **Authorization Status:** `AUTHORIZED — LEVEL 2 (CONTROLLED IMPLEMENTATION)`
-* **Production Release Status:** `NOT AUTHORIZED (LEVEL 4 NOT GRANTED)`
-* **Date:** 2026-08-10
-* **Author:** EOS Governance Engineer
+* **Authorization Status:** `AUTHORIZED — LEVEL 2 (CONTROLLED FIRST WRITE IMPLEMENTATION)`
+* **Approved DAG:** `DAG-FUNDACION-LEVEL2-MINIMUM-SCAFFOLDING-V2`
+* **Decision Gate 005 (Git):** `LOCAL_GIT_ONLY` (Approved)
+* **Decision Gate 003 (Donations):** `OPTION_A_STATIC_BANK_INFO` (Approved)
+* **Production Release Status:** `DENIED (GATE-13 / LEVEL 4 NOT GRANTED)`
+* **Date:** 2026-08-14
+* **Author:** Product Owner & EOS Systems Architect
 
 ---
 
-## 1. Authorized Execution Scope (`LEVEL 1 & LEVEL 2`)
+## 1. Authorized Execution Scope (`LEVEL 2 — TRIPARTITE SCOPE MODEL`)
 
-The Implementation Agent is authorized to perform the following actions inside `C:\Users\valen\Documents\Fundacion`:
+The EOS Autonomous System is authorized to operate strictly under the following **Tripartite Scope Model**:
 
-1. **Local Repository Initialization:** Execute `git init` and create baseline `.gitignore` and `.editorconfig`.
-2. **Project Workspace Scaffolding:** Create `package.json` with local dev server tooling (`vite` or lightweight HTTP server), linters, and verification scripts.
-3. **Application Component Scaffolding:** Implement HTML5 semantic page structure (`index.html`), CSS styling system (`src/styles/`), and interactive JavaScript handlers (`src/js/`) fulfilling `SPEC-0001-fundacion-core.md`.
-4. **Development Placeholders:** Use explicit tokens (`[PLACEHOLDER - Fundación Logo]`, `[PLACEHOLDER - Official Copy]`) for unverified client text and brand assets.
+### A. Authorized Files (`authorized_files`)
+- `.gitignore` (TASK-001)
+- `.editorconfig` (TASK-001)
+- `package.json` (TASK-002)
+- `index.html` (TASK-003)
+- `src/styles/main.css` (TASK-004)
+- `src/config/legal.json` (TASK-005)
+- `src/js/main.js` (TASK-006)
+- `deployment.manifest.json` (TASK-007)
+
+### B. Authorized Metadata Directories (`authorized_metadata_dirs`)
+- `.git/` (TASK-001 — internal local version control metadata only; remote operations strictly forbidden)
+
+### C. Authorized Container Directories (`authorized_container_dirs`)
+- `src/`
+- `src/styles/`
+- `src/config/`
+- `src/js/`
+
+> **INVARIANT RULE:** An `authorized_container_dir` is permitted exclusively as a structural parent to contain authorized files. It **DOES NOT** grant authority to create, modify, or host arbitrary files within it.
 
 ---
 
 ## 2. Forbidden Execution Scope
 
-The Implementation Agent is strictly forbidden from:
+The EOS System is strictly forbidden from:
 
-1. Inventing legal organizational details, NIT/Tax IDs, official physical addresses, or legal claims (`GAP-002`).
-2. Integrating real payment gateway APIs or processing real credit card transactions without Level 3 approval (`GAP-003`).
-3. Deploying code to public production domains or cloud infrastructure without Level 4 release readiness certification (`GAP-004`).
-4. Committing hardcoded credentials, secret keys, or private environment files.
+1. Writing any file outside the explicit `authorized_files` list.
+2. Creating any directory outside the explicit `authorized_metadata_dirs` and `authorized_container_dirs` lists.
+3. Creating remote Git repositories, connecting to GitHub/GitLab, using SSH keys, or pushing code to remote servers (`GAP-005`).
+4. Inventing legal organizational details, NIT/Tax IDs, physical addresses, or legal claims (`GAP-002`).
+5. Integrating payment gateway APIs (Stripe, Wompi, PayPal) or handling financial credentials (`GAP-003`).
+6. Executing cloud deployments, touching DNS, or releasing to production (`GAP-004`).
 
 ---
 
-## 3. Mandatory Safety & Quality Constraints
+## 3. Mandatory Target Mutation Audit Rules
 
-- **Accessibility:** 100% WCAG AA compliance (semantic tags, keyboard focus rings, color contrast >= 4.5:1).
-- **Performance:** Local Lighthouse / Core Web Vitals targets: LCP < 2.5s, CLS < 0.1, INP < 200ms.
-- **Traceability:** All commits in target repository must use Conventional Commits referencing `SPEC-0001`.
+To certify Level 2 implementation success, TASK-008 must verify:
+
+- Every created/modified file $\in$ approved DAG `target_files` OR `authorized_metadata_dirs` (`.git/`).
+- Every modification is attributable to an authorized task.
+- No unexpected file creation outside declared scope.
+- No unauthorized dependency installed.
+- No secret, API key, or private key introduced.
+- No file outside declared write scope modified.

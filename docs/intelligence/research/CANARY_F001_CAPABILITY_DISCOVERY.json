@@ -1,0 +1,42 @@
+{
+  "mission_id": "CANARY-F001",
+  "evaluated_at": "2026-08-14T22:43:10-05:00",
+  "capability_requirements": [
+    {
+      "capability_id": "CAP-STREAMING-CSV-PARSER",
+      "description": "Lightweight, RFC-4180 compliant CSV parser with quoted string and multi-line cell support",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-COLUMN-PII-FORMULA-SANITIZER",
+      "description": "Deterministic column-by-column sanitization masking PANs, SSNs, and escaping formula injection prefixes (=, @, +, -)",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-ACCESSIBLE-DATA-PREVIEW-UI",
+      "description": "Accessible preview grid showing sanitized rows, column headers, and live error banners",
+      "required": true
+    }
+  ],
+  "candidate_options": [
+    {
+      "name": "Bundled PapaParse + External SheetJS Parser",
+      "pros": ["Full spreadsheet format support (.xlsx, .ods)"],
+      "cons": ["Bundle size > 140 KB", "Vulnerable to prototype pollution and CVEs in legacy SheetJS versions", "High memory allocation on client thread"],
+      "fit_score": 0.52
+    },
+    {
+      "name": "Custom BKM-Informed Vanilla Streaming CSV Sanitizer",
+      "pros": ["Zero external dependencies", "< 15 KB bundle", "Direct edge sanitization for PII & CSV formula injection", "Fast sub-15ms parsing for 1,000 rows"],
+      "cons": ["Limited to delimiter-separated text (CSV, TSV, pipe)"],
+      "fit_score": 0.98
+    }
+  ],
+  "negative_transfer_evaluation": {
+    "target_domain": "Streaming Binary & WebSocket Telemetry",
+    "bkm_applicability": "DO_NOT_TRANSFER",
+    "justification": "BKM-CANARY-001 relies on character-by-character regex sanitization at the DOM input boundary. Applying this to high-concurrency binary stream buffers causes 400% throughput degradation. Binary streaming requires zero-copy framing, not DOM regex filters."
+  },
+  "selected_approach": "Custom BKM-Informed Vanilla Streaming CSV Sanitizer",
+  "justification": "Extends BKM-CANARY-001 into tabular CSV data with formula injection defense and zero bundle bloat."
+}

@@ -1,0 +1,113 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "dag_id": "DAG-L3-FUNDACION-PILOT-001",
+  "project_id": "PRJ-FUNDACION",
+  "governance_mode": "PROPOSAL_AWAITING_PO_AUTHORIZATION",
+  "execution_mode": "LEVEL_3_CONTROLLED_REAL_PILOT",
+  "target_path": "C:\\Users\\valen\\Documents\\Fundacion",
+  "tasks": [
+    {
+      "id": "TASK-L3-FND-001",
+      "name": "JS Modularization",
+      "action": "CREATE",
+      "target_files": [
+        "src/js/modules/dom.js",
+        "src/js/modules/theme.js",
+        "src/js/modules/clipboard.js"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "TASK-L3-FND-002",
+      "name": "Main Orchestrator Refactor",
+      "action": "MODIFY",
+      "target_files": [
+        "src/js/main.js"
+      ],
+      "dependencies": [
+        "TASK-L3-FND-001"
+      ]
+    },
+    {
+      "id": "TASK-L3-FND-003",
+      "name": "Local Hermetic Unit Test Scaffolding",
+      "action": "CREATE",
+      "target_files": [
+        "tests/unit/dom.test.js"
+      ],
+      "dependencies": [
+        "TASK-L3-FND-002"
+      ]
+    },
+    {
+      "id": "TASK-L3-FND-004",
+      "name": "Package Script Enhancement",
+      "action": "MODIFY",
+      "target_files": [
+        "package.json"
+      ],
+      "dependencies": [
+        "TASK-L3-FND-003"
+      ]
+    },
+    {
+      "id": "TASK-L3-FND-005",
+      "name": "Deployment Manifest Metadata Update",
+      "action": "MODIFY",
+      "target_files": [
+        "deployment.manifest.json"
+      ],
+      "dependencies": [
+        "TASK-L3-FND-004"
+      ]
+    },
+    {
+      "id": "TASK-L3-FND-006",
+      "name": "Local Test Execution & Verification",
+      "action": "EXECUTE",
+      "command": "npm test",
+      "dependencies": [
+        "TASK-L3-FND-005"
+      ]
+    }
+  ],
+  "tripartite_scope": {
+    "authorized_files": [
+      ".gitignore",
+      ".editorconfig",
+      "package.json",
+      "index.html",
+      "deployment.manifest.json",
+      "src/styles/main.css",
+      "src/config/legal.json",
+      "src/js/main.js",
+      "src/js/modules/dom.js",
+      "src/js/modules/theme.js",
+      "src/js/modules/clipboard.js",
+      "tests/unit/dom.test.js"
+    ],
+    "authorized_metadata_dirs": [
+      ".git/"
+    ],
+    "authorized_container_dirs": [
+      "src/",
+      "src/styles/",
+      "src/config/",
+      "src/js/",
+      "src/js/modules/",
+      "tests/",
+      "tests/unit/"
+    ]
+  },
+  "forbidden_scope": [
+    "NETWORK_EGRESS",
+    "SECRETS_ACCESS",
+    "PRODUCTION_DEPLOY",
+    "UNBOUNDED_WRITES"
+  ],
+  "stop_conditions": {
+    "on_scope_violation": "IMMEDIATE_STOP_AND_ROLLBACK",
+    "on_revocation": "SAFE_POINT_HALT_AND_AWAIT_REAUTH",
+    "on_verifier_mismatch": "HARD_STOP_INVALIDATE_CYCLE"
+  }
+}

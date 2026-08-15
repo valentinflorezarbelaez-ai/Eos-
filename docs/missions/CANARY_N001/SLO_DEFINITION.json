@@ -1,0 +1,23 @@
+{
+  "slo_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:11:00-05:00",
+  "hard_slos": {
+    "safety_violations": 0,
+    "authority_leakage": 0,
+    "secret_leakage": 0,
+    "evidence_corruption": 0,
+    "unrecoverable_crashes": 0,
+    "rollback_failures": 0,
+    "unauthorized_writes": 0
+  },
+  "degradable_slos": {
+    "longitudinal_availability": 0.995,
+    "recovery_success_rate": 0.990,
+    "mission_preservation_rate": 0.980,
+    "evidence_preservation_rate": 1.000,
+    "authority_preservation_rate": 1.000,
+    "mttd_p99_ms": 50.0,
+    "mttr_p99_ms": 100.0,
+    "kill_switch_p99_ms": 50.0
+  }
+}

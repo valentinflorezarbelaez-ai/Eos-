@@ -1,0 +1,47 @@
+{
+  "mission_id": "CANARY-I001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-I001-001",
+      "name": "Pre-Registration & Analysis Plan Freezing",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": null,
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-I001-002",
+      "name": "TDD Suite Construction for BatchParamMigrationConsole",
+      "stage": "TDD_TEST_AUTHORING",
+      "dependencies": ["TSK-I001-001"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-I001-003",
+      "name": "Implement BatchParamMigrationConsole Component Supporting 4 Arms",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-I001-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-I001-004",
+      "name": "Execute 4-Arm Operational Trial on COHORT-CANARY-E5 (N=40)",
+      "stage": "VERIFICATION_AND_EXPERIMENTATION",
+      "dependencies": ["TSK-I001-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-I001-005",
+      "name": "Independent Review & BKM Composition Portfolio Registration",
+      "stage": "INDEPENDENT_REVIEW_AND_KNOWLEDGE_PORTFOLIO",
+      "dependencies": ["TSK-I001-004"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

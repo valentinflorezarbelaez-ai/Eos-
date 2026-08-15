@@ -1,0 +1,37 @@
+{
+  "mission_id": "CANARY-M002",
+  "evaluated_at": "2026-08-14T22:33:30-05:00",
+  "capability_requirements": [
+    {
+      "capability_id": "CAP-MULTI-FIELD-A11Y",
+      "description": "Accessible multi-field form rendering with semantic fieldsets, error summaries, and ARIA bindings",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-DEEP-PII-SANITIZATION",
+      "description": "Recursive structured sanitization supporting Credit Card PANs, SSNs, phone numbers, and prototype pollution guards",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-HOMOGLYPH-NORMALIZATION",
+      "description": "Unicode homoglyph normalization for email/contact domains",
+      "required": true
+    }
+  ],
+  "candidate_options": [
+    {
+      "name": "External Heavy Form SDK (Formik/Yup Bundled Standalone)",
+      "pros": ["Schema validation library"],
+      "cons": ["Bundle size > 65 KB", "External dependencies", "High runtime memory footprint"],
+      "fit_score": 0.64
+    },
+    {
+      "name": "Custom Vanilla Multi-Field Dispatcher with Deep Recursive Sanitizer",
+      "pros": ["Zero external dependencies", "< 15 KB bundle", "100% auditable PII masking", "Zero prototype pollution risk", "Accessible WCAG AA"],
+      "cons": ["Requires custom Luhn validator function"],
+      "fit_score": 0.97
+    }
+  ],
+  "selected_approach": "Custom Vanilla Multi-Field Dispatcher with Deep Recursive Sanitizer",
+  "justification": "Extends the M001 core principle into multi-field structured data with zero bundle bloat and complete PII protection."
+}

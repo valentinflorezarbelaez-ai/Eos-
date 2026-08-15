@@ -1,0 +1,63 @@
+{
+  "mission_id": "CANARY-M001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-001",
+      "name": "Capability Discovery & Tool Ranking",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-002",
+      "name": "A11y & Security Threat Modeling",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-003",
+      "name": "Scaffold PRJ-CANARY-ALPHA Workspace",
+      "stage": "IMPLEMENTATION_PREP",
+      "dependencies": ["TSK-001", "TSK-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-004",
+      "name": "TDD Suite Construction (tests/diagnostic-reporter.test.js)",
+      "stage": "TEST_DRIVEN_DEVELOPMENT",
+      "dependencies": ["TSK-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-005",
+      "name": "Implement DiagnosticReporter Component",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-004"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-006",
+      "name": "Execute Canary Mission Battery (Kill-Switch, Rollback, Security, A11y, Performance, User Outcome)",
+      "stage": "VERIFICATION",
+      "dependencies": ["TSK-005"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-007",
+      "name": "Final Audit & Evidence Packaging",
+      "stage": "AUDIT_AND_REPORTING",
+      "dependencies": ["TSK-006"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

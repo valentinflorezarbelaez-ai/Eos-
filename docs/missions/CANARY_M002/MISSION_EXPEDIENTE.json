@@ -1,0 +1,40 @@
+{
+  "mission_id": "CANARY-M002",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Replication #2: Multi-Field Structured Support & PII Dispatcher",
+  "type": "REPLICATION_EXPERIMENT",
+  "replicated_candidate_bkm": "OBS-CANARY-001",
+  "user_cohort": "COHORT-CANARY-B2 (N=20 independent pilot operators, 0 overlap with M001)",
+  "goal": "Verify whether deterministic, edge-level input sanitization and friction reduction generalize to a complex, multi-field structured support dispatch workflow without introducing UX hesitation or security regressions.",
+  "jtbd": "When a pilot operator needs to submit a structured operational request, quota increase, or support ticket containing environment metadata, they need an accessible multi-field form that validates and sanitizes PII/credentials in real-time, so tickets are processed immediately without exposing confidential data.",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 45000,
+    "timeBudgetMs": 30000,
+    "costBudgetUsd": 0.30,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_M002/**",
+      "docs/specs/canary/SPEC-0002-*.md",
+      "docs/audits/CANARY_M002_*.md",
+      "docs/evidence/EVD-CANARY-M002-*.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  },
+  "falsification_conditions": [
+    "Security regression (any unmasked credit card PAN, SSN, PII, or auth token leaks)",
+    "Significant performance degradation (> 35 KB bundle or > 10ms mount latency)",
+    "Severe UX breakdown (task completion drops below 85% or time-on-task > 60s)",
+    "Failure against adversarial novelty class (double-URL encoding, prototype pollution, homoglyph attack)"
+  ]
+}

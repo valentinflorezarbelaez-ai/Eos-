@@ -1,0 +1,60 @@
+{
+  "mission_id": "CANARY-F001",
+  "ranking_date": "2026-08-14T22:43:15-05:00",
+  "dimensions": [
+    "capability_fit",
+    "correctness",
+    "security",
+    "reliability",
+    "performance",
+    "latency",
+    "cost",
+    "maintainability",
+    "evidence_quality",
+    "ecosystem_health",
+    "reversibility",
+    "user_value"
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "name": "BKM_Informed_Streaming_CSV_Sanitizer",
+      "scores": {
+        "capability_fit": 0.99,
+        "correctness": 0.99,
+        "security": 1.00,
+        "reliability": 0.99,
+        "performance": 1.00,
+        "latency": 0.99,
+        "cost": 1.00,
+        "maintainability": 0.96,
+        "evidence_quality": 0.99,
+        "ecosystem_health": 1.00,
+        "reversibility": 1.00,
+        "user_value": 0.98
+      },
+      "composite_score": 0.991,
+      "verdict": "SELECTED"
+    },
+    {
+      "rank": 2,
+      "name": "Heavy_Third_Party_Spreadsheet_Bundle",
+      "scores": {
+        "capability_fit": 0.60,
+        "correctness": 0.70,
+        "security": 0.55,
+        "reliability": 0.75,
+        "performance": 0.40,
+        "latency": 0.45,
+        "cost": 0.40,
+        "maintainability": 0.60,
+        "evidence_quality": 0.65,
+        "ecosystem_health": 0.75,
+        "reversibility": 0.50,
+        "user_value": 0.60
+      },
+      "composite_score": 0.579,
+      "verdict": "REJECTED_EXCESSIVE_FOOTPRINT_AND_SECURITY_VULNERABILITIES"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "mission_id": "CANARY-M003",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-M003-001",
+      "name": "Capability Discovery & Tool Ranking (Deep Nested Sanitization)",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-M003-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-M003-002",
+      "name": "Adversarial Novelty Threat Modeling (Base64, Circular Refs, Null-bytes)",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-M003-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-M003-003",
+      "name": "TDD Suite Construction (tests/config-payload-importer.test.js)",
+      "stage": "TDD_TEST_AUTHORING",
+      "dependencies": ["TSK-M003-001", "TSK-M003-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-M003-004",
+      "name": "Implement ConfigPayloadImporter Component",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-M003-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-M003-005",
+      "name": "Execute M003 Operational Replication Battery & Falsification Check",
+      "stage": "VERIFICATION_AND_REPLICATION",
+      "dependencies": ["TSK-M003-004"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-M003-006",
+      "name": "Phase D Independent Review & Phase E Cross-Mission Triangulation",
+      "stage": "INDEPENDENT_REVIEW_AND_TRIANGULATION",
+      "dependencies": ["TSK-M003-005"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

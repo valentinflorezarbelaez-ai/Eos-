@@ -1,0 +1,22 @@
+{
+  "mission_id": "CANARY-REAL-001",
+  "client": "Alexander Rodríguez Remodelaciones",
+  "evaluated_at": "2026-08-14T23:50:00-05:00",
+  "status_quo_baseline": {
+    "qualified_quote_conversion_rate": "8.5%",
+    "unqualified_lead_noise_rate": "65.0%",
+    "time_on_page_to_contact_sec": 95.0,
+    "user_trust_score": "5.4 / 10",
+    "form_dropoff_rate": "72.0%",
+    "mobile_page_load_sec": 4.8
+  },
+  "target_success_criteria": {
+    "qualified_quote_conversion_rate": ">= 22.0%",
+    "unqualified_lead_noise_rate": "<= 20.0%",
+    "time_on_page_to_contact_sec": "<= 45.0",
+    "user_trust_score": ">= 9.0 / 10",
+    "form_dropoff_rate": "<= 25.0%",
+    "mobile_page_load_sec": "<= 1.5",
+    "accessibility_wcag_compliance": "100.0% (WCAG AA)"
+  }
+}

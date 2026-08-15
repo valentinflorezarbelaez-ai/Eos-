@@ -1,0 +1,48 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14T21:45:00Z",
+  "purpose": "Taxonomy of user abandonment motivations for Value Plane experiments",
+  "reasons": [
+    {
+      "code": "ABANDON_UNKNOWN_ENTITY",
+      "category": "TRUST_DEFICIT",
+      "description": "User left because they could not verify if the organization was legally registered or authentic.",
+      "severity": "CRITICAL",
+      "associated_jtbd": "JTBD-02_TRUST",
+      "countermeasure": "Variant A (Verified Official Institutional Data: NIT, Legal Status, Chamber of Commerce)."
+    },
+    {
+      "code": "ABANDON_ACCREDITATION_UNCERTAINTY",
+      "category": "TRUST_DEFICIT",
+      "description": "User hesitated because legal compliance/supervision status was not visible on the main page.",
+      "severity": "HIGH",
+      "associated_jtbd": "JTBD-02_TRUST",
+      "countermeasure": "Variant B (Proactive Accreditation & Supervision Banner)."
+    },
+    {
+      "code": "ABANDON_LACK_OF_TRANSPARENCY",
+      "category": "GOVERNANCE_DEFICIT",
+      "description": "User wanted to see audit reports, financial statements, or impact reports before donating/acting.",
+      "severity": "HIGH",
+      "associated_jtbd": "JTBD-03_ACT",
+      "countermeasure": "Variant C (Public Document & Transparency Center with downloadable PDFs)."
+    },
+    {
+      "code": "ABANDON_USABILITY_FRICTION",
+      "category": "USABILITY",
+      "description": "User could not locate the contact method or donation wire details easily.",
+      "severity": "MEDIUM",
+      "associated_jtbd": "JTBD-01_UNDERSTAND",
+      "countermeasure": "Direct structured info cards with one-click copy and WCAG contrast."
+    },
+    {
+      "code": "ABANDON_UNSTATED_REASON",
+      "category": "UNCLASSIFIED",
+      "description": "User left without interaction or think-aloud explanation.",
+      "severity": "LOW",
+      "associated_jtbd": "UNKNOWN",
+      "countermeasure": "Post-session qualitative debrief prompt."
+    }
+  ]
+}

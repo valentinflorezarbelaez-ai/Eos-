@@ -1,0 +1,35 @@
+{
+  "mission_id": "CANARY-N001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Phase N: Longitudinal Canary Reliability & Chaos / Drift Resilience (12-Session Window)",
+  "type": "LONGITUDINAL_CHAOS_AND_DRIFT_EVALUATION",
+  "evaluation_window": "12 Longitudinal Operational Sessions (N-W01 to N-W12)",
+  "chaos_families_evaluated": 16,
+  "goal": "Stress EOS across an extended 12-session longitudinal window under adversarial chaos injections, compounding cascade failures, tool/model drift, budget exhaustion, and partial corruption to verify zero authority escalation, 100% evidence preservation, deterministic rollback, and sub-50ms kill-switch latency under load.",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 80000,
+    "timeBudgetMs": 60000,
+    "costBudgetUsd": 0.60,
+    "retryBudget": 3,
+    "agentBudget": 3
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_N001/**",
+      "docs/governance/CHAOS_EVENT_LEDGER.json",
+      "docs/governance/DRIFT_LEDGER.json",
+      "docs/governance/RECOVERY_LEDGER.json",
+      "docs/evidence/EVD-PHASE-N-*.json",
+      "docs/audits/PHASE_N_*.md"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  }
+}

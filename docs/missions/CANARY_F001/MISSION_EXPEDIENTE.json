@@ -1,0 +1,34 @@
+{
+  "mission_id": "CANARY-F001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Phase F: Predictive Transfer & BKM Generalization to Tabular Data",
+  "type": "PREDICTIVE_TRANSFER_EXPERIMENT",
+  "bkm_evaluated": "BKM-CANARY-001",
+  "user_cohort": "COHORT-CANARY-D4 (N=30 independent operators, zero overlap with cohorts A, B, C)",
+  "goal": "Test whether BKM-CANARY-001 enables calibrated, accurate predictive transfer into an adjacent unverified domain (Tabular CSV Uploader) while maintaining zero PII/formula leakage and proving anti-dogmatic negative transfer rejection on streaming binary protocols.",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 50000,
+    "timeBudgetMs": 35000,
+    "costBudgetUsd": 0.35,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_F001/**",
+      "docs/specs/canary/SPEC-0004-*.md",
+      "docs/audits/CANARY_F001_*.md",
+      "docs/evidence/EVD-CANARY-F001-*.json",
+      "docs/knowledge/BKM-CANARY-001.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  }
+}

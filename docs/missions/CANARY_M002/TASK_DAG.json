@@ -1,0 +1,55 @@
+{
+  "mission_id": "CANARY-M002",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-M002-001",
+      "name": "Capability Discovery & Multi-Field Ranking",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-M002-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-M002-002",
+      "name": "Adversarial Novelty Threat Modeling (Double-URL, PII, Homoglyphs)",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": "GRP-M002-RESEARCH",
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-M002-003",
+      "name": "TDD Suite Construction (tests/contact-support-dispatcher.test.js)",
+      "stage": "TDD_TEST_AUTHORING",
+      "dependencies": ["TSK-M002-001", "TSK-M002-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-M002-004",
+      "name": "Implement ContactSupportDispatcher Component",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-M002-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-M002-005",
+      "name": "Execute M002 Operational Replication Battery",
+      "stage": "VERIFICATION_AND_REPLICATION",
+      "dependencies": ["TSK-M002-004"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-M002-006",
+      "name": "Independent Replication Review & Evidence Packaging",
+      "stage": "INDEPENDENT_REVIEW_AND_EVIDENCE",
+      "dependencies": ["TSK-M002-005"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

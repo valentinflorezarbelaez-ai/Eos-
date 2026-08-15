@@ -1,0 +1,48 @@
+{
+  "mission_id": "CANARY-M001",
+  "evaluated_at": "2026-08-14T22:21:00-05:00",
+  "capability_requirements": [
+    {
+      "capability_id": "CAP-DOM-A11Y",
+      "description": "Accessible DOM rendering with keyboard trap and ARIA live announcements",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-SECURITY-SCRUBBING",
+      "description": "High-speed client-side secret and credential sanitization",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-OFFLINE-QUEUE",
+      "description": "Resilient idempotent local queueing in sessionStorage",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-TELEMETRY-SINK",
+      "description": "Integration with append-only telemetry ingestion stream",
+      "required": true
+    }
+  ],
+  "candidate_options": [
+    {
+      "name": "Heavyweight Third-Party SDK (Sentry/LogRocket)",
+      "pros": ["Pre-built UI", "Automatic sourcemap support"],
+      "cons": ["Large bundle size (> 80KB)", "External vendor lock-in", "Potential PII transmission to third party", "Requires external API keys"],
+      "fit_score": 0.52
+    },
+    {
+      "name": "React-Based Heavy Modal Component",
+      "pros": ["Familiar component model"],
+      "cons": ["Requires React/JSX bundler", "High runtime overhead", "Unnecessary complexity for isolated component"],
+      "fit_score": 0.61
+    },
+    {
+      "name": "Lightweight Vanilla Standard Web Component + Regex Sanitizer",
+      "pros": ["Zero external dependencies", "< 10KB total size", "100% auditable sanitization", "Runs in any browser without transpilation", "Zero vendor lock-in", "WCAG AA accessible"],
+      "cons": ["Requires hand-crafted CSS focus management"],
+      "fit_score": 0.96
+    }
+  ],
+  "selected_approach": "Lightweight Vanilla Standard Web Component + Regex Sanitizer",
+  "justification": "Provides highest security, zero vendor lock-in, pristine accessibility, zero bundle bloat (<10KB vs >80KB), and deterministic offline queueing."
+}

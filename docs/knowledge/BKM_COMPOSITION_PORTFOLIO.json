@@ -1,0 +1,49 @@
+{
+  "portfolio_version": "1.1.0",
+  "updated_at": "2026-08-14T23:00:00-05:00",
+  "composite_bkms": [
+    {
+      "composition_id": "BKM-COMPOSITION-CANARY-001",
+      "title": "Composite Edge Sanitization with Accessible Real-Time Live Region Guidance",
+      "classification": "COMPOSITE_VALIDATED_BKM",
+      "constituent_units": [
+        "BKM-CANARY-001",
+        "OBS-CANARY-002"
+      ],
+      "composition_order": "A_FIRST_THEN_B (Strictly Order-Dependent: A -> B)",
+      "interaction_mode": "AMPLIFIES",
+      "measured_synergy_gain": "+20.0%",
+      "order_dependency_delta": "+30.0% (A->B outperforms B->A)",
+      "evidence_anchors": [
+        "EVD-CANARY-I001-COMPOSITION",
+        "EVD-CANARY-J001-COMPOSITION-REPLICATION"
+      ],
+      "validated_domains": [
+        "Batch Parameter & Environment Migration Console (CANARY-I001)",
+        "Interactive Webhook & API Payload Dispatcher (CANARY-J001)"
+      ],
+      "scope_boundaries": {
+        "valid_scope": [
+          "Complex multi-environment parameter migration consoles",
+          "Interactive outgoing webhook and API payload dispatchers",
+          "Multi-field structured web forms requiring live syntax guidance and secret masking",
+          "Tabular dataset uploaders with real-time error announcements"
+        ],
+        "excluded_scope": [
+          "Streaming binary protocols (NEG-BKM-001 conflict -> DO_NOT_COMPOSE)",
+          "Reversed order composition (B -> A causes visual desynchronization and latency bloat)",
+          "Kernel security and backend storage encryption",
+          "Core Control Plane state machine governance"
+        ]
+      },
+      "governance_invariants": {
+        "core_modified": false,
+        "core_state": "FROZEN",
+        "fundacion_delta": 0,
+        "gap_002_status": "UNKNOWN",
+        "gate_13_status": "CANARY_RESTRICTED",
+        "general_production_status": "CLOSED"
+      }
+    }
+  ]
+}

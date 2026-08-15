@@ -1,0 +1,220 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "dag_id": "DAG-L3-FUNDACION-PILOT-V2",
+  "project_id": "PRJ-FUNDACION",
+  "governance_mode": "PROPOSAL_AWAITING_PO_AUTHORIZATION",
+  "execution_mode": "LEVEL_3_CONTROLLED_REAL_PILOT_OPERATION_LEVEL",
+  "target_path": "C:\\Users\\valen\\Documents\\Fundacion",
+  "operation_permission_matrix": [
+    {
+      "path": ".gitignore",
+      "category": "EXISTING_READ_ONLY",
+      "allowed_operations": ["READ"],
+      "forbidden_operations": ["MODIFY", "DELETE", "RENAME"]
+    },
+    {
+      "path": ".editorconfig",
+      "category": "EXISTING_READ_ONLY",
+      "allowed_operations": ["READ"],
+      "forbidden_operations": ["MODIFY", "DELETE", "RENAME"]
+    },
+    {
+      "path": "index.html",
+      "category": "EXISTING_READ_ONLY",
+      "allowed_operations": ["READ"],
+      "forbidden_operations": ["MODIFY", "DELETE", "RENAME"],
+      "security_note": "Strictly protected from modification to preserve REM-001A semantic neutral baseline"
+    },
+    {
+      "path": "src/styles/main.css",
+      "category": "EXISTING_READ_ONLY",
+      "allowed_operations": ["READ"],
+      "forbidden_operations": ["MODIFY", "DELETE", "RENAME"]
+    },
+    {
+      "path": "src/config/legal.json",
+      "category": "EXISTING_READ_ONLY",
+      "allowed_operations": ["READ"],
+      "forbidden_operations": ["MODIFY", "DELETE", "RENAME"],
+      "security_note": "GAP-002 legal neutral tokens UNKNOWN must remain unmodified"
+    },
+    {
+      "path": "package.json",
+      "category": "EXISTING_MODIFY",
+      "allowed_operations": ["READ", "MODIFY"],
+      "forbidden_operations": ["DELETE", "RENAME"],
+      "mutation_boundary": {
+        "allowed_mutation_keys": ["scripts.test"],
+        "forbidden_mutation_keys": ["dependencies", "devDependencies", "name", "version"],
+        "disallow_package_installation": true
+      },
+      "assigned_task": "TASK-L3-FND-004"
+    },
+    {
+      "path": "src/js/main.js",
+      "category": "EXISTING_MODIFY",
+      "allowed_operations": ["READ", "MODIFY"],
+      "forbidden_operations": ["DELETE", "RENAME"],
+      "mutation_boundary": {
+        "description": "Refactor to import and coordinate modules from src/js/modules/"
+      },
+      "assigned_task": "TASK-L3-FND-002"
+    },
+    {
+      "path": "deployment.manifest.json",
+      "category": "EXISTING_MODIFY",
+      "allowed_operations": ["READ", "MODIFY"],
+      "forbidden_operations": ["DELETE", "RENAME"],
+      "mutation_boundary": {
+        "allowed_mutation_keys": ["governance.level_authorization", "governance.dag_id"],
+        "invariants": {
+          "gate_13_production_status": "CLOSED_DENIED",
+          "dns_status": "UNCONFIGURED"
+        }
+      },
+      "assigned_task": "TASK-L3-FND-006"
+    },
+    {
+      "path": "src/js/modules/dom.js",
+      "category": "NEW_CREATE",
+      "allowed_operations": ["CREATE", "READ"],
+      "forbidden_operations": ["DELETE"],
+      "assigned_task": "TASK-L3-FND-001"
+    },
+    {
+      "path": "src/js/modules/theme.js",
+      "category": "NEW_CREATE",
+      "allowed_operations": ["CREATE", "READ"],
+      "forbidden_operations": ["DELETE"],
+      "assigned_task": "TASK-L3-FND-001"
+    },
+    {
+      "path": "src/js/modules/clipboard.js",
+      "category": "NEW_CREATE",
+      "allowed_operations": ["CREATE", "READ"],
+      "forbidden_operations": ["DELETE"],
+      "assigned_task": "TASK-L3-FND-001"
+    },
+    {
+      "path": "tests/unit/dom.test.js",
+      "category": "NEW_CREATE",
+      "allowed_operations": ["CREATE", "READ"],
+      "forbidden_operations": ["DELETE"],
+      "assigned_task": "TASK-L3-FND-003"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-L3-FND-001",
+      "name": "Create JS Submodules",
+      "action": "CREATE",
+      "target_files": [
+        "src/js/modules/dom.js",
+        "src/js/modules/theme.js",
+        "src/js/modules/clipboard.js"
+      ],
+      "preconditions": ["PREFLIGHT_SNAPSHOT_OK", "VERIFIER_PARITY_OK"],
+      "dependencies": []
+    },
+    {
+      "id": "TASK-L3-FND-002",
+      "name": "Refactor Main Orchestrator",
+      "action": "MODIFY",
+      "target_files": [
+        "src/js/main.js"
+      ],
+      "preconditions": ["TASK-L3-FND-001_COMMITTED"],
+      "dependencies": ["TASK-L3-FND-001"]
+    },
+    {
+      "id": "TASK-L3-FND-003",
+      "name": "Create Hermetic Unit Test",
+      "action": "CREATE",
+      "target_files": [
+        "tests/unit/dom.test.js"
+      ],
+      "preconditions": ["TASK-L3-FND-002_COMMITTED"],
+      "dependencies": ["TASK-L3-FND-002"]
+    },
+    {
+      "id": "TASK-L3-FND-004",
+      "name": "Add npm test Script to Package JSON",
+      "action": "MODIFY",
+      "target_files": [
+        "package.json"
+      ],
+      "mutation_constraint": "ONLY_SCRIPTS_TEST_KEY",
+      "preconditions": ["TASK-L3-FND-003_COMMITTED"],
+      "dependencies": ["TASK-L3-FND-003"]
+    },
+    {
+      "id": "TASK-L3-FND-005",
+      "name": "Execute Hermetic Unit Tests Locally",
+      "action": "EXECUTE",
+      "command": "node --test tests/unit/dom.test.js",
+      "preconditions": ["TASK-L3-FND-004_COMMITTED"],
+      "dependencies": ["TASK-L3-FND-004"]
+    },
+    {
+      "id": "TASK-L3-FND-006",
+      "name": "Update Deployment Manifest Governance Metadata",
+      "action": "MODIFY",
+      "target_files": [
+        "deployment.manifest.json"
+      ],
+      "preconditions": ["TASK-L3-FND-005_PASSED"],
+      "dependencies": ["TASK-L3-FND-005"]
+    },
+    {
+      "id": "TASK-L3-FND-007",
+      "name": "Target Mutation Audit and Evidence Generation",
+      "action": "AUDIT",
+      "preconditions": ["TASK-L3-FND-006_COMMITTED"],
+      "dependencies": ["TASK-L3-FND-006"]
+    }
+  ],
+  "tripartite_scope": {
+    "authorized_files": [
+      ".gitignore",
+      ".editorconfig",
+      "package.json",
+      "index.html",
+      "deployment.manifest.json",
+      "src/styles/main.css",
+      "src/config/legal.json",
+      "src/js/main.js",
+      "src/js/modules/dom.js",
+      "src/js/modules/theme.js",
+      "src/js/modules/clipboard.js",
+      "tests/unit/dom.test.js"
+    ],
+    "authorized_metadata_dirs": [
+      ".git/"
+    ],
+    "authorized_container_dirs": [
+      "src/",
+      "src/styles/",
+      "src/config/",
+      "src/js/",
+      "src/js/modules/",
+      "tests/",
+      "tests/unit/"
+    ]
+  },
+  "forbidden_scope": [
+    "NETWORK_EGRESS",
+    "SECRETS_ACCESS",
+    "PRODUCTION_DEPLOY",
+    "UNBOUNDED_WRITES",
+    "DEPENDENCY_INSTALLATION",
+    "INDEX_HTML_MUTATION",
+    "LEGAL_JSON_MUTATION",
+    "CSS_MUTATION"
+  ],
+  "stop_conditions": {
+    "on_scope_violation": "IMMEDIATE_STOP_AND_ROLLBACK",
+    "on_revocation": "SAFE_POINT_HALT_AND_AWAIT_REAUTH",
+    "on_verifier_mismatch": "HARD_STOP_INVALIDATE_CYCLE",
+    "on_unauthorized_operation": "IMMEDIATE_STOP_AND_ROLLBACK"
+  }
+}

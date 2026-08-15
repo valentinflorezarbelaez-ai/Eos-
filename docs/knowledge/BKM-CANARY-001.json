@@ -1,0 +1,80 @@
+{
+  "bkm_id": "BKM-CANARY-001",
+  "name": "Deterministic Edge-Level Input Sanitization and Real-Time UX Friction Reduction",
+  "status": "RESTRICTED_BKM",
+  "last_validated": "2026-08-14T22:44:00-05:00",
+  "principle": "Perform deterministic, client-side recursive sanitization (regex masking, WeakSet cycle detection, Base64 sniffing, CSV formula escaping, and prototype pollution protection) at the immediate input boundary combined with explicit accessible UI feedback (live character count, preview tables, status regions, syntax alerts) to eliminate confidential credential/PII leaks and minimize operator task friction.",
+  "replication_count": 3,
+  "predictive_transfers_validated": 1,
+  "confidence_level": "HIGH_WITHIN_TESTED_AND_PREDICTED_SCOPE",
+  "supporting_evidence": [
+    {
+      "mission_id": "CANARY-M001",
+      "domain": "Client Diagnostics & Error Feedback",
+      "sample_size": "N=15",
+      "completion_rate": "14/15 = 93.3%",
+      "delta": "+35.3%",
+      "security_leaks": 0
+    },
+    {
+      "mission_id": "CANARY-M002",
+      "domain": "Multi-Field Structured Support Dispatcher",
+      "sample_size": "N=20",
+      "completion_rate": "19/20 = 95.0%",
+      "delta": "+43.0%",
+      "security_leaks": 0
+    },
+    {
+      "mission_id": "CANARY-M003",
+      "domain": "Deeply Nested Configuration & Raw Payload Importer",
+      "sample_size": "N=25",
+      "completion_rate": "23/25 = 92.0%",
+      "delta": "+44.0%",
+      "security_leaks": 0
+    },
+    {
+      "mission_id": "CANARY-F001",
+      "type": "PREDICTIVE_TRANSFER",
+      "domain": "Tabular CSV & Column-Level Batch Dataset Uploader",
+      "sample_size": "N=30",
+      "predicted_completion": "93.00%",
+      "actual_completion": "28/30 = 93.33%",
+      "prediction_error": "+0.33%",
+      "learning_to_prediction_gain": "+47.67%",
+      "security_leaks": 0
+    }
+  ],
+  "scope_boundaries": {
+    "valid_scope": [
+      "User-submitted client-side structured form workflows",
+      "Diagnostic and error feedback log submission modals",
+      "Customer support ticket dispatching with environment metadata and PII",
+      "Nested JSON/YAML-like configuration and batch metadata import interfaces",
+      "Tabular CSV / TSV batch dataset uploaders with column-level PII & formula injection defense",
+      "Edge-level regex, WeakSet cycle detection, and recursive credential masking",
+      "Lightweight accessible UI feedback (live character count, preview grids, status regions)"
+    ],
+    "probable_scope": [
+      "Form workflows in adjacent web applications with similar text/JSON structures",
+      "Client-side Excel/XML export transformers with PII masking",
+      "Admin dashboard settings and API integration management forms"
+    ],
+    "unknown_scope": [
+      "Rich-text WYSIWYG editors with embedded markup ASTs",
+      "Financial transaction clearing and high-frequency trading inputs",
+      "Unbounded arbitrary code compilation environments"
+    ],
+    "excluded_scope": [
+      "High-concurrency streaming binary protocols (WebSockets / gRPC streams) [DO_NOT_TRANSFER]",
+      "Kernel / OS-level system security",
+      "Server-side database storage encryption and backend authorization barriers",
+      "Cryptographic zero-knowledge proof generation",
+      "Core Control Plane internal state machine governance"
+    ]
+  },
+  "governance_rule": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "storage_location": "docs/knowledge/BKM-CANARY-001.json (Contextual Strategy Portfolio only)"
+  }
+}

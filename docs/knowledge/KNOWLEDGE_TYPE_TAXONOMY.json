@@ -1,0 +1,26 @@
+{
+  "taxonomy_version": "1.0.0",
+  "updated_at": "2026-08-14T23:02:00-05:00",
+  "knowledge_types": [
+    {
+      "type": "ATOMIC_BKM",
+      "definition": "A self-contained, validated operational pattern operating on a single architectural boundary in isolation (e.g. BKM-CANARY-001)."
+    },
+    {
+      "type": "COMPOSITE_BKM",
+      "definition": "A multi-pattern architecture composed of two or more atomic BKMs that yields proven non-trivial synergy (e.g. BKM-COMPOSITION-CANARY-001)."
+    },
+    {
+      "type": "ORDER_DEPENDENT_BKM",
+      "definition": "A composite knowledge structure where constituent execution order determines success vs degradation (e.g. A -> B outperforms B -> A by +30%)."
+    },
+    {
+      "type": "NEGATIVE_BKM",
+      "definition": "A counter-indicated anti-pattern with proven empirical failure consequences that enforces strict execution prohibition (e.g. NEG-BKM-001)."
+    },
+    {
+      "type": "CONDITIONAL_BKM",
+      "definition": "A contextual pattern valid exclusively when specific external boundary constraints (e.g. debouncing, max payload) are satisfied."
+    }
+  ]
+}

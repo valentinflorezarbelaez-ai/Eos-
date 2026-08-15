@@ -1,0 +1,37 @@
+{
+  "mission_id": "CANARY-M003",
+  "evaluated_at": "2026-08-14T22:36:50-05:00",
+  "capability_requirements": [
+    {
+      "capability_id": "CAP-DEEP-CYCLE-DETECTION",
+      "description": "Safe cycle detection and bounded recursion across arbitrary depth JSON/JS structures",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-BASE64-OBFUSCATION-DETECTOR",
+      "description": "Detection and neutralization of Base64-encoded and query-string obfuscated credentials",
+      "required": true
+    },
+    {
+      "capability_id": "CAP-ACCESSIBLE-DATA-IMPORT-UI",
+      "description": "WCAG AA accessible drag-and-drop / paste interface with real-time syntax feedback",
+      "required": true
+    }
+  ],
+  "candidate_options": [
+    {
+      "name": "Heavyweight AST / JSON-Schema Bundled Parser (Ajv + Lodash.deepClone)",
+      "pros": ["Pre-built JSON schema validation"],
+      "cons": ["Bundle size > 110 KB", "Vulnerable to prototype pollution in older lodash", "High memory usage on large payload trees"],
+      "fit_score": 0.58
+    },
+    {
+      "name": "Lightweight Vanilla Recursive Sanitizer with WeakSet Cycle Guard & Base64 Sniffer",
+      "pros": ["Zero external dependencies", "< 15 KB bundle", "Cycle-safe WeakSet protection", "Detects Base64 & escaped secrets", "Accessible WCAG AA"],
+      "cons": ["Custom recursion depth limiter required"],
+      "fit_score": 0.98
+    }
+  ],
+  "selected_approach": "Lightweight Vanilla Recursive Sanitizer with WeakSet Cycle Guard & Base64 Sniffer",
+  "justification": "Provides complete protection against deep nested and obfuscated secrets while maintaining zero external bundle bloat and cycle safety."
+}

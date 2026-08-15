@@ -1,5 +1,6 @@
 {
-  "timestamp": "2026-08-11T04:26:50.150Z",
+  "timestamp": "2026-08-14T20:32:51.529Z",
+  "projectId": "fundacion",
   "mode": "EMPIRICAL_LEVEL_1_READ_ONLY",
   "targetPath": "C:\\Users\\valen\\Documents\\Fundacion",
   "observedFacts": [
@@ -8,26 +9,60 @@
       "value": true
     },
     {
+      "key": "TARGET_PATH",
+      "value": "C:\\Users\\valen\\Documents\\Fundacion"
+    },
+    {
       "key": "ITEM_COUNT",
-      "value": 0
+      "value": 8
+    },
+    {
+      "key": "HAS_GIT",
+      "value": true
+    },
+    {
+      "key": "HAS_PACKAGE_JSON",
+      "value": true
+    },
+    {
+      "key": "PACKAGE_NAME",
+      "value": "fundacion-web"
+    },
+    {
+      "key": "DEPENDENCIES",
+      "value": []
+    },
+    {
+      "key": "SCRIPTS",
+      "value": [
+        "dev",
+        "build",
+        "preview",
+        "verify",
+        "test"
+      ]
     }
   ],
   "derivedFacts": [
     {
       "key": "IS_EMPTY_TARGET",
-      "value": true
+      "value": false
+    },
+    {
+      "key": "FILE_TREE_COUNT",
+      "value": 19
     }
   ],
   "inferences": [
     {
-      "statement": "The observed target directory is 100% empty and unpopulated, consistent with a pre-intake target project reservation.",
-      "classification": "INFERENCE_UNCONFIRMED_EXTERNALLY",
-      "confidence": 1
+      "statement": "Project appears to be a populated JavaScript/TypeScript project.",
+      "classification": "DERIVED_ANALYSIS",
+      "confidence": 0.95
     }
   ],
   "hypotheses": [
     {
-      "statement": "IF Product Owner authorizes Level 2+ implementation, THEN EOS can populate PRJ-FUNDACION from approved SPEC-0001-fundacion-core.md.",
+      "statement": "IF Product Owner authorizes Level 2+ implementation, THEN EOS can execute authorized strategies on fundacion.",
       "status": "PENDING_AUTHORIZATION"
     }
   ],
@@ -39,6 +74,96 @@
     {
       "key": "PRODUCTION_DEPLOYMENT_TELEMETRY",
       "status": "UNOBSERVED"
+    }
+  ],
+  "sourceTree": [
+    {
+      "type": "file",
+      "path": ".editorconfig",
+      "size": 189
+    },
+    {
+      "type": "file",
+      "path": ".gitignore",
+      "size": 300
+    },
+    {
+      "type": "file",
+      "path": "deployment.manifest.json",
+      "size": 789
+    },
+    {
+      "type": "file",
+      "path": "index.html",
+      "size": 9021
+    },
+    {
+      "type": "file",
+      "path": "package.json",
+      "size": 426
+    },
+    {
+      "type": "directory",
+      "path": "src"
+    },
+    {
+      "type": "directory",
+      "path": "src\\config"
+    },
+    {
+      "type": "file",
+      "path": "src\\config\\legal.json",
+      "size": 594
+    },
+    {
+      "type": "directory",
+      "path": "src\\js"
+    },
+    {
+      "type": "file",
+      "path": "src\\js\\main.js",
+      "size": 1357
+    },
+    {
+      "type": "directory",
+      "path": "src\\js\\modules"
+    },
+    {
+      "type": "file",
+      "path": "src\\js\\modules\\clipboard.js",
+      "size": 428
+    },
+    {
+      "type": "file",
+      "path": "src\\js\\modules\\dom.js",
+      "size": 395
+    },
+    {
+      "type": "file",
+      "path": "src\\js\\modules\\theme.js",
+      "size": 887
+    },
+    {
+      "type": "directory",
+      "path": "src\\styles"
+    },
+    {
+      "type": "file",
+      "path": "src\\styles\\main.css",
+      "size": 10904
+    },
+    {
+      "type": "directory",
+      "path": "tests"
+    },
+    {
+      "type": "directory",
+      "path": "tests\\unit"
+    },
+    {
+      "type": "file",
+      "path": "tests\\unit\\dom.test.js",
+      "size": 758
     }
   ]
 }

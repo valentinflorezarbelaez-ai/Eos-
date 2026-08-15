@@ -1,0 +1,60 @@
+{
+  "mission_id": "CANARY-M001",
+  "ranking_date": "2026-08-14T22:21:30-05:00",
+  "dimensions": [
+    "capability_fit",
+    "correctness",
+    "security",
+    "reliability",
+    "performance",
+    "latency",
+    "cost",
+    "maintainability",
+    "evidence_quality",
+    "ecosystem_health",
+    "reversibility",
+    "user_value"
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "name": "Vanilla_Web_Standards_Component",
+      "scores": {
+        "capability_fit": 0.98,
+        "correctness": 0.99,
+        "security": 1.00,
+        "reliability": 0.98,
+        "performance": 1.00,
+        "latency": 0.99,
+        "cost": 1.00,
+        "maintainability": 0.95,
+        "evidence_quality": 0.98,
+        "ecosystem_health": 1.00,
+        "reversibility": 1.00,
+        "user_value": 0.96
+      },
+      "composite_score": 0.986,
+      "verdict": "SELECTED"
+    },
+    {
+      "rank": 2,
+      "name": "External_Vendor_SDK",
+      "scores": {
+        "capability_fit": 0.75,
+        "correctness": 0.85,
+        "security": 0.60,
+        "reliability": 0.80,
+        "performance": 0.50,
+        "latency": 0.60,
+        "cost": 0.40,
+        "maintainability": 0.70,
+        "evidence_quality": 0.70,
+        "ecosystem_health": 0.85,
+        "reversibility": 0.50,
+        "user_value": 0.70
+      },
+      "composite_score": 0.662,
+      "verdict": "REJECTED_VENDOR_RISK_AND_BLOAT"
+    }
+  ]
+}

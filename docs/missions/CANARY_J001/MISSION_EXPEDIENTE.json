@@ -1,0 +1,35 @@
+{
+  "mission_id": "CANARY-J001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Phase J: Multi-BKM Composition Replication & Order Dependency Experiment (5-Arm Factorial Trial)",
+  "type": "COMPOSITE_KNOWLEDGE_REPLICATION_AND_ORDER_VALIDATION",
+  "evaluated_bkms": ["BKM-CANARY-001", "OBS-CANARY-002"],
+  "user_cohort": "COHORT-CANARY-F6 (N=50 independent developers randomized 1:1:1:1:1 across 5 arms)",
+  "goal": "Replicate composite knowledge synergy in a new operational domain (Webhook & API Endpoint Payload Dispatcher) and rigorously test composition order dependency (Correct Order A->B vs Reversed Order B->A).",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 60000,
+    "timeBudgetMs": 45000,
+    "costBudgetUsd": 0.45,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_J001/**",
+      "docs/specs/canary/SPEC-0006-*.md",
+      "docs/audits/CANARY_J001_*.md",
+      "docs/evidence/EVD-CANARY-J001-*.json",
+      "docs/governance/COMPOSITION_COST_LEDGER.json",
+      "docs/knowledge/BKM_COMPOSITION_PORTFOLIO.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  }
+}

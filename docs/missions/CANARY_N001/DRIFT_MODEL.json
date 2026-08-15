@@ -1,0 +1,21 @@
+{
+  "drift_model_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:11:00-05:00",
+  "drift_categories": [
+    {
+      "category": "TOOL_AND_PROVIDER_DRIFT",
+      "trigger": "Discovered tool releases breaking major update or provider API undergoes schema drift",
+      "resolution_pipeline": "DISCOVER -> RESEARCH -> BENCHMARK -> RERANK -> SWITCH -> REVALIDATE"
+    },
+    {
+      "category": "BEHAVIORAL_AND_CONTEXT_DRIFT",
+      "trigger": "User cohort characteristics, payload shapes, or latency profiles degrade by > 25%",
+      "resolution_pipeline": "TRANSFER -> RESTRICTED_TRANSFER -> RESEARCH_FIRST -> DO_NOT_TRANSFER"
+    },
+    {
+      "category": "MEMORY_AND_KNOWLEDGE_DRIFT",
+      "trigger": "BKM validation timestamp exceeds 90-day TTL or contradiction injected",
+      "resolution_pipeline": "DRIFT_DETECTOR -> REVALIDATION_REQUIRED -> SHADOW_RETEST -> NARROW_OR_INVALIDATE"
+    }
+  ]
+}

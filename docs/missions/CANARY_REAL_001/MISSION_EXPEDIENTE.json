@@ -1,0 +1,13 @@
+{
+  "mission_id": "CANARY-REAL-001",
+  "client_name": "Alexander Rodríguez Remodelaciones",
+  "domain": "Remodelaciones Residenciales y Comerciales de Alto Valor",
+  "target_market": "Rionegro y Oriente Antioqueño (Llanogrande, San Antonio de Pereira, El Carmen, Marinilla, La Ceja)",
+  "ticket_profile": "High-Value Renovation Projects ($15M - $150M+ COP)",
+  "primary_objective": "Aumentar la tasa de solicitudes de cotización calificadas (filtradas por ubicación, tipo de inmueble, alcance y presupuesto aproximado) reduciendo la fricción y el ruido de leads no viables.",
+  "risk_tier": "MEDIUM",
+  "authority_level": "LEVEL_2_SUPERVISED_AUTONOMY",
+  "status": "DISCOVERY_COMPLETED",
+  "discovery_decision": "BUILD_JUSTIFIED",
+  "started_at": "2026-08-14T23:50:00-05:00"
+}

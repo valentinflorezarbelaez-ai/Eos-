@@ -1,0 +1,40 @@
+{
+  "portfolio_version": "1.0.0",
+  "updated_at": "2026-08-14T22:46:00-05:00",
+  "active_bkms": [
+    {
+      "bkm_id": "BKM-CANARY-001",
+      "name": "Deterministic Edge-Level Input Sanitization and Real-Time UX Friction Reduction",
+      "classification": "RESTRICTED_BKM",
+      "confidence": "HIGH_CALIBRATED",
+      "relationships": {
+        "APPLIES_TO": [
+          "structured_web_form_inputs",
+          "diagnostic_error_reporting",
+          "support_ticket_dispatching",
+          "nested_json_yaml_import",
+          "tabular_csv_batch_uploader"
+        ],
+        "DO_NOT_APPLY_TO": [
+          "streaming_binary_websockets",
+          "high_frequency_telemetry_streams",
+          "kernel_os_security",
+          "server_side_database_storage"
+        ],
+        "DERIVED_FROM": [
+          "OBS-CANARY-001"
+        ],
+        "VALIDATED_BY": [
+          "CANARY-M001",
+          "CANARY-M002",
+          "CANARY-M003",
+          "CANARY-F001"
+        ],
+        "CONFLICTS_WITH": [],
+        "SUPERSEDES": [],
+        "SPECIALIZES": []
+      },
+      "lifecycle_status": "ACTIVE_VALIDATED"
+    }
+  ]
+}

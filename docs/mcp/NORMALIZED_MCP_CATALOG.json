@@ -1,0 +1,59 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14T21:50:00Z",
+  "servers": [
+    {
+      "mcp_server_id": "MCP-SRV-PLAYWRIGHT",
+      "name": "Playwright Browser MCP Server",
+      "protocol_version": "2026-07-28",
+      "transport": "STDIO",
+      "capabilities": {
+        "server_discover": true,
+        "stateless_requests": true,
+        "tasks": true,
+        "tool_schema_standard": "JSON_SCHEMA_2020_12"
+      },
+      "tools_exposed": [
+        "browser_navigate",
+        "browser_snapshot",
+        "browser_click",
+        "browser_fill",
+        "browser_a11y_tree",
+        "browser_console_logs"
+      ],
+      "security_boundaries": {
+        "network_restricted_to_scope": true,
+        "secret_access": false,
+        "write_access_to_filesystem": false,
+        "sandbox_ephemeral_context": true
+      },
+      "verification_status": "SANDBOX_VERIFIED"
+    },
+    {
+      "mcp_server_id": "MCP-SRV-ENGRAM",
+      "name": "Engram Persistent Memory MCP Server",
+      "protocol_version": "2026-07-28",
+      "transport": "STDIO",
+      "capabilities": {
+        "server_discover": true,
+        "stateless_requests": true,
+        "tasks": false,
+        "tool_schema_standard": "JSON_SCHEMA_2020_12"
+      },
+      "tools_exposed": [
+        "mem_save",
+        "mem_search",
+        "mem_context",
+        "mem_session_summary"
+      ],
+      "security_boundaries": {
+        "network_restricted_to_scope": false,
+        "secret_access": false,
+        "write_access_to_filesystem": true,
+        "sandbox_ephemeral_context": false
+      },
+      "verification_status": "ADOPTED"
+    }
+  ]
+}

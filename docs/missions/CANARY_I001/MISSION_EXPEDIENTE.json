@@ -1,0 +1,34 @@
+{
+  "mission_id": "CANARY-I001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "title": "Phase I: Multi-BKM Composition Operational Experiment (4-Arm Randomized Trial)",
+  "type": "MULTI_BKM_COMPOSITION_EXPERIMENT",
+  "evaluated_bkms": ["BKM-CANARY-001", "OBS-CANARY-002"],
+  "user_cohort": "COHORT-CANARY-E5 (N=40 independent operators randomized 1:1:1:1 across 4 arms)",
+  "goal": "Empirically measure the real-world operational interaction between BKM-CANARY-001 (Deterministic Edge Sanitization) and OBS-CANARY-002 (Real-Time Accessible Dynamic Guidance) across 4 controlled arms on a complex Batch Parameter Migration Console.",
+  "risk": "LOW",
+  "authority": "CANARY_RESTRICTED_SCOPE",
+  "budget": {
+    "tokenBudget": 55000,
+    "timeBudgetMs": 40000,
+    "costBudgetUsd": 0.40,
+    "retryBudget": 2,
+    "agentBudget": 2
+  },
+  "scope": {
+    "allowed_paths": [
+      "EOS-Lab/Canary-Alpha/**",
+      "docs/missions/CANARY_I001/**",
+      "docs/specs/canary/SPEC-0005-*.md",
+      "docs/audits/CANARY_I001_*.md",
+      "docs/evidence/EVD-CANARY-I001-*.json",
+      "docs/knowledge/BKM_COMPOSITION_PORTFOLIO.json"
+    ],
+    "strictly_forbidden_paths": [
+      "C:\\Users\\valen\\Documents\\Fundacion/**",
+      "Fundacion/**",
+      "scripts/engine/core/**",
+      "Production/**"
+    ]
+  }
+}

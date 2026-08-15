@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-08-14T21:57:00-05:00",
+  "governance_baseline": "CORE_FROZEN_AND_GOVERNED",
+  "gaps": [
+    {
+      "gap_id": "GAP-002",
+      "title": "Legal, Bank and Contact Details for PRJ-FUNDACION",
+      "category": "LEGAL_AND_GOVERNANCE",
+      "description": "Missing official notarized legal documentation, tax ID (NIT), physical location, and bank credentials from the Product Owner.",
+      "source": "docs/intake/fundacion/UNKNOWN_AND_GAPS.md",
+      "severity": "HIGH",
+      "risk": "CRITICAL_BUSINESS_RISK",
+      "project": "PRJ-FUNDACION",
+      "dependencies": [],
+      "evidence_required": "Notarized PO legal documentation with SHA-256 provenance hash",
+      "owner": "PRODUCT_OWNER",
+      "status": "UNKNOWN",
+      "next_action": "Await official PO documentation delivery. Maintain strict UNKNOWN tokens.",
+      "blocking": true
+    },
+    {
+      "gap_id": "GAP-MCP-001",
+      "title": "FlowDesk Lab TypeScript Test Suite Failure",
+      "category": "EXTERNAL_PROJECT_TESTING",
+      "description": "EOS-Lab/FlowDesk contains 2 failing TypeScript tests (concurrency and leadService) due to lab-level module/database mocks.",
+      "source": "EOS-Lab/FlowDesk/tests/",
+      "severity": "LOW",
+      "risk": "NO_RISK_TO_CORE",
+      "project": "PRJ-FLOWDESK-LAB",
+      "dependencies": [],
+      "evidence_required": "Clean test pass under npm run test:lab when FlowDesk is scheduled for active development.",
+      "owner": "LAB_ENGINEER",
+      "status": "OPEN",
+      "next_action": "Keep isolated under npm run test:lab; non-blocking for EOS Core or Canary.",
+      "blocking": false
+    },
+    {
+      "gap_id": "GAP-CUSTODY-001",
+      "title": "PRJ-FUNDACION External Path Presence",
+      "category": "ENVIRONMENT_CUSTODY",
+      "description": "External target path C:\\Users\\valen\\Documents\\Fundacion is absent on disk. Absence does not prove historical Δ=0; custody classified as UNKNOWN.",
+      "source": "MCP-BASELINE-001",
+      "severity": "MEDIUM",
+      "risk": "EPISTEMIC_INTEGRITY",
+      "project": "PRJ-FUNDACION",
+      "dependencies": [],
+      "evidence_required": "Distinction between Control Plane policy barrier (VERIFIED) and external physical immutability (UNKNOWN).",
+      "owner": "EOS_ARCHITECT",
+      "status": "VERIFIED",
+      "next_action": "Enforce DOC-GOV-FUNDACION-CUSTODY-001 invariants across all discovery and audit engines.",
+      "blocking": false
+    },
+    {
+      "gap_id": "GAP-CANARY-001",
+      "title": "PRJ-CANARY-ALPHA Operational Graduation Program",
+      "category": "OPERATIONAL_READINESS",
+      "description": "Execute Phase B readiness validations and Phase C restricted Canary missions to establish empirical operational evidence under PRR-001.",
+      "source": "EOS_MASTER_COMPLETION_PROGRAM.md",
+      "severity": "HIGH",
+      "risk": "OPERATIONAL_RELIABILITY",
+      "project": "PRJ-CANARY-ALPHA",
+      "dependencies": ["GAP-CUSTODY-001"],
+      "evidence_required": "Phase B test battery (B-01 to B-10) and immutable telemetry logs.",
+      "owner": "EOS_AUTONOMY_ENGINE",
+      "status": "IN_PROGRESS",
+      "next_action": "Execute Phase B verification suite (B-01 to B-10).",
+      "blocking": true
+    }
+  ]
+}

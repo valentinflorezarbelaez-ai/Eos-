@@ -1,0 +1,23 @@
+{
+  "learning_id": "LRN-CANARY-REAL-001",
+  "mission_id": "CANARY-REAL-001",
+  "evaluated_at": "2026-08-15T00:14:00-05:00",
+  "findings": [
+    {
+      "observation": "Pre-qualifying geography and scope in 3 steps drastically reduces WhatsApp noise without requiring complex database infrastructure.",
+      "bkm_candidate": "BKM-PREQUALIFICATION-WHATSAPP-ROUTING",
+      "classification": "RESTRICTED_BKM (Local high-ticket services)",
+      "confidence": "HIGH_WITHIN_CANARY_SCOPE"
+    },
+    {
+      "observation": "Enforcing ESTIMATE !== QUOTE with explicit legal disclaimers protects business credibility and prevents customer friction during technical visits.",
+      "classification": "ESTABLISHED_GOVERNANCE_PATTERN",
+      "confidence": "VERIFIED"
+    },
+    {
+      "observation": "Evidence Gate on social proof prevents AI agents from generating hallucinated trust metrics (e.g. 500+ happy clients).",
+      "classification": "CONSTITUTIONAL_EVIDENCE_INVARIANT",
+      "confidence": "VERIFIED"
+    }
+  ]
+}

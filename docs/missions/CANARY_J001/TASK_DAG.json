@@ -1,0 +1,47 @@
+{
+  "mission_id": "CANARY-J001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-J001-001",
+      "name": "Pre-Registration & Predictive Model Freezing",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": null,
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-J001-002",
+      "name": "TDD Suite Construction for WebhookPayloadDispatcher",
+      "stage": "TDD_TEST_AUTHORING",
+      "dependencies": ["TSK-J001-001"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-J001-003",
+      "name": "Implement WebhookPayloadDispatcher Supporting 5 Arm Modes",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-J001-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-J001-004",
+      "name": "Execute 5-Arm Operational Trial on COHORT-CANARY-F6 (N=50)",
+      "stage": "VERIFICATION_AND_EXPERIMENTATION",
+      "dependencies": ["TSK-J001-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-J001-005",
+      "name": "Record Cost Ledger & Promote Composite BKM in Portfolio",
+      "stage": "INDEPENDENT_REVIEW_AND_KNOWLEDGE_PORTFOLIO",
+      "dependencies": ["TSK-J001-004"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14T21:30:00Z",
+  "status": "READINESS_MATRIX_ESTABLISHED",
+  "adapters": [
+    {
+      "adapter_id": "ADP-MOCK-CODE",
+      "capability": "CAP-CODE-GEN",
+      "tier": "MOCK",
+      "trust_level": "LOCAL_SANDBOX",
+      "timeout_ms": 5000,
+      "max_retries": 3,
+      "fallback_adapter": null,
+      "secret_required": false
+    },
+    {
+      "adapter_id": "ADP-MOCK-TEST",
+      "capability": "CAP-TESTING",
+      "tier": "MOCK",
+      "trust_level": "LOCAL_SANDBOX",
+      "timeout_ms": 5000,
+      "max_retries": 3,
+      "fallback_adapter": null,
+      "secret_required": false
+    },
+    {
+      "adapter_id": "ADP-LIVE-ANTHROPIC",
+      "capability": "CAP-CODE-GEN",
+      "tier": "COMMERCIAL_PROVIDER",
+      "trust_level": "RESTRICTED_COMMERCIAL",
+      "timeout_ms": 30000,
+      "max_retries": 3,
+      "fallback_adapter": "ADP-MOCK-CODE",
+      "secret_required": true,
+      "env_var_key": "ANTHROPIC_API_KEY",
+      "readiness_status": "NOT_CONFIGURED_BY_DESIGN"
+    },
+    {
+      "adapter_id": "ADP-LIVE-PLAYWRIGHT",
+      "capability": "CAP-BROWSER-QA",
+      "tier": "COMMERCIAL_TOOL",
+      "trust_level": "LOCAL_HEADLESS",
+      "timeout_ms": 60000,
+      "max_retries": 2,
+      "fallback_adapter": null,
+      "secret_required": false,
+      "readiness_status": "READY_LOCAL"
+    }
+  ]
+}

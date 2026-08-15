@@ -1,0 +1,34 @@
+{
+  "schema": "https://eos.system/schemas/user-research.json",
+  "research_id": "EVD-USER-RESEARCH-FND-001",
+  "project_id": "PRJ-FUNDACION",
+  "timestamp": "2026-08-14T17:22:00.000Z",
+  "evaluation_mode": "READ_ONLY_RESEARCH_ONLY",
+  "status": "COMPLETED",
+  "segments_identified": [
+    { "id": "SEG-01", "name": "Donante Potencial", "certainty": "ASSUMPTION", "priority": "HIGH" },
+    { "id": "SEG-02", "name": "Voluntario / Colaborador", "certainty": "ASSUMPTION", "priority": "HIGH" },
+    { "id": "SEG-03", "name": "Buscador de Información", "certainty": "ASSUMPTION", "priority": "MEDIUM" },
+    { "id": "SEG-04", "name": "Aliado Corporativo", "certainty": "ASSUMPTION", "priority": "MEDIUM" },
+    { "id": "SEG-05", "name": "Beneficiario Comunitario", "certainty": "ASSUMPTION", "priority": "HIGH" }
+  ],
+  "jobs_to_be_done": [
+    { "id": "JTBD-01", "type": "FUNCTIONAL", "goal": "Obtener datos de donación verificados en 1 clic", "certainty": "ASSUMPTION" },
+    { "id": "JTBD-02", "type": "EMOTIONAL", "goal": "Sentir seguridad y tranquilidad sobre la legitimidad institucional", "certainty": "ASSUMPTION" },
+    { "id": "JTBD-03", "type": "FUNCTIONAL", "goal": "Contactar directamente por canal oficial", "certainty": "ASSUMPTION" }
+  ],
+  "epistemic_invariants": {
+    "VAL-I01_problem_verification": "ENFORCED",
+    "VAL-I02_friction_minimization": "ENFORCED",
+    "VAL-I03_epistemic_transparency": "ENFORCED",
+    "VAL-I04_accessibility_right": "ENFORCED",
+    "VAL-I05_trust_by_design": "ENFORCED",
+    "VAL-I06_measurable_outcome": "ENFORCED"
+  },
+  "measurable_metrics_baseline": {
+    "target_first_contentful_paint_ms": 800,
+    "target_task_completion_rate_percent": 95,
+    "target_time_to_contact_seconds": 15,
+    "wcag_aa_compliance": "MANDATORY"
+  }
+}

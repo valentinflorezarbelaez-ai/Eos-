@@ -1,0 +1,106 @@
+{
+  "$schema": "../../orchestration/schema.json",
+  "dag_id": "DAG-FUNDACION-LEVEL2-MINIMUM-SCAFFOLDING-V2",
+  "project_id": "PRJ-FUNDACION",
+  "target_path": "C:\\Users\\valen\\Documents\\Fundacion",
+  "status": "APPROVED_BY_PO",
+  "po_approval_status": "APPROVED",
+  "created_at": "2026-08-14T10:30:40-05:00",
+  "author": "EOS Systems Architect & Product Owner",
+  "description": "Approved implementation DAG for Level 2 Controlled First Write. Includes PO-approved Decision Gates (GAP-005 LOCAL_GIT_ONLY, GAP-003 OPTION_A), metadata dir exception for .git, and strict Target Mutation Audit.",
+  "decision_gates": [
+    {
+      "gate_id": "DECISION-GATE-005",
+      "gap_id": "GAP-005",
+      "name": "Git Repository Strategy & Ownership Decision",
+      "selected_option": "LOCAL_GIT_ONLY",
+      "status": "APPROVED",
+      "blocking_tasks": []
+    },
+    {
+      "gate_id": "DECISION-GATE-003",
+      "gap_id": "GAP-003",
+      "name": "Donation Workflow Architecture Decision",
+      "selected_option": "OPTION_A_STATIC_BANK_INFO",
+      "status": "APPROVED",
+      "blocking_tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "name": "Initialize Target Repository Hygiene",
+      "action": "git init & create .gitignore, .editorconfig",
+      "dependencies": [],
+      "target_files": [".gitignore", ".editorconfig"],
+      "authorized_metadata_dirs": [".git"],
+      "precondition_gate": "DECISION-GATE-005",
+      "governance_check": "DECISION-GATE-005 APPROVED (LOCAL_GIT_ONLY). Remote repos, tokens, and push FORBIDDEN."
+    },
+    {
+      "id": "TASK-002",
+      "name": "Scaffold Package Configuration & Verifier",
+      "action": "create package.json with Vite dev server & test scripts",
+      "dependencies": ["TASK-001"],
+      "target_files": ["package.json"],
+      "governance_check": "Zero external dependencies beyond Vite and standard linters"
+    },
+    {
+      "id": "TASK-003",
+      "name": "Implement Semantic HTML5 Core Layout",
+      "action": "create index.html with WCAG AA accessibility & SVG placeholders (GAP-001)",
+      "dependencies": ["TASK-002"],
+      "target_files": ["index.html"],
+      "governance_check": "100% semantic HTML5 tags, ARIA labels, and WCAG AA contrast ratio >= 4.5:1"
+    },
+    {
+      "id": "TASK-004",
+      "name": "Implement CSS Design System & Responsive Layout",
+      "action": "create src/styles/main.css with CSS custom properties & fluid layout",
+      "dependencies": ["TASK-003"],
+      "target_files": ["src/styles/main.css"],
+      "governance_check": "Pure vanilla CSS; responsive breakpoints for mobile/tablet/desktop"
+    },
+    {
+      "id": "TASK-005",
+      "name": "Implement Legal Config Schema (GAP-002)",
+      "action": "create src/config/legal.json with UNKNOWN tokens pending PO input",
+      "dependencies": ["TASK-003"],
+      "target_files": ["src/config/legal.json"],
+      "governance_check": "Strict prohibition of invented legal data (UNKNOWN tokens stay UNKNOWN)"
+    },
+    {
+      "id": "TASK-006",
+      "name": "Implement Informational Donation Section (GAP-003 Option A)",
+      "action": "implement static bank transfer & contact info section in index.html and src/js/main.js",
+      "dependencies": ["TASK-004", "TASK-005"],
+      "target_files": ["src/js/main.js"],
+      "precondition_gate": "DECISION-GATE-003",
+      "governance_check": "DECISION-GATE-003 APPROVED (OPTION_A_STATIC_BANK_INFO). Payment SDKs & credentials FORBIDDEN."
+    },
+    {
+      "id": "TASK-007",
+      "name": "Prepare Build & Deployment Manifest (GAP-004 IaC Prep)",
+      "action": "create build & IaC deployment configuration manifest (deployment.manifest.json) in target project",
+      "dependencies": ["TASK-006"],
+      "target_files": ["deployment.manifest.json"],
+      "governance_check": "Decoupled from content tasks; IaC prep only, cloud deployment & DNS strictly DENIED"
+    },
+    {
+      "id": "TASK-008",
+      "name": "Execute Verification & Target Mutation Audit",
+      "action": "run npm run verify:strict, execute Target Mutation Audit, & generate EVD-FUNDACION-LEVEL2-001",
+      "dependencies": ["TASK-006", "TASK-007"],
+      "target_files": [],
+      "mutation_audit_rules": [
+        "every created/modified file ∈ approved DAG target_files OR authorized_metadata_dirs (.git)",
+        "every modification attributable to an authorized task",
+        "no unexpected file creation outside target_files",
+        "no unauthorized dependency",
+        "no secret or private key introduced",
+        "no file outside declared write scope modified"
+      ],
+      "governance_check": "Verification of verification & 100% strict target mutation audit"
+    }
+  ]
+}

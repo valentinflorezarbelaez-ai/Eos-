@@ -1,0 +1,28 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14T21:45:00Z",
+  "purpose": "Qualitative coding schema to strictly separate raw user observation from derived interpretation and product decision",
+  "coding_levels": [
+    {
+      "level": "L1_RAW_OBSERVATION",
+      "definition": "Verbatim transcript, click timestamp, physical eye gaze, or exact UI interaction with zero inferential judgment.",
+      "example": "User paused 8 seconds on footer, selected NIT text, and copied it to clipboard."
+    },
+    {
+      "level": "L2_INTERPRETATION",
+      "definition": "Direct behavioral inference grounded in the observation and think-aloud utterance.",
+      "example": "User sought external verification of the foundation's legal registration number."
+    },
+    {
+      "level": "L3_HYPOTHESIS",
+      "definition": "Causal explanation of the observed friction or enablement.",
+      "example": "Displaying the NIT in the footer satisfies the initial legitimacy check for high-skepticism donors."
+    },
+    {
+      "level": "L4_PRODUCT_DECISION",
+      "definition": "Actionable engineering or content requirement authorized strictly by accumulated evidence.",
+      "example": "Keep NIT and Chamber of Commerce registration in persistent footer with one-click copy button."
+    }
+  ]
+}

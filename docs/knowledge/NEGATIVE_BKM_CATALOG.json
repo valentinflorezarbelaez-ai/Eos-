@@ -1,0 +1,20 @@
+{
+  "catalog_version": "1.0.0",
+  "updated_at": "2026-08-14T22:46:00-05:00",
+  "negative_bkms": [
+    {
+      "negative_bkm_id": "NEG-BKM-001",
+      "title": "DOM Edge Regex Sanitization Anti-Pattern on Streaming Binary Protocols",
+      "identified_in": "CANARY-F001 (NEG-TRANS-001)",
+      "target_domains": [
+        "high_frequency_telemetry_streams",
+        "streaming_binary_websockets",
+        "grpc_byte_buffers"
+      ],
+      "anti_pattern_description": "Attempting to apply DOM character-boundary regex parsing and string transformation to high-throughput continuous binary streams.",
+      "failure_mode": "400% latency bloat, CPU core saturation, frame dropping, and thread starvation.",
+      "correct_alternative_pattern": "Zero-copy binary framing, protocol buffer schema validation, and dedicated background worker decoding.",
+      "governance_rule": "Enforce strict DO_NOT_TRANSFER when BKM-CANARY-001 is proposed for binary streaming architectures."
+    }
+  ]
+}

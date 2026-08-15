@@ -1,0 +1,12 @@
+{
+  "project_id": "PRJ-CANARY-BETA",
+  "name": "Canary Beta Isolated Workload",
+  "status": "REGISTERED",
+  "tier": "CANARY_PILOT",
+  "isolation_domain": "EOS-Lab/Canary-Beta",
+  "allowed_authority": "CANARY_RESTRICTED",
+  "external_paths": [],
+  "inherited_credentials": false,
+  "inherited_approvals": false,
+  "registered_at": "2026-08-14T23:08:00-05:00"
+}

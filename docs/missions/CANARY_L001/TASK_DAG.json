@@ -1,0 +1,47 @@
+{
+  "mission_id": "CANARY-L001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "dag_version": "1.0.0",
+  "nodes": [
+    {
+      "task_id": "TSK-L001-001",
+      "name": "Pre-Registration & Blind Partition Freezing",
+      "stage": "RESEARCH",
+      "dependencies": [],
+      "parallel_group": null,
+      "status": "COMPLETED"
+    },
+    {
+      "task_id": "TSK-L001-002",
+      "name": "Build Blind Evaluation & Oracle Regret Engine",
+      "stage": "IMPLEMENTATION",
+      "dependencies": ["TSK-L001-001"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-L001-003",
+      "name": "Execute Blind Battery Across 6 Unseen Domains (N=60)",
+      "stage": "VERIFICATION_AND_EXPERIMENTATION",
+      "dependencies": ["TSK-L001-002"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-L001-004",
+      "name": "Simulate Environmental Drift & Risk-Sensitive Lexicographic Gates",
+      "stage": "VERIFICATION_AND_EXPERIMENTATION",
+      "dependencies": ["TSK-L001-003"],
+      "parallel_group": null,
+      "status": "READY"
+    },
+    {
+      "task_id": "TSK-L001-005",
+      "name": "Independent Review & Upper-Tier Metric Ledger Recording",
+      "stage": "INDEPENDENT_REVIEW_AND_KNOWLEDGE_PORTFOLIO",
+      "dependencies": ["TSK-L001-004"],
+      "parallel_group": null,
+      "status": "READY"
+    }
+  ]
+}

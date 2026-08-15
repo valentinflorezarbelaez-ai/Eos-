@@ -1,0 +1,77 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14T21:50:00Z",
+  "skills": [
+    {
+      "skill_id": "SKL-ACCESSIBILITY-AUDITOR",
+      "name": "Accessibility Auditor",
+      "version": "1.0.0",
+      "domain": "Accessibility",
+      "path": ".agents/skills/accessibility-auditor/SKILL.md",
+      "inputs": ["HTML markup", "Color palettes", "ARIA trees"],
+      "outputs": ["WCAG AA compliance score", "Remediation recommendations"],
+      "dependencies": [],
+      "tools_used": ["TOL-AXE-CORE", "TOL-PLAYWRIGHT-MCP"],
+      "risk": "LOW",
+      "evidence_status": "VERIFIED_IN_SCOPE",
+      "last_validated": "2026-08-14"
+    },
+    {
+      "skill_id": "SKL-BROWSER-QA",
+      "name": "Browser QA & E2E Tester",
+      "version": "1.0.0",
+      "domain": "Testing",
+      "path": ".agents/skills/browser-qa/SKILL.md",
+      "inputs": ["User journeys", "Target URLs", "Viewport specs"],
+      "outputs": ["Visual snapshots", "Assertion results", "Console error trace"],
+      "dependencies": ["SKL-ACCESSIBILITY-AUDITOR"],
+      "tools_used": ["TOL-PLAYWRIGHT-MCP"],
+      "risk": "LOW",
+      "evidence_status": "VERIFIED_IN_SCOPE",
+      "last_validated": "2026-08-14"
+    },
+    {
+      "skill_id": "SKL-PERFORMANCE-AUDITOR",
+      "name": "Performance Auditor",
+      "version": "1.0.0",
+      "domain": "Performance",
+      "path": ".agents/skills/performance-auditor/SKILL.md",
+      "inputs": ["Bundle manifests", "Network waterfalls", "Lighthouse metrics"],
+      "outputs": ["Core Web Vitals budget assessment", "Asset optimization plan"],
+      "dependencies": [],
+      "tools_used": ["TOL-NODE-TEST-RUNNER"],
+      "risk": "LOW",
+      "evidence_status": "VERIFIED_IN_SCOPE",
+      "last_validated": "2026-08-14"
+    },
+    {
+      "skill_id": "SKL-SECURITY-AUDITOR",
+      "name": "Security Auditor",
+      "version": "1.0.0",
+      "domain": "Security",
+      "path": ".agents/skills/security-auditor/SKILL.md",
+      "inputs": ["Code diffs", "Dependency trees", "Permission scopes"],
+      "outputs": ["Vulnerability audit report", "OWASP risk evaluation"],
+      "dependencies": [],
+      "tools_used": ["TOL-NODE-TEST-RUNNER"],
+      "risk": "LOW",
+      "evidence_status": "VERIFIED_IN_SCOPE",
+      "last_validated": "2026-08-14"
+    },
+    {
+      "skill_id": "SKL-SEO-AUDITOR",
+      "name": "SEO Auditor",
+      "version": "1.0.0",
+      "domain": "SEO",
+      "path": ".agents/skills/seo-auditor/SKILL.md",
+      "inputs": ["Meta tags", "Heading structures", "Sitemaps"],
+      "outputs": ["Search readiness score", "OpenGraph compliance audit"],
+      "dependencies": [],
+      "tools_used": ["TOL-NODE-TEST-RUNNER"],
+      "risk": "LOW",
+      "evidence_status": "VERIFIED_IN_SCOPE",
+      "last_validated": "2026-08-14"
+    }
+  ]
+}

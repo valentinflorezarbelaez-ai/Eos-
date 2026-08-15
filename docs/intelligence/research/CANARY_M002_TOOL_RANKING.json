@@ -1,0 +1,60 @@
+{
+  "mission_id": "CANARY-M002",
+  "ranking_date": "2026-08-14T22:33:45-05:00",
+  "dimensions": [
+    "capability_fit",
+    "correctness",
+    "security",
+    "reliability",
+    "performance",
+    "latency",
+    "cost",
+    "maintainability",
+    "evidence_quality",
+    "ecosystem_health",
+    "reversibility",
+    "user_value"
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "name": "Custom_Vanilla_Multi_Field_Dispatcher",
+      "scores": {
+        "capability_fit": 0.99,
+        "correctness": 0.99,
+        "security": 1.00,
+        "reliability": 0.99,
+        "performance": 1.00,
+        "latency": 0.99,
+        "cost": 1.00,
+        "maintainability": 0.96,
+        "evidence_quality": 0.99,
+        "ecosystem_health": 1.00,
+        "reversibility": 1.00,
+        "user_value": 0.97
+      },
+      "composite_score": 0.990,
+      "verdict": "SELECTED"
+    },
+    {
+      "rank": 2,
+      "name": "Third_Party_Form_Validator_Bundle",
+      "scores": {
+        "capability_fit": 0.70,
+        "correctness": 0.80,
+        "security": 0.65,
+        "reliability": 0.85,
+        "performance": 0.55,
+        "latency": 0.60,
+        "cost": 0.50,
+        "maintainability": 0.70,
+        "evidence_quality": 0.75,
+        "ecosystem_health": 0.80,
+        "reversibility": 0.60,
+        "user_value": 0.75
+      },
+      "composite_score": 0.687,
+      "verdict": "REJECTED"
+    }
+  ]
+}
