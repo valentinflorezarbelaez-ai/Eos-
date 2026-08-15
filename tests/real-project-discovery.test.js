@@ -10,6 +10,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
+// Capture baselines for delta-based isolation verification
+const FUNDACION_PATH = 'C:\\Users\\valen\\Documents\\Fundacion';
+const ANDES_PATH = 'C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat';
+const fundacionBaseline = fs.existsSync(FUNDACION_PATH) ? fs.readdirSync(FUNDACION_PATH).sort() : [];
+const andesBaseline = fs.existsSync(ANDES_PATH) ? fs.readdirSync(ANDES_PATH).sort() : [];
+
 // ====================================================
 // REAL PROJECT DISCOVERY & TARGET INDEPENDENCE TESTS
 // ====================================================
@@ -26,19 +32,24 @@ test('RealProjectDiscoveryEngine rejects self-analysis of EOS Control Plane for 
   assert.throws(() => new RealProjectDiscoveryEngine(rootDir), /SECURITY_DENY/);
 });
 
-test('RealProjectDiscoveryEngine analyzes unpopulated target project (Fundacion)', () => {
+test('RealProjectDiscoveryEngine analyzes target project (Fundacion) and reports observed state', () => {
   const engine = new RealProjectDiscoveryEngine('C:\\Users\\valen\\Documents\\Fundacion');
   const discovery = engine.runDiscoveryMission();
   assert.equal(discovery.projectId, 'fundacion');
-  assert.equal(discovery.architectureAssessment.pattern, 'UNPOPULATED_TARGET');
-  assert.equal(discovery.state.observedFacts.find(f => f.key === 'ITEM_COUNT').value, 0);
+  // Engine must accurately report what it observes — populated or unpopulated
+  const observedItemCount = discovery.state.observedFacts.find(f => f.key === 'ITEM_COUNT').value;
+  const actualItemCount = fs.existsSync(FUNDACION_PATH) ? fs.readdirSync(FUNDACION_PATH).length : 0;
+  assert.equal(observedItemCount, actualItemCount, 'Discovery engine must report actual observed item count');
+  // Architecture pattern must match observed reality
+  const expectedPattern = actualItemCount > 0 ? 'POPULATED_REAL_PROJECT' : 'UNPOPULATED_TARGET';
+  assert.equal(discovery.architectureAssessment.pattern, expectedPattern,
+    'Architecture pattern must reflect actual target state, not a hardcoded assumption');
 });
 
 test('RealProjectDiscoveryEngine analyzes populated real target project (Andes-Retreat)', () => {
-  const andesPath = 'C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat';
-  if (!fs.existsSync(andesPath)) return; // Guard if run in isolated environment
+  if (!fs.existsSync(ANDES_PATH)) return; // Guard if run in isolated environment
 
-  const engine = new RealProjectDiscoveryEngine(andesPath);
+  const engine = new RealProjectDiscoveryEngine(ANDES_PATH);
   const discovery = engine.runDiscoveryMission();
   assert.equal(discovery.projectId, 'andes-retreat');
   assert.equal(discovery.architectureAssessment.pattern, 'POPULATED_REAL_PROJECT');
@@ -47,14 +58,15 @@ test('RealProjectDiscoveryEngine analyzes populated real target project (Andes-R
   assert.ok(discovery.state.derivedFacts.find(f => f.key === 'FILE_TREE_COUNT').value > 0);
 });
 
-test('Negative Protection Test: Target directories remain 100% untouched during discovery', () => {
-  const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const andesPath = 'C:\\Users\\valen\\Documents\\EOS-Lab\\Andes-Retreat';
-
-  if (fs.existsSync(fundacionPath)) {
-    assert.equal(fs.readdirSync(fundacionPath).length, 0);
+test('Negative Protection Test: Target directories remain immutable during discovery (Δ=0)', () => {
+  if (fs.existsSync(FUNDACION_PATH)) {
+    const currentItems = fs.readdirSync(FUNDACION_PATH).sort();
+    assert.deepEqual(currentItems, fundacionBaseline,
+      'Fundacion must remain immutable during READ_ONLY discovery');
   }
-  if (fs.existsSync(andesPath)) {
-    assert.ok(fs.existsSync(path.join(andesPath, 'package.json')));
+  if (fs.existsSync(ANDES_PATH)) {
+    const currentItems = fs.readdirSync(ANDES_PATH).sort();
+    assert.deepEqual(currentItems, andesBaseline,
+      'Andes-Retreat must remain immutable during READ_ONLY discovery');
   }
 });

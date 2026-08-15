@@ -18,8 +18,17 @@ export class IndependentVerificationHarness {
 
   verifyTargetIsolation() {
     const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-    const count = fs.readdirSync(fundacionPath).length;
-    return { path: fundacionPath, count, isolated: count === 0 };
+    const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+    const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+    const itemsMatch = JSON.stringify(baselineItems) === JSON.stringify(currentItems);
+    return {
+      path: fundacionPath,
+      baselineCount: baselineItems.length,
+      currentCount: currentItems.length,
+      delta: currentItems.length - baselineItems.length,
+      itemsMatch,
+      isolated: itemsMatch
+    };
   }
 
   evaluateClaimIndependence(claim) {

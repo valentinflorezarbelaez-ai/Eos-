@@ -13,14 +13,29 @@ export class AdversarialLaboratoryEngine {
     this.blastRadiusModel = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs/governance/BLAST_RADIUS_MODEL.json'), 'utf-8'));
     this.resilienceModel = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs/governance/RESILIENCE_MODEL.json'), 'utf-8'));
     this.gameDayStateMachine = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs/orchestration/GAME_DAY_STATE_MACHINE.json'), 'utf-8'));
+
+    // Capture baseline snapshot of external target for delta-based isolation verification
+    const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
+    this.targetBaseline = {
+      path: fundacionPath,
+      items: fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [],
+      capturedAt: new Date().toISOString()
+    };
   }
 
   verifySteadyState() {
-    const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-    const fundacionCount = fs.readdirSync(fundacionPath).length;
+    const currentItems = fs.existsSync(this.targetBaseline.path)
+      ? fs.readdirSync(this.targetBaseline.path).sort()
+      : [];
+    const baselineItems = this.targetBaseline.items;
+    const delta = currentItems.length - baselineItems.length;
+    const itemsMatch = JSON.stringify(currentItems) === JSON.stringify(baselineItems);
     return {
-      steadyStateValid: fundacionCount === 0,
-      fundacionCount,
+      steadyStateValid: itemsMatch,
+      baselineCount: baselineItems.length,
+      currentCount: currentItems.length,
+      delta,
+      itemsMatch,
       baselineCommit: 'fe11fd7',
       controlPlaneStatus: 'HEALTHY'
     };

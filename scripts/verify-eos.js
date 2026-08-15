@@ -328,14 +328,77 @@ function verifyWorkspace() {
     }
   }
 
-  // 2. External Target Workspace Write Barrier Check
+  // 2. External Target Workspace Write Barrier Check (Authorization-Aware: PROP-VRF-002)
   const externalFundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
+  const authRecordL2Path = path.join(rootDir, 'docs/projects/registrations/fundacion/IMPLEMENTATION_AUTHORIZATION.md');
+  const authRecordL3Path = path.join(rootDir, 'docs/decisions/DECISION_GATE_L3_REAL_001.md');
+  const dagL3Path = path.join(rootDir, 'docs/projects/registrations/fundacion/PROPOSED_L3_TASK_DAG_V2.json');
+
+  const hasLevel3Auth = fs.existsSync(authRecordL3Path) && 
+                        /AUTHORIZED/i.test(fs.readFileSync(authRecordL3Path, 'utf8')) &&
+                        fs.existsSync(dagL3Path);
+  const hasLevel2Auth = fs.existsSync(authRecordL2Path) && 
+                        fs.readFileSync(authRecordL2Path, 'utf8').includes('AUTHORIZED — LEVEL 2');
+
   if (fs.existsSync(externalFundacionPath)) {
     const contents = fs.readdirSync(externalFundacionPath);
     if (contents.length === 0) {
       report.checks.push({ path: 'ExternalTarget:Fundacion', status: 'VERIFIED', type: 'external-isolation-empty' });
+    } else if (hasLevel3Auth) {
+      // Level 3 Authorized: Dynamic evaluation against authorized tripartite scope
+      const dagL3 = JSON.parse(fs.readFileSync(dagL3Path, 'utf8'));
+      const authorizedFiles = (dagL3.tripartite_scope && dagL3.tripartite_scope.authorized_files) || [];
+      const authorizedContainers = (dagL3.tripartite_scope && dagL3.tripartite_scope.authorized_container_dirs) || [];
+      const authorizedMetadata = (dagL3.tripartite_scope && dagL3.tripartite_scope.authorized_metadata_dirs) || [];
+
+      // Helper to scan directory items recursively
+      const scanRelativeItems = (dir, base = '') => {
+        let items = [];
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
+        for (const entry of entries) {
+          const relPath = base ? `${base}/${entry.name}` : entry.name;
+          items.push({ relPath, isDirectory: entry.isDirectory() });
+          if (entry.isDirectory() && entry.name !== '.git') {
+            items = items.concat(scanRelativeItems(path.join(dir, entry.name), relPath));
+          }
+        }
+        return items;
+      };
+
+      const physicalItems = scanRelativeItems(externalFundacionPath);
+      const unapprovedItems = [];
+
+      for (const item of physicalItems) {
+        if (item.isDirectory) {
+          const formattedDir = item.relPath.endsWith('/') ? item.relPath : `${item.relPath}/`;
+          const isContainerAuth = authorizedContainers.includes(formattedDir) || authorizedMetadata.includes(formattedDir) || item.relPath === '.git';
+          if (!isContainerAuth) {
+            unapprovedItems.push(item.relPath);
+          }
+        } else {
+          const isFileAuth = authorizedFiles.includes(item.relPath);
+          if (!isFileAuth) {
+            unapprovedItems.push(item.relPath);
+          }
+        }
+      }
+
+      if (unapprovedItems.length === 0) {
+        report.checks.push({ path: 'ExternalTarget:Fundacion', status: 'VERIFIED', type: 'external-target-level3-authorized' });
+      } else {
+        report.failures.push({ path: 'ExternalTarget:Fundacion', message: `External target contains unapproved items outside Level 3 scope: ${unapprovedItems.join(', ')}`, type: 'external-target-level3-authorized' });
+      }
+    } else if (hasLevel2Auth) {
+      // Level 2 Authorized: Verify that all root contents strictly belong to the authorized changeset
+      const authorizedRootItems = ['.editorconfig', '.gitignore', '.git', 'deployment.manifest.json', 'index.html', 'package.json', 'src'];
+      const unapprovedItems = contents.filter(item => !authorizedRootItems.includes(item));
+      if (unapprovedItems.length === 0) {
+        report.checks.push({ path: 'ExternalTarget:Fundacion', status: 'VERIFIED', type: 'external-target-level2-authorized' });
+      } else {
+        report.failures.push({ path: 'ExternalTarget:Fundacion', message: `External target contains unapproved items outside Level 2 scope: ${unapprovedItems.join(', ')}`, type: 'external-target-level2-authorized' });
+      }
     } else {
-      report.failures.push({ path: 'ExternalTarget:Fundacion', message: `External target contains ${contents.length} unapproved items during EOS Development Mode`, type: 'external-isolation-empty' });
+      report.failures.push({ path: 'ExternalTarget:Fundacion', message: `External target contains ${contents.length} unapproved items during EOS Development Mode without active authorization`, type: 'external-isolation-empty' });
     }
   }
 

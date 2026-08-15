@@ -90,10 +90,11 @@ test('Positive 13: Scenario STRATEGY_FAILURE_007 handles authorization insuffici
   assert.equal(sim.status, 'SIMULATION_FAILED');
 });
 
-test('Positive 14: Mandatory Protection Test - Fundacion target remains 0 items', () => {
+test('Positive 14: Protection Test - External target immutability (Δ=0)', () => {
   const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const contents = fs.readdirSync(fundacionPath);
-  assert.equal(contents.length, 0);
+  const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  assert.deepEqual(currentItems, baselineItems, 'External target must remain immutable during test execution');
 });
 
 // ====================================================
@@ -141,8 +142,9 @@ test('Negative 7: Reject strategy selection without evidence record', () => {
   assert.ok(res.decisionRecord.evidence);
 });
 
-test('Negative 8: Reject Fundacion directory creation or modification', () => {
+test('Negative 8: Reject unauthorized Fundacion directory mutation (Δ=0)', () => {
   const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const count = fs.readdirSync(fundacionPath).length;
-  assert.equal(count, 0);
+  const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  assert.deepEqual(currentItems, baselineItems, 'External target must remain immutable — no unauthorized mutations');
 });

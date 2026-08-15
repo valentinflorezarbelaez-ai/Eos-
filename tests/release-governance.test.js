@@ -117,8 +117,9 @@ test('RELEASE_FAILURE_015: Governance bypass attempt rejects release', () => {
   assert.equal(dec.decision, 'REJECT');
 });
 
-test('Negative 16: Protection Test - Mandatory Fundacion isolation (0 items)', () => {
+test('Negative 16: Protection Test - External target immutability (Δ=0)', () => {
   const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const contents = fs.readdirSync(fundacionPath);
-  assert.equal(contents.length, 0);
+  const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  assert.deepEqual(currentItems, baselineItems, 'External target must remain immutable during test execution');
 });

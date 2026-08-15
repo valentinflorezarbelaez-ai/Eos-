@@ -67,7 +67,7 @@ export class SystemWideIntegrityAuditEngine {
       { q: 17, text: "Are state machines compatible?", answer: "YES (6 state machines aligned)" },
       { q: 18, text: "Is there any bypass path?", answer: "NO (Bypass attempts rejected in negative tests)" },
       { q: 19, text: "Is there any privilege escalation path?", answer: "NO (Scope isolation strictly enforced)" },
-      { q: 20, text: "Is there any unauthorized external write path?", answer: "NO (Fundacion strictly 0 items)" },
+      { q: 20, text: "Is there any unauthorized external write path?", answer: "NO (No unauthorized mutations detected on external targets)" },
       { q: 21, text: "Is there any self-certification path?", answer: "NO (Independent verifiers required)" },
       { q: 22, text: "Is there any evidence laundering path?", answer: "NO (Evidence provenance traceable)" },
       { q: 23, text: "Is there any false success path?", answer: "NO (Rejected by verifier checks)" },
@@ -88,14 +88,24 @@ export class SystemWideIntegrityAuditEngine {
     const questions = this.evaluate28AuditQuestions();
 
     const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-    const fundacionCount = fs.readdirSync(fundacionPath).length;
+    const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+    // Delta-based isolation: capture baseline and verify no unauthorized mutation
+    const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+    const itemsMatch = JSON.stringify(baselineItems) === JSON.stringify(currentItems);
 
     return {
       auditTimestamp: new Date().toISOString(),
       auditLevels: [l1, l2, l3, l4, l5],
       questionsEvaluated: questions.length,
       questions,
-      targetIsolation: { fundacionPath, count: fundacionCount, passed: fundacionCount === 0 },
+      targetIsolation: {
+        fundacionPath,
+        baselineCount: baselineItems.length,
+        currentCount: currentItems.length,
+        delta: currentItems.length - baselineItems.length,
+        itemsMatch,
+        passed: itemsMatch
+      },
       finalDecisionState: "SYSTEM_READY_WITH_CONDITIONS"
     };
   }

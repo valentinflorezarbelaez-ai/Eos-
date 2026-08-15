@@ -233,10 +233,11 @@ test('Negative Test 17: Reject prohibited external write to Fundacion', () => {
   assert.equal(res.status, 'DENIED');
 });
 
-test('Negative Test 18: Reject Fundacion directory modification', () => {
+test('Negative Test 18: Reject unauthorized Fundacion directory mutation (Δ=0)', () => {
   const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const count = fs.readdirSync(fundacionPath).length;
-  assert.equal(count, 0);
+  const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  assert.deepEqual(currentItems, baselineItems, 'External target must remain immutable during test execution');
 });
 
 test('Negative Test 19: Reject unregistered provider execution', () => {

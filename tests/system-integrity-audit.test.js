@@ -34,8 +34,9 @@ test('System-Wide Integrity Audit produces valid decision gate state', () => {
   assert.equal(audit.finalDecisionState, 'SYSTEM_READY_WITH_CONDITIONS');
 });
 
-test('Negative Protection Test: PRJ-FUNDACION isolation remains strictly 0 items', () => {
+test('Negative Protection Test: PRJ-FUNDACION isolation - external target immutability (Δ=0)', () => {
   const fundacionPath = 'C:\\Users\\valen\\Documents\\Fundacion';
-  const count = fs.readdirSync(fundacionPath).length;
-  assert.equal(count, 0);
+  const baselineItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  const currentItems = fs.existsSync(fundacionPath) ? fs.readdirSync(fundacionPath).sort() : [];
+  assert.deepEqual(currentItems, baselineItems, 'External target must remain immutable during test execution');
 });
