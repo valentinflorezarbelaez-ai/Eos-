@@ -24,16 +24,19 @@ export class CanaryCohortServer {
     if (typeof portOrOptions === 'object') {
       this.port = portOrOptions.port || 3456;
       this.adminToken = portOrOptions.adminToken || process.env.EOS_ADMIN_TOKEN || 'eos_admin_secret_canary_001';
+      this.logFile = portOrOptions.logFilePath || rawLogFile;
     } else {
       this.port = portOrOptions;
       this.adminToken = process.env.EOS_ADMIN_TOKEN || 'eos_admin_secret_canary_001';
+      this.logFile = rawLogFile;
     }
     this.sink = new AppendOnlyTelemetrySink();
     this.killSwitchActive = false;
     this.server = null;
 
-    if (!fs.existsSync(rawTelemetryDir)) {
-      fs.mkdirSync(rawTelemetryDir, { recursive: true });
+    const targetDir = path.dirname(this.logFile);
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
     }
   }
 
@@ -171,7 +174,7 @@ export class CanaryCohortServer {
           });
 
           // Append to persistent log file
-          fs.appendFileSync(rawLogFile, JSON.stringify(chained) + '\n', 'utf8');
+          fs.appendFileSync(this.logFile, JSON.stringify(chained) + '\n', 'utf8');
 
           res.writeHead(201, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ status: 'INGESTED', blockHash: chained.blockHash }));

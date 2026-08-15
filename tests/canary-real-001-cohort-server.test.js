@@ -52,7 +52,10 @@ test('SRV-01: CanaryCohortServer starts, passes health check, and serves index.h
 });
 
 test('SRV-02: /api/telemetry ingests events into AppendOnlyTelemetrySink and computes live stats', async () => {
-  const server = new CanaryCohortServer(3892);
+  const testLogFile = path.join(rootDir, 'docs/evidence/raw_telemetry/test_temp_cohort.jsonl');
+  if (fs.existsSync(testLogFile)) fs.unlinkSync(testLogFile);
+
+  const server = new CanaryCohortServer({ port: 3892, logFilePath: testLogFile });
   await server.start();
 
   try {
@@ -112,11 +115,15 @@ test('SRV-02: /api/telemetry ingests events into AppendOnlyTelemetrySink and com
     assert.equal(stats.chain_integrity, true);
   } finally {
     await server.stop();
+    if (fs.existsSync(testLogFile)) fs.unlinkSync(testLogFile);
   }
 });
 
 test('SRV-03: Kill-switch rejects unauthorized callers and freezes traffic when authorized', async () => {
-  const server = new CanaryCohortServer({ port: 3893, adminToken: 'secret_test_token_123' });
+  const testLogFile3 = path.join(rootDir, 'docs/evidence/raw_telemetry/test_temp_cohort3.jsonl');
+  if (fs.existsSync(testLogFile3)) fs.unlinkSync(testLogFile3);
+
+  const server = new CanaryCohortServer({ port: 3893, adminToken: 'secret_test_token_123', logFilePath: testLogFile3 });
   await server.start();
 
   try {
@@ -151,5 +158,6 @@ test('SRV-03: Kill-switch rejects unauthorized callers and freezes traffic when 
     assert.equal(pageRes2.statusCode, 200);
   } finally {
     await server.stop();
+    if (fs.existsSync(testLogFile3)) fs.unlinkSync(testLogFile3);
   }
 });
