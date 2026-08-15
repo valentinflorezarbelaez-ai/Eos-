@@ -5,7 +5,10 @@
   "description": "Engineering Operating System — Autonomous, reproducible, and auditable engineering control plane.",
   "type": "module",
   "scripts": {
-    "test": "node --test",
+    "test": "node --test tests/*.test.js tests/**/*.test.js",
+    "eos": "node scripts/cli/eos.js",
+    "test:lab": "npx tsx --test EOS-Lab/**/*.test.ts",
+    "test:all": "node --test tests/*.test.js tests/**/*.test.js && npx tsx --test EOS-Lab/**/*.test.ts",
     "verify": "node scripts/verify-eos.js",
     "verify:strict": "node scripts/verify-eos.js --strict",
     "verify:json": "node scripts/verify-eos.js --strict --json",

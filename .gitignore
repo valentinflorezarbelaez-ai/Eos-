@@ -50,3 +50,6 @@ logs/
 *.log
 tmp/
 temp/
+
+# Ephemeral Runtime State
+docs/sessions/checkpoints/
