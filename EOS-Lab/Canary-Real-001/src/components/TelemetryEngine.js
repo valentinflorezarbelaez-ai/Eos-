@@ -70,6 +70,17 @@ export class TelemetryEngine {
       } catch (err) {
         // Silent catch: Telemetry errors must never crash the user UI
       }
+    } else if (typeof fetch !== 'undefined' && typeof window !== 'undefined') {
+      try {
+        fetch('/api/telemetry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(event),
+          keepalive: true
+        }).catch(() => {});
+      } catch (err) {
+        // Non-blocking telemetry
+      }
     }
 
     return event;
