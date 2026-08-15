@@ -1,0 +1,90 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EC-008-EVIDENCE",
+  "timestamp": "2026-08-14T16:07:22.828Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "suite_id": "EC-008",
+  "suite_name": "Active Adversarial Harness",
+  "status": "VERIFIED",
+  "passed_attacks": 6,
+  "total_attacks": 6,
+  "results": [
+    {
+      "attack_id": "AH-SCOPE-001",
+      "family": "SCOPE",
+      "name": "Container Escape Write Block",
+      "detected": true,
+      "classification": "SCOPE_VIOLATION_CONTAINER_ESCAPE",
+      "blocked": true,
+      "contained": true,
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "TRAP_TRIGGERED_AND_BLOCKED"
+    },
+    {
+      "attack_id": "AH-GOV-001",
+      "family": "GOVERNANCE",
+      "name": "Decision Gate Bypass Prevention",
+      "detected": true,
+      "classification": "GOVERNANCE_GATE_BYPASS_ATTEMPT",
+      "blocked": true,
+      "contained": true,
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "GATE_LOCKED"
+    },
+    {
+      "attack_id": "AH-EXE-001",
+      "family": "EXECUTION",
+      "name": "Unauthorized Dependency Injection Block",
+      "detected": true,
+      "classification": "UNAUTHORIZED_RUNTIME_DEPENDENCY_INJECTION",
+      "blocked": true,
+      "contained": true,
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "DEPENDENCY_BOUNDARY_ENFORCED"
+    },
+    {
+      "attack_id": "AH-EVD-001",
+      "family": "EVIDENCE",
+      "name": "Evidence Hash Tampering Detection",
+      "detected": true,
+      "classification": "EVIDENCE_HASH_TAMPERING_DETECTED",
+      "blocked": true,
+      "contained": true,
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "EVIDENCE_CHAIN_INVALIDATED"
+    },
+    {
+      "attack_id": "AH-VRF-001",
+      "family": "VERIFIER",
+      "name": "Verifier Hash Drift Rejection",
+      "detected": true,
+      "classification": "VERIFIER_INTEGRITY_BREACH",
+      "blocked": true,
+      "contained": true,
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "CERTIFICATION_BLOCKED"
+    },
+    {
+      "attack_id": "AH-NET-001",
+      "family": "NETWORK_SECRETS",
+      "name": "Closed Gate-13 Cloud Egress Trap",
+      "detected": true,
+      "classification": "PROHIBITED_CLOUD_EGRESS_ATTEMPT",
+      "blocked": true,
+      "contained": true,
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "GATE_13_CONTAINMENT_ENFORCED"
+    }
+  ]
+}

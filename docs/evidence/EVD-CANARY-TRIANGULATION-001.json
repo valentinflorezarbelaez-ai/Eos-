@@ -1,0 +1,25 @@
+{
+  "evidence_id": "EVD-CANARY-TRIANGULATION-001",
+  "evaluated_at": "2026-08-14T22:40:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_TRIANGULATION_AND_SYNTHESIS",
+  "epistemic_verdict": "SUPPORTED_WITHIN_TESTED_SCOPE",
+  "triangulation_summary": {
+    "missions_included": ["CANARY-M001", "CANARY-M002", "CANARY-M003"],
+    "total_participant_trials_n": 60,
+    "total_successes": 56,
+    "pooled_completion_rate": "56/60 = 93.33%",
+    "wilson_score_95_ci": "[84.1%, 97.4%]",
+    "total_observed_security_leaks": 0,
+    "novel_attacks_neutralized": 15,
+    "between_mission_heterogeneity": "LOW_VARIANCE (< 0.0003)"
+  },
+  "governance_decision": {
+    "promoted_artifact": "BKM-CANARY-001",
+    "promotion_level": "RESTRICTED_BKM",
+    "core_modification": "NONE (CORE FROZEN)",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

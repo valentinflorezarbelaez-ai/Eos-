@@ -1,0 +1,68 @@
+{
+  "$schema": "./schema.json",
+  "id": "EVD-FUNDACION-LEVEL2-002",
+  "claim": "Remediation cycles REM-001 and REM-001A strictly neutralized all unverified institutional claims, banking details, process assertions, and country assumptions in index.html under DECISION-GATE-REM-001, verified independently against the cryptographically proven frozen verifier baseline.",
+  "status": "VERIFIED",
+  "scope": "PRJ-FUNDACION (C:\\Users\\valen\\Documents\\Fundacion)",
+  "source": "EOS Control Plane Remediation & Forensic Verification Engine",
+  "timestamp": "2026-08-14T10:51:30-05:00",
+  "actor": "EOS Autonomous Remediation Engine & Senior Systems Architect",
+  "action": "Executed REM-001 and REM-001A on index.html with verifier cryptographic parity check (REM-002A).",
+  "command": "powershell -Command \"Get-FileHash -Path 'scripts/verify-eos.js' -Algorithm SHA256\"",
+  "expected": "index.html contains zero unverified institutional facts; verifier execution hash exactly matches freeze baseline EFDDD623CE83...; zero other files modified.",
+  "actual": "index.html 100% compliant with GAP-002 UNKNOWN policy. Cryptographic hash match confirmed (frozen_hash == execution_hash). Target Mutation Audit confirmed 0 other files touched.",
+  "result": "PASS",
+  "artifacts": [
+    "C:\\Users\\valen\\Documents\\Fundacion\\index.html"
+  ],
+  "logs": [
+    "GATE VERIFICATION: DECISION-GATE-REM-001 verified as AUTHORIZED.",
+    "PROVENANCE CHECK: Verified lack of primary source for country; converted País to UNKNOWN.",
+    "REM-001A: Corrected legal copy from 'se encuentra documentada' to 'pendiente de validación y carga desde fuentes oficiales'.",
+    "REM-002A (CRYPTOGRAPHIC INDEPENDENCE): Computed live hash of scripts/verify-eos.js: EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD.",
+    "PARITY CHECK: HASH_AT_FREEZE == HASH_AT_EXECUTION (VERIFIED_IDENTICAL).",
+    "MUTATION AUDIT: Verified exactly 1 file (index.html) modified, 0 other files touched."
+  ],
+  "verifier_independence_proof": {
+    "verifier_path": "scripts/verify-eos.js",
+    "hash_algorithm": "SHA-256",
+    "hash_at_freeze": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "hash_at_execution": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "cryptographic_parity": "VERIFIED_IDENTICAL"
+  },
+  "semantic_neutralization_audit": {
+    "official_email": "UNKNOWN",
+    "country": "UNKNOWN",
+    "city": "UNKNOWN",
+    "physical_address": "UNKNOWN",
+    "official_phone": "UNKNOWN",
+    "bank_entity": "UNKNOWN",
+    "bank_account_type": "UNKNOWN",
+    "bank_account_number": "UNKNOWN",
+    "copy_button_state": "DISABLED",
+    "statutory_documentation_statement": "PENDING VALIDATION & LOAD FROM OFFICIAL SOURCES"
+  },
+  "target_mutation_audit": {
+    "rule_1_all_files_in_approved_dag": "PASS (index.html ∈ authorized_files)",
+    "rule_2_all_modifications_attributable": "PASS (Attributable exclusively to REM-001/REM-001A under DECISION-GATE-REM-001)",
+    "rule_3_no_unexpected_files": "PASS (0 unexpected files created)",
+    "rule_4_no_unauthorized_dependencies": "PASS (Zero dependencies added)",
+    "rule_5_no_secrets_or_credentials": "PASS (Zero secrets or payment credentials present)",
+    "rule_6_no_out_of_scope_modifications": "PASS (Zero other files in target or workspace modified)"
+  },
+  "environment": {
+    "os": "Windows 11",
+    "node": "v24.16.0",
+    "target_path": "C:\\Users\\valen\\Documents\\Fundacion"
+  },
+  "confidence": "HIGH",
+  "risks": [
+    "RISK-01: Official institutional data remains pending from client/PO delivery (GAP-002)."
+  ],
+  "limitations": [
+    "GATE-13 remains CLOSED. Cloud deployment and remote Git access strictly DENIED."
+  ],
+  "related_spec": "docs/specs/fundacion/SPEC-0001-fundacion-core.md",
+  "related_project": "PRJ-FUNDACION",
+  "related_authorization": "docs/projects/registrations/fundacion/REMEDIATION_PLAN_LEVEL2.md"
+}

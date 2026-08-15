@@ -1,0 +1,64 @@
+{
+  "register_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:05:00-05:00",
+  "evaluation_mode": "BLIND_OUT_OF_SAMPLE_PARTITION",
+  "summary_metrics": {
+    "total_unseen_scenarios": 6,
+    "strategy_selection_accuracy_unseen": 1.0,
+    "mean_policy_regret": 0.0,
+    "false_transfer_rate": 0.0,
+    "abstention_precision": 1.0,
+    "net_policy_value_index": 18.88,
+    "metric_classification": "EOS_INTERNAL_METRIC"
+  },
+  "unseen_evaluations": [
+    {
+      "scenario_id": "L-001-TOKEN-ROTATION",
+      "domain": "Multi-Tenant Token Rotation Modal",
+      "selected_strategy": "A_THEN_B",
+      "oracle_strategy": "A_THEN_B",
+      "regret": 0.0,
+      "decision_accuracy": "MATCH"
+    },
+    {
+      "scenario_id": "L-002-IOT-SENSOR-VIEWER",
+      "domain": "Real-time IoT Sensor Metric Graph",
+      "selected_strategy": "DO_NOT_COMPOSE",
+      "oracle_strategy": "DO_NOT_COMPOSE",
+      "regret": 0.0,
+      "decision_accuracy": "MATCH"
+    },
+    {
+      "scenario_id": "L-003-PUBLIC-BUG-FORM",
+      "domain": "Public Anonymous Bug Submission Form",
+      "selected_strategy": "B_ONLY",
+      "oracle_strategy": "B_ONLY",
+      "regret": 0.0,
+      "decision_accuracy": "MATCH"
+    },
+    {
+      "scenario_id": "L-004-AUDIT-DUMPER",
+      "domain": "Static Secure Audit Log Dumper",
+      "selected_strategy": "A_ONLY",
+      "oracle_strategy": "A_ONLY",
+      "regret": 0.0,
+      "decision_accuracy": "MATCH"
+    },
+    {
+      "scenario_id": "L-005-COBOL-BATCH-IMPORT",
+      "domain": "Legacy COBOL Emulated Batch Importer",
+      "selected_strategy": "COMPOSE_WITH_CONSTRAINTS",
+      "oracle_strategy": "COMPOSE_WITH_CONSTRAINTS",
+      "regret": 0.0,
+      "decision_accuracy": "MATCH"
+    },
+    {
+      "scenario_id": "L-006-WEBGPU-CANVAS",
+      "domain": "WebGPU Compute Pipeline Canvas",
+      "selected_strategy": "RESEARCH_FIRST",
+      "oracle_strategy": "RESEARCH_FIRST",
+      "regret": 0.0,
+      "decision_accuracy": "MATCH"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EVD-L3-PILOT-001",
+  "timestamp": "2026-08-14T16:16:28.452Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "id": "EVD-L3-PILOT-001",
+  "status": "VERIFIED",
+  "scope": "CONTROL_PLANE_SANDBOX_ONLY",
+  "authorization_id": "AUTH-L3-SANDBOX-CONTROLLED-001",
+  "approved_dag_id": "DAG-L3-SANDBOX-PILOT-001",
+  "pilot_metrics": {
+    "tasks_executed": 5,
+    "authorized_mutations": [
+      "src/utils/math.js",
+      "src/index.js",
+      "src/config.json"
+    ],
+    "adversarial_attacks_contained": 1,
+    "revocations_handled": 1,
+    "zero_egress_verified": true,
+    "tree_hash_post": "7025fb7554fb8b2763bda90645367476e8d56ed2805452e4d8a86420fd06ab85",
+    "file_count_post": 4
+  },
+  "isolation_evidence": {
+    "fundacion_target_mutations": 0,
+    "fundacion_isolation_confirmed": true,
+    "gate_13_status": "CLOSED",
+    "cloud_egress_attempts": 0
+  },
+  "verifier_cryptographic_parity": {
+    "pre_hash": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "post_hash": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "parity_delta": 0,
+    "result": "IDENTICAL"
+  }
+}

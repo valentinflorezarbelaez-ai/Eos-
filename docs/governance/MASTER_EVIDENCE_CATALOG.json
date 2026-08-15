@@ -1,0 +1,112 @@
+{
+  "catalog_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:15:00-05:00",
+  "epistemic_standard": "FALSIFICATION_EVIDENTIARY_MAPPING",
+  "total_evidence_items": 8,
+  "evidence_catalog": [
+    {
+      "claim_id": "CLM-001-CANARY-M-TRIANGULATION",
+      "program": "CANARY_REPLICATIONS",
+      "experiment": "CANARY-M001, M002, M003",
+      "evidence_ref": "docs/evidence/EVD-PHASE-E-TRIANGULATION.json",
+      "trace_id": "TRC-CANARY-M-TRIANGULATION-001",
+      "numerator": 56,
+      "denominator": 60,
+      "percentage": "93.33%",
+      "evidence_context": "REAL_CONTROLLED",
+      "confidence": "SUPPORTED_WITHIN_TESTED_SCOPE",
+      "limitation": "Scope restricted to structured client-side forms, diagnostic reporting, and config imports. Not valid on uncharacterized streaming runtimes."
+    },
+    {
+      "claim_id": "CLM-002-PREDICTIVE-TRANSFER",
+      "program": "CANARY_PREDICTIVE_TRANSFER",
+      "experiment": "CANARY-F001",
+      "evidence_ref": "docs/evidence/EVD-PHASE-F-PREDICTIVE-TRANSFER.json",
+      "trace_id": "TRC-CANARY-F001",
+      "numerator": 14,
+      "denominator": 15,
+      "percentage": "93.33% (Predicted: 93.00%, Delta: +0.33%)",
+      "evidence_context": "REAL_CONTROLLED",
+      "confidence": "TRANSFER_SUPPORTED_AND_CALIBRATED",
+      "limitation": "Single accurate prediction does NOT constitute global system-wide calibration."
+    },
+    {
+      "claim_id": "CLM-003-COMPOSITE-SYNERGY",
+      "program": "CANARY_COMPOSITION_EXPERIMENT",
+      "experiment": "CANARY-I001",
+      "evidence_ref": "docs/evidence/EVD-CANARY-I001-COMPOSITION.json",
+      "trace_id": "TRC-CANARY-I001",
+      "numerator": 36,
+      "denominator": 40,
+      "percentage": "Arm AB: 90.0% vs Arm A: 70.0% (Delta: +20.0%)",
+      "evidence_context": "REAL_CONTROLLED",
+      "confidence": "COMPOSITION_SUPPORTED_WITHIN_TESTED_SCOPE",
+      "limitation": "Interaction = 0.0% indicates additive effects rather than superadditive universal synergy."
+    },
+    {
+      "claim_id": "CLM-004-ORDER-DEPENDENCY",
+      "program": "CANARY_COMPOSITION_REPLICATION",
+      "experiment": "CANARY-J001",
+      "evidence_ref": "docs/evidence/EVD-CANARY-J001-COMPOSITION-REPLICATION.json",
+      "trace_id": "TRC-CANARY-J001",
+      "numerator": 45,
+      "denominator": 50,
+      "percentage": "Arm AB: 90.0% vs Arm BA: 60.0% (Delta: +30.0%)",
+      "evidence_context": "REAL_CONTROLLED",
+      "confidence": "ORDER_DEPENDENCY_VERIFIED",
+      "limitation": "Applies strictly to edge sanitization preceding live ARIA feedback. Reversing pipeline causes cognitive desynchronization."
+    },
+    {
+      "claim_id": "CLM-005-COMPOSITION-POLICY",
+      "program": "COMPOSITION_POLICY_LEARNING",
+      "experiment": "BENCH-STRATEGY-SELECTION-001",
+      "evidence_ref": "docs/evidence/EVD-PHASE-K-COMPOSITION-POLICY.json",
+      "trace_id": "TRC-PHASE-K-POLICY",
+      "numerator": 6,
+      "denominator": 6,
+      "percentage": "100.0% Strategy Selection Accuracy",
+      "evidence_context": "REAL_OPERATIONAL",
+      "confidence": "STRATEGY_SELECTION_AND_POLICY_LEARNING_VERIFIED",
+      "limitation": "Validated across 7 distinct strategy classes."
+    },
+    {
+      "claim_id": "CLM-006-BLIND-GENERALIZATION",
+      "program": "BLIND_GENERALIZATION_BATTERY",
+      "experiment": "CANARY-L001",
+      "evidence_ref": "docs/evidence/EVD-PHASE-L-BLIND-GENERALIZATION.json",
+      "trace_id": "TRC-CANARY-L001",
+      "numerator": 6,
+      "denominator": 6,
+      "percentage": "100.0% Unseen Accuracy / 0.0% Policy Regret",
+      "evidence_context": "REAL_OPERATIONAL",
+      "confidence": "BLIND_GENERALIZATION_AND_REGRET_MINIMIZATION_VERIFIED",
+      "limitation": "Evaluated blindly on UNSEEN_SET (N=6 out-of-sample domains)."
+    },
+    {
+      "claim_id": "CLM-007-CROSS-PROJECT-ISOLATION",
+      "program": "CROSS_PROJECT_TRANSFER",
+      "experiment": "XFR-CANARY-M001",
+      "evidence_ref": "docs/evidence/EVD-PHASE-M-CROSS-PROJECT.json",
+      "trace_id": "TRC-PHASE-M-XFR",
+      "numerator": 6,
+      "denominator": 6,
+      "percentage": "100.0% Cross-Project Attacks Neutralized (0 Authority Leaks)",
+      "evidence_context": "REAL_OPERATIONAL",
+      "confidence": "CROSS_PROJECT_TRANSFER_AND_AUTHORITY_ISOLATION_VERIFIED",
+      "limitation": "Knowledge packages sanitized; authority and approval tokens non-transferable."
+    },
+    {
+      "claim_id": "CLM-008-LONGITUDINAL-CHAOS",
+      "program": "LONGITUDINAL_CHAOS_WINDOW",
+      "experiment": "CANARY-N001",
+      "evidence_ref": "docs/evidence/EVD-PHASE-N-LONGITUDINAL-CHAOS.json",
+      "trace_id": "TRC-CANARY-N001",
+      "numerator": 17,
+      "denominator": 17,
+      "percentage": "100.0% Recovery Rate (P99 Kill-Switch: 3.5ms)",
+      "evidence_context": "REAL_OPERATIONAL",
+      "confidence": "LONGITUDINAL_RELIABILITY_AND_CHAOS_RESILIENCE_VERIFIED",
+      "limitation": "Demonstrated across 12-session window and 16 failure families. Does not imply universal infinite uptime."
+    }
+  ]
+}

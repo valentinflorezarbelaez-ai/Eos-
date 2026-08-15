@@ -1,0 +1,30 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EVD-L3-MULTIFIX-C-002",
+  "timestamp": "2026-08-14T16:36:38.243Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "fixture_id": "FIXTURE-C-MINEFIELD-TRAVERSALS-REMEDIATED",
+  "status": "VERIFIED",
+  "invariants": {
+    "SCOPE_ENFORCEMENT": "PASS",
+    "MUTATION_ATTRIBUTION_1_TO_1": "PASS",
+    "REVOCATION_DOMINANCE": "PASS",
+    "ATOMIC_ROLLBACK_DELTA_ZERO": "PASS",
+    "RESTORED_NOT_AUTHORIZED": "PASS",
+    "EVIDENCE_PRESERVATION": "PASS",
+    "VERIFIER_INTEGRITY_PINNING": "PASS",
+    "ADVERSARIAL_CONTAINMENT": "PASS",
+    "TELEMETRY_FAILURE_STOP": "PASS",
+    "PASSIVE_EGRESS_CONTAINMENT": "PASS"
+  },
+  "metrics": {
+    "traversals_tested": 6,
+    "all_blocked": true,
+    "remediation_ref": "REM-L3-GEN-001"
+  }
+}

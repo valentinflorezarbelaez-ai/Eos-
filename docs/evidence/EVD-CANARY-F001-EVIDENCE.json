@@ -1,0 +1,38 @@
+{
+  "evidence_id": "EVD-CANARY-F001",
+  "mission_id": "CANARY-F001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "recorded_at": "2026-08-14T22:44:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_PREDICTIVE_TRANSFER",
+  "epistemic_classification": "TRANSFER_SUPPORTED_AND_CALIBRATED",
+  "bkm_evaluated": "BKM-CANARY-001",
+  "cohort": "COHORT-CANARY-D4 (N=30)",
+  "metrics": {
+    "sample_size_n": 30,
+    "successes": 28,
+    "task_completion_rate": "28/30 = 93.33%",
+    "avg_time_on_task_seconds": 42.4,
+    "avg_friction_score": 1.70,
+    "avg_user_trust_score": 9.30,
+    "pii_leaks": 0,
+    "formula_injection_leaks": 0,
+    "bundle_size_kb": 12.85,
+    "adversarial_novelty_neutralized": "5/5 (Formula injection, Flood, Null-bytes, Malformed quotes, Homoglyphs)"
+  },
+  "prediction_calibration": {
+    "predicted_completion": "93.00%",
+    "actual_completion": "93.33%",
+    "prediction_error_completion": "+0.33%",
+    "predicted_time": "45.0s",
+    "actual_time": "42.4s",
+    "prediction_error_time": "-2.6s",
+    "learning_to_prediction_gain": "+47.67%",
+    "calibration_status": "HIGHLY_CALIBRATED"
+  },
+  "negative_transfer_check": {
+    "scenario": "STREAMING_BINARY_WEBSOCKETS",
+    "decision": "DO_NOT_TRANSFER",
+    "status": "ANTI_DOGMATISM_PROVEN"
+  },
+  "governance_decision": "TRANSFER_SUPPORTED_BKM_EXPANDED_TO_TABULAR_DATA_CORE_STRICTLY_FROZEN"
+}

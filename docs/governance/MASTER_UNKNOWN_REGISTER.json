@@ -1,0 +1,22 @@
+{
+  "register_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:15:00-05:00",
+  "unknowns": [
+    {
+      "unknown_id": "UNK-GAP-002",
+      "topic": "Target Project Legal & Banking Custody Intake (PRJ-FUNDACION)",
+      "status": "UNKNOWN",
+      "reason": "External dependency: Product Owner has not supplied official banking/statutory intake documents. EOS strictly refuses to assume or fabricate this state.",
+      "blocking": true,
+      "remediation_owner": "HUMAN_PRODUCT_OWNER"
+    },
+    {
+      "unknown_id": "UNK-INDUSTRY-CLAIMS",
+      "topic": "External Industry AI/Defense System Performance Parity Claims",
+      "status": "UNVERIFIED_RESEARCH_CLAIM",
+      "reason": "Third-party claims regarding external entities (e.g. DARPA, Palantir, OpenAI) are unverified literature references and not treated as empirical EOS evidence.",
+      "blocking": false,
+      "remediation_owner": "LITERATURE_ONLY"
+    }
+  ]
+}

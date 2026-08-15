@@ -1,0 +1,18 @@
+{
+  "model_version": "1.0.0",
+  "updated_at": "2026-08-14T23:02:00-05:00",
+  "metric_classification": "EOS_INTERNAL_METRIC",
+  "definition": "Policy Utility measures net decision efficiency balancing human outcome improvement against cognitive, financial, latency, and rework costs.",
+  "formula": "PolicyUtility = OutcomeGain - CostPenalty - RiskPenalty - ReworkPenalty",
+  "component_definitions": {
+    "OutcomeGain": "Percentage improvement in primary task completion over control baseline",
+    "CostPenalty": "Normalized cost overhead ratio (Cost_composite - Cost_min) * factor",
+    "RiskPenalty": "Security or compliance violation penalty score (0 for clean execution, 100 for secret leak)",
+    "ReworkPenalty": "Estimated human intervention or developer confusion penalty"
+  },
+  "decision_thresholds": {
+    "HIGH_UTILITY": "PolicyUtility >= 15.0 (Strong justification for composite deployment)",
+    "MODERATE_UTILITY": "PolicyUtility between 5.0 and 14.9",
+    "REJECT_DEPLOYMENT": "PolicyUtility < 5.0 (Composition overhead outweighs human benefit)"
+  }
+}

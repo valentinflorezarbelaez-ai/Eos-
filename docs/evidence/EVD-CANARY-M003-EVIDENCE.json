@@ -1,0 +1,44 @@
+{
+  "evidence_id": "EVD-CANARY-M003",
+  "mission_id": "CANARY-M003",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "recorded_at": "2026-08-14T22:37:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_REPLICATION",
+  "epistemic_classification": "SUPPORTED_WITHIN_TESTED_SCOPE",
+  "candidate_bkm_replicated": "OBS-CANARY-001",
+  "replication_number": 3,
+  "cohort": "COHORT-CANARY-C3 (N=25)",
+  "metrics": {
+    "sample_size_n": 25,
+    "successes": 23,
+    "task_completion_rate": "23/25 = 92.0%",
+    "avg_time_on_task_seconds": 40.8,
+    "avg_friction_score": 1.7,
+    "avg_user_trust_score": 9.3,
+    "secrets_leaked": 0,
+    "kill_switch_latency_ms": 1.2,
+    "rollback_unauthorized_delta": 0,
+    "bundle_size_kb": 13.45,
+    "adversarial_novelty_neutralized": "5/5 (Base64 token, Circular WeakSet, Prototype getter, Null bytes, Escaped shell)"
+  },
+  "deltas_vs_m003_control_baseline": {
+    "control_baseline_completion": "48.0% (12/25)",
+    "delta_completion_rate": "+44.0%",
+    "control_baseline_time": "188.0s",
+    "delta_time_on_task": "-147.2s",
+    "control_baseline_secret_leak_rate": "32.0%",
+    "delta_secret_leak_rate": "-32.0%",
+    "delta_friction": "-6.5 pts",
+    "delta_trust": "+4.8 pts"
+  },
+  "replication_triangulation_summary": {
+    "m001": { "domain": "Diagnostic/Error Reporting", "n": 15, "completion": "93.3%", "delta": "+35.3%", "leaks": 0 },
+    "m002": { "domain": "Multi-Field Structured Support", "n": 20, "completion": "95.0%", "delta": "+43.0%", "leaks": 0 },
+    "m003": { "domain": "Deep Nested Config & Raw Payloads", "n": 25, "completion": "92.0%", "delta": "+44.0%", "leaks": 0 },
+    "cumulative_trials_n": 60,
+    "cumulative_successes": 56,
+    "cumulative_completion_rate": "56/60 = 93.3%",
+    "total_security_regressions": 0
+  },
+  "governance_decision": "REPLICATION_3_CONFIRMED_PROCEED_TO_PHASE_E_TRIANGULATION_AND_GOVERNED_BKM_REVIEW"
+}

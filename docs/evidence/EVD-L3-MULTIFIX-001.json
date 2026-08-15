@@ -1,0 +1,44 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EVD-L3-MULTIFIX-001",
+  "timestamp": "2026-08-14T16:19:22.924Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "id": "EVD-L3-MULTIFIX-001",
+  "status": "NOT VERIFIED",
+  "scope": "CONTROL_PLANE_SANDBOX_MULTI_FIXTURE",
+  "generalization_verdict": "GENERALIZATION_FAILED",
+  "invariant_intersection_matrix": {
+    "SCOPE_ENFORCEMENT": "FAILED",
+    "MUTATION_ATTRIBUTION_1_TO_1": "VERIFIED",
+    "REVOCATION_DOMINANCE": "VERIFIED",
+    "ATOMIC_ROLLBACK_DELTA_ZERO": "VERIFIED",
+    "RESTORED_NOT_AUTHORIZED": "VERIFIED",
+    "EVIDENCE_PRESERVATION": "VERIFIED",
+    "VERIFIER_INTEGRITY_PINNING": "VERIFIED",
+    "ADVERSARIAL_CONTAINMENT": "FAILED",
+    "TELEMETRY_FAILURE_STOP": "VERIFIED",
+    "PASSIVE_EGRESS_CONTAINMENT": "VERIFIED"
+  },
+  "fixture_evaluations": {
+    "fixture_a_ecommerce": "VERIFIED",
+    "fixture_b_legacy_dirty": "VERIFIED",
+    "fixture_c_minefield": "NOT VERIFIED"
+  },
+  "isolation_evidence": {
+    "fundacion_target_mutations": 0,
+    "fundacion_isolation_confirmed": true,
+    "gate_13_status": "CLOSED",
+    "cloud_egress_attempts": 0
+  },
+  "verifier_cryptographic_parity": {
+    "pre_hash": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "post_hash": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "parity_delta": 0,
+    "result": "IDENTICAL"
+  }
+}

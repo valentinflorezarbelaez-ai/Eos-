@@ -1,0 +1,26 @@
+{
+  "evidence_id": "EVD-CURSOR-COMMAND-CENTER",
+  "evaluated_at": "2026-08-14T23:24:00-05:00",
+  "command_center": "CURSOR_IDE_AGENT_WORKSPACE",
+  "epistemic_classification": "CURSOR_COMMAND_CENTER_INTEGRATION_VERIFIED",
+  "frentes_verified": {
+    "frente_1_mission_control_dashboard": "OPERATIONAL (EOS-MISSION-CONTROL/ active)",
+    "frente_2_cursor_agent_contract": "ENFORCED (Request -> Classify -> Authorize -> Execute)",
+    "frente_3_tool_mcp_governance": "ENFORCED (Default Deny / Sandboxed Discovery)",
+    "frente_4_agent_fabric_hierarchy": "ENFORCED (Anti-Majority Evidence-First Rule)",
+    "frente_5_real_time_visibility": "LIVE_SYNC (9 JSON State Monitors)",
+    "frente_6_authorized_mutation_only": "ENFORCED (Write Barrier Active, Fundacion Delta = 0)",
+    "frente_7_git_branching_discipline": "OPERATIONAL",
+    "frente_8_daily_autonomous_cycle": "16_STEPS_VERIFIED (0 Privilege Escalations)",
+    "frente_9_session_continuity": "SEAMLESS_RESUME_VERIFIED (SHA-256 Checkpoints)",
+    "frente_10_sovereign_graduation": "LEVEL_2_SUPERVISED_AUTONOMY_RATIFIED"
+  },
+  "governance_invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

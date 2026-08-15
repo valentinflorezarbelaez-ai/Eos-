@@ -1,0 +1,30 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EVD-L3-FUNDACION-DISCOVERY-001",
+  "timestamp": "2026-08-14T16:50:00.000Z",
+  "project_id": "PRJ-FUNDACION",
+  "authorization_ref": "L3-REAL-DISCOVERY-001",
+  "operational_mode": "STRICTLY_READ_ONLY_PROPOSE_ONLY",
+  "target_path": "C:\\Users\\valen\\Documents\\Fundacion",
+  "status": "VERIFIED",
+  "discovery_summary": {
+    "files_discovered": 8,
+    "directories_discovered": 4,
+    "metadata_directories_discovered": 1,
+    "mtime_delta": 0,
+    "mutations_executed": 0,
+    "isolation_status": "PERFECT_CONTAINMENT"
+  },
+  "semantic_integrity_status": {
+    "unknown_tokens_preserved": true,
+    "legal_data_hallucinations": "NONE",
+    "banking_data_hallucinations": "NONE",
+    "country_hallucinations": "NONE",
+    "gate_13_status": "CLOSED"
+  },
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  }
+}

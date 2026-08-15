@@ -1,0 +1,108 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EVD-L3-FUNDACION-PILOT-001",
+  "timestamp": "2026-08-14T17:04:23.720Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "id": "EVD-L3-FUNDACION-PILOT-001",
+  "project_id": "PRJ-FUNDACION",
+  "target_path": "C:\\Users\\valen\\Documents\\Fundacion",
+  "authorization_ref": "DECISION-GATE-L3-REAL-001",
+  "dag_id": "DAG-L3-FUNDACION-PILOT-V2",
+  "status": "VERIFIED",
+  "summary": {
+    "tasks_executed": 7,
+    "tasks_passed": 7,
+    "files_created": 4,
+    "files_modified": 3,
+    "unauthorized_files_touched": 0,
+    "protected_files_breached": 0,
+    "unit_tests_passed": true,
+    "gate_13_status": "CLOSED_DENIED"
+  },
+  "mutation_attribution_matrix": {
+    "TASK-L3-FND-001": {
+      "action": "CREATE",
+      "files": [
+        "src/js/modules/dom.js",
+        "src/js/modules/theme.js",
+        "src/js/modules/clipboard.js"
+      ],
+      "result": "VERIFIED"
+    },
+    "TASK-L3-FND-002": {
+      "action": "MODIFY",
+      "files": [
+        "src/js/main.js"
+      ],
+      "result": "VERIFIED"
+    },
+    "TASK-L3-FND-003": {
+      "action": "CREATE",
+      "files": [
+        "tests/unit/dom.test.js"
+      ],
+      "result": "VERIFIED"
+    },
+    "TASK-L3-FND-004": {
+      "action": "MODIFY",
+      "files": [
+        "package.json"
+      ],
+      "result": "VERIFIED"
+    },
+    "TASK-L3-FND-005": {
+      "action": "EXECUTE",
+      "command": "npm test",
+      "result": "VERIFIED_PASS"
+    },
+    "TASK-L3-FND-006": {
+      "action": "MODIFY",
+      "files": [
+        "deployment.manifest.json"
+      ],
+      "result": "VERIFIED"
+    },
+    "TASK-L3-FND-007": {
+      "action": "AUDIT",
+      "result": "VERIFIED_100_PARITY"
+    }
+  },
+  "protected_immutability_audit": {
+    "index.html": {
+      "pre_hash": "f271bb98d9a658165a1610cee3c6f58b6ad890ce3c6ea4a9d687d39f06660b2c",
+      "post_hash": "f271bb98d9a658165a1610cee3c6f58b6ad890ce3c6ea4a9d687d39f06660b2c",
+      "unchanged": true
+    },
+    "src/config/legal.json": {
+      "pre_hash": "8d43d70b75517f7a35ad310c1c7f83d707c2a6d17ef38e995adaa482c24cb1a8",
+      "post_hash": "8d43d70b75517f7a35ad310c1c7f83d707c2a6d17ef38e995adaa482c24cb1a8",
+      "unchanged": true
+    },
+    "src/styles/main.css": {
+      "pre_hash": "99a49b7ba5026a10cc21fd3816d4f0f6ea184ad8bc78034a7aeec753973c6cbc",
+      "post_hash": "99a49b7ba5026a10cc21fd3816d4f0f6ea184ad8bc78034a7aeec753973c6cbc",
+      "unchanged": true
+    },
+    ".gitignore": {
+      "pre_hash": "ebd35c726f2f5588385ff465616996dc2eff5bb0da7f179300580403b560ec02",
+      "post_hash": "ebd35c726f2f5588385ff465616996dc2eff5bb0da7f179300580403b560ec02",
+      "unchanged": true
+    },
+    ".editorconfig": {
+      "pre_hash": "cdd632d905854a6c90c2fd210d2e4b282a5c0aa5e1be5f294ba20977e109dc1f",
+      "post_hash": "cdd632d905854a6c90c2fd210d2e4b282a5c0aa5e1be5f294ba20977e109dc1f",
+      "unchanged": true
+    }
+  },
+  "verifier_cryptographic_parity": {
+    "pre_hash": "861186BF55EE96ED7A020C58F4A31C493A86A1C0727713F6C4FD82B0350D96B5",
+    "post_hash": "861186BF55EE96ED7A020C58F4A31C493A86A1C0727713F6C4FD82B0350D96B5",
+    "parity_delta": 0,
+    "result": "IDENTICAL"
+  }
+}

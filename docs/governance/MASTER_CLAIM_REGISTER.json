@@ -1,0 +1,42 @@
+{
+  "register_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:15:00-05:00",
+  "claims": [
+    {
+      "claim_id": "CLM-001",
+      "statement": "EOS sanitizes client-side secrets at edge without regex parsing overhead.",
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "validated_by": "CANARY-M001, CANARY-M002, CANARY-M003"
+    },
+    {
+      "claim_id": "CLM-002",
+      "statement": "Composition of input sanitization (A) and accessible guidance (B) produces +20.0% completion gain over single pattern.",
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "validated_by": "CANARY-I001"
+    },
+    {
+      "claim_id": "CLM-003",
+      "statement": "Execution order matters: A -> B outperforms B -> A by +30.0%.",
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "validated_by": "CANARY-J001"
+    },
+    {
+      "claim_id": "CLM-004",
+      "statement": "Strategy selection policy generalizes blindly to unseen domains with 0.0% policy regret.",
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "validated_by": "CANARY-L001"
+    },
+    {
+      "claim_id": "CLM-005",
+      "statement": "Cross-project knowledge transfer preserves zero authority escalation and zero credential inheritance.",
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "validated_by": "CANARY-M001"
+    },
+    {
+      "claim_id": "CLM-006",
+      "statement": "EOS recovers deterministically under 16 chaos failure classes across a 12-session window.",
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "validated_by": "CANARY-N001"
+    }
+  ]
+}

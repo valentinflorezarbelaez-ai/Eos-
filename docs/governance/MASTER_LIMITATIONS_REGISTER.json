@@ -1,0 +1,26 @@
+{
+  "register_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:15:00-05:00",
+  "limitations": [
+    {
+      "limitation_id": "LIM-001",
+      "scope": "BKM-CANARY-001 / BKM-COMPOSITION-CANARY-001",
+      "boundary": "Validated on structured forms, tabular data, and diagnostic consoles. NOT validated on WebSockets binary streaming, video canvas, or WASM runtimes."
+    },
+    {
+      "limitation_id": "LIM-002",
+      "scope": "Prediction Calibration",
+      "boundary": "Individual accurate predictions (PRED-CANARY-F001) demonstrate local fit, not global calibration."
+    },
+    {
+      "limitation_id": "LIM-003",
+      "scope": "Longitudinal Reliability",
+      "boundary": "100% recovery demonstrated across 17 tested chaos events and 12 sessions. Does not constitute a mathematical guarantee of infinite uptime in production."
+    },
+    {
+      "limitation_id": "LIM-004",
+      "scope": "Policy Utility & Economics",
+      "boundary": "Policy Utility Index (18.88) is classified strictly as an EOS_INTERNAL_METRIC."
+    }
+  ]
+}

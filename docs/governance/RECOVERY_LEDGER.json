@@ -1,0 +1,20 @@
+{
+  "ledger_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:12:00-05:00",
+  "summary": {
+    "total_recovery_attempts": 17,
+    "successful_recoveries": 17,
+    "recovery_success_rate": 1.0,
+    "unrecoverable_failures": 0,
+    "rollback_hash_equality_rate": 1.0
+  },
+  "metrics": {
+    "mttd_p50_ms": 3.4,
+    "mttd_p95_ms": 5.2,
+    "mttd_p99_ms": 5.8,
+    "mttr_p50_ms": 15.3,
+    "mttr_p95_ms": 24.1,
+    "mttr_p99_ms": 24.9,
+    "kill_switch_latency_p99_ms": 3.5
+  }
+}

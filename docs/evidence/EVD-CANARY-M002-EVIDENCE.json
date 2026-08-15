@@ -1,0 +1,41 @@
+{
+  "evidence_id": "EVD-CANARY-M002",
+  "mission_id": "CANARY-M002",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "recorded_at": "2026-08-14T22:34:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_REPLICATION",
+  "epistemic_classification": "SUPPORTED_WITHIN_TESTED_SCOPE",
+  "candidate_bkm_replicated": "OBS-CANARY-001",
+  "replication_number": 2,
+  "cohort": "COHORT-CANARY-B2 (N=20)",
+  "metrics": {
+    "sample_size_n": 20,
+    "successes": 19,
+    "task_completion_rate": "19/20 = 95.0%",
+    "avg_time_on_task_seconds": 42.1,
+    "avg_friction_score": 1.9,
+    "avg_user_trust_score": 9.2,
+    "pii_and_secret_leaks": 0,
+    "kill_switch_latency_ms": 1.1,
+    "rollback_unauthorized_delta": 0,
+    "bundle_size_kb": 12.18,
+    "adversarial_novelty_neutralized": "5/5 (Double-URL, PAN, Prototype Pollution, Homoglyph, Flood)"
+  },
+  "deltas_vs_m002_control_baseline": {
+    "control_baseline_completion": "52.0% (13/25)",
+    "delta_completion_rate": "+43.0%",
+    "control_baseline_time": "165.0s",
+    "delta_time_on_task": "-122.9s",
+    "control_baseline_pii_leak_rate": "24.0%",
+    "delta_pii_leak_rate": "-24.0%",
+    "delta_friction": "-5.9 pts",
+    "delta_trust": "+4.3 pts"
+  },
+  "replication_retention": {
+    "m001_delta_completion": "+35.3%",
+    "m002_delta_completion": "+43.0%",
+    "retention_ratio": 1.22,
+    "direction_consistent": true
+  },
+  "governance_status": "REPLICATION_2_CONFIRMED_CANDIDATE_BKM_STRENGTHENED_REQUIRES_M003_FOR_CANONICAL_PROMOTION"
+}

@@ -1,0 +1,24 @@
+{
+  "ledger_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:12:00-05:00",
+  "total_events_logged": 17,
+  "events": [
+    { "session_id": "N-W03", "event_id": "F-01-TOOL-TIMEOUT", "action": "CONTAIN_AND_FALLBACK", "mttd_ms": 3.4, "mttr_ms": 14.2, "status": "RECOVERED" },
+    { "session_id": "N-W03", "event_id": "F-02-TOOL-DISAPPEAR", "action": "REPLAN_WITH_DISCOVERY", "mttd_ms": 4.1, "mttr_ms": 18.5, "status": "RECOVERED" },
+    { "session_id": "N-W05", "event_id": "F-03-MCP-SCHEMA-BREAK", "action": "ADAPT_SCHEMA_OR_DOWNGRADE", "mttd_ms": 2.8, "mttr_ms": 11.2, "status": "RECOVERED" },
+    { "session_id": "N-W05", "event_id": "F-04-MCP-CAPABILITY-REMOVED", "action": "REPLAN_WITHOUT_CAPABILITY", "mttd_ms": 3.9, "mttr_ms": 16.0, "status": "RECOVERED" },
+    { "session_id": "N-W06", "event_id": "F-05-MODEL-DEGRADATION", "action": "RETRY_WITH_EXPONENTIAL_BACKOFF", "mttd_ms": 4.5, "mttr_ms": 21.0, "status": "RECOVERED" },
+    { "session_id": "N-W06", "event_id": "F-06-MODEL-MALFORMED-OUTPUT", "action": "JSON_REPAIR_OR_ABORT", "mttd_ms": 3.1, "mttr_ms": 12.4, "status": "RECOVERED" },
+    { "session_id": "N-W07", "event_id": "F-07-NETWORK-LATENCY", "action": "DEBOUNCE_AND_ASYNC_QUEUE", "mttd_ms": 2.5, "mttr_ms": 15.3, "status": "RECOVERED" },
+    { "session_id": "N-W07", "event_id": "F-08-NETWORK-INTERMITTENT-LOSS", "action": "OFFLINE_LOCAL_FIRST_SINK", "mttd_ms": 3.7, "mttr_ms": 19.8, "status": "RECOVERED" },
+    { "session_id": "N-W08", "event_id": "F-09-BUDGET-TOKEN-EXHAUSTION", "action": "HARD_STOP_PRESERVE_EVIDENCE", "mttd_ms": 1.9, "mttr_ms": 10.1, "status": "RECOVERED" },
+    { "session_id": "N-W08", "event_id": "F-10-BUDGET-COST-EXHAUSTION", "action": "HARD_STOP_PRESERVE_EVIDENCE", "mttd_ms": 2.0, "mttr_ms": 9.8, "status": "RECOVERED" },
+    { "session_id": "N-W09", "event_id": "F-11-RUNTIME-CRASH", "action": "SANDBOX_ISOLATION_AND_ROLLBACK", "mttd_ms": 4.8, "mttr_ms": 22.4, "status": "RECOVERED" },
+    { "session_id": "N-W09", "event_id": "F-12-DATA-MALFORMED-PAYLOAD", "action": "INPUT_BOUNDARY_REJECTION", "mttd_ms": 2.2, "mttr_ms": 8.5, "status": "RECOVERED" },
+    { "session_id": "N-W10", "event_id": "F-13-MEMORY-STALE-BKM", "action": "TRIGGER_REVALIDATION_REQUIRED", "mttd_ms": 5.2, "mttr_ms": 24.1, "status": "RECOVERED" },
+    { "session_id": "N-W10", "event_id": "F-14-MEMORY-CONTRADICTORY-EVIDENCE", "action": "FLAG_CONTRADICTION_AND_RESEARCH", "mttd_ms": 4.0, "mttr_ms": 17.6, "status": "RECOVERED" },
+    { "session_id": "N-W11", "event_id": "F-15-POLICY-PERMISSION-REVOKED", "action": "FREEZE_SNAPSHOT_AND_HALT", "mttd_ms": 1.5, "mttr_ms": 7.2, "status": "RECOVERED" },
+    { "session_id": "N-W11", "event_id": "F-16-SECURITY-MALICIOUS-TOOL-OUTPUT", "action": "HARD_BLOCK_WRITE_BARRIER", "mttd_ms": 1.2, "mttr_ms": 5.0, "status": "RECOVERED" },
+    { "session_id": "N-W12", "event_id": "F-17-CASCADE-CHAIN", "action": "MULTI_STAGE_CASCADE_DETERMINISTIC_RECOVERY", "mttd_ms": 5.8, "mttr_ms": 24.9, "status": "RECOVERED" }
+  ]
+}

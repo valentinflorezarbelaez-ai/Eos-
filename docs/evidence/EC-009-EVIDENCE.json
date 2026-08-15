@@ -1,0 +1,80 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EC-009-EVIDENCE",
+  "timestamp": "2026-08-14T16:07:22.863Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "suite_id": "EC-009",
+  "suite_name": "Observability and Egress Monitoring Readiness",
+  "status": "VERIFIED",
+  "passed_tests": 5,
+  "total_tests": 5,
+  "results": [
+    {
+      "test_id": "OBS-001",
+      "name": "Filesystem Mutation Tracking",
+      "passed": true,
+      "verdict": "PASS",
+      "observed_mutations": [
+        "src/index.js"
+      ],
+      "observation_confidence": "PRIMARY_SOURCE_DISK_SCAN"
+    },
+    {
+      "test_id": "OBS-002",
+      "name": "Process & Execution Telemetry",
+      "passed": true,
+      "verdict": "PASS",
+      "process_telemetry": {
+        "command": "node --version",
+        "exit_code": 0,
+        "duration_ms": 45,
+        "environment_isolated": true,
+        "captured_at": "2026-08-14T16:07:22.862Z"
+      },
+      "observation_confidence": "RUNTIME_TELEMETRY"
+    },
+    {
+      "test_id": "OBS-003",
+      "name": "Dependency Injection Observation",
+      "passed": true,
+      "verdict": "PASS",
+      "detected_dependencies": [
+        "unauthorized-lib"
+      ],
+      "observation_confidence": "MANIFEST_DIFF"
+    },
+    {
+      "test_id": "OBS-004",
+      "name": "Passive Network Egress Telemetry",
+      "passed": true,
+      "verdict": "PASS",
+      "telemetry": {
+        "source": "LOCAL_PASSIVE_EGRESS_MONITOR",
+        "observation_window_ms": 1000,
+        "outbound_connections_attempted": 0,
+        "outbound_bytes_transferred": 0,
+        "dns_queries_emitted": 0,
+        "active_sockets_opened": 0,
+        "egress_verdict": "ZERO_EGRESS_VERIFIED"
+      },
+      "observation_confidence": "PASSIVE_SOCKET_MONITOR"
+    },
+    {
+      "test_id": "OBS-005",
+      "name": "DNS & Cloud Boundary Separation",
+      "passed": true,
+      "verdict": "PASS",
+      "policy_enforcement": {
+        "GENERATE_NETWORK": "FORBIDDEN",
+        "OBSERVE_NETWORK": "ALLOWED_PASSIVE",
+        "GATE_13": "CLOSED"
+      },
+      "observation_confidence": "GOVERNANCE_INVARIANT"
+    }
+  ]
+}

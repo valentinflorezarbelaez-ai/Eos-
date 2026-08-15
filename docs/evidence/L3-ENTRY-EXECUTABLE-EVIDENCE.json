@@ -1,0 +1,35 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "L3-ENTRY-EXECUTABLE-EVIDENCE",
+  "timestamp": "2026-08-14T16:07:22.863Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "id": "EVD-L3-ENTRY-EXECUTABLE-001",
+  "status": "VERIFIED",
+  "scope": "CONTROL_PLANE_SANDBOX_ONLY",
+  "verifier_parity": {
+    "valid": true,
+    "expected": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "actual": "EFDDD623CE83B0669479ABA0CC6676DD64573B94EAA681D8B30CAA861B57FCBD",
+    "parityDelta": 0
+  },
+  "criteria_results": {
+    "EC-007_ROLLBACK_READINESS": "VERIFIED",
+    "EC-008_ADVERSARIAL_READINESS": "VERIFIED",
+    "EC-009_OBSERVABILITY_READINESS": "VERIFIED"
+  },
+  "metrics": {
+    "total_subtests": 16,
+    "passed_subtests": 16,
+    "pass_rate_percentage": 100
+  },
+  "operational_boundaries": {
+    "level_3_execution": "BLOCKED",
+    "external_target_writes": "FROZEN",
+    "gate_13_status": "CLOSED"
+  }
+}

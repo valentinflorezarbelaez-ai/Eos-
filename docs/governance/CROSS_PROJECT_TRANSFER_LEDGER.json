@@ -1,0 +1,31 @@
+{
+  "ledger_version": "1.0.0",
+  "updated_at": "2026-08-14T23:09:00-05:00",
+  "governance_rule": "Knowledge and strategy patterns may transfer across projects; authority, approval state, and credentials MUST NEVER transfer (Strict Default Deny).",
+  "transfers": [
+    {
+      "transfer_id": "XFR-CANARY-M001-01",
+      "source_project": "PRJ-CANARY-ALPHA",
+      "target_project": "PRJ-CANARY-BETA",
+      "knowledge_package": "BKM-COMPOSITION-CANARY-001 (Composite Edge Sanitization with Accessible Guidance)",
+      "knowledge_type": "COMPOSITE_VALIDATED_BKM",
+      "authority_transferred": "NONE",
+      "secrets_leaked": 0,
+      "private_paths_leaked": 0,
+      "payload_signature_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "status": "TRANSFER_SUPPORTED_AND_ISOLATED"
+    },
+    {
+      "transfer_id": "XFR-CANARY-M001-02",
+      "source_project": "PRJ-CANARY-ALPHA",
+      "target_project": "PRJ-CANARY-BETA",
+      "knowledge_package": "NEG-BKM-001 (DOM Regex Sanitization Anti-Pattern on Streaming Binary)",
+      "knowledge_type": "NEGATIVE_BKM",
+      "authority_transferred": "NONE",
+      "secrets_leaked": 0,
+      "private_paths_leaked": 0,
+      "payload_signature_sha256": "9b12c8e3f4a56b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+      "status": "TRANSFER_SUPPORTED_AND_ISOLATED"
+    }
+  ]
+}

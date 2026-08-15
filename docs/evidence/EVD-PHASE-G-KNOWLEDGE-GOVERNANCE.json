@@ -1,0 +1,53 @@
+{
+  "evidence_id": "EVD-PHASE-G-KNOWLEDGE-GOVERNANCE",
+  "recorded_at": "2026-08-14T22:46:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_GOVERNANCE_AND_CALIBRATION",
+  "epistemic_classification": "CALIBRATION_AND_GOVERNANCE_VERIFIED",
+  "subphases_verified": {
+    "G01_statistical_calibration_correction": {
+      "metric_classification": "EOS_INTERNAL_METRIC",
+      "metric_name": "Learning-to-Prediction Gain (LPG)",
+      "status": "VALIDATED_WITH_METHODOLOGICAL_CAVEAT"
+    },
+    "G02_prediction_calibration_ledger": {
+      "status": "OPERATIONAL",
+      "entries_logged": 1,
+      "mean_absolute_error": 0.0033,
+      "bias_classification": "WELL_CALIBRATED"
+    },
+    "G03_cross_domain_benchmark": {
+      "status": "PASS",
+      "scenarios_evaluated": 4,
+      "decision_accuracy": "100.0% (4/4)"
+    },
+    "G04_research_before_transfer_protocol": {
+      "status": "ACTIVE_GOVERNANCE",
+      "location": "docs/governance/RESEARCH_BEFORE_TRANSFER_PROTOCOL.md"
+    },
+    "G05_bkm_lifecycle_model": {
+      "status": "ACTIVE_GOVERNANCE",
+      "ttl_days": 90,
+      "drift_triggers_configured": 5
+    },
+    "G06_bkm_portfolio": {
+      "status": "REGISTERED",
+      "location": "docs/knowledge/BKM_PORTFOLIO.json"
+    },
+    "G07_negative_bkm_catalog": {
+      "status": "REGISTERED",
+      "first_entry": "NEG-BKM-001 (Streaming Binary Sanitization Anti-Pattern)"
+    },
+    "G08_knowledge_economics": {
+      "status": "HIGH_ECONOMIC_EFFICIENCY",
+      "value_ratio": 68.57
+    }
+  },
+  "governance_invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

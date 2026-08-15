@@ -1,0 +1,53 @@
+{
+  "benchmark_id": "BENCH-STRATEGY-SELECTION-001",
+  "evaluated_at": "2026-08-14T23:02:00-05:00",
+  "total_scenarios": 6,
+  "correct_decisions": 6,
+  "strategy_selection_accuracy": 1.0,
+  "accuracy_percentage": "100.0%",
+  "scenarios": [
+    {
+      "scenario_id": "BENCH-01-STREAMING",
+      "context": "High-concurrency streaming WebSocket stream",
+      "expected_strategy": "DO_NOT_COMPOSE",
+      "selected_strategy": "DO_NOT_COMPOSE",
+      "result": "PASS"
+    },
+    {
+      "scenario_id": "BENCH-02-ENV-MIGRATION",
+      "context": "Interactive multi-field parameter migration form",
+      "expected_strategy": "A_THEN_B",
+      "selected_strategy": "A_THEN_B",
+      "result": "PASS"
+    },
+    {
+      "scenario_id": "BENCH-03-AUDIT-VIEWER",
+      "context": "Static read-only audit log viewer with secret tokens",
+      "expected_strategy": "A_ONLY",
+      "selected_strategy": "A_ONLY",
+      "result": "PASS"
+    },
+    {
+      "scenario_id": "BENCH-04-PUBLIC-SURVEY",
+      "context": "Unauthenticated public survey with live field validation",
+      "expected_strategy": "B_ONLY",
+      "selected_strategy": "B_ONLY",
+      "result": "PASS"
+    },
+    {
+      "scenario_id": "BENCH-05-LEGACY-CONSTRAINED",
+      "context": "Legacy batch import modal with high parser latency (400ms)",
+      "expected_strategy": "COMPOSE_WITH_CONSTRAINTS",
+      "selected_strategy": "COMPOSE_WITH_CONSTRAINTS",
+      "result": "PASS"
+    },
+    {
+      "scenario_id": "BENCH-06-WASM-CANVAS",
+      "context": "Uncharacterized custom WebAssembly canvas UI",
+      "expected_strategy": "RESEARCH_FIRST",
+      "selected_strategy": "RESEARCH_FIRST",
+      "result": "PASS"
+    }
+  ],
+  "verdict": "STRATEGY_SELECTION_ACCURACY_100_PERCENT"
+}

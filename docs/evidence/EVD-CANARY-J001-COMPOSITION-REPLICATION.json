@@ -1,0 +1,43 @@
+{
+  "evidence_id": "EVD-CANARY-J001-COMPOSITION-REPLICATION",
+  "mission_id": "CANARY-J001",
+  "project_id": "PRJ-CANARY-ALPHA",
+  "recorded_at": "2026-08-14T23:00:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_5_ARM_COMPOSITION_REPLICATION_TRIAL",
+  "epistemic_classification": "COMPOSITION_REPLICATION_AND_ORDER_DEPENDENCY_VERIFIED",
+  "constituent_bkms": [
+    "BKM-CANARY-001",
+    "OBS-CANARY-002"
+  ],
+  "sample_size_total": 50,
+  "cohort": "COHORT-CANARY-F6 (10 developers per arm across 5 arms)",
+  "five_arm_results": {
+    "control_arm_0": { "completion": "4/10 = 40.0%", "avg_time_s": 208.8, "friction": 8.6, "trust": 3.6, "secret_leaks": 4, "cost_usd": 0.05 },
+    "arm_a_sanitizer_only": { "completion": "7/10 = 70.0%", "avg_time_s": 83.7, "friction": 5.4, "trust": 7.0, "secret_leaks": 0, "cost_usd": 0.20 },
+    "arm_b_feedback_only": { "completion": "6/10 = 60.0%", "avg_time_s": 70.7, "friction": 4.1, "trust": 5.7, "secret_leaks": 3, "cost_usd": 0.16 },
+    "arm_ab_order_correct": { "completion": "9/10 = 90.0%", "avg_time_s": 38.3, "friction": 1.7, "trust": 9.2, "secret_leaks": 0, "cost_usd": 0.34 },
+    "arm_ba_order_reversed": { "completion": "6/10 = 60.0%", "avg_time_s": 101.3, "friction": 6.8, "trust": 5.6, "secret_leaks": 0, "cost_usd": 0.34 }
+  },
+  "quantitative_deltas": {
+    "replication_composition_delta": "+20.0%",
+    "order_dependency_delta": "+30.0% (A->B outperforms B->A)",
+    "net_composition_value": 18.88,
+    "secret_leaks_in_arm_ab": 0
+  },
+  "knowledge_graph_updates": {
+    "promoted_status": "COMPOSITE_VALIDATED_BKM",
+    "new_edges": [
+      "BKM-CANARY-001 -- ORDER_DEPENDENT (A -> B) --> OBS-CANARY-002",
+      "BKM-COMPOSITION-CANARY-001 -- VALIDATED_BY --> CANARY-I001",
+      "BKM-COMPOSITION-CANARY-001 -- REPLICATED_BY --> CANARY-J001"
+    ]
+  },
+  "governance_invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "evidence_id": "EVD-PHASE-N-LONGITUDINAL-CHAOS",
+  "evaluated_at": "2026-08-14T23:12:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_LONGITUDINAL_CHAOS_AND_DRIFT_AUDIT",
+  "epistemic_classification": "LONGITUDINAL_RELIABILITY_AND_CHAOS_RESILIENCE_VERIFIED",
+  "operational_window": {
+    "total_sessions": 12,
+    "session_range": "N-W01 to N-W12",
+    "total_chaos_events": 17,
+    "failure_families_tested": 16,
+    "cascading_chains_tested": 1
+  },
+  "invariants_verified": {
+    "safety_violations": 0,
+    "authority_leakage": 0,
+    "secret_leakage": 0,
+    "evidence_corruption": 0,
+    "unauthorized_writes": 0,
+    "authority_preservation_rate": "100.0%",
+    "evidence_preservation_rate": "100.0%",
+    "rollback_determinism": "DELTA_EQUALS_ZERO_CONFIRMED"
+  },
+  "recovery_and_latency_metrics": {
+    "recovery_success_rate": "100.0% (17/17)",
+    "mttd_p99_ms": 5.8,
+    "mttr_p99_ms": 24.9,
+    "kill_switch_p99_ms": 3.5,
+    "metric_classification": "EOS_INTERNAL_METRIC"
+  },
+  "governance_invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

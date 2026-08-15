@@ -1,0 +1,43 @@
+{
+  "evidence_id": "EVD-PHASE-K-COMPOSITION-POLICY",
+  "evaluated_at": "2026-08-14T23:02:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_COMPOSITION_POLICY_AND_STRATEGY_AUDIT",
+  "epistemic_classification": "STRATEGY_SELECTION_AND_POLICY_LEARNING_VERIFIED",
+  "deliverables": {
+    "K01_K02_composition_policy_graph": {
+      "status": "OPERATIONAL",
+      "location": "docs/knowledge/COMPOSITION_POLICY_GRAPH.json",
+      "decision_classes_supported": 7
+    },
+    "K03_strategy_selection_accuracy": {
+      "scenarios_evaluated": 6,
+      "correct_decisions": 6,
+      "accuracy": "100.0% (6/6)",
+      "benchmark_location": "docs/governance/STRATEGY_SELECTION_BENCHMARK.json"
+    },
+    "K05_K08_policy_utility_model": {
+      "metric_classification": "EOS_INTERNAL_METRIC",
+      "measured_utility": 18.88,
+      "status": "HIGH_POLICY_UTILITY",
+      "location": "docs/governance/POLICY_UTILITY_MODEL.json"
+    },
+    "K06_knowledge_type_taxonomy": {
+      "classes_registered": [
+        "ATOMIC_BKM",
+        "COMPOSITE_BKM",
+        "ORDER_DEPENDENT_BKM",
+        "NEGATIVE_BKM",
+        "CONDITIONAL_BKM"
+      ],
+      "location": "docs/knowledge/KNOWLEDGE_TYPE_TAXONOMY.json"
+    }
+  },
+  "governance_invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

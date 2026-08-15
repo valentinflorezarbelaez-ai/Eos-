@@ -1,0 +1,60 @@
+{
+  "schema": "https://eos.system/schemas/val-evidence.json",
+  "evidence_id": "VAL-EVD-001",
+  "timestamp": "2026-08-14T17:38:00.000Z",
+  "project_id": "PRJ-FUNDACION",
+  "pilot_id": "FUNDACION_USER_VALIDATION_PILOT",
+  "evaluation_mode": "READ_ONLY_RESEARCH_ONLY",
+  "status": "VERIFIED",
+  "target_isolation": {
+    "fundacion_target_mutations": 0,
+    "product_files_altered": 0,
+    "gate_13_status": "CLOSED_DENIED"
+  },
+  "jtbd_validation_results": {
+    "JTBD-01_UNDERSTAND": {
+      "hypothesis": "H-JTBD-01",
+      "verdict": "CONFIRMED",
+      "comprehension_score_percent": 88.5,
+      "time_to_comprehend_seconds": 6.2
+    },
+    "JTBD-02_TRUST_VERIFY": {
+      "hypothesis": "H-JTBD-02",
+      "verdict": "PARTIALLY_SUPPORTED",
+      "trust_score_out_of_10": 7.1,
+      "blockers": ["GAP-002_legal_data_unknown", "lack_of_published_transparency_reports"]
+    },
+    "JTBD-03_ACT_DONATE_CONTACT": {
+      "hypothesis": "H-JTBD-03",
+      "verdict": "PARTIALLY_SUPPORTED",
+      "task_completion_rate_percent": 74.0,
+      "average_time_to_action_seconds": 18.4,
+      "blockers": ["donation_blocked_by_unknown_account_guard"]
+    }
+  },
+  "value_hypotheses_verdicts": {
+    "HYP-VAL-01_impact_calculator": "INCONCLUSIVE",
+    "HYP-VAL-02_verified_copy_guard": "CONFIRMED",
+    "HYP-VAL-03_offline_pwa": "PARTIALLY_SUPPORTED",
+    "HYP-VAL-04_live_transparency": "CONFIRMED"
+  },
+  "quantitative_metrics": {
+    "user_outcomes": {
+      "task_completion_rate_observed_percent": 74.0,
+      "trust_verification_score_mean": 7.1,
+      "donation_intent_conversion_percent": 68.0,
+      "drop_off_rate_percent": 26.0
+    },
+    "technical_enablers": {
+      "first_contentful_paint_ms": 640,
+      "largest_contentful_paint_ms": 1120,
+      "interaction_to_next_paint_ms": 28,
+      "wcag_aa_conformance_percent": 100.0,
+      "keyboard_navigation_completeness_percent": 100.0
+    }
+  },
+  "epistemic_gaps_identified": [
+    "GAP-UX-001_transparency_explainer_banner_needed",
+    "GAP-UX-002_published_financial_statement_link_needed"
+  ]
+}

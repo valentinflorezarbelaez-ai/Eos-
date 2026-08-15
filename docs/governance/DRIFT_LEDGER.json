@@ -1,0 +1,27 @@
+{
+  "ledger_version": "1.0.0",
+  "evaluated_at": "2026-08-14T23:12:00-05:00",
+  "drift_events": [
+    {
+      "drift_id": "DFT-001",
+      "category": "TOOL_AND_PROVIDER_DRIFT",
+      "trigger": "Discovered tool API breaking signature update",
+      "action_taken": "DISCOVER -> BENCHMARK -> ADAPT_SIGNATURE",
+      "status": "ADAPTED_AND_RESOLVED"
+    },
+    {
+      "drift_id": "DFT-002",
+      "category": "BEHAVIORAL_AND_CONTEXT_DRIFT",
+      "trigger": "Legacy parser latency spike > 350ms",
+      "action_taken": "DOWNGRADED_TO_COMPOSE_WITH_CONSTRAINTS (300ms debounce)",
+      "status": "CONTAINED"
+    },
+    {
+      "drift_id": "DFT-003",
+      "category": "MEMORY_AND_KNOWLEDGE_DRIFT",
+      "trigger": "Synthetic stale timestamp on candidate observation",
+      "action_taken": "REVALIDATION_REQUIRED flagged in portfolio",
+      "status": "AUDITED"
+    }
+  ]
+}

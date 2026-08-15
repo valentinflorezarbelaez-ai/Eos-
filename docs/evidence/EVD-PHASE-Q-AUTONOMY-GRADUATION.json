@@ -1,0 +1,21 @@
+{
+  "evidence_id": "EVD-PHASE-Q-AUTONOMY-GRADUATION",
+  "evaluated_at": "2026-08-14T23:19:00-05:00",
+  "evidence_context": "REAL_OPERATIONAL_GRADUATION_REVIEW",
+  "epistemic_classification": "AUTONOMY_GRADUATION_LEVEL_2_CONFIRMED",
+  "graduation_verdict": "LEVEL_2_SUPERVISED_AUTONOMY (CANARY_RESTRICTED)",
+  "risk_tiers_governed": {
+    "low_risk": "AUTONOMOUS",
+    "medium_risk": "AUTONOMOUS_WITH_AUDIT",
+    "high_risk": "HUMAN_L2_APPROVAL_REQUIRED",
+    "critical_risk": "HUMAN_CONTROL_ONLY"
+  },
+  "governance_invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED",
+    "general_production_status": "CLOSED"
+  }
+}

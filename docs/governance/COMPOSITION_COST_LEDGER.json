@@ -1,0 +1,39 @@
+{
+  "ledger_version": "1.0.0",
+  "updated_at": "2026-08-14T22:59:00-05:00",
+  "governance_rule": "A composite strategy is only promoted if NetCompositionValue > 0 and operational cost remains within allocated budget envelope.",
+  "entries": [
+    {
+      "entry_id": "COST-CANARY-I001",
+      "mission_id": "CANARY-I001",
+      "composition_id": "BKM-COMPOSITION-CANARY-001",
+      "domain": "Batch Parameter Migration Console",
+      "tokens_consumed": 42500,
+      "avg_latency_ms": 18.5,
+      "cost_usd": 0.32,
+      "single_min_cost_usd": 0.15,
+      "cost_overhead_usd": 0.17,
+      "outcome_gain_percentage": 20.0,
+      "cost_penalty_score": 1.13,
+      "risk_penalty_score": 0.0,
+      "net_composition_value": 18.87,
+      "economic_verdict": "HIGH_COMPOSITION_VALUE"
+    },
+    {
+      "entry_id": "COST-CANARY-J001",
+      "mission_id": "CANARY-J001",
+      "composition_id": "BKM-COMPOSITION-CANARY-001",
+      "domain": "Webhook & API Payload Dispatcher",
+      "tokens_consumed": 46200,
+      "avg_latency_ms": 19.2,
+      "cost_usd": 0.34,
+      "single_min_cost_usd": 0.16,
+      "cost_overhead_usd": 0.18,
+      "outcome_gain_percentage": 20.0,
+      "cost_penalty_score": 1.12,
+      "risk_penalty_score": 0.0,
+      "net_composition_value": 18.88,
+      "economic_verdict": "HIGH_COMPOSITION_VALUE"
+    }
+  ]
+}

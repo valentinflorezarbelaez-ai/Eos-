@@ -1,0 +1,58 @@
+{
+  "schema": "https://eos.system/schemas/evidence.json",
+  "evidence_id": "EC-007-EVIDENCE",
+  "timestamp": "2026-08-14T16:07:22.800Z",
+  "evaluation_environment": "CONTROL_PLANE_SANDBOX_ONLY",
+  "production_containment": {
+    "gate_13_status": "CLOSED",
+    "cloud_egress": "DENIED",
+    "external_target_writes": "FROZEN"
+  },
+  "suite_id": "EC-007",
+  "suite_name": "Rollback and Revocation Readiness",
+  "status": "VERIFIED",
+  "passed_tests": 5,
+  "total_tests": 5,
+  "results": [
+    {
+      "test_id": "RR-TEST-001",
+      "name": "Revocation Before Execution",
+      "passed": true,
+      "verdict": "PASS",
+      "tree_hash_delta": 0,
+      "final_state": "DENIED_PRE_FLIGHT"
+    },
+    {
+      "test_id": "RR-TEST-002",
+      "name": "Revocation In-Flight with Rollback",
+      "passed": true,
+      "verdict": "PASS",
+      "tree_hash_delta": 0,
+      "final_state": "RESTORED_AWAITING_REAUTH"
+    },
+    {
+      "test_id": "RR-TEST-003",
+      "name": "Atomic Rollback (All-or-Nothing)",
+      "passed": true,
+      "verdict": "PASS",
+      "tree_hash_delta": 0,
+      "final_state": "RESTORED_AWAITING_REAUTH"
+    },
+    {
+      "test_id": "RR-TEST-004",
+      "name": "Rollback Failure Leads to HARD_STOP",
+      "passed": true,
+      "verdict": "PASS",
+      "final_state": "HARD_STOP",
+      "autonomy_revocation": "DEGRADED_TO_PROHIBITED"
+    },
+    {
+      "test_id": "RR-TEST-005",
+      "name": "Evidence Chain Preservation Across Rollback",
+      "passed": true,
+      "verdict": "PASS",
+      "chain_length": 4,
+      "historical_integrity": "PRESERVED"
+    }
+  ]
+}

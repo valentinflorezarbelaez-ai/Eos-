@@ -1,0 +1,32 @@
+{
+  "ledger_version": "1.0.0",
+  "updated_at": "2026-08-14T22:46:00-05:00",
+  "calibration_standard": "WILSON_BRIER_CALIBRATION_INDEX",
+  "summary_metrics": {
+    "total_predictions_logged": 1,
+    "mean_absolute_prediction_error": 0.0033,
+    "systemic_bias": "PROVISIONAL_SINGLE_PREDICTION (Requires >= 5 predictions before system-wide calibration can be established)",
+    "calibration_status": "HIGHLY_ACCURATE_SINGLE_PREDICTION",
+    "overconfidence_count": 0,
+    "underconfidence_count": 0
+  },
+  "entries": [
+    {
+      "prediction_id": "PRED-CANARY-F001",
+      "mission_id": "CANARY-F001",
+      "context": "Tabular CSV Batch Uploader with Column-Level PII & Formula Defense",
+      "bkm_used": "BKM-CANARY-001",
+      "target_metric": "Task Completion Rate",
+      "predicted_value": 0.9300,
+      "predicted_interval": [0.8800, 0.9800],
+      "actual_value": 0.9333,
+      "absolute_error": 0.0033,
+      "signed_error": 0.0033,
+      "confidence": 0.95,
+      "calibration_bucket": "HIGHLY_CALIBRATED",
+      "bias_classification": "WELL_CALIBRATED",
+      "internal_metric_lpg": 0.4767,
+      "recorded_at": "2026-08-14T22:44:00-05:00"
+    }
+  ]
+}

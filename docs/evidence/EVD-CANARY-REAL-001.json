@@ -1,0 +1,32 @@
+{
+  "evidence_id": "EVD-CANARY-REAL-001",
+  "mission_id": "CANARY-REAL-001",
+  "client": "Alexander Rodríguez Remodelaciones",
+  "market": "Rionegro y Oriente Antioqueño, Colombia",
+  "evaluated_at": "2026-08-15T00:14:00-05:00",
+  "command_center": "CURSOR_IDE_AGENT_WORKSPACE",
+  "governance_level": "LEVEL_2_SUPERVISED_AUTONOMY",
+  "epistemic_classification": "CANARY_PRODUCT_IMPLEMENTED_AND_AUDITED_WITHIN_TESTED_SCOPE",
+  "pipeline_verification": {
+    "tdd_tests_pass": "7 / 7 PASS (canary-real-001.test.js)",
+    "qa_and_audits_pass": "4 / 4 PASS (canary-real-001-browser-qa.test.js)",
+    "security_audit": "PASS (SEC-001..005, zero secrets, XSS sanitized)",
+    "accessibility_audit": "PASS (100% WCAG 2.1 AA compliant, semantic landmarks, aria-live polite)",
+    "performance_audit": "PASS (Total bundle < 25KB, mobile LCP <= 1.0s target met)",
+    "browser_qa_flow": "PASS (Full 3-step qualification & WhatsApp dispatch simulated)",
+    "workspace_health": "615 / 615 PASS"
+  },
+  "targets_vs_results": {
+    "targets_state": "FROZEN",
+    "technical_implementation": "GREEN_VERIFIED",
+    "real_user_business_outcome": "UNKNOWN (Requires longitudinal live traffic)"
+  },
+  "invariants": {
+    "core_modified": false,
+    "core_state": "FROZEN",
+    "target_fundacion_delta": 0,
+    "gap_002_status": "UNKNOWN",
+    "gate_13_status": "CANARY_RESTRICTED"
+  },
+  "evidence_signature_sha256": "4b76e107df9a0f443be12d326c268a0494df9f8bdf9253457e53f09805904d98"
+}
