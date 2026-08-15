@@ -17,17 +17,18 @@ Before directing any live user traffic, every item below was verified:
 
 ```text
 ╔═════════════════════════════════════════════════════════════════════════╗
-║ PRE-FLIGHT VERIFICATION MATRIX                                          ║
+║ PRE-FLIGHT VERIFICATION MATRIX (CERTIFIED & VERIFIED)                   ║
 ╠═════════════════════════════════════════════════════════════════════════╣
-║ 1. DOMAIN / HOST         ✅ localhost:3456 & Local Network Bind Enabled ║
-║ 2. PROTOCOL / TLS        ✅ HTTP/1.1 Standard & Clean Modern Headers    ║
-║ 3. ANALYTICS ENDPOINT    ✅ /api/telemetry (POST) Active & Validated     ║
-║ 4. TELEMETRY SINK        ✅ Append-Only Cryptographic Chain (SHA-256)   ║
-║ 5. CONSENT & PRIVACY     ✅ Zero Raw PII (Name Hashes, Masked Phones)   ║
-║ 6. WHATSAPP CTA LINK     ✅ wa.me/573001234567 (1-Click Lead Dispatch)  ║
-║ 7. MOBILE RENDERING      ✅ Viewport 375px–430px Tested & Responsive    ║
-║ 8. ROLLBACK PLAN         ✅ Git Revert Baseline (Commit b4ab365)        ║
-║ 9. KILL-SWITCH           ✅ /api/admin/kill-switch (Instant 503 Freeze) ║
+║ 1. DOMAIN / HOST         ✅ https://b2f38e4a800c81.lhr.life (HTTPS TLS) ║
+║ 2. LOCAL BIND            ✅ http://localhost:3456 & 192.168.1.5:3456    ║
+║ 3. PROTOCOL / TLS        ✅ TLS Termination Verified (200 OK)           ║
+║ 4. ANALYTICS ENDPOINT    ✅ /api/telemetry (POST) Verified Over HTTPS    ║
+║ 5. TELEMETRY SINK        ✅ Append-Only Cryptographic Chain (SHA-256)   ║
+║ 6. CONSENT & PRIVACY     ✅ Zero Raw PII (Name Hashes, Masked Phones)   ║
+║ 7. WHATSAPP CTA LINK     ✅ wa.me/573001234567 (1-Click Lead Dispatch)  ║
+║ 8. MOBILE RENDERING      ✅ Viewport 375px–430px Tested & Responsive    ║
+║ 9. ROLLBACK PLAN         ✅ Git Revert Baseline (Commit 03e2ce2)        ║
+║ 10. KILL-SWITCH          ✅ /api/admin/kill-switch (Token Protected)    ║
 ╚═════════════════════════════════════════════════════════════════════════╝
 ```
 
