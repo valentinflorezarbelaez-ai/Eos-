@@ -19,7 +19,7 @@ Before directing any live user traffic, every item below was verified:
 ╔═════════════════════════════════════════════════════════════════════════╗
 ║ PRE-FLIGHT VERIFICATION MATRIX (CERTIFIED & VERIFIED)                   ║
 ╠═════════════════════════════════════════════════════════════════════════╣
-║ 1. DOMAIN / HOST         ✅ https://31140a82b79533.lhr.life (HTTPS TLS) ║
+║ 1. DOMAIN / HOST         ✅ https://727c0a969971ed.lhr.life (Supervised)║
 ║ 2. LOCAL BIND            ✅ http://localhost:3456 & 192.168.1.5:3456    ║
 ║ 3. PROTOCOL / TLS        ✅ TLS Termination Verified (200 OK)           ║
 ║ 4. ANALYTICS ENDPOINT    ✅ /api/telemetry (POST) Verified Over HTTPS    ║
