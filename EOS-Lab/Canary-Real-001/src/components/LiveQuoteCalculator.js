@@ -41,7 +41,18 @@ export class LiveQuoteCalculator {
     }
 
     const typeCat = this.bracketCatalog[projectType];
-    const bracket = typeCat[scope] || { min: 20000000, max: 80000000 };
+    const bracket = typeCat[scope];
+
+    if (!bracket) {
+      return {
+        status: 'INSUFFICIENT_DATA_REQUIRES_SITE_VISIT',
+        isExactQuote: false,
+        bracketMinCop: null,
+        bracketMaxCop: null,
+        legalDisclaimer: this.legalDisclaimer,
+        guidance: 'Alcance no reconocido o personalizado. Se requiere visita técnica en sitio.'
+      };
+    }
 
     return {
       status: 'ESTIMATE_CALCULATED',
