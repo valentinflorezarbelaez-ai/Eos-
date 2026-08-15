@@ -7,7 +7,12 @@
   "primary_objective": "Aumentar la tasa de solicitudes de cotización calificadas (filtradas por ubicación, tipo de inmueble, alcance y presupuesto aproximado) reduciendo la fricción y el ruido de leads no viables.",
   "risk_tier": "MEDIUM",
   "authority_level": "LEVEL_2_SUPERVISED_AUTONOMY",
-  "status": "DISCOVERY_COMPLETED",
+  "status": "COHORT_R1_READY_TO_START",
+  "technical_validation": "T14_T18_CERTIFIED",
+  "real_cohort_status": "READY_TO_START",
+  "real_user_observations": 0,
+  "user_outcome": "UNKNOWN",
   "discovery_decision": "BUILD_JUSTIFIED",
-  "started_at": "2026-08-14T23:50:00-05:00"
+  "started_at": "2026-08-14T23:50:00-05:00",
+  "updated_at": "2026-08-15T12:47:00-05:00"
 }

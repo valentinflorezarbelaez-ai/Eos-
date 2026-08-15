@@ -20,8 +20,14 @@ const rawTelemetryDir = path.join(rootDir, 'docs/evidence/raw_telemetry');
 const rawLogFile = path.join(rawTelemetryDir, 'CANARY_REAL_001_COHORT_R1.jsonl');
 
 export class CanaryCohortServer {
-  constructor(port = 3456) {
-    this.port = port;
+  constructor(portOrOptions = 3456) {
+    if (typeof portOrOptions === 'object') {
+      this.port = portOrOptions.port || 3456;
+      this.adminToken = portOrOptions.adminToken || process.env.EOS_ADMIN_TOKEN || 'eos_admin_secret_canary_001';
+    } else {
+      this.port = portOrOptions;
+      this.adminToken = process.env.EOS_ADMIN_TOKEN || 'eos_admin_secret_canary_001';
+    }
     this.sink = new AppendOnlyTelemetrySink();
     this.killSwitchActive = false;
     this.server = null;
@@ -185,11 +191,18 @@ export class CanaryCohortServer {
       return;
     }
 
-    // Admin Kill Switch Endpoint
+    // Admin Kill Switch Endpoint (Protected by Admin Authorization Barrier)
     if (req.method === 'POST' && pathname === '/api/admin/kill-switch') {
+      const providedToken = req.headers['x-eos-admin-token'] || parsedUrl.searchParams.get('token');
+      if (!providedToken || providedToken !== this.adminToken) {
+        res.writeHead(401, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'UNAUTHORIZED_ADMIN_ACCESS', message: 'Valid x-eos-admin-token header required' }));
+        return;
+      }
+
       this.killSwitchActive = !this.killSwitchActive;
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ killSwitchActive: this.killSwitchActive }));
+      res.end(JSON.stringify({ killSwitchActive: this.killSwitchActive, authorizedBy: 'ADMIN_KEY_VERIFIED' }));
       return;
     }
 

@@ -115,27 +115,38 @@ test('SRV-02: /api/telemetry ingests events into AppendOnlyTelemetrySink and com
   }
 });
 
-test('SRV-03: Kill-switch freezes incoming user traffic with 503 circuit breaker', async () => {
-  const server = new CanaryCohortServer(3893);
+test('SRV-03: Kill-switch rejects unauthorized callers and freezes traffic when authorized', async () => {
+  const server = new CanaryCohortServer({ port: 3893, adminToken: 'secret_test_token_123' });
   await server.start();
 
   try {
-    // Activate kill-switch
-    const toggle1 = await requestAsync('http://localhost:3893/api/admin/kill-switch', { method: 'POST' });
-    assert.equal(toggle1.statusCode, 200);
-    assert.equal(JSON.parse(toggle1.body).killSwitchActive, true);
+    // 1. Unauthorized attempt without token -> 401
+    const unauthRes = await requestAsync('http://localhost:3893/api/admin/kill-switch', { method: 'POST' });
+    assert.equal(unauthRes.statusCode, 401);
+    assert.equal(JSON.parse(unauthRes.body).error, 'UNAUTHORIZED_ADMIN_ACCESS');
 
-    // Normal traffic is now blocked
+    // 2. Authorized attempt with valid admin token -> 200 & activates kill-switch
+    const authToggle = await requestAsync('http://localhost:3893/api/admin/kill-switch', {
+      method: 'POST',
+      headers: { 'x-eos-admin-token': 'secret_test_token_123' }
+    });
+    assert.equal(authToggle.statusCode, 200);
+    assert.equal(JSON.parse(authToggle.body).killSwitchActive, true);
+
+    // 3. Normal traffic is now blocked by circuit breaker
     const pageRes = await requestAsync('http://localhost:3893/');
     assert.equal(pageRes.statusCode, 503);
     assert.equal(JSON.parse(pageRes.body).error, 'CANARY_KILL_SWITCH_ACTIVE');
 
-    // Deactivate kill-switch
-    const toggle2 = await requestAsync('http://localhost:3893/api/admin/kill-switch', { method: 'POST' });
-    assert.equal(toggle2.statusCode, 200);
-    assert.equal(JSON.parse(toggle2.body).killSwitchActive, false);
+    // 4. Authorized deactivation
+    const deauthToggle = await requestAsync('http://localhost:3893/api/admin/kill-switch', {
+      method: 'POST',
+      headers: { 'x-eos-admin-token': 'secret_test_token_123' }
+    });
+    assert.equal(deauthToggle.statusCode, 200);
+    assert.equal(JSON.parse(deauthToggle.body).killSwitchActive, false);
 
-    // Traffic flows again
+    // 5. Traffic flows again
     const pageRes2 = await requestAsync('http://localhost:3893/');
     assert.equal(pageRes2.statusCode, 200);
   } finally {
