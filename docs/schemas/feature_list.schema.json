@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EOS Feature List Schema",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["schemaVersion", "missionId", "initializedAt", "updatedAt", "features"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "missionId": { "type": "string" },
+    "initializedAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "status": { "type": "string", "enum": ["PENDING", "IN_PROGRESS", "PASS", "FAIL", "VERIFIED", "BLOCKED"] },
+          "stage": { "type": "string" },
+          "assignedAgent": { "type": "string" },
+          "evidenceReceipt": { "type": ["string", "null"] },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

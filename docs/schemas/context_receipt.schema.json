@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EOS Context Compiler Receipt Schema",
+  "version": "1.1.0",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "missionId",
+    "compiledAt",
+    "tokenBudget",
+    "authority",
+    "sectionsIncluded",
+    "sha256",
+    "compiledPrompt",
+    "epistemicStatus"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.1.0" },
+    "missionId": { "type": "string" },
+    "compiledAt": { "type": "string", "format": "date-time" },
+    "tokenBudget": {
+      "type": "object",
+      "required": ["maxBudgetTokens", "usedTokens", "remainingTokens"],
+      "properties": {
+        "maxBudgetTokens": { "type": "integer" },
+        "usedTokens": { "type": "integer" },
+        "remainingTokens": { "type": "integer" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["token", "mcl", "rank"],
+      "properties": {
+        "token": { "type": "string" },
+        "mcl": { "type": "string" },
+        "rank": { "type": "integer" }
+      }
+    },
+    "sectionsIncluded": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "compiledPrompt": { "type": "string" },
+    "epistemicStatus": {
+      "type": "string",
+      "enum": ["VERIFIED", "PARTIALLY_VERIFIED", "UNVERIFIED", "BLOCKED"]
+    }
+  }
+}
