@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.js tests/**/*.test.js",
+    "mcp:start": "node src/mcp-server.js",
     "eos": "node scripts/cli/eos.js",
     "test:lab": "npx tsx --test EOS-Lab/**/*.test.ts",
     "test:all": "node --test tests/*.test.js tests/**/*.test.js && npx tsx --test EOS-Lab/**/*.test.ts",
