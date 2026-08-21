@@ -139,6 +139,19 @@ export const CANONICAL_TRANSITIONS = [
     event: 'mission.close',
     to: SDD_STATES.COMPLETED,
     minAuthority: 'LEVEL_0'
+  },
+  /**
+   * C2 runtime bridge: MissionRuntime historically collapsed VISION_INTAKE → PLAN.
+   * Kept as an explicit canonical rule so the sole writer (commitTransition) can
+   * serve the current CLI without inventing a second authority path.
+   * C3 SHOULD replace this with the full gated lifecycle in the runtime call path.
+   */
+  {
+    from: SDD_STATES.VISION_INTAKE,
+    event: 'runtime.plan_mission',
+    to: SDD_STATES.PLAN,
+    minAuthority: 'LEVEL_0',
+    requiredArtifacts: ['direction', 'project_profile']
   }
 ];
 
@@ -204,6 +217,9 @@ export class TransitionEnforcer {
       }
       const targetState = snapshot.previous_state || SDD_STATES.VISION_INTAKE;
       return this._applyControlTransition(snapshot, event, targetState, 'Mission resumed from checkpoint');
+    }
+    if (event.event_type === 'mission.complete') {
+      return this._applyControlTransition(snapshot, event, SDD_STATES.COMPLETED, 'Mission closed via commitTransition');
     }
 
     // 4. Resolve Canonical Transition Entry

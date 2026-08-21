@@ -1,0 +1,246 @@
+/**
+ * C2 AuthorityTruthSource + commitTransition — positive and negative tests
+ */
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+
+import { AuthorityTruthSource } from '../src/core/authority/authority-truth-source.js';
+import { TransitionEnforcer, SDD_STATES } from '../src/core/sdd/sdd-fsm-engine.js';
+import { MissionRuntime } from '../src/core/runtime/mission-runtime.js';
+
+function makeTempMissionsRoot() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'eos-ats-'));
+  const missions = path.join(root, '.missions');
+  fs.mkdirSync(missions, { recursive: true });
+  return { root, missions };
+}
+
+function seedMissionPackage(missionsRoot, missionId) {
+  const dir = path.join(missionsRoot, missionId);
+  fs.mkdirSync(path.join(dir, 'ledger'), { recursive: true });
+  const pkg = {
+    schema_version: '1.0.0',
+    mission_id: missionId,
+    status: 'active',
+    phase: null,
+    orchestration: { tasks: [] }
+  };
+  fs.writeFileSync(path.join(dir, 'mission-package.json'), JSON.stringify(pkg, null, 2));
+  fs.writeFileSync(path.join(dir, 'direction.json'), JSON.stringify({ mission_id: missionId, goal: 't' }));
+  fs.writeFileSync(path.join(dir, 'project-profile.json'), JSON.stringify({ project_id: 'PRJ-T' }));
+  return dir;
+}
+
+test('ATS-01: initMission writes VISION_INTAKE only via ATS', () => {
+  const { missions } = makeTempMissionsRoot();
+  const missionId = 'MIS-ATS-01';
+  seedMissionPackage(missions, missionId);
+  const ats = new AuthorityTruthSource({ missionsRoot: missions });
+  const res = ats.initMission({ missionId, authorityLevel: 'LEVEL_0' });
+  assert.equal(res.snapshot.state, SDD_STATES.VISION_INTAKE);
+  const pkg = JSON.parse(fs.readFileSync(path.join(missions, missionId, 'mission-package.json'), 'utf8'));
+  assert.equal(pkg.phase, SDD_STATES.VISION_INTAKE);
+  assert.ok(fs.existsSync(path.join(missions, missionId, 'authority-snapshot.json')));
+});
+
+test('ATS-02: valid runtime.plan_mission transition persists PLAN', () => {
+  const { missions } = makeTempMissionsRoot();
+  const missionId = 'MIS-ATS-02';
+  seedMissionPackage(missions, missionId);
+  const ats = new AuthorityTruthSource({ missionsRoot: missions });
+  ats.initMission({ missionId });
+  const dirHash = 'a'.repeat(64);
+  const profHash = 'b'.repeat(64);
+  const res = ats.commitTransition({
+    missionId,
+    event_type: 'runtime.plan_mission',
+    to_state: SDD_STATES.PLAN,
+    authority_level: 'LEVEL_0',
+    artifacts: [
+      { id: 'direction', kind: 'direction', sha256: dirHash },
+      { id: 'project_profile', kind: 'project_profile', sha256: profHash }
+    ]
+  });
+  assert.equal(res.success, true);
+  assert.equal(res.snapshot.state, SDD_STATES.PLAN);
+  const pkg = JSON.parse(fs.readFileSync(path.join(missions, missionId, 'mission-package.json'), 'utf8'));
+  assert.equal(pkg.phase, SDD_STATES.PLAN);
+});
+
+test('ATS-03: unknown transition rejected with no phase mutation', () => {
+  const { missions } = makeTempMissionsRoot();
+  const missionId = 'MIS-ATS-03';
+  seedMissionPackage(missions, missionId);
+  const ats = new AuthorityTruthSource({ missionsRoot: missions });
+  ats.initMission({ missionId });
+  assert.throws(
+    () =>
+      ats.commitTransition({
+        missionId,
+        event_type: 'runtime.teleport',
+        to_state: SDD_STATES.COMPLETED,
+        authority_level: 'LEVEL_0'
+      }),
+    /TRANSITION_DENIED|INVALID_STATE_TRANSITION/
+  );
+  const snap = ats.getSnapshot(missionId);
+  assert.equal(snap.state, SDD_STATES.VISION_INTAKE);
+});
+
+test('ATS-04: insufficient authority rejected', () => {
+  const { missions } = makeTempMissionsRoot();
+  const missionId = 'MIS-ATS-04';
+  seedMissionPackage(missions, missionId);
+  const ats = new AuthorityTruthSource({ missionsRoot: missions });
+  ats.initMission({ missionId });
+  // Force snapshot to SUPERVISE then attempt task.complete which needs LEVEL_1
+  const snapPath = path.join(missions, missionId, 'authority-snapshot.json');
+  const snap = JSON.parse(fs.readFileSync(snapPath, 'utf8'));
+  snap.state = SDD_STATES.SUPERVISE;
+  fs.writeFileSync(snapPath, JSON.stringify(snap, null, 2));
+  assert.throws(
+    () =>
+      ats.commitTransition({
+        missionId,
+        event_type: 'task.complete',
+        to_state: SDD_STATES.VERIFY,
+        authority_level: 'LEVEL_0'
+      }),
+    /INSUFFICIENT_AUTHORITY/
+  );
+});
+
+test('ATS-05: HITL-required transition without receipt rejected', () => {
+  const { missions } = makeTempMissionsRoot();
+  const missionId = 'MIS-ATS-05';
+  seedMissionPackage(missions, missionId);
+  const ats = new AuthorityTruthSource({ missionsRoot: missions });
+  ats.initMission({ missionId });
+  // Walk to HUMAN_DIRECTION_GATE using enforcer path via formulate + propose
+  const enforcer = new TransitionEnforcer();
+  let snapshot = ats.getSnapshot(missionId);
+  let r = enforcer.evaluateTransition(
+    snapshot,
+    {
+      event_id: 'E1',
+      mission_id: missionId,
+      from_state: SDD_STATES.VISION_INTAKE,
+      to_state: SDD_STATES.MISSION_FORMULATION,
+      event_type: 'mission.formulate',
+      authority_level: 'LEVEL_0'
+    },
+    { artifacts: [{ kind: 'vision', sha256: 'c'.repeat(64) }] }
+  );
+  // Persist manually for test setup only (simulating prior commits)
+  fs.writeFileSync(path.join(missions, missionId, 'authority-snapshot.json'), JSON.stringify(r.snapshot, null, 2));
+  snapshot = r.snapshot;
+  r = enforcer.evaluateTransition(
+    snapshot,
+    {
+      event_id: 'E2',
+      mission_id: missionId,
+      from_state: SDD_STATES.MISSION_FORMULATION,
+      to_state: SDD_STATES.HUMAN_DIRECTION_GATE,
+      event_type: 'mission.propose_direction',
+      authority_level: 'LEVEL_0'
+    },
+    {
+      artifacts: [
+        { kind: 'mission_package', sha256: 'd'.repeat(64) },
+        { kind: 'contract', sha256: 'e'.repeat(64) }
+      ]
+    }
+  );
+  fs.writeFileSync(path.join(missions, missionId, 'authority-snapshot.json'), JSON.stringify(r.snapshot, null, 2));
+
+  assert.throws(
+    () =>
+      ats.commitTransition({
+        missionId,
+        event_type: 'human.approve_direction',
+        to_state: SDD_STATES.DISCOVER,
+        authority_level: 'LEVEL_0'
+      }),
+    /GATE_SKIPPED/
+  );
+});
+
+test('ATS-06: duplicate event_id / idempotency rejected', () => {
+  const { missions } = makeTempMissionsRoot();
+  const missionId = 'MIS-ATS-06';
+  seedMissionPackage(missions, missionId);
+  const sharedEnforcer = new TransitionEnforcer();
+  const ats = new AuthorityTruthSource({ missionsRoot: missions, enforcer: sharedEnforcer });
+  ats.initMission({ missionId });
+  const key = 'IDEM-FIXED-KEY';
+  ats.commitTransition({
+    missionId,
+    event_type: 'runtime.plan_mission',
+    to_state: SDD_STATES.PLAN,
+    authority_level: 'LEVEL_0',
+    idempotency_key: key,
+    artifacts: [
+      { kind: 'direction', sha256: 'a'.repeat(64) },
+      { kind: 'project_profile', sha256: 'b'.repeat(64) }
+    ]
+  });
+  // Reset snapshot to VISION to attempt replay of same key (enforcer remembers key)
+  const snap = ats.getSnapshot(missionId);
+  snap.state = SDD_STATES.VISION_INTAKE;
+  fs.writeFileSync(path.join(missions, missionId, 'authority-snapshot.json'), JSON.stringify(snap, null, 2));
+  assert.throws(
+    () =>
+      ats.commitTransition({
+        missionId,
+        event_type: 'runtime.plan_mission',
+        to_state: SDD_STATES.PLAN,
+        authority_level: 'LEVEL_0',
+        idempotency_key: key,
+        artifacts: [
+          { kind: 'direction', sha256: 'a'.repeat(64) },
+          { kind: 'project_profile', sha256: 'b'.repeat(64) }
+        ]
+      }),
+    /REPLAY_DETECTED/
+  );
+});
+
+test('ATS-07: MissionRuntime planMission uses commitTransition (no direct phase assign path)', () => {
+  const { root } = makeTempMissionsRoot();
+  // Minimal project fixture
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ name: 'fixture', type: 'module' }));
+  fs.mkdirSync(path.join(root, 'src'), { recursive: true });
+  const rt = new MissionRuntime({ baseDir: root });
+  const created = rt.createMission({ goal: 'Prove ATS wiring', projectPath: '.' });
+  const planned = rt.planMission(created.mission_id);
+  assert.equal(planned.tasks_generated, 3);
+  const pkg = JSON.parse(
+    fs.readFileSync(path.join(root, '.missions', created.mission_id, 'mission-package.json'), 'utf8')
+  );
+  assert.equal(pkg.phase, SDD_STATES.PLAN);
+  const snap = JSON.parse(
+    fs.readFileSync(path.join(root, '.missions', created.mission_id, 'authority-snapshot.json'), 'utf8')
+  );
+  assert.equal(snap.state, SDD_STATES.PLAN);
+});
+
+test('ATS-08: pause/resume/close go through commitTransition', () => {
+  const { root } = makeTempMissionsRoot();
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ name: 'fixture', type: 'module' }));
+  fs.mkdirSync(path.join(root, 'src'), { recursive: true });
+  const rt = new MissionRuntime({ baseDir: root });
+  const created = rt.createMission({ goal: 'Control transitions', projectPath: '.' });
+  rt.planMission(created.mission_id);
+  rt.pauseMission(created.mission_id, 'test pause');
+  let snap = rt.ats.getSnapshot(created.mission_id);
+  assert.equal(snap.state, SDD_STATES.PAUSED);
+  rt.resumeMission(created.mission_id);
+  snap = rt.ats.getSnapshot(created.mission_id);
+  assert.equal(snap.state, SDD_STATES.PLAN);
+  rt.closeMission(created.mission_id);
+  snap = rt.ats.getSnapshot(created.mission_id);
+  assert.equal(snap.state, SDD_STATES.COMPLETED);
+});

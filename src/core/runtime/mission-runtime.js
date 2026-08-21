@@ -16,6 +16,7 @@ import { RoleSkillRegistryEngine } from '../roles/role-skill-registry-engine.js'
 import { MultiAgentSupervisionEngine } from '../supervision/multi-agent-supervision-engine.js';
 import { HashChainedLedger, calculateSha256 } from '../sdd/epistemic-evidence-engine.js';
 import { ExecutiveMissionReporter } from '../observability/executive-mission-reporter.js';
+import { AuthorityTruthSource } from '../authority/authority-truth-source.js';
 
 export class MissionRuntime {
   constructor(options = {}) {
@@ -28,6 +29,7 @@ export class MissionRuntime {
     this.roleRegistry = new RoleSkillRegistryEngine();
     this.supervisionEngine = new MultiAgentSupervisionEngine();
     this.reporter = new ExecutiveMissionReporter({ baseDir: this.baseDir });
+    this.ats = options.ats || new AuthorityTruthSource({ missionsRoot: this.missionsRoot });
 
     if (!fs.existsSync(this.missionsRoot)) {
       fs.mkdirSync(this.missionsRoot, { recursive: true });
@@ -106,7 +108,7 @@ export class MissionRuntime {
       mission_id: missionId,
       contract_id: `CON-${missionId.replace('MIS-', '')}`,
       status: 'active',
-      phase: 'VISION_INTAKE',
+      phase: null, // written exclusively by AuthorityTruthSource.initMission
       direction: {
         raw_prompt: params.goal,
         interpreted_goal: params.goal,
@@ -140,6 +142,19 @@ export class MissionRuntime {
     const pkgStr = JSON.stringify(initialPkg, null, 2);
     fs.writeFileSync(path.join(missionDir, 'mission-package.json'), pkgStr, 'utf8');
 
+    // Constitutional init: AuthorityTruthSource is the sole writer of persisted phase
+    this.ats.initMission({
+      missionId,
+      authorityLevel: direction.authority_level,
+      budgetLimits: {
+        max_input_tokens: initialPkg.budgets.max_tokens,
+        max_output_tokens: 10000,
+        max_duration_seconds: initialPkg.budgets.max_duration_seconds
+      }
+    });
+    // Re-read package after ATS sync (phase/status authoritative)
+    const pkgAfterAts = fs.readFileSync(path.join(missionDir, 'mission-package.json'), 'utf8');
+
     // 6. Initial integrity manifest
     const manifest = {
       mission_id: missionId,
@@ -147,7 +162,7 @@ export class MissionRuntime {
       files: {
         'direction.json': calculateSha256(directionStr),
         'project-profile.json': calculateSha256(profileStr),
-        'mission-package.json': calculateSha256(pkgStr)
+        'mission-package.json': calculateSha256(pkgAfterAts)
       }
     };
     fs.writeFileSync(path.join(missionDir, 'integrity-manifest.json'), JSON.stringify(manifest, null, 2), 'utf8');
@@ -200,7 +215,6 @@ export class MissionRuntime {
 
     const direction = JSON.parse(fs.readFileSync(path.join(missionDir, 'direction.json'), 'utf8'));
     const profile = JSON.parse(fs.readFileSync(path.join(missionDir, 'project-profile.json'), 'utf8'));
-    const pkg = JSON.parse(fs.readFileSync(path.join(missionDir, 'mission-package.json'), 'utf8'));
 
     // Generate atomic tasks
     const tasks = [
@@ -210,8 +224,8 @@ export class MissionRuntime {
         assigned_role: 'SYSTEM_ARCHITECT',
         objective: `Analyze repository architecture for ${profile.project_id} and verify compatibility`,
         required_outputs: ['Architecture verification receipt'],
-        status: 'VERIFIED',
-        duration_ms: 25.0
+        status: 'PLANNED',
+        duration_ms: null
       },
       {
         task_id: `TASK-${missionId.replace('MIS-', '')}-02`,
@@ -219,8 +233,8 @@ export class MissionRuntime {
         assigned_role: 'CORE_ENGINEER',
         objective: `Implement or verify core deliverables satisfying: ${direction.goal}`,
         required_outputs: ['Code changes', 'Automated test suite passes'],
-        status: 'VERIFIED',
-        duration_ms: 120.0
+        status: 'PLANNED',
+        duration_ms: null
       },
       {
         task_id: `TASK-${missionId.replace('MIS-', '')}-03`,
@@ -228,8 +242,8 @@ export class MissionRuntime {
         assigned_role: 'EVIDENCE_AUDITOR',
         objective: 'Audit all task execution evidence receipts and commit cryptographic hashes',
         required_outputs: ['Verified evidence manifest'],
-        status: 'VERIFIED',
-        duration_ms: 15.0
+        status: 'PLANNED',
+        duration_ms: null
       }
     ];
 
@@ -281,11 +295,27 @@ export class MissionRuntime {
     fs.writeFileSync(path.join(missionDir, 'plan.json'), planStr, 'utf8');
     this._updateManifestFile(missionDir, 'plan.json', planStr);
 
-    // Update mission package
-    pkg.phase = 'PLAN';
-    pkg.orchestration.tasks = tasks;
-    const pkgStr = JSON.stringify(pkg, null, 2);
-    fs.writeFileSync(path.join(missionDir, 'mission-package.json'), pkgStr, 'utf8');
+    // Sole phase writer: AuthorityTruthSource.commitTransition
+    const directionHash = calculateSha256(fs.readFileSync(path.join(missionDir, 'direction.json'), 'utf8'));
+    const profileHash = calculateSha256(fs.readFileSync(path.join(missionDir, 'project-profile.json'), 'utf8'));
+    this.ats.commitTransition({
+      missionId,
+      event_type: 'runtime.plan_mission',
+      to_state: 'PLAN',
+      authority_level: direction.authority_level || 'LEVEL_0',
+      artifacts: [
+        { id: 'direction', kind: 'direction', sha256: directionHash },
+        { id: 'project_profile', kind: 'project_profile', sha256: profileHash }
+      ]
+    });
+
+    // Attach planned tasks after phase commit (orchestration payload, not phase)
+    const pkgFile = path.join(missionDir, 'mission-package.json');
+    const pkgCommitted = JSON.parse(fs.readFileSync(pkgFile, 'utf8'));
+    pkgCommitted.orchestration = pkgCommitted.orchestration || {};
+    pkgCommitted.orchestration.tasks = tasks;
+    const pkgStr = JSON.stringify(pkgCommitted, null, 2);
+    fs.writeFileSync(pkgFile, pkgStr, 'utf8');
     this._updateManifestFile(missionDir, 'mission-package.json', pkgStr);
 
     // Log event
@@ -383,12 +413,12 @@ export class MissionRuntime {
     const { jsonReport, markdownReport } = this.reporter.generateReport({
       mission_id: missionId,
       goal: direction.goal,
-      epistemic_verdict: 'VERIFIED_REPORTED',
+      epistemic_verdict: 'NOT_PROVEN',
       provenance: {
-        token_count: 'MEASURED',
-        cost_usd: 'ESTIMATED',
-        latency: 'MEASURED',
-        reversibility: 'MEASURED',
+        token_count: 'NOT_RUN',
+        cost_usd: 'NOT_RUN',
+        latency: 'NOT_RUN',
+        reversibility: 'NOT_RUN',
         provider_reliability: 'NOT_RUN'
       },
       tasks: plan.tasks,
@@ -399,10 +429,11 @@ export class MissionRuntime {
         ledger_chain_count: events.length
       },
       economics: {
-        total_tokens: 14500,
-        estimated_cost_usd: 0.025,
+        total_tokens: null,
+        estimated_cost_usd: null,
         budget_cap_usd: direction.budget_cap_usd,
-        efficiency_ratio_evidence_per_kt: 0.82
+        efficiency_ratio_evidence_per_kt: null,
+        epistemic_class: 'NOT_RUN'
       },
       deviations: [],
       hitl_action_items: [],
@@ -473,12 +504,12 @@ export class MissionRuntime {
     const missionDir = this.getMissionDir(missionId);
     if (!fs.existsSync(missionDir)) throw new Error(`MISSION_NOT_FOUND: Mission '${missionId}' does not exist.`);
 
-    const pkgFile = path.join(missionDir, 'mission-package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgFile, 'utf8'));
-    pkg.status = 'paused';
-    const pkgStr = JSON.stringify(pkg, null, 2);
-    fs.writeFileSync(pkgFile, pkgStr, 'utf8');
-    this._updateManifestFile(missionDir, 'mission-package.json', pkgStr);
+    this.ats.commitTransition({
+      missionId,
+      event_type: 'mission.pause',
+      authority_level: 'LEVEL_0',
+      actor: { identity: 'operator', role: 'HUMAN_DIRECTOR', identity_type: 'human_owner' }
+    });
 
     const ledger = new HashChainedLedger({ baseDir: path.join(missionDir, 'ledger') });
     ledger.appendEvent(missionId, 'MISSION_PAUSED', { reason });
@@ -494,17 +525,18 @@ export class MissionRuntime {
     const missionDir = this.getMissionDir(missionId);
     if (!fs.existsSync(missionDir)) throw new Error(`MISSION_NOT_FOUND: Mission '${missionId}' does not exist.`);
 
-    const pkgFile = path.join(missionDir, 'mission-package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgFile, 'utf8'));
-    pkg.status = 'active';
-    const pkgStr = JSON.stringify(pkg, null, 2);
-    fs.writeFileSync(pkgFile, pkgStr, 'utf8');
-    this._updateManifestFile(missionDir, 'mission-package.json', pkgStr);
+    this.ats.commitTransition({
+      missionId,
+      event_type: 'mission.resume',
+      authority_level: 'LEVEL_0',
+      actor: { identity: 'operator', role: 'HUMAN_DIRECTOR', identity_type: 'human_owner' }
+    });
 
     const ledger = new HashChainedLedger({ baseDir: path.join(missionDir, 'ledger') });
     ledger.appendEvent(missionId, 'MISSION_RESUMED', {});
 
-    return { mission_id: missionId, status: 'active' };
+    const snap = this.ats.getSnapshot(missionId);
+    return { mission_id: missionId, status: 'active', phase: snap.state };
   }
 
   /**
@@ -516,12 +548,13 @@ export class MissionRuntime {
     const missionDir = this.getMissionDir(missionId);
     if (!fs.existsSync(missionDir)) throw new Error(`MISSION_NOT_FOUND: Mission '${missionId}' does not exist.`);
 
-    const pkgFile = path.join(missionDir, 'mission-package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgFile, 'utf8'));
-    pkg.status = 'completed';
-    const pkgStr = JSON.stringify(pkg, null, 2);
-    fs.writeFileSync(pkgFile, pkgStr, 'utf8');
-    this._updateManifestFile(missionDir, 'mission-package.json', pkgStr);
+    this.ats.commitTransition({
+      missionId,
+      event_type: 'mission.complete',
+      to_state: 'COMPLETED',
+      authority_level: 'LEVEL_0',
+      actor: { identity: 'operator', role: 'HUMAN_DIRECTOR', identity_type: 'human_owner' }
+    });
 
     const ledger = new HashChainedLedger({ baseDir: path.join(missionDir, 'ledger') });
     ledger.appendEvent(missionId, 'MISSION_CLOSED', { reason });

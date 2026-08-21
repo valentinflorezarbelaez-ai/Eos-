@@ -28,25 +28,28 @@ export class ExecutiveMissionReporter {
     const totalDurationMs = tasks.reduce((sum, t) => sum + (t.duration_ms || 0), 0);
 
     const provenance = {
-      token_count: missionData.provenance?.token_count || 'MEASURED',
-      cost_usd: missionData.provenance?.cost_usd || 'ESTIMATED',
-      latency: missionData.provenance?.latency || 'MEASURED',
-      reversibility: missionData.provenance?.reversibility || 'MEASURED',
+      token_count: missionData.provenance?.token_count || 'NOT_RUN',
+      cost_usd: missionData.provenance?.cost_usd || 'NOT_RUN',
+      latency: missionData.provenance?.latency || 'NOT_RUN',
+      reversibility: missionData.provenance?.reversibility || 'NOT_RUN',
       provider_reliability: missionData.provenance?.provider_reliability || 'NOT_RUN'
     };
 
     const evidenceSummary = {
       total_receipts: missionData.evidence?.total_receipts || 0,
       verified_receipts: missionData.evidence?.verified_receipts || 0,
-      hash_chain_integrity: missionData.evidence?.hash_chain_integrity || 'VALID',
+      hash_chain_integrity: missionData.evidence?.hash_chain_integrity || 'UNKNOWN',
       ledger_chain_count: missionData.evidence?.ledger_chain_count || 0
     };
 
+    const econ = missionData.economics || {};
     const tokenAndCost = {
-      total_tokens: missionData.economics?.total_tokens || 0,
-      estimated_cost_usd: missionData.economics?.estimated_cost_usd || 0.0,
-      budget_cap_usd: missionData.economics?.budget_cap_usd || 1.0,
-      efficiency_ratio_evidence_per_kt: missionData.economics?.efficiency_ratio_evidence_per_kt || 0.0
+      total_tokens: econ.total_tokens == null ? null : econ.total_tokens,
+      estimated_cost_usd: econ.estimated_cost_usd == null ? null : econ.estimated_cost_usd,
+      budget_cap_usd: econ.budget_cap_usd == null ? null : econ.budget_cap_usd,
+      efficiency_ratio_evidence_per_kt:
+        econ.efficiency_ratio_evidence_per_kt == null ? null : econ.efficiency_ratio_evidence_per_kt,
+      epistemic_class: econ.epistemic_class || 'NOT_RUN'
     };
 
     const deviations = missionData.deviations || [];
@@ -120,6 +123,9 @@ export class ExecutiveMissionReporter {
     const evid = report.evidence_verification_summary;
     const gov = report.governance_invariants;
 
+    const fmtNum = (v, digits) => (v == null || Number.isNaN(v) ? 'NOT_RUN' : Number(v).toFixed(digits));
+    const fmtInt = (v) => (v == null || Number.isNaN(v) ? 'NOT_RUN' : Number(v).toLocaleString());
+
     return `# EOS Executive Mission Report — ${report.report_id}
 
 **Mission ID:** \`${report.mission_id}\`  
@@ -144,18 +150,19 @@ export class ExecutiveMissionReporter {
 
 | Metric Dimension | Classification | Status / Explanation |
 |---|---|---|
-| **Token Consumption** | \`${prov.token_count}\` | Exact payload calculation (~4 chars/token) |
-| **Cost (USD)** | \`${prov.cost_usd}\` | Baseline catalog rates; not live invoices |
-| **Execution Latency** | \`${prov.latency}\` | Measured runtime stopwatch on local test tasks |
-| **State Reversibility** | \`${prov.reversibility}\` | Cryptographic SHA-256 hash before/after delta |
-| **Real Provider SLA** | \`${prov.provider_reliability}\` | Real external providers remain uncalled & offline |
+| **Token Consumption** | \`${prov.token_count}\` | Only MEASURED when tokenizer/telemetry ran |
+| **Cost (USD)** | \`${prov.cost_usd}\` | Only ESTIMATED/MEASURED with declared method |
+| **Execution Latency** | \`${prov.latency}\` | Only MEASURED with stopwatch evidence |
+| **State Reversibility** | \`${prov.reversibility}\` | Hash before/after when checkpoint exists |
+| **Real Provider SLA** | \`${prov.provider_reliability}\` | External providers remain blocked offline |
 
 ---
 
 ## 3. Token & Cost Economics
-- **Total Tokens:** \`${econ.total_tokens.toLocaleString()}\`
-- **Estimated Cost:** \`$${econ.estimated_cost_usd.toFixed(4)}\` / Budget Cap: \`$${econ.budget_cap_usd.toFixed(2)}\`
-- **Evidence/Kilotoken Efficiency:** \`${econ.efficiency_ratio_evidence_per_kt.toFixed(2)}\` assertions / kToken
+- **Epistemic Class:** \`${econ.epistemic_class || 'NOT_RUN'}\`
+- **Total Tokens:** \`${fmtInt(econ.total_tokens)}\`
+- **Estimated Cost:** \`${econ.estimated_cost_usd == null ? 'NOT_RUN' : '$' + fmtNum(econ.estimated_cost_usd, 4)}\` / Budget Cap: \`${econ.budget_cap_usd == null ? 'N/A' : '$' + fmtNum(econ.budget_cap_usd, 2)}\`
+- **Evidence/Kilotoken Efficiency:** \`${fmtNum(econ.efficiency_ratio_evidence_per_kt, 2)}\`
 
 ---
 
