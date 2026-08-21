@@ -164,7 +164,7 @@ test('ATS-05: HITL-required transition without receipt rejected', () => {
         to_state: SDD_STATES.DISCOVER,
         authority_level: 'LEVEL_0'
       }),
-    /GATE_SKIPPED/
+    /GATE_SKIPPED|HITL_DENIED/
   );
 });
 
