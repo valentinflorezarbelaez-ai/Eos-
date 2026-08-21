@@ -32,9 +32,10 @@ C1.5 packaging **copied** previously untracked Mission OS Tier A files onto a wo
 
 ```text
 node bin/eos.js --help
+npm run eos:mission -- --help
 ```
 
-**Do not** treat `npm run eos` as Mission OS on this RC: it still points at the legacy harness (`scripts/cli/eos.js`). That is intentional for this packaging gate.
+**Do not** treat `npm run eos` as Mission OS on this RC: it still points at the legacy harness (`scripts/cli/eos.js`). Use `npm run eos:mission` or `node bin/eos.js` for Mission OS.
 
 ### Side effect of `--help`
 

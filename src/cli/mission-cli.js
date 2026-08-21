@@ -5,10 +5,12 @@
  */
 
 import { MissionRuntime } from '../core/runtime/mission-runtime.js';
+import { TutorMaestro } from '../core/tutor/tutor-maestro.js';
 
 export class MissionCLI {
   constructor(options = {}) {
     this.runtime = new MissionRuntime(options);
+    this.tutor = options.tutor || new TutorMaestro();
   }
 
   /**
@@ -61,10 +63,34 @@ export class MissionCLI {
           return { success: false, output: "Error: Missing required argument '--goal <text>'." };
         }
 
+        const pre = this.tutor.explainBefore({
+          action_id: 'mission.create',
+          objective: 'Initialize a governed local mission from a human goal',
+          concept: 'MissionRuntime.createMission + AuthorityTruthSource.initMission',
+          scope: ['.missions/<id>', 'mission-package.json', 'authority-snapshot.json'],
+          cwd: process.cwd(),
+          rationale: 'Creates isolated mission storage under .missions without touching main/Fundacion',
+          alternatives: ['Manual folder setup (error-prone)', 'Legacy npm run eos harness (not Mission OS)'],
+          risks: ['Creates .missions directory', 'Discovery may read project files'],
+          expected_evidence: ['mission_id', 'phase VISION_INTAKE', 'authority-snapshot.json'],
+          rollback: 'Delete .missions/<mission_id> if unused',
+          hitl_status: 'NOT_REQUIRED'
+        });
+
         const res = this.runtime.createMission({ goal, projectPath });
+        const post = this.tutor.explainAfter(
+          { action_id: 'mission.create' },
+          {
+            observed: `Created ${res.mission_id} status=${res.status}`,
+            exit_code: 0,
+            classification: 'MEASURED',
+            interpretation: 'Mission OS storage initialized; phase owned by ATS',
+            next_decision: `Run eos mission plan ${res.mission_id}`
+          }
+        );
         return {
           success: true,
-          output: `✅ Mission Created Successfully:\n- Mission ID: ${res.mission_id}\n- Target Project: ${res.project_id}\n- Storage Directory: ${res.mission_dir}\n- Status: ${res.status}\n\nNext step: Run 'eos mission plan ${res.mission_id}' to generate tasks.`,
+          output: `${pre}\n\n✅ Mission Created Successfully:\n- Mission ID: ${res.mission_id}\n- Target Project: ${res.project_id}\n- Storage Directory: ${res.mission_dir}\n- Status: ${res.status}\n\n${post}\n\nNext step: Run 'eos mission plan ${res.mission_id}' to generate tasks.`,
           data: res
         };
       }
