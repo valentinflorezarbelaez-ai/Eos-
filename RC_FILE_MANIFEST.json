@@ -1,0 +1,314 @@
+{
+  "document_id": "RC_FILE_MANIFEST",
+  "mission": "C1.5 PACKAGING WORKTREE",
+  "branch": "release/eos-mission-os-rc",
+  "base_commit": "1b269932943c46849e463b293ace471a9745d3f1",
+  "worktree": "C:/Users/valen/Documents/Eos system/.worktrees/eos-rc-c15",
+  "timestamp_utc": "2026-08-21T20:59:43.309Z",
+  "copy_scope": "Tier A (+ Tier B tests: NO)",
+  "package_json_entrypoint_fix": "PARTIAL_eos_mission_alias_only",
+  "commit": "NO",
+  "merge": "NO",
+  "fundacion": "FROZEN",
+  "network": "NO",
+  "lockfile_policy": "L0_NODE_BUILTINS_ONLY",
+  "file_count": 42,
+  "files": [
+    {
+      "path": "package.json",
+      "sha256": "79e92022053b36c6c296e48eebe659fd173f51376e167b28941baaf2c87906ea",
+      "bytes": 1893,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "CONSTITUTION.md",
+      "sha256": "a4a29bc7662af446f6d6032c82b1b17d33e88f1ab2e4ca7317809b0e202c58d7",
+      "bytes": 1880,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "bin/eos.js",
+      "sha256": "69dbe5948f421f91d2937adc6cacd4c367cab8dbe7b08c2d08efc2bff2040b2a",
+      "bytes": 557,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/cli/mission-cli.js",
+      "sha256": "6b09182a04a568b29aa761bc1f46c0b752eb0b57c4730e9f45cb41b5745517f5",
+      "bytes": 16530,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/mcp-server.js",
+      "sha256": "b4ae9b6b430e2e884efc6e6ee60a0a9a10736a211e00e3a25ca59ea3ca1282be",
+      "bytes": 11696,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "scripts/cli/eos.js",
+      "sha256": "9b7d134323956900bc5f8907c376b181ca56f0eac485fe3a5d1916fafbaaed37",
+      "bytes": 8653,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "scripts/engine/context-compiler.js",
+      "sha256": "aa0757cfd8390923300ed8d71341c6c00fa406c498811f87e4a693f437d2631e",
+      "bytes": 7143,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "scripts/engine/mission-ledger.js",
+      "sha256": "14eaa20f9f8918702e460e7ba4b8b2c2961e9cfb67cab9931b293e64ca9d7283",
+      "bytes": 7685,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "scripts/engine/authority-adapter.js",
+      "sha256": "43389350f36988182aa6c128899c89fbded9c5dc7cecdd104aed05516ca607e3",
+      "bytes": 4707,
+      "in_base_commit": true,
+      "packaging": "FROM_BASE"
+    },
+    {
+      "path": "scripts/engine/sdd-fsm-engine.js",
+      "sha256": "7c2084312ebdaeb99f22a7bf3eb0f38b362d8d15957e39f4142b4f0bba89de03",
+      "bytes": 54,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "scripts/engine/hitl-gatekeeper.js",
+      "sha256": "ea91d98bdc5f4baf336e16d7bea589080499575f09a377722538805d4cbd227a",
+      "bytes": 55,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "scripts/engine/epistemic-evidence-engine.js",
+      "sha256": "4d326749011ee2f8147d1eafed9675d3d93694dc4fc7515f023596dbb41c358f",
+      "bytes": 65,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/adapters/cursor-mission-package.js",
+      "sha256": "b2aa2746a16e00f50857b9271ffa366b78a5ac2032664237eaf1bbf3617b6205",
+      "bytes": 7697,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/adapters/cursor-return-ingestion-engine.js",
+      "sha256": "1b9674acc0243a55fc690187280b431ca04b42dbc4d62c0bfa9e66fe2f0bf3f5",
+      "bytes": 5118,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/discovery/governed-technical-selection-engine.js",
+      "sha256": "14e273fc54922762b8c3618571a84d64fcaeb2f4f9ed8f50565ef3fbce060072",
+      "bytes": 11510,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/discovery/operational-capability-receipt-engine.js",
+      "sha256": "29175deae8ea5f821f6288ab8a1e79e23df9b61f53605bc440ce6a528ab58cc4",
+      "bytes": 11874,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/discovery/universal-technical-discovery-engine.js",
+      "sha256": "bb78274c12527baad867c480609a3afb1755fd315bbe6da603decaf8e96f5221",
+      "bytes": 12080,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/economics/token-economics-audit-engine.js",
+      "sha256": "23a258942c5772755094bd9ac2010c3736c572f7085a585e527a608a76d399a6",
+      "bytes": 7751,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/governance/integration-gatekeeper.js",
+      "sha256": "b44e3c6f29555b3897dca83418b30a42a0bb1548bc827ff023338f22950260c2",
+      "bytes": 17413,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/observability/executive-mission-reporter.js",
+      "sha256": "d3ed8af83f021aa3a09e8662ca300b64fe0fda9a3235921c5195db2de6c59839",
+      "bytes": 7469,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/roles/role-skill-registry-engine.js",
+      "sha256": "9d876af312111cfae43601660b5a306428b47b28cbe709465599a49b65a5bc9f",
+      "bytes": 9660,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/runtime/mission-runtime.js",
+      "sha256": "8bf212ae09f8a6a18624be7a2a5b0e27d7de0e9cdb6a1246e81b19e94e5df0f9",
+      "bytes": 32050,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/sandbox/worktree-mutation-engine.js",
+      "sha256": "0364b22955dcf273a92e059d1fd2a757f8253ec3495ffb69202dc8fbf28ccb51",
+      "bytes": 6784,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/sdd/epistemic-evidence-engine.js",
+      "sha256": "091c3b9be1433816dd492da8ba6ea1256e8491d33ff9ddf2cf82439d65045c1f",
+      "bytes": 15646,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/sdd/hitl-gatekeeper.js",
+      "sha256": "63e4b25dcdc2f9080aeaa1b338842ba4e7d8f4e6c67cd48fb13c2747cdf7da0d",
+      "bytes": 16517,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/sdd/sdd-fsm-engine.js",
+      "sha256": "a25cd8585e46c53abbca4d9c9051bf3b428575432cda876a21c9de1c1058865b",
+      "bytes": 16985,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/supervision/multi-agent-supervision-engine.js",
+      "sha256": "a44a7886edb155d98a4f623d1a9395b40e1dd7308f69f351af4ed6a4401ac158",
+      "bytes": 7866,
+      "in_base_commit": false,
+      "packaging": "COPIED_UNTRACKED"
+    },
+    {
+      "path": "src/core/authority/authority-truth-source.js",
+      "sha256": "ab1184598570d6da0fe8a32382faea738ec66f9bd5b8bd4ae3963f64f0742398",
+      "bytes": 9217,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "src/core/tutor/tutor-maestro.js",
+      "sha256": "854213427f0cb86f07c0aec07146e8c843dc034d57e478312041e68bd30c4ce4",
+      "bytes": 2890,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "tests/authority-truth-source.test.js",
+      "sha256": "9c248fa63e11bbff673943f400675968e0f72009f31c74bdf71ee4973a6f1277",
+      "bytes": 9991,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "tests/eos-negative-governance.test.js",
+      "sha256": "4e8f7c015eab4d3fa7828af08b3fb1346a02abb1625b0d1ea4e5eaf315840702",
+      "bytes": 3664,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "tests/eos-e2e-local-fixture.test.js",
+      "sha256": "5c48f8b40ec56b23368ac3ca52042d4d40bc813ef9ebf6ed09b78a7ca6a14a4c",
+      "bytes": 5717,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/manuals/EOS_OPERATOR_MANUAL_LOCAL.md",
+      "sha256": "e3692213ed46a92c1fc003a69a5915bd439dad56e26540170fc45396b675eeb5",
+      "bytes": 2253,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/releases/RELEASE_CAPABILITY_MATRIX.md",
+      "sha256": "e8e7b5860ebcf249227665f912ccb24f16f314ffc853321b5bac0614deab175c",
+      "bytes": 2313,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/releases/EOS_CONTINUOUS_EXECUTION_CHECKPOINT.md",
+      "sha256": "0c34d105729c98eded71146c08aa44e46458e1c48960ea8868b26b4606ba48b7",
+      "bytes": 1278,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "src/core/contracts/schema-validator.js",
+      "sha256": "dcfc862601fa98129d9de7f0f2f7028d05a3df0cc45dc4e1c85dec407bcb3e9f",
+      "bytes": 4427,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "src/core/rules/canonical-rules-index.js",
+      "sha256": "ea2f0a5996c7381aa14f532f0869f1aabd4ce93d7cefccf1afda311a9887d916",
+      "bytes": 1151,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/schemas/local/mission-package.local.schema.json",
+      "sha256": "4eeb612ad0f9bf79fca5d329878d9b105922157b69df9bd899420ad9e35ed9e4",
+      "bytes": 1130,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/schemas/local/direction.local.schema.json",
+      "sha256": "e4a22d5456df52e8efe7a957d7c0799004e1a57c45329b0edf7bf7ad75ce17b4",
+      "bytes": 662,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/schemas/local/hitl-receipt.local.schema.json",
+      "sha256": "45261e229307dcbb7fcbd4fac8b61023da7cc7be032a5377c14cb5c2e3d71592",
+      "bytes": 1358,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/rules/CANONICAL_RULES_INDEX.json",
+      "sha256": "34070f4df354ac3240ad3bbb507e505aec0ba6218ad006e54d42ee9d7338fb23",
+      "bytes": 2455,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "tests/eos-local-contracts.test.js",
+      "sha256": "ca7e246a5950edba2e3c786fd10ab53cc974299dc2980b2da7be1a885fac53ac",
+      "bytes": 3574,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    }
+  ],
+  "updated_note": "COMPLETE_FOR_LOCAL_GOVERNED_USE wave",
+  "dictamen": "COMPLETE_FOR_LOCAL_GOVERNED_USE"
+}

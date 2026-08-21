@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eos.local/schemas/local/direction.local.schema.json",
+  "title": "EOS Direction Record (local governed MVP)",
+  "type": "object",
+  "required": ["mission_id", "goal", "project_path", "authority_level"],
+  "properties": {
+    "mission_id": { "type": "string", "pattern": "^MIS-" },
+    "goal": { "type": "string" },
+    "business_context": { "type": "string" },
+    "target_project": { "type": "string" },
+    "project_path": { "type": "string" },
+    "created_at": { "type": "string" },
+    "authority_level": { "type": "string" },
+    "budget_cap_usd": { "type": "number" }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "CANONICAL_RULES_INDEX",
+  "schema_version": "1.0.0",
+  "scope": "LOCAL_GOVERNED_MVP",
+  "purpose": "Index of constitutional and operational rules the Tutor and runtime may cite. Not a substitute for CONSTITUTION.md.",
+  "rules": [
+    {
+      "rule_id": "R-EVIDENCE-01",
+      "title": "Truth over claims",
+      "source": "CONSTITUTION.md#Article-I",
+      "statement": "No engineering statement is accepted without verifiable evidence; unverified claims must be marked NOT VERIFIED.",
+      "enforcement": ["TutorMaestro.post.classification", "ExecutiveMissionReporter"]
+    },
+    {
+      "rule_id": "R-ATS-01",
+      "title": "Sole phase writer",
+      "source": "AuthorityTruthSource",
+      "statement": "All persisted mission phase mutations MUST go through AuthorityTruthSource.commitTransition.",
+      "enforcement": ["AuthorityTruthSource", "MissionRuntime"]
+    },
+    {
+      "rule_id": "R-HITL-01",
+      "title": "Human direction gate",
+      "source": "SDD_FSM HUMAN_DIRECTION_GATE",
+      "statement": "Transitions requiring HITL must present a valid receipt; missing receipt denies and leaves state unchanged.",
+      "enforcement": ["HitlGatekeeper", "TransitionEnforcer"]
+    },
+    {
+      "rule_id": "R-FDIR-01",
+      "title": "FDIR safe mode",
+      "source": "IntegrationGatekeeper",
+      "statement": "When FDIR kill switch is tripped, mission close and real integrations are blocked.",
+      "enforcement": ["MissionRuntime.closeMission"]
+    },
+    {
+      "rule_id": "R-BOUNDARY-01",
+      "title": "Fundacion and main frozen",
+      "source": "Director governance",
+      "statement": "PRJ-FUNDACION Δ=0; merge to main and network/credentials require explicit separate gates.",
+      "enforcement": ["Operator policy", "release branch isolation"]
+    },
+    {
+      "rule_id": "R-LOCAL-01",
+      "title": "Local fixture receipt class",
+      "source": "HitlGatekeeper.issueLocalBoundedReceipt",
+      "statement": "LOCAL_BOUNDED fixture receipts are MEASURED local governance aids, not production human identity proof.",
+      "enforcement": ["HitlGatekeeper", "TutorMaestro"]
+    },
+    {
+      "rule_id": "R-SCHEMA-01",
+      "title": "Local schema contracts",
+      "source": "docs/schemas/local",
+      "statement": "Mission OS local MVP validates direction and mission-package against local schemas before plan advancement.",
+      "enforcement": ["SchemaValidator", "MissionRuntime"]
+    }
+  ]
+}
