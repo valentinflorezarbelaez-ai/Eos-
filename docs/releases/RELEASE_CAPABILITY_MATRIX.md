@@ -3,7 +3,7 @@
 ```text
 document: RELEASE_CAPABILITY_MATRIX
 release_branch: release/eos-mission-os-rc
-evaluated_tip: 4152c4e511f615f5fefd9835e18bbbd80730cc46 (pre-c5c9-commit; update after commit)
+evaluated_tip: c6a8436bb96c370881908daf6c8991c0fcd98b73
 dictamen: COMPLETE_WITH_CONDITIONS
 main_protected: 1b269932943c46849e463b293ace471a9745d3f1
 ```
