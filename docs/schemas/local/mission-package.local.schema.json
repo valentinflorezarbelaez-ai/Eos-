@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eos.local/schemas/local/mission-package.local.schema.json",
+  "title": "EOS Mission Package (local governed MVP)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mission_id",
+    "contract_id",
+    "status",
+    "direction",
+    "authority",
+    "budgets",
+    "scope",
+    "artifacts",
+    "orchestration",
+    "evidence_policy"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "mission_id": { "type": "string", "pattern": "^MIS-" },
+    "contract_id": { "type": "string", "pattern": "^CON-" },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "approved", "active", "paused", "blocked", "completed", "failed", "cancelled"]
+    },
+    "phase": { "type": ["string", "null"] },
+    "direction": { "type": "object" },
+    "authority": { "type": "object" },
+    "budgets": { "type": "object" },
+    "scope": { "type": "object" },
+    "artifacts": { "type": "object" },
+    "orchestration": { "type": "object" },
+    "evidence_policy": { "type": "object" }
+  }
+}

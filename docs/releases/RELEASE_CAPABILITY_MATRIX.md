@@ -3,39 +3,47 @@
 ```text
 document: RELEASE_CAPABILITY_MATRIX
 release_branch: release/eos-mission-os-rc
-evaluated_tip: c6a8436bb96c370881908daf6c8991c0fcd98b73
-dictamen: COMPLETE_WITH_CONDITIONS
+evaluated_tip: FILL_AFTER_COMMIT
+dictamen: COMPLETE_FOR_LOCAL_GOVERNED_USE
 main_protected: 1b269932943c46849e463b293ace471a9745d3f1
 ```
 
 | Capability | Status | Evidence class |
 | --- | --- | --- |
-| RC reproducible Mission OS package | COMPLETE | VERIFIED (commit on RC branch) |
-| `node bin/eos.js` entrypoint | COMPLETE | MEASURED |
-| `npm run eos:mission` alias | COMPLETE | MEASURED (script present) |
-| Legacy `npm run eos` | COMPLETE_WITH_CONDITIONS | Still legacy harness — documented |
-| AuthorityTruthSource + commitTransition | COMPLETE | VERIFIED (tests 8/8 + call path) |
-| Direct `pkg.phase` assignment in Runtime | COMPLETE | Removed / routed via ATS |
-| Full FSM lifecycle in CLI (no bridge) | NOT_READY | `runtime.plan_mission` bridge remains |
-| HitlGatekeeper on HITL-gated transitions | COMPLETE | VERIFIED (ATS pre-check + tests) |
+| RC reproducible Mission OS package | COMPLETE | VERIFIED |
+| `node bin/eos.js` / `npm run eos:mission` | COMPLETE | MEASURED |
+| Legacy `npm run eos` | COMPLETE_WITH_CONDITIONS | Documented non-Mission entry |
+| AuthorityTruthSource + commitTransition | COMPLETE | VERIFIED |
+| Canonical FSM plan path (no bridge in runtime) | COMPLETE | VERIFIED (ATS-07, E2E-01/05) |
+| Deprecated `runtime.plan_mission` retained for compat tests | COMPLETE_WITH_CONDITIONS | Explicit `deprecated: true` |
+| HitlGatekeeper + local/external receipts | COMPLETE | VERIFIED (E2E-02/04/05) |
 | IntegrationGatekeeper FDIR on close | COMPLETE | VERIFIED (NEG-03) |
-| Epistemic honesty (no VERIFIED-at-birth) | COMPLETE | MEASURED (PLANNED / NOT_PROVEN) |
-| Schema validation at runtime | NOT_READY | Schemas exist; not loaded by src/ |
-| Tutor-Maestro pre/post on create | COMPLETE | MEASURED (CLI wired) |
-| Canonical rules index / projections | NOT_READY | FUTURE |
-| Negative governance suite | COMPLETE_WITH_CONDITIONS | NEG-01..04 + ATS negatives |
-| E2E fixture + HITL reject + checkpoint | COMPLETE_WITH_CONDITIONS | E2E-01..03 MEASURED |
-| Production / network / credentials | FUTURE | BLOCKED by policy |
+| Epistemic honesty (PLANNED / NOT_PROVEN) | COMPLETE | MEASURED |
+| Local schema validation (direction + package + HITL) | COMPLETE | VERIFIED (SCHEMA-01/02) |
+| Full enterprise schemas aligned to runtime | NOT_READY | FUTURE (local MVP schemas only) |
+| Tutor-Maestro on create/plan/close | COMPLETE | MEASURED |
+| Canonical rules index v0 | COMPLETE | VERIFIED (RULES-01) |
+| Negative governance suite | COMPLETE | VERIFIED (NEG + ATS) |
+| E2E fixture + HITL reject/approve + checkpoint | COMPLETE | VERIFIED (E2E-01..05) |
+| Production / network / credentials | FUTURE | BLOCKED |
 | Merge to main | FUTURE | BLOCKED |
 
 ## Dictamen
 
 ```text
-COMPLETE_FOR_LOCAL_GOVERNED_USE: NO
-COMPLETE_WITH_CONDITIONS: YES
-Conditions:
-  - Use tip on release/eos-mission-os-rc after this commit
-  - Do not claim schema-validated or full FSM without bridge
-  - Do not merge to main without separate gate
-  - Operator must use fixture projects only
+COMPLETE_FOR_LOCAL_GOVERNED_USE: YES
+COMPLETE_WITH_CONDITIONS: (subset)
+  - Local schemas under docs/schemas/local (not full enterprise schema set)
+  - Default plan may issue MEASURED_LOCAL_FIXTURE HITL receipt (LOCAL_BOUNDED)
+  - Use --require-hitl / --hitl-receipt for external director receipt
+  - Deprecated bridge exists for compat tests only; runtime does not call it
+  - No merge to main; no network; no Fundación mutation; fixture projects only
+PRODUCTION_READY: NO
+```
+
+## Evidence command
+
+```text
+node --test tests/authority-truth-source.test.js tests/eos-negative-governance.test.js tests/eos-e2e-local-fixture.test.js tests/eos-local-contracts.test.js
+→ 20/20 pass (at freeze)
 ```

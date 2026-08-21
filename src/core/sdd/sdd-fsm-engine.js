@@ -141,17 +141,17 @@ export const CANONICAL_TRANSITIONS = [
     minAuthority: 'LEVEL_0'
   },
   /**
-   * C2 runtime bridge: MissionRuntime historically collapsed VISION_INTAKE → PLAN.
-   * Kept as an explicit canonical rule so the sole writer (commitTransition) can
-   * serve the current CLI without inventing a second authority path.
-   * C3 SHOULD replace this with the full gated lifecycle in the runtime call path.
+   * DEPRECATED bridge (compat only): historical VISION_INTAKE → PLAN collapse.
+   * MissionRuntime.planMission MUST use the gated lifecycle above.
+   * Retained so older tests/tools fail closed through the same sole writer.
    */
   {
     from: SDD_STATES.VISION_INTAKE,
     event: 'runtime.plan_mission',
     to: SDD_STATES.PLAN,
     minAuthority: 'LEVEL_0',
-    requiredArtifacts: ['direction', 'project_profile']
+    requiredArtifacts: ['direction', 'project_profile'],
+    deprecated: true
   }
 ];
 

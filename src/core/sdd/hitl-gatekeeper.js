@@ -343,6 +343,64 @@ ${risks.map(r => `- **${r.id}**: ${r.statement} (Mitigation: ${r.mitigation})`).
 `;
   }
 
+  /**
+   * Issue a LOCAL_BOUNDED fixture receipt for governed local MVP drills.
+   * Epistemic class is MEASURED_LOCAL_FIXTURE — not production human identity proof.
+   */
+  issueLocalBoundedReceipt({
+    missionId,
+    gateId = 'HUMAN_DIRECTION_GATE',
+    decision = 'approve',
+    ttlMs = 60 * 60 * 1000,
+    reason = 'Local governed fixture approval under LOCAL_BOUNDED_AUTONOMY'
+  } = {}) {
+    if (this.mode !== AUTONOMY_MODES.LOCAL_BOUNDED_AUTONOMY && this.mode !== AUTONOMY_MODES.STAGED_AUTONOMY) {
+      const err = new Error(
+        `HITL_LOCAL_RECEIPT_DENIED: issueLocalBoundedReceipt requires LOCAL_BOUNDED_AUTONOMY or STAGED_AUTONOMY (observed ${this.mode})`
+      );
+      err.code = 'HITL_LOCAL_RECEIPT_DENIED';
+      throw err;
+    }
+    if (!missionId) {
+      throw new Error('HITL_LOCAL_RECEIPT_DENIED: missionId required');
+    }
+    const now = Date.now();
+    const receipt = {
+      schema_version: '1.0.0',
+      receipt_id: `HITL-LOCAL-${Date.now()}-${randomBytes(3).toString('hex').toUpperCase()}`,
+      decision,
+      gate_id: gateId,
+      mission_id: missionId,
+      approver: {
+        identity: 'local-director-fixture',
+        authentication_ref: 'LOCAL_BOUNDED_FIXTURE'
+      },
+      scope: {
+        mission_id: missionId,
+        environment: 'local',
+        allowed_edit_roots: ['.missions/'],
+        protected_surfaces: ['Fundacion/', 'docs/governance/'],
+        action_classes: ['approval_required', 'human_only']
+      },
+      authority_granted: {
+        level: 'LEVEL_0',
+        monotonicity_rule: 'No authority outside this receipt is granted'
+      },
+      evidence_reviewed: [
+        {
+          id: 'EVD-LOCAL-DIRECTION',
+          sha256: createHash('sha256').update(`${missionId}:${gateId}`).digest('hex')
+        }
+      ],
+      issued_at: new Date(now).toISOString(),
+      expires_at: new Date(now + ttlMs).toISOString(),
+      reason,
+      epistemic_class: 'MEASURED_LOCAL_FIXTURE',
+      fallback: { on_expiry: 'deny', on_revoke: 'deny' }
+    };
+    return receipt;
+  }
+
   _buildError(code, field, expected, observed, nextAction) {
     return {
       valid: false,

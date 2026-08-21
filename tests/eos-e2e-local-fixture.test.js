@@ -44,6 +44,8 @@ test('E2E-01: full local cycle create→plan→package→report→pause→resume
   );
   assert.equal(pkg.phase, 'PLAN');
   assert.equal(pkg.orchestration.tasks[0].status, 'PLANNED');
+  assert.ok(planned.transitions.some((t) => t.event_type === 'human.approve_direction'));
+  assert.ok(!planned.transitions.some((t) => t.event_type === 'runtime.plan_mission'));
   const pack = rt.packageMission(created.mission_id);
   assert.ok(pack.manifest_hash);
   const report = rt.reportMission(created.mission_id, 'json');

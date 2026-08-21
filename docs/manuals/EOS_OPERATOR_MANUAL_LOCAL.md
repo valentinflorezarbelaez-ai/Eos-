@@ -34,7 +34,7 @@ node bin/eos.js mission resume <MISSION_ID>
 node bin/eos.js mission close <MISSION_ID>
 ```
 
-Create/plan prints Tutor pre/post explanations.
+Create/plan/close print Tutor pre/post explanations. `mission plan` walks the canonical FSM (VISION → FORMULATION → HUMAN_DIRECTION_GATE → DISCOVER → DEFINE → PLAN). By default it may issue a `MEASURED_LOCAL_FIXTURE` HITL receipt under LOCAL_BOUNDED autonomy; use `--hitl-receipt <file>` or `--require-hitl` for external director control.
 
 ## Observe
 

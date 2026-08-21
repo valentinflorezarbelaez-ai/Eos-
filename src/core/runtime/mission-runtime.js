@@ -19,6 +19,9 @@ import { ExecutiveMissionReporter } from '../observability/executive-mission-rep
 import { AuthorityTruthSource } from '../authority/authority-truth-source.js';
 import { HitlGatekeeper } from '../sdd/hitl-gatekeeper.js';
 import { IntegrationGatekeeper } from '../governance/integration-gatekeeper.js';
+import { SchemaValidator } from '../contracts/schema-validator.js';
+import { CanonicalRulesIndex } from '../rules/canonical-rules-index.js';
+import { SDD_STATES } from '../sdd/sdd-fsm-engine.js';
 
 export class MissionRuntime {
   constructor(options = {}) {
@@ -34,6 +37,9 @@ export class MissionRuntime {
     this.ats = options.ats || new AuthorityTruthSource({ missionsRoot: this.missionsRoot });
     this.hitl = options.hitl || new HitlGatekeeper();
     this.integrationGate = options.integrationGate || new IntegrationGatekeeper();
+    this.schemas = options.schemas || new SchemaValidator();
+    this.rules = options.rules || new CanonicalRulesIndex();
+    this.allowLocalDirectorReceipt = options.allowLocalDirectorReceipt !== false;
 
     if (!fs.existsSync(this.missionsRoot)) {
       fs.mkdirSync(this.missionsRoot, { recursive: true });
@@ -144,6 +150,8 @@ export class MissionRuntime {
       evidence_policy: { required_categories: ['UNIT_TEST'], hash_algorithm: 'SHA-256', chain_to_ledger: true }
     };
     const pkgStr = JSON.stringify(initialPkg, null, 2);
+    this.schemas.assertValid(initialPkg, 'mission-package.local.schema.json', 'mission-package');
+    this.schemas.assertValid(direction, 'direction.local.schema.json', 'direction');
     fs.writeFileSync(path.join(missionDir, 'mission-package.json'), pkgStr, 'utf8');
 
     // Constitutional init: AuthorityTruthSource is the sole writer of persisted phase
@@ -208,10 +216,14 @@ export class MissionRuntime {
   }
 
   /**
-   * Plans the mission: generates task contracts and plan.json
+   * Plans the mission via the gated FSM lifecycle (VISION → … → PLAN).
+   * Does NOT use deprecated runtime.plan_mission bridge.
    * @param {string} missionId
+   * @param {object} [options]
+   * @param {object} [options.hitlReceipt] explicit HITL receipt for HUMAN_DIRECTION_GATE
+   * @param {boolean} [options.requireExternalHitl] deny auto local fixture receipt
    */
-  planMission(missionId) {
+  planMission(missionId, options = {}) {
     const missionDir = this.getMissionDir(missionId);
     if (!fs.existsSync(missionDir)) {
       throw new Error(`MISSION_NOT_FOUND: Mission '${missionId}' does not exist.`);
@@ -219,6 +231,10 @@ export class MissionRuntime {
 
     const direction = JSON.parse(fs.readFileSync(path.join(missionDir, 'direction.json'), 'utf8'));
     const profile = JSON.parse(fs.readFileSync(path.join(missionDir, 'project-profile.json'), 'utf8'));
+    const pkg = JSON.parse(fs.readFileSync(path.join(missionDir, 'mission-package.json'), 'utf8'));
+
+    this.schemas.assertValid(direction, 'direction.local.schema.json', 'direction');
+    this.schemas.assertValid(pkg, 'mission-package.local.schema.json', 'mission-package');
 
     // Generate atomic tasks
     const tasks = [
@@ -293,24 +309,29 @@ export class MissionRuntime {
       mission_id: missionId,
       planned_at: new Date().toISOString(),
       tasks,
-      governance_gates: ['HITL_DIRECTION_APPROVAL', 'EVIDENCE_VERIFICATION_GATE']
+      governance_gates: ['HITL_DIRECTION_APPROVAL', 'EVIDENCE_VERIFICATION_GATE'],
+      fsm_path: [
+        'VISION_INTAKE',
+        'MISSION_FORMULATION',
+        'HUMAN_DIRECTION_GATE',
+        'DISCOVER',
+        'DEFINE',
+        'PLAN'
+      ],
+      rules_cited: this.rules.cite(['R-ATS-01', 'R-HITL-01', 'R-SCHEMA-01'])
     };
     const planStr = JSON.stringify(plan, null, 2);
     fs.writeFileSync(path.join(missionDir, 'plan.json'), planStr, 'utf8');
     this._updateManifestFile(missionDir, 'plan.json', planStr);
 
-    // Sole phase writer: AuthorityTruthSource.commitTransition
-    const directionHash = calculateSha256(fs.readFileSync(path.join(missionDir, 'direction.json'), 'utf8'));
-    const profileHash = calculateSha256(fs.readFileSync(path.join(missionDir, 'project-profile.json'), 'utf8'));
-    this.ats.commitTransition({
-      missionId,
-      event_type: 'runtime.plan_mission',
-      to_state: 'PLAN',
-      authority_level: direction.authority_level || 'LEVEL_0',
-      artifacts: [
-        { id: 'direction', kind: 'direction', sha256: directionHash },
-        { id: 'project_profile', kind: 'project_profile', sha256: profileHash }
-      ]
+    const authority = direction.authority_level || 'LEVEL_0';
+    const transitions = this._advanceToPlanViaCanonicalFsm(missionId, missionDir, {
+      direction,
+      profile,
+      pkg,
+      authority,
+      hitlReceipt: options.hitlReceipt,
+      requireExternalHitl: options.requireExternalHitl === true
     });
 
     // Attach planned tasks after phase commit (orchestration payload, not phase)
@@ -326,13 +347,118 @@ export class MissionRuntime {
     const ledger = new HashChainedLedger({ baseDir: path.join(missionDir, 'ledger') });
     ledger.appendEvent(missionId, 'MISSION_PLANNED', {
       tasks_count: tasks.length,
-      plan_hash: calculateSha256(planStr)
+      plan_hash: calculateSha256(planStr),
+      fsm_path: plan.fsm_path,
+      transitions: transitions.map((t) => t.event_type)
     });
 
     return {
       mission_id: missionId,
       tasks_generated: tasks.length,
+      phase: this.ats.getSnapshot(missionId).state,
+      transitions,
       plan
+    };
+  }
+
+  /**
+   * Walk canonical FSM from VISION_INTAKE to PLAN with required artifacts + HITL.
+   * @private
+   */
+  _advanceToPlanViaCanonicalFsm(missionId, missionDir, ctx) {
+    const { direction, profile, pkg, authority } = ctx;
+    fs.mkdirSync(path.join(missionDir, 'artifacts'), { recursive: true });
+
+    const art = (kind, payload) => this._writeMissionArtifact(missionDir, kind, payload);
+
+    const vision = art('vision', {
+      mission_id: missionId,
+      goal: direction.goal,
+      business_context: direction.business_context
+    });
+    const missionPackage = art('mission_package', pkg);
+    const contract = art('contract', {
+      contract_id: pkg.contract_id,
+      mission_id: missionId,
+      terms: ['local_governed', 'no_network', 'no_fundacion_mutation']
+    });
+    const inventory = art('repository_inventory', {
+      project_id: profile.project_id,
+      root_path: direction.project_path,
+      discovered_keys: Object.keys(profile)
+    });
+    const techSpec = art('technical_spec', {
+      mission_id: missionId,
+      approach: 'Governed local plan generation',
+      goal: direction.goal
+    });
+    const acceptance = art('acceptance_criteria', {
+      mission_id: missionId,
+      criteria: ['phase_equals_PLAN', 'tasks_status_PLANNED', 'authority_snapshot_synced']
+    });
+
+    const steps = [];
+    const run = (event_type, to_state, artifacts, extra = {}) => {
+      const res = this.ats.commitTransition({
+        missionId,
+        event_type,
+        to_state,
+        authority_level: authority,
+        artifacts,
+        ...extra
+      });
+      steps.push({ event_type, to_state, state: res.snapshot.state });
+      return res;
+    };
+
+    run('mission.formulate', SDD_STATES.MISSION_FORMULATION, [vision]);
+    run('mission.propose_direction', SDD_STATES.HUMAN_DIRECTION_GATE, [missionPackage, contract]);
+
+    let hitlReceipt = ctx.hitlReceipt || null;
+    if (!hitlReceipt) {
+      const receiptPath = path.join(missionDir, 'hitl', 'direction-approval.json');
+      if (fs.existsSync(receiptPath)) {
+        hitlReceipt = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
+      }
+    }
+    if (!hitlReceipt) {
+      if (ctx.requireExternalHitl || this.allowLocalDirectorReceipt === false) {
+        const err = new Error(
+          'HITL_RECEIPT_REQUIRED: Provide hitlReceipt or .missions/<id>/hitl/direction-approval.json before leaving HUMAN_DIRECTION_GATE'
+        );
+        err.code = 'HITL_RECEIPT_REQUIRED';
+        throw err;
+      }
+      hitlReceipt = this.hitl.issueLocalBoundedReceipt({
+        missionId,
+        gateId: 'HUMAN_DIRECTION_GATE',
+        reason: 'Auto-issued LOCAL_BOUNDED fixture receipt for planMission (MEASURED_LOCAL_FIXTURE)'
+      });
+      fs.mkdirSync(path.join(missionDir, 'hitl'), { recursive: true });
+      const receiptStr = JSON.stringify(hitlReceipt, null, 2);
+      fs.writeFileSync(path.join(missionDir, 'hitl', 'direction-approval.json'), receiptStr, 'utf8');
+      this._updateManifestFile(missionDir, 'hitl/direction-approval.json', receiptStr);
+      this.schemas.assertValid(hitlReceipt, 'hitl-receipt.local.schema.json', 'hitl-receipt');
+    }
+
+    run('human.approve_direction', SDD_STATES.DISCOVER, [], { hitlReceipt });
+    run('discovery.complete', SDD_STATES.DEFINE, [inventory]);
+    run('definition.complete', SDD_STATES.PLAN, [techSpec, acceptance]);
+
+    return steps;
+  }
+
+  /** @private */
+  _writeMissionArtifact(missionDir, kind, payload) {
+    const body = typeof payload === 'string' ? payload : JSON.stringify(payload, null, 2);
+    const rel = `artifacts/${kind}.json`;
+    fs.writeFileSync(path.join(missionDir, rel), body, 'utf8');
+    this._updateManifestFile(missionDir, rel, body);
+    return {
+      id: kind,
+      kind,
+      sha256: calculateSha256(body),
+      uri: rel
     };
   }
 

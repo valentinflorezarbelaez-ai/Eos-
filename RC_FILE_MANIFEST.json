@@ -4,7 +4,7 @@
   "branch": "release/eos-mission-os-rc",
   "base_commit": "1b269932943c46849e463b293ace471a9745d3f1",
   "worktree": "C:/Users/valen/Documents/Eos system/.worktrees/eos-rc-c15",
-  "timestamp_utc": "2026-08-21T20:52:46.467Z",
+  "timestamp_utc": "2026-08-21T20:59:43.309Z",
   "copy_scope": "Tier A (+ Tier B tests: NO)",
   "package_json_entrypoint_fix": "PARTIAL_eos_mission_alias_only",
   "commit": "NO",
@@ -12,7 +12,7 @@
   "fundacion": "FROZEN",
   "network": "NO",
   "lockfile_policy": "L0_NODE_BUILTINS_ONLY",
-  "file_count": 35,
+  "file_count": 42,
   "files": [
     {
       "path": "package.json",
@@ -37,8 +37,8 @@
     },
     {
       "path": "src/cli/mission-cli.js",
-      "sha256": "63c28c2a9e1cc5f9a6bbc8ec9e78417bafe9bc7f9cf2b1ec23130b48ea5b7bcb",
-      "bytes": 13476,
+      "sha256": "6b09182a04a568b29aa761bc1f46c0b752eb0b57c4730e9f45cb41b5745517f5",
+      "bytes": 16530,
       "in_base_commit": false,
       "packaging": "COPIED_UNTRACKED"
     },
@@ -163,8 +163,8 @@
     },
     {
       "path": "src/core/runtime/mission-runtime.js",
-      "sha256": "884ac1986a70acf3e30b4ed65124a5e5d5e5d1bc452b5c9f7a8a4095b21b3f6a",
-      "bytes": 24173,
+      "sha256": "8bf212ae09f8a6a18624be7a2a5b0e27d7de0e9cdb6a1246e81b19e94e5df0f9",
+      "bytes": 32050,
       "in_base_commit": false,
       "packaging": "COPIED_UNTRACKED"
     },
@@ -184,15 +184,15 @@
     },
     {
       "path": "src/core/sdd/hitl-gatekeeper.js",
-      "sha256": "3c10114542783edbcc99263781a88fa3df103d74f8725b73e48f778ad6e3a01e",
-      "bytes": 14478,
+      "sha256": "63e4b25dcdc2f9080aeaa1b338842ba4e7d8f4e6c67cd48fb13c2747cdf7da0d",
+      "bytes": 16517,
       "in_base_commit": false,
       "packaging": "COPIED_UNTRACKED"
     },
     {
       "path": "src/core/sdd/sdd-fsm-engine.js",
-      "sha256": "5d82b2cf633d77499a79296d9b9b72f7da4d5c375585b384dcc05bbab31dcdfc",
-      "bytes": 15942,
+      "sha256": "a25cd8585e46c53abbca4d9c9051bf3b428575432cda876a21c9de1c1058865b",
+      "bytes": 16985,
       "in_base_commit": false,
       "packaging": "COPIED_UNTRACKED"
     },
@@ -208,57 +208,107 @@
       "sha256": "ab1184598570d6da0fe8a32382faea738ec66f9bd5b8bd4ae3963f64f0742398",
       "bytes": 9217,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "src/core/tutor/tutor-maestro.js",
       "sha256": "854213427f0cb86f07c0aec07146e8c843dc034d57e478312041e68bd30c4ce4",
       "bytes": 2890,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "tests/authority-truth-source.test.js",
-      "sha256": "9d34f2e8bc991d0d029b97a9643c04d4c9a3077643c2f8e72f27a4d1d617c2bb",
-      "bytes": 9740,
+      "sha256": "9c248fa63e11bbff673943f400675968e0f72009f31c74bdf71ee4973a6f1277",
+      "bytes": 9991,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "tests/eos-negative-governance.test.js",
       "sha256": "4e8f7c015eab4d3fa7828af08b3fb1346a02abb1625b0d1ea4e5eaf315840702",
       "bytes": 3664,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "tests/eos-e2e-local-fixture.test.js",
-      "sha256": "c97b008661a5b9d49610c9f61a59f8e7ab33010afe3e372dacf67dd55a0a7292",
-      "bytes": 5539,
+      "sha256": "5c48f8b40ec56b23368ac3ca52042d4d40bc813ef9ebf6ed09b78a7ca6a14a4c",
+      "bytes": 5717,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "docs/manuals/EOS_OPERATOR_MANUAL_LOCAL.md",
-      "sha256": "05c6379386208235ab3c0b5d9ea4db93fb66c7c2a12e89166a0dafe921acc29a",
-      "bytes": 1952,
+      "sha256": "e3692213ed46a92c1fc003a69a5915bd439dad56e26540170fc45396b675eeb5",
+      "bytes": 2253,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "docs/releases/RELEASE_CAPABILITY_MATRIX.md",
-      "sha256": "baf89fd4df29fc6c4bc156189cd36985b913224e294d34173495f353d53c3fbc",
-      "bytes": 2011,
+      "sha256": "e8e7b5860ebcf249227665f912ccb24f16f314ffc853321b5bac0614deab175c",
+      "bytes": 2313,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     },
     {
       "path": "docs/releases/EOS_CONTINUOUS_EXECUTION_CHECKPOINT.md",
-      "sha256": "b5164e59ffae86d77c1c882a3ae34728fea48404133740cffa8c21dd336faab7",
-      "bytes": 1379,
+      "sha256": "0c34d105729c98eded71146c08aa44e46458e1c48960ea8868b26b4606ba48b7",
+      "bytes": 1278,
       "in_base_commit": false,
-      "packaging": "C5_C9_CONTINUOUS"
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "src/core/contracts/schema-validator.js",
+      "sha256": "dcfc862601fa98129d9de7f0f2f7028d05a3df0cc45dc4e1c85dec407bcb3e9f",
+      "bytes": 4427,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "src/core/rules/canonical-rules-index.js",
+      "sha256": "ea2f0a5996c7381aa14f532f0869f1aabd4ce93d7cefccf1afda311a9887d916",
+      "bytes": 1151,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/schemas/local/mission-package.local.schema.json",
+      "sha256": "4eeb612ad0f9bf79fca5d329878d9b105922157b69df9bd899420ad9e35ed9e4",
+      "bytes": 1130,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/schemas/local/direction.local.schema.json",
+      "sha256": "e4a22d5456df52e8efe7a957d7c0799004e1a57c45329b0edf7bf7ad75ce17b4",
+      "bytes": 662,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/schemas/local/hitl-receipt.local.schema.json",
+      "sha256": "45261e229307dcbb7fcbd4fac8b61023da7cc7be032a5377c14cb5c2e3d71592",
+      "bytes": 1358,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "docs/rules/CANONICAL_RULES_INDEX.json",
+      "sha256": "34070f4df354ac3240ad3bbb507e505aec0ba6218ad006e54d42ee9d7338fb23",
+      "bytes": 2455,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
+    },
+    {
+      "path": "tests/eos-local-contracts.test.js",
+      "sha256": "ca7e246a5950edba2e3c786fd10ab53cc974299dc2980b2da7be1a885fac53ac",
+      "bytes": 3574,
+      "in_base_commit": false,
+      "packaging": "LOCAL_GOVERNED_COMPLETE"
     }
   ],
-  "updated_note": "C5-C9 continuous wave; C2-C4 already on branch tip"
+  "updated_note": "COMPLETE_FOR_LOCAL_GOVERNED_USE wave",
+  "dictamen": "COMPLETE_FOR_LOCAL_GOVERNED_USE"
 }

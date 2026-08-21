@@ -225,6 +225,9 @@ test('ATS-07: MissionRuntime planMission uses commitTransition (no direct phase 
     fs.readFileSync(path.join(root, '.missions', created.mission_id, 'authority-snapshot.json'), 'utf8')
   );
   assert.equal(snap.state, SDD_STATES.PLAN);
+  assert.ok(planned.transitions?.length >= 5);
+  assert.ok(!planned.transitions.some((t) => t.event_type === 'runtime.plan_mission'));
+  assert.ok(fs.existsSync(path.join(root, '.missions', created.mission_id, 'hitl', 'direction-approval.json')));
 });
 
 test('ATS-08: pause/resume/close go through commitTransition', () => {

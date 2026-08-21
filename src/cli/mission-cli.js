@@ -6,6 +6,7 @@
 
 import { MissionRuntime } from '../core/runtime/mission-runtime.js';
 import { TutorMaestro } from '../core/tutor/tutor-maestro.js';
+import fs from 'node:fs';
 
 export class MissionCLI {
   constructor(options = {}) {
@@ -108,15 +109,51 @@ export class MissionCLI {
         };
       }
 
-      // 3. eos mission plan <mission-id>
+      // 3. eos mission plan <mission-id> [--hitl-receipt <path>] [--require-hitl]
       if (sub === 'plan') {
         const missionId = args[1];
         if (!missionId) return { success: false, output: "Error: Missing '<mission-id>' argument." };
 
-        const res = this.runtime.planMission(missionId);
+        const hitlIdx = args.indexOf('--hitl-receipt');
+        const requireHitl = args.includes('--require-hitl');
+        let hitlReceipt = null;
+        if (hitlIdx !== -1) {
+          const receiptPath = args[hitlIdx + 1];
+          if (!receiptPath) {
+            return { success: false, output: "Error: --hitl-receipt requires a file path." };
+          }
+          hitlReceipt = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
+        }
+
+        const pre = this.tutor.explainBefore({
+          action_id: 'mission.plan',
+          objective: 'Advance mission through gated FSM to PLAN',
+          concept: 'Canonical transitions + HITL at HUMAN_DIRECTION_GATE',
+          scope: ['.missions/<id>/artifacts', 'plan.json', 'authority-snapshot.json'],
+          rationale: this.runtime.rules.cite(['R-ATS-01', 'R-HITL-01']).join(' | '),
+          risks: ['Issues LOCAL_BOUNDED fixture receipt unless --hitl-receipt/--require-hitl'],
+          expected_evidence: ['phase PLAN', 'fsm_path recorded', 'tasks PLANNED'],
+          rollback: 'mission pause; restore checkpoint; or delete disposable fixture',
+          hitl_status: hitlReceipt ? 'EXTERNAL_RECEIPT' : requireHitl ? 'REQUIRED_EXTERNAL' : 'LOCAL_BOUNDED_FIXTURE_ALLOWED'
+        });
+
+        const res = this.runtime.planMission(missionId, {
+          hitlReceipt,
+          requireExternalHitl: requireHitl
+        });
+        const post = this.tutor.explainAfter(
+          { action_id: 'mission.plan' },
+          {
+            observed: `phase=${res.phase} tasks=${res.tasks_generated} steps=${(res.transitions || []).map((t) => t.event_type).join('→')}`,
+            exit_code: 0,
+            classification: 'MEASURED',
+            interpretation: 'Canonical FSM path used; deprecated runtime.plan_mission bridge not invoked',
+            next_decision: `eos mission package ${res.mission_id}`
+          }
+        );
         return {
           success: true,
-          output: `📝 Mission Planned Successfully [${res.mission_id}]:\n- Generated Tasks: ${res.tasks_generated}\n- Governance Gates: ${res.plan.governance_gates.join(', ')}\n\nNext step: Run 'eos mission package ${res.mission_id} --target cursor' to generate operator handoff.`,
+          output: `${pre}\n\n📝 Mission Planned Successfully [${res.mission_id}]:\n- Phase: ${res.phase}\n- Generated Tasks: ${res.tasks_generated}\n- FSM: ${(res.transitions || []).map((t) => t.event_type).join(' → ')}\n- Governance Gates: ${res.plan.governance_gates.join(', ')}\n\n${post}\n\nNext step: Run 'eos mission package ${res.mission_id} --target cursor' to generate operator handoff.`,
           data: res
         };
       }
@@ -205,8 +242,32 @@ export class MissionCLI {
         const missionId = args[1];
         if (!missionId) return { success: false, output: "Error: Missing '<mission-id>' argument." };
 
+        const pre = this.tutor.explainBefore({
+          action_id: 'mission.close',
+          objective: 'Close mission via commitTransition(mission.complete)',
+          concept: 'Control transition to COMPLETED with FDIR pre-check',
+          rationale: this.runtime.rules.cite(['R-ATS-01', 'R-FDIR-01']).join(' | '),
+          risks: ['Blocked if FDIR safe mode tripped'],
+          expected_evidence: ['phase COMPLETED'],
+          rollback: 'Cannot un-complete; create new mission if needed',
+          hitl_status: 'NOT_REQUIRED_FOR_CONTROL_COMPLETE'
+        });
         const res = this.runtime.closeMission(missionId);
-        return { success: true, output: `🏁 Mission ${res.mission_id} is now CLOSED/COMPLETED.`, data: res };
+        const post = this.tutor.explainAfter(
+          { action_id: 'mission.close' },
+          {
+            observed: `mission ${res.mission_id} closed`,
+            exit_code: 0,
+            classification: 'MEASURED',
+            interpretation: 'Control transition committed through ATS',
+            next_decision: 'Inspect ledger/report; do not claim production readiness'
+          }
+        );
+        return {
+          success: true,
+          output: `${pre}\n\n🏁 Mission ${res.mission_id} is now CLOSED/COMPLETED.\n\n${post}`,
+          data: res
+        };
       }
 
       // 11. eos mission submit <mission-id> --file <return-pkg.json>
