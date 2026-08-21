@@ -17,6 +17,8 @@ import { MultiAgentSupervisionEngine } from '../supervision/multi-agent-supervis
 import { HashChainedLedger, calculateSha256 } from '../sdd/epistemic-evidence-engine.js';
 import { ExecutiveMissionReporter } from '../observability/executive-mission-reporter.js';
 import { AuthorityTruthSource } from '../authority/authority-truth-source.js';
+import { HitlGatekeeper } from '../sdd/hitl-gatekeeper.js';
+import { IntegrationGatekeeper } from '../governance/integration-gatekeeper.js';
 
 export class MissionRuntime {
   constructor(options = {}) {
@@ -30,6 +32,8 @@ export class MissionRuntime {
     this.supervisionEngine = new MultiAgentSupervisionEngine();
     this.reporter = new ExecutiveMissionReporter({ baseDir: this.baseDir });
     this.ats = options.ats || new AuthorityTruthSource({ missionsRoot: this.missionsRoot });
+    this.hitl = options.hitl || new HitlGatekeeper();
+    this.integrationGate = options.integrationGate || new IntegrationGatekeeper();
 
     if (!fs.existsSync(this.missionsRoot)) {
       fs.mkdirSync(this.missionsRoot, { recursive: true });
@@ -349,10 +353,12 @@ export class MissionRuntime {
       ? JSON.parse(fs.readFileSync(path.join(missionDir, 'plan.json'), 'utf8'))
       : { tasks: [] };
 
+    const pkg = JSON.parse(fs.readFileSync(path.join(missionDir, 'mission-package.json'), 'utf8'));
     const { jsonPackage, markdownPrompt, manifestHash } = this.packageGenerator.generatePackage({
       mission_id: missionId,
       project_id: profile.project_id,
       project_root: direction.project_path,
+      phase: pkg.phase,
       direction: {
         goal: direction.goal,
         business_context: direction.business_context
@@ -548,6 +554,13 @@ export class MissionRuntime {
     const missionDir = this.getMissionDir(missionId);
     if (!fs.existsSync(missionDir)) throw new Error(`MISSION_NOT_FOUND: Mission '${missionId}' does not exist.`);
 
+    // IntegrationGatekeeper on call path: refuse close if FDIR kill-switch tripped
+    if (this.integrationGate.fdirSafeModeTripped) {
+      throw new Error(
+        `INTEGRATION_BLOCKED [FDIR_SAFE_MODE]: Cannot close mission while kill switch is active (${this.integrationGate.trippedReason})`
+      );
+    }
+
     this.ats.commitTransition({
       missionId,
       event_type: 'mission.complete',
@@ -557,7 +570,7 @@ export class MissionRuntime {
     });
 
     const ledger = new HashChainedLedger({ baseDir: path.join(missionDir, 'ledger') });
-    ledger.appendEvent(missionId, 'MISSION_CLOSED', { reason });
+    ledger.appendEvent(missionId, 'MISSION_CLOSED', { reason, integration_gate: 'CHECKED_NOT_LIVE' });
 
     return { mission_id: missionId, status: 'completed', reason };
   }

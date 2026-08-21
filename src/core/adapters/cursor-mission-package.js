@@ -42,7 +42,7 @@ export class CursorMissionPackageGenerator {
       contract_id: contractId,
       parent_mission_id: missionData.parent_mission_id || null,
       status: missionData.status || 'active',
-      phase: 'DELEGATE',
+      phase: options.phase || 'PLAN',
       direction: {
         raw_prompt: direction.goal,
         interpreted_goal: direction.goal,

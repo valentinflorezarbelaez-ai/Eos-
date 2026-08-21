@@ -10,9 +10,11 @@ import crypto from 'node:crypto';
 
 import {
   SDD_STATES,
-  TransitionEnforcer
+  TransitionEnforcer,
+  CANONICAL_TRANSITIONS
 } from '../sdd/sdd-fsm-engine.js';
 import { HashChainedLedger, calculateSha256 } from '../sdd/epistemic-evidence-engine.js';
+import { HitlGatekeeper } from '../sdd/hitl-gatekeeper.js';
 
 const SNAPSHOT_FILE = 'authority-snapshot.json';
 const PACKAGE_FILE = 'mission-package.json';
@@ -36,6 +38,7 @@ export class AuthorityTruthSource {
     }
     this.missionsRoot = options.missionsRoot;
     this.enforcer = options.enforcer || new TransitionEnforcer();
+    this.hitl = options.hitl || new HitlGatekeeper();
   }
 
   getMissionDir(missionId) {
@@ -152,6 +155,26 @@ export class AuthorityTruthSource {
       const err = new Error('ATS_INVALID_REQUEST: to_state required for non-control transitions');
       err.code = 'ATS_INVALID_REQUEST';
       throw err;
+    }
+
+    // Pre-enforce HITL via HitlGatekeeper when canonical rule requires receipt
+    const rule = CANONICAL_TRANSITIONS.find(
+      (t) => t.from === snapshot.state && t.event === event_type && t.to === (to_state || snapshot.state)
+    );
+    if (rule?.requiresHitlReceipt) {
+      const validation = this.hitl.validateReceipt(
+        hitlReceipt,
+        { action: event_type, gate_id: rule.requiredGate },
+        snapshot
+      );
+      if (!validation || validation.valid === false) {
+        const err = new Error(
+          `HITL_DENIED [${validation?.code || 'HITL_DENIED'}]: ${validation?.next_action || 'Provide valid HITL receipt'}`
+        );
+        err.code = validation?.code || 'HITL_DENIED';
+        err.diagnostic = validation;
+        throw err;
+      }
     }
 
     let result;
