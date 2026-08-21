@@ -1,0 +1,89 @@
+/**
+ * MCP ↔ MissionRuntime wiring for local governed usability
+ */
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+
+import { EosMcpServer } from '../src/mcp-server.js';
+import { McpMissionBridge, normalizeToolName } from '../src/core/mcp/mcp-mission-bridge.js';
+
+test('BRIDGE-01: normalize underscore names', () => {
+  assert.equal(normalizeToolName('eos_mission_status'), 'eos.mission.status');
+  assert.equal(normalizeToolName('eos.mission.status'), 'eos.mission.status');
+});
+
+test('BRIDGE-02: mission resolve/start/status/plan/report via MCP read-write LEVEL_1', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'eos-mcp-wire-'));
+  fs.writeFileSync(path.join(root, 'package.json'), '{"name":"mcp-wire","type":"module"}');
+  fs.mkdirSync(path.join(root, 'src'));
+
+  const bridge = new McpMissionBridge({ baseDir: root });
+  const server = new EosMcpServer(null, { bridge, baseDir: root });
+  const env = {
+    EOS_MODE: 'read-write',
+    EOS_AUTONOMY_LEVEL: 'LEVEL_1',
+    EOS_ALLOW_EXTERNAL_SIDE_EFFECTS: 'false'
+  };
+
+  const resolved = await server.handleToolCall(
+    'eos_mission_resolve',
+    { goal: 'Wire MCP to Mission OS', projectPath: root },
+    env
+  );
+  assert.equal(resolved.status, 'SUCCESS');
+  assert.equal(resolved.resolution.epistemic_class, 'PROPOSED');
+
+  const started = await server.handleToolCall(
+    'eos.mission.start',
+    { goal: 'Wire MCP to Mission OS', projectPath: root },
+    env
+  );
+  assert.equal(started.status, 'SUCCESS', started.reason || '');
+  assert.ok(started.mission.mission_id);
+
+  const status = await server.handleToolCall(
+    'eos_mission_status',
+    { missionId: started.mission.mission_id },
+    env
+  );
+  assert.equal(status.status, 'SUCCESS');
+  assert.equal(status.mission_status.mission_id, started.mission.mission_id);
+
+  // plan via bridge (not a canonical MCP tool name — exercise runtime path)
+  const planned = bridge.planMission({ missionId: started.mission.mission_id });
+  assert.equal(planned.phase, 'PLAN');
+
+  const report = await server.handleToolCall(
+    'eos.report.generate',
+    { missionId: started.mission.mission_id },
+    env
+  );
+  assert.equal(report.status, 'SUCCESS');
+  assert.ok(report.report);
+
+  const verify = await server.handleToolCall(
+    'eos.verifier.run',
+    { missionId: started.mission.mission_id },
+    env
+  );
+  assert.equal(verify.status, 'SUCCESS');
+  assert.equal(verify.verification.ok, true);
+
+  const fdir = await server.handleToolCall('eos.fdir.status', {}, env);
+  assert.equal(fdir.status, 'SUCCESS');
+  assert.equal(fdir.fdir.fdirSafeModeTripped, false);
+});
+
+test('BRIDGE-03: mission.start denied in read-only', async () => {
+  const server = new EosMcpServer();
+  const res = await server.handleToolCall(
+    'eos.mission.start',
+    { goal: 'should deny' },
+    { EOS_MODE: 'read-only', EOS_AUTONOMY_LEVEL: 'LEVEL_2', EOS_ALLOW_EXTERNAL_SIDE_EFFECTS: 'false' }
+  );
+  assert.equal(res.status, 'DENIED');
+  assert.equal(res.reason, 'READ_ONLY_MODE_BLOCKS_LEDGER_WRITE');
+});

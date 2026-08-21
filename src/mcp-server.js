@@ -1,15 +1,17 @@
 /**
  * @module EosMcpServer
- * @version 1.2.0
+ * @version 1.3.0
  * @description JSON-RPC 2.0 stdio MCP Server for EOS Mission OS.
- * Exposes the canonical 20-tool manifest with explicit deny-by-default
- * authorization and read-only governance guards.
+ * Wires MissionRuntime for local governed mission tools; deny-by-default guards remain.
  */
 
 import readline from 'node:readline';
+import fs from 'node:fs';
+import path from 'node:path';
 import { ContextCompiler } from '../scripts/engine/context-compiler.js';
 import { MissionLedger } from '../scripts/engine/mission-ledger.js';
 import { AuthorityAdapter } from '../scripts/engine/authority-adapter.js';
+import { McpMissionBridge, normalizeToolName } from './core/mcp/mcp-mission-bridge.js';
 
 const CANONICAL_TOOLS = [
   { name: 'eos.mission.resolve', description: 'Resolve raw intent into structured mission DAG', category: 'MISSION', sideEffects: 'NONE', requiredAuthority: 'A0' },
@@ -35,8 +37,9 @@ const CANONICAL_TOOLS = [
 ];
 
 class EosMcpServer {
-  constructor(customLedger = null) {
+  constructor(customLedger = null, options = {}) {
     this.ledger = customLedger || new MissionLedger();
+    this.bridge = options.bridge || new McpMissionBridge({ baseDir: options.baseDir || process.cwd() });
   }
 
   evaluateToolGuard(toolDef, env = process.env) {
@@ -97,100 +100,208 @@ class EosMcpServer {
     return { allowed: true };
   }
 
-  async handleToolCall(name, args = {}, env = process.env) {
-    const toolDef = CANONICAL_TOOLS.find(t => t.name === name);
+  _guarded(toolDef, env, fn) {
+    const guard = this.evaluateToolGuard(toolDef, env);
+    if (!guard.allowed) {
+      return {
+        tool: toolDef.name,
+        status: 'DENIED',
+        executed: false,
+        sideEffects: 'NONE',
+        reason: guard.reason
+      };
+    }
+    try {
+      const data = fn();
+      return {
+        tool: toolDef.name,
+        status: 'SUCCESS',
+        executed: true,
+        sideEffects: toolDef.sideEffects,
+        ...data
+      };
+    } catch (err) {
+      return {
+        tool: toolDef.name,
+        status: 'ERROR',
+        executed: false,
+        sideEffects: 'NONE',
+        reason: err.message,
+        code: err.code || 'TOOL_ERROR'
+      };
+    }
+  }
+
+  async handleToolCall(rawName, args = {}, env = process.env) {
+    const name = normalizeToolName(rawName);
+    const toolDef = CANONICAL_TOOLS.find((t) => t.name === name);
+
+    if (!toolDef) {
+      return {
+        tool: rawName,
+        status: 'DENIED',
+        executed: false,
+        sideEffects: 'NONE',
+        reason: `UNKNOWN_TOOL: '${rawName}' (normalized: '${name}')`
+      };
+    }
 
     switch (name) {
-      case 'eos.context.compile': {
-        const guard = this.evaluateToolGuard(toolDef, env);
-        if (!guard.allowed) {
-          return { tool: name, status: 'DENIED', executed: false, sideEffects: 'NONE', reason: guard.reason };
-        }
-        const receipt = ContextCompiler.compileMissionContext(args);
+      case 'eos.context.compile':
+        return this._guarded(toolDef, env, () => ({
+          receipt: ContextCompiler.compileMissionContext(args)
+        }));
+
+      case 'eos.ledger.get_features':
+        return this._guarded(toolDef, env, () => ({
+          features: this.ledger.getFeatureList(args.missionId)
+        }));
+
+      case 'eos.ledger.update_feature':
+        return this._guarded(toolDef, env, () => ({
+          feature: this.ledger.updateFeatureStatus(
+            args.missionId,
+            args.featureId,
+            args.newStatus,
+            args.evidenceReceipt
+          )
+        }));
+
+      case 'eos.authority.check':
+        return this._guarded(toolDef, env, () => ({
+          auth: AuthorityAdapter.checkAuthority(args.requiredLevel, args.grantedLevel)
+        }));
+
+      case 'eos.mission.recover':
+        return this._guarded(toolDef, env, () => ({
+          recovered: this.ledger.recover(args.missionId)
+        }));
+
+      case 'eos.mission.resolve':
+        return this._guarded(toolDef, env, () => ({
+          resolution: this.bridge.resolveIntent(args)
+        }));
+
+      case 'eos.mission.start':
+        return this._guarded(toolDef, env, () => ({
+          mission: this.bridge.startMission(args)
+        }));
+
+      case 'eos.mission.status':
+        return this._guarded(toolDef, env, () => ({
+          mission_status: this.bridge.missionStatus(args)
+        }));
+
+      case 'eos.policy.validate':
+        return this._guarded(toolDef, env, () => ({
+          policy: this.bridge.policyValidate(args)
+        }));
+
+      case 'eos.evidence.get':
+        return this._guarded(toolDef, env, () => ({
+          evidence: this.bridge.getEvidence(args)
+        }));
+
+      case 'eos.evidence.record':
+        return this._guarded(toolDef, env, () => {
+          const missionId = args.missionId || args.mission_id;
+          if (!missionId) {
+            const err = new Error('MISSING_MISSION_ID');
+            err.code = 'MISSING_MISSION_ID';
+            throw err;
+          }
+          const missionDir = this.bridge.runtime.getMissionDir(missionId);
+          const evidenceDir = path.join(missionDir, 'evidence');
+          const id = args.id || `EVD-${Date.now()}`;
+          const receipt = {
+            id,
+            mission_id: missionId,
+            status: args.status || 'RECORDED',
+            category: args.category || 'MANUAL',
+            recorded_at: new Date().toISOString(),
+            payload: args.payload || {},
+            epistemic_class: 'RECORDED_NOT_VERIFIED'
+          };
+          fs.mkdirSync(evidenceDir, { recursive: true });
+          const file = path.join(evidenceDir, `${id}.json`);
+          fs.writeFileSync(file, JSON.stringify(receipt, null, 2), 'utf8');
+          return { evidence: receipt, path: file };
+        });
+
+      case 'eos.verifier.run':
+        return this._guarded(toolDef, env, () => ({
+          verification: this.bridge.verifierRun(args)
+        }));
+
+      case 'eos.workspace.discover':
+        return this._guarded(toolDef, env, () => ({
+          workspace: this.bridge.discoverWorkspace(args)
+        }));
+
+      case 'eos.workspace.barrier_check':
+        return this._guarded(toolDef, env, () => ({
+          barrier: this.bridge.barrierCheck(args)
+        }));
+
+      case 'eos.fdir.status':
+        return this._guarded(toolDef, env, () => ({
+          fdir: this.bridge.fdirStatus()
+        }));
+
+      case 'eos.fdir.trip':
+        return this._guarded(toolDef, env, () => ({
+          incident: this.bridge.fdirTrip(args)
+        }));
+
+      case 'eos.report.generate':
+        return this._guarded(toolDef, env, () => ({
+          report: this.bridge.reportMission(args)
+        }));
+
+      case 'eos.audit.run':
+        return this._guarded(toolDef, env, () => {
+          const status = this.bridge.missionStatus({});
+          const fdir = this.bridge.fdirStatus();
+          const discovery = this.bridge.discoverWorkspace({});
+          return {
+            audit: {
+              schema_version: '1.0.0',
+              scope: 'LOCAL_GOVERNED_MVP',
+              missions: status,
+              fdir,
+              workspace: {
+                head: discovery.git?.head,
+                has_mission_cli: discovery.has_mission_cli,
+                has_mcp_server: discovery.has_mcp_server
+              },
+              dictamen: 'COMPLETE_FOR_LOCAL_GOVERNED_USE',
+              production_ready: false,
+              epistemic_class: 'MEASURED'
+            }
+          };
+        });
+
+      case 'eos.provider.route':
+      case 'eos.provider.health':
         return {
           tool: name,
-          status: 'SUCCESS',
-          executed: true,
-          sideEffects: 'READ_ONLY',
-          receipt
+          status: 'NOT_CONFIGURED',
+          executed: false,
+          sideEffects: 'NONE',
+          message:
+            'Provider routing is out of scope for local governed MVP (no network credentials). Use Cursor/local models outside EOS provider router.',
+          epistemic_class: 'NOT_VERIFIED'
         };
-      }
 
-      case 'eos.ledger.get_features': {
-        const guard = this.evaluateToolGuard(toolDef, env);
-        if (!guard.allowed) {
-          return { tool: name, status: 'DENIED', executed: false, sideEffects: 'NONE', reason: guard.reason };
-        }
-        const features = this.ledger.getFeatureList(args.missionId);
-        return {
-          tool: name,
-          status: 'SUCCESS',
-          executed: true,
-          sideEffects: 'READ_ONLY',
-          features
-        };
-      }
-
-      case 'eos.ledger.update_feature': {
-        const guard = this.evaluateToolGuard(toolDef, env);
-        if (!guard.allowed) {
-          return { tool: name, status: 'DENIED', executed: false, sideEffects: 'NONE', reason: guard.reason };
-        }
-        const feature = this.ledger.updateFeatureStatus(
-          args.missionId,
-          args.featureId,
-          args.newStatus,
-          args.evidenceReceipt
-        );
-        return {
-          tool: name,
-          status: 'SUCCESS',
-          executed: true,
-          sideEffects: 'LEDGER_WRITE',
-          feature
-        };
-      }
-
-      case 'eos.authority.check': {
-        const guard = this.evaluateToolGuard(toolDef, env);
-        if (!guard.allowed) {
-          return { tool: name, status: 'DENIED', executed: false, sideEffects: 'NONE', reason: guard.reason };
-        }
-        const auth = AuthorityAdapter.checkAuthority(args.requiredLevel, args.grantedLevel);
-        return {
-          tool: name,
-          status: 'SUCCESS',
-          executed: true,
-          sideEffects: 'READ_ONLY',
-          auth
-        };
-      }
-
-      case 'eos.mission.recover': {
-        const guard = this.evaluateToolGuard(toolDef, env);
-        if (!guard.allowed) {
-          return { tool: name, status: 'DENIED', executed: false, sideEffects: 'NONE', reason: guard.reason };
-        }
-        const recovered = this.ledger.recover(args.missionId);
-        return {
-          tool: name,
-          status: 'SUCCESS',
-          executed: true,
-          sideEffects: 'LEDGER_WRITE',
-          recovered
-        };
-      }
-
-      default: {
+      default:
         return {
           tool: name,
           status: 'SIMULATION_ONLY',
           executed: false,
           sideEffects: 'NONE',
           governance: 'DEFAULT_DENY_SUPERVISED',
-          message: `Tool '${name}' is registered in the Target Manifest but is not yet wired to an active engine. No side effects occurred.`
+          message: `Tool '${name}' is registered but has no active handler.`
         };
-      }
     }
   }
 
@@ -215,7 +326,7 @@ class EosMcpServer {
             result: {
               protocolVersion: '2024-11-05',
               capabilities: { tools: {} },
-              serverInfo: { name: 'eos-mission-os', version: '1.2.0' }
+              serverInfo: { name: 'eos-mission-os', version: '1.3.0' }
             }
           };
           process.stdout.write(JSON.stringify(response) + '\n');
@@ -224,7 +335,7 @@ class EosMcpServer {
             jsonrpc: '2.0',
             id,
             result: {
-              tools: CANONICAL_TOOLS.map(t => ({
+              tools: CANONICAL_TOOLS.map((t) => ({
                 name: t.name,
                 description: t.description,
                 inputSchema: { type: 'object' }
@@ -262,7 +373,7 @@ class EosMcpServer {
   }
 }
 
-export { EosMcpServer, CANONICAL_TOOLS };
+export { EosMcpServer, CANONICAL_TOOLS, normalizeToolName };
 
 if (process.argv[1] && process.argv[1].endsWith('mcp-server.js')) {
   const server = new EosMcpServer();

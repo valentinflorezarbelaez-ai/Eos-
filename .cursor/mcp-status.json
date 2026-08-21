@@ -1,0 +1,34 @@
+{
+  "configured_at_utc": "2026-08-21T21:10:00Z",
+  "mcp_json": ".cursor/mcp.json",
+  "eos_local": {
+    "entrypoint": "src/mcp-server.js",
+    "version": "1.3.0",
+    "mode": "read-write",
+    "autonomy": "LEVEL_1",
+    "external_side_effects": false,
+    "wired": [
+      "eos.mission.resolve",
+      "eos.mission.start",
+      "eos.mission.status",
+      "eos.mission.recover",
+      "eos.context.compile",
+      "eos.ledger.get_features",
+      "eos.ledger.update_feature",
+      "eos.authority.check",
+      "eos.policy.validate",
+      "eos.evidence.get",
+      "eos.evidence.record",
+      "eos.verifier.run",
+      "eos.workspace.discover",
+      "eos.workspace.barrier_check",
+      "eos.fdir.status",
+      "eos.fdir.trip",
+      "eos.audit.run",
+      "eos.report.generate"
+    ],
+    "not_configured": ["eos.provider.route", "eos.provider.health"],
+    "reload_required": true,
+    "manual": "docs/manuals/EOS_MCP_LOCAL_CONNECT.md"
+  }
+}

@@ -144,16 +144,15 @@ test('GUARD-06: Permitted write tools succeed when mode is read-write and autono
   fs.rmSync(ledgerDir, { recursive: true, force: true });
 });
 
-test('GUARD-07: Simulation-only tools remain honest across all modes', async () => {
+test('GUARD-07: Provider tools stay NOT_CONFIGURED; discover is wired', async () => {
   const server = new EosMcpServer();
 
   const res1 = await server.handleToolCall('eos.workspace.discover', {}, { EOS_MODE: 'read-only', EOS_AUTONOMY_LEVEL: 'LEVEL_0' });
-  assert.equal(res1.status, 'SIMULATION_ONLY');
-  assert.equal(res1.executed, false);
-  assert.equal(res1.sideEffects, 'NONE');
+  assert.equal(res1.status, 'SUCCESS');
+  assert.equal(res1.executed, true);
 
   const res2 = await server.handleToolCall('eos.provider.route', {}, { EOS_MODE: 'read-write', EOS_AUTONOMY_LEVEL: 'LEVEL_4' });
-  assert.equal(res2.status, 'SIMULATION_ONLY');
+  assert.equal(res2.status, 'NOT_CONFIGURED');
   assert.equal(res2.executed, false);
   assert.equal(res2.sideEffects, 'NONE');
 });

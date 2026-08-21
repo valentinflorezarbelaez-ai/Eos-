@@ -35,12 +35,29 @@ test('MCP-03: tools/call eos.context.compile compiles context cleanly', async ()
   assert.ok(res.receipt.sha256);
 });
 
-test('MCP-04: Non-wired tools return SIMULATION_ONLY with executed:false and sideEffects:NONE', async () => {
+test('MCP-04: Provider tools remain honestly NOT_CONFIGURED (no fake wiring)', async () => {
   const server = new EosMcpServer();
-  const res = await server.handleToolCall('eos.evidence.get', { id: 'EVD-999' });
+  const res = await server.handleToolCall('eos.provider.route', { prompt: 'x' });
 
-  assert.equal(res.status, 'SIMULATION_ONLY');
+  assert.equal(res.status, 'NOT_CONFIGURED');
   assert.equal(res.executed, false);
   assert.equal(res.sideEffects, 'NONE');
-  assert.match(res.message, /not yet wired to an active engine/);
+});
+
+test('MCP-05: underscore tool names normalize to dotted canonical names', async () => {
+  const server = new EosMcpServer();
+  const res = await server.handleToolCall('eos_authority_check', {
+    requiredLevel: 'LEVEL_0',
+    grantedLevel: 'LEVEL_0'
+  });
+  assert.equal(res.status, 'SUCCESS');
+  assert.equal(res.tool, 'eos.authority.check');
+});
+
+test('MCP-06: workspace.discover is wired (MEASURED)', async () => {
+  const server = new EosMcpServer();
+  const res = await server.handleToolCall('eos.workspace.discover', {});
+  assert.equal(res.status, 'SUCCESS');
+  assert.equal(res.executed, true);
+  assert.ok(res.workspace.has_mcp_server);
 });
